@@ -1,9 +1,10 @@
 {
 "name" :"extension chrome",
+"manifest_version": 2,
 "version" :"1.0",
 "description" :"Le truc du tutoriel",
 "browser_action" :
     {
-        "popup" :"dire_bonjour.html"
+        "popup" :"bonjour.html"
     }
 }
