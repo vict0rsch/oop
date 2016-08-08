@@ -1,10 +1,14 @@
 {
-"name" :"extension chrome",
-"manifest_version": 2,
-"version" :"1.0",
-"description" :"Le truc du tutoriel",
-"browser_action" :
-    {
-        "popup" :"bonjour.html"
-    }
+    "name" :"extension chrome",
+    "manifest_version": 2,
+    "version" :"1.0",
+    "description" :"Le truc duuu tutoriel",
+    "browser_action": {
+        //"default_icon": "icon.png",
+        "default_popup": "bonjour.html"
+    },
+    "permissions": [
+        "activeTab",
+        "https://ajax.googleapis.com/"
+    ]
 }
