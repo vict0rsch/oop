@@ -4,7 +4,7 @@
     "version" :"1.0",
     "description" :"Le truc duuu tutoriel",
     "browser_action": {
-        //"default_icon": "icon.png",
+        "default_icon": "icon.png",
         "default_popup": "bonjour.html"
     },
     "permissions": [
