@@ -1,8 +1,6 @@
 //alert("Hello Zozor !") ;
 $(function(){
     if (window.localStorage) {
-        //console.log('fzefzefez')
-        localStorage['bite'] = 2;
 
         if ("nbOfTime" in localStorage) {
             localStorage['nbOfTime'] = parseInt(localStorage['nbOfTime']) + 1;

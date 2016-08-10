@@ -1,34 +1,50 @@
 $(function(){
 
-    // window.setInterval(function(){
-    //     alert('ello pupute');
-    //     console.log('jjj')
-    // }, 3000)
-    console.log('james');
+    console.log('Running Background JS');
 
-    //listen for new tab to be activated
-    // chrome.tabs.onActivated.addListener(function(tab) {
-    //     var tabId = parseInt(tab.tabId)
-    //     console.log("activated")
-    //     if (!isNaN(tabId)){
-    //         console.log(tabId);
-    //         chrome.tabs.get(tabId, function(onglet){
-    //             console.log(onglet.url);
-    //             localStorage['currentTab'] = onglet.url
-    //         });
-    //     };
-    // });
+    function count_tabs() {
+        localStorage['numberTabsOpen'] = 0 
+        chrome.windows.getAll({populate:true},function(windows){
+            windows.forEach(function(window){
+                window.tabs.forEach(function(tab){
+                    localStorage['numberTabsOpen'] = parseInt(localStorage['numberTabsOpen']) + 1
+                });
+            });
+        });  
+    }
 
-    //listen for current tab to be changed
+    function get_domain(url){
+        var new_url = url
+        if (url.substring(0,4) === "http"){
+            new_url = new_url.split('.')[1]
+        } else {
+            new_url = new_url.split('.')[0]
+        }
+
+        return new_url
+    }
+
+    function log_tab(onglet){
+        localStorage['currentTabUrl'] = onglet.url
+        localStorage['currentTabTitle'] = onglet.title
+        localStorage['currentTabDmain'] = get_domain(onglet.url)
+    }
+
     chrome.tabs.onUpdated.addListener(function(tab) {
         var tabId = tab
         console.log("updated")
         if (!isNaN(tabId)) {
             console.log(tabId);
-            chrome.tabs.get(tabId, function(onglet){
-                console.log(onglet.url);
-                localStorage['currentTab'] = onglet.url
-            });
+            chrome.tabs.query({active: true, lastFocusedWindow: true},
+                function(array_of_tabs) {
+                    var tab = array_of_tabs[0];
+                    console.log(tab)
+                    if (tab){
+                        log_tab(tab)
+                        count_tabs()
+                    }
+                }); 
+            
         };
     });
 
@@ -39,23 +55,18 @@ $(function(){
             console.log(tabId);
             chrome.tabs.get(tabId, function(onglet){
                 console.log(onglet.url);
-                localStorage['currentTab'] = onglet.url
+                log_tab(onglet)
+                count_tabs()
             });
         };
     });
 
-    // listen for new tab created
-    // chrome.tabs.onCreated.addListener(function(tab){
-    //     var tabId = parseInt(tab.tabId)
-    //     console.log('created')
-    //     console.log(tabId)
-    //     if (!isNaN(tabId)) {
-    //         console.log(tabId);
-    //         chrome.tabs.get(tabId, function(onglet){
-    //             console.log(onglet.url);
-    //         });
-    //     };
-    //     console.log('end created')
-    // });
+    chrome.tabs.onRemoved.addListener(function(tab){
+        count_tabs()
+        if (localStorage['numberTabsOpen'] === "0"){
+            localStorage['currentTabUrl'] = ""
+            localStorage['currentTabTitle'] = ""
+        }
+    });
 
 });
