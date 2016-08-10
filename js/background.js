@@ -6,23 +6,56 @@ $(function(){
     // }, 3000)
     console.log('james');
 
-    function get_url_tab(onglet){
-        alert(onglet.url + "\n" + localStorage["nbOfTime"]);
-        return onglet.url;
-    }
+    //listen for new tab to be activated
+    // chrome.tabs.onActivated.addListener(function(tab) {
+    //     var tabId = parseInt(tab.tabId)
+    //     console.log("activated")
+    //     if (!isNaN(tabId)){
+    //         console.log(tabId);
+    //         chrome.tabs.get(tabId, function(onglet){
+    //             console.log(onglet.url);
+    //             localStorage['currentTab'] = onglet.url
+    //         });
+    //     };
+    // });
 
-    function get_url_window(fenetre){
-        chrome.tabs.getSelected(fenetre.id, function(onglet){
-            get_url_tab(onglet);
-        })
-    }
+    //listen for current tab to be changed
+    chrome.tabs.onUpdated.addListener(function(tab) {
+        var tabId = tab
+        console.log("updated")
+        if (!isNaN(tabId)) {
+            console.log(tabId);
+            chrome.tabs.get(tabId, function(onglet){
+                console.log(onglet.url);
+                localStorage['currentTab'] = onglet.url
+            });
+        };
+    });
 
-    chrome.windows.getLastFocused(function(fenetre){
-        var current_url = get_url_window(fenetre);
-    })
+    chrome.tabs.onHighlighted.addListener(function(tab) {
+        var tabId = tab.tabIds[0]
+        console.log("highlighted")
+        if (!isNaN(tabId)) {
+            console.log(tabId);
+            chrome.tabs.get(tabId, function(onglet){
+                console.log(onglet.url);
+                localStorage['currentTab'] = onglet.url
+            });
+        };
+    });
 
-    document.addEventListener('visibilitychange', function(){
-        alert('change') // change tab text for demo
-    })
+    // listen for new tab created
+    // chrome.tabs.onCreated.addListener(function(tab){
+    //     var tabId = parseInt(tab.tabId)
+    //     console.log('created')
+    //     console.log(tabId)
+    //     if (!isNaN(tabId)) {
+    //         console.log(tabId);
+    //         chrome.tabs.get(tabId, function(onglet){
+    //             console.log(onglet.url);
+    //         });
+    //     };
+    //     console.log('end created')
+    // });
 
 });
