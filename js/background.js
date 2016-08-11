@@ -1,5 +1,5 @@
 $(function(){
-
+    
     console.log('Running Background JS');
 
     function count_tabs() {
