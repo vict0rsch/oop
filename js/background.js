@@ -13,13 +13,30 @@ $(function(){
         });  
     }
 
-    function get_domain(url){
-        var new_url = url
-        if (url.substring(0,4) === "http"){
-            new_url = new_url.split('.')[1]
-        } else {
-            new_url = new_url.split('.')[0]
+    function get_indices(haystack, needle){
+        var returns = [];
+        var position = 0;
+        while(haystack.indexOf(needle, position) > -1){
+            var index = haystack.indexOf(needle, position);
+            returns.push(index);
+            position = index + needle.length;
         }
+        return returns;
+    }
+
+
+    function get_domain(url){
+        var new_url = url.split('/')[0]
+        if (url.substring(0,4) === "http"){
+            new_url = url.split('/')[2]
+            if (new_url.indexOf('www') >= 0){
+                new_url = new_url.substring(4, new_url.length)
+            }
+        }
+
+        // if (get_indices(new_url, '.').length > 1){
+        //     new_url = new_url.
+        // }
 
         return new_url
     }
@@ -27,7 +44,8 @@ $(function(){
     function log_tab(onglet){
         localStorage['currentTabUrl'] = onglet.url
         localStorage['currentTabTitle'] = onglet.title
-        localStorage['currentTabDmain'] = get_domain(onglet.url)
+        localStorage['currentTabDomain'] = get_domain(onglet.url)
+        localStorage['currentTabIsComplete'] = onglet.status === "complete"
     }
 
     chrome.tabs.onUpdated.addListener(function(tab) {
