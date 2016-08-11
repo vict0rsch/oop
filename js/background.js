@@ -28,7 +28,11 @@ $(function(){
     function parse_url(url){
         var parser = document.createElement('a');
         parser.href = url
-        return parser.hostname
+        new_url = parser.hostname
+        if (new_url.indexOf("www.")===0){
+            new_url = new_url.substring(4, new_url.length)
+        }
+        return new_url
     }
 
     function log_tab(onglet){
@@ -42,11 +46,9 @@ $(function(){
         var tabId = tab
         console.log("updated")
         if (!isNaN(tabId)) {
-            console.log(tabId);
             chrome.tabs.query({active: true, lastFocusedWindow: true},
                 function(array_of_tabs) {
                     var tab = array_of_tabs[0];
-                    console.log(tab)
                     if (tab){
                         log_tab(tab)
                         count_tabs()
@@ -60,9 +62,7 @@ $(function(){
         var tabId = tab.tabIds[0]
         console.log("highlighted")
         if (!isNaN(tabId)) {
-            console.log(tabId);
             chrome.tabs.get(tabId, function(onglet){
-                console.log(onglet.url);
                 log_tab(onglet)
                 count_tabs()
             });
