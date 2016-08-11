@@ -25,26 +25,16 @@ $(function(){
     }
 
 
-    function get_domain(url){
-        var new_url = url.split('/')[0]
-        if (url.substring(0,4) === "http"){
-            new_url = url.split('/')[2]
-            if (new_url.indexOf('www') >= 0){
-                new_url = new_url.substring(4, new_url.length)
-            }
-        }
-
-        // if (get_indices(new_url, '.').length > 1){
-        //     new_url = new_url.
-        // }
-
-        return new_url
+    function parse_url(url){
+        var parser = document.createElement('a');
+        parser.href = url
+        return parser.hostname
     }
 
     function log_tab(onglet){
         localStorage['currentTabUrl'] = onglet.url
         localStorage['currentTabTitle'] = onglet.title
-        localStorage['currentTabDomain'] = get_domain(onglet.url)
+        localStorage['currentTabDomain'] = parse_url(onglet.url)
         localStorage['currentTabIsComplete'] = onglet.status === "complete"
     }
 
