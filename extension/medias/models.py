@@ -8,7 +8,7 @@ from django.db import models
 class Owner(models.Model):
     name = models.CharField(max_length=256)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 
@@ -16,7 +16,7 @@ class User(models.Model):
     pseudo = models.CharField(max_length=128)
     email = models.CharField(max_length=256)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 
@@ -26,7 +26,7 @@ class Media(models.Model):
     owner = models.ManyToManyField(Owner, through='Share', blank=True)
     user = models.ManyToManyField(User, through='Visit', blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 
@@ -35,7 +35,7 @@ class Share(models.Model):
     media = models.ForeignKey(Media)
     owner = models.ForeignKey(Owner)
 
-    def __str__(self):
+    def __unicode__(self):
         return u"{0} % de {1} par {2}".format(
             self.share, self.media, self.owner)
 
@@ -47,6 +47,6 @@ class Visit(models.Model):
     media = models.ForeignKey(Media)
     user = models.ForeignKey(User)
 
-    def __str__(self):
+    def __unicode__(self):
         return u"{0} par {1} à {2}".format(
             self.media, self.user, self.date)
