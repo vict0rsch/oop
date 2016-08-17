@@ -1,5 +1,5 @@
 $(function(){
-    
+    localStorage["newProfile"]=false;
     console.log('Running Background JS');
 
     function count_tabs() {
