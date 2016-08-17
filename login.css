@@ -1,0 +1,7 @@
+body{
+    width: 300px;
+}
+
+#login_input, #password_input{
+    width: 75px;
+}
