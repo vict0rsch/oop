@@ -28,7 +28,7 @@ $(function(){
 
         $("#go_to_options").click(function(){
             console.log("test click");
-            chrome.tabs.create({url:"options.html"});
+            chrome.tabs.create({url:"/html/options.html"});
         });
 
 });
