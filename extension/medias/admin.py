@@ -3,11 +3,11 @@ from medias.models import *
 
 
 class EntityAdmin(admin.ModelAdmin):
-    list_display = ('name', 'website', 'wiki', 'category')
-    list_filter = ('name', 'website', 'category')
+    list_display = ('name', 'website', 'wiki', 'category', 'long_name')
+    list_filter = ('category',)
     # date_hierarchy = 'date'
     ordering = ('name', 'website', 'category')
-    search_fields = ('name', 'website', 'wiki', 'category')
+    search_fields = ('name', 'website', 'wiki', 'category', 'long_name')
 
 admin.site.register(Entity, EntityAdmin)
 
