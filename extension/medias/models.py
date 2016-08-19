@@ -21,7 +21,7 @@ class Entity(models.Model):
     )
     name = models.CharField(max_length=256)
     website = models.CharField(max_length=256, null=True, blank=True)
-    wiki = models.CharField(max_length=256, null=True)
+    wiki = models.CharField(max_length=256, null=True, blank=True)
     category = models.CharField(max_length=1, choices=ownership)
     user = models.ManyToManyField(User, through='Visit', blank=True)
     long_name = models.CharField(max_length=256, blank=True, null=True)
