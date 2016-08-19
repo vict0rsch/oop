@@ -25,6 +25,8 @@ class Entity(models.Model):
     category = models.CharField(max_length=1, choices=ownership)
     user = models.ManyToManyField(User, through='Visit', blank=True)
     long_name = models.CharField(max_length=256, blank=True, null=True)
+    rank = models.IntegerField(blank=True, null=True)
+    other_groups = models.CharField(max_length=256, blank=True, null=True)
 
     def __unicode__(self):
         return self.name
@@ -34,6 +36,7 @@ class Share(models.Model):
     share = models.FloatField(null=True)
     entity = models.ForeignKey(Entity, related_name='entity')
     owner = models.ForeignKey(Entity, related_name='owner')
+    special = models.CharField(max_length=32, null=True, blank=True)
 
     def __unicode__(self):
         return u"{0} % de {1} par {2}".format(
