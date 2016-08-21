@@ -3,7 +3,7 @@ from medias.models import *
 
 
 class EntityAdmin(admin.ModelAdmin):
-    list_display = ('name', 'website', 'wiki', 'category', 'long_name')
+    list_display = ('name', 'website', 'wiki', 'category', 'long_name', 'other_groups', )
     list_filter = ('category',)
     # date_hierarchy = 'date'
     ordering = ('name', 'website', 'category')

@@ -13,6 +13,13 @@ class User(models.Model):
         return self.name
 
 
+class Node (models.Model):
+    name = models.CharField(max_length=256)
+    website = models.CharField(max_length=256, null=True, blank=True)
+    wiki = models.CharField(max_length=256, null=True, blank=True)
+    parents = models.ManyToManyField(Node, through='part')
+
+
 class Entity(models.Model):
     ownership = (
         ('c', 'company'),
