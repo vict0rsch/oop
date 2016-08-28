@@ -5,3 +5,7 @@ body{
 #login_input, #password_input{
     width: 75px;
 }
+
+#get_data_button{
+    margin-top: 50px;
+}

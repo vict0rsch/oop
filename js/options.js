@@ -8,7 +8,6 @@ $(function(){
     $('#create_profile_form').submit(function(e){
         var pseudo = $("#create_pseudo_input").val()
         var email = $("#create_email_input").val()
-        console.log(pseudo)
         $.post({
             url:'https://localhost:8000/medias/test_ajax/',
             data:{
@@ -16,10 +15,23 @@ $(function(){
                 'email': email,
             },
             success:function(message){
-                alert(message)
+                m = JSON.parse(message)
+                console.log(m)
             }
-        }).fail(function(){
-            alert('ERROR')
+        }).fail(function(e){
+            console.log(e)
+        });
+        return false;
+    });
+
+    $('#get_data_button').click(function(e){
+        $.post({
+            url:'https://localhost:8000/medias/get_data/',
+            success:function(message){
+                console.log(message['shares'])
+            }
+        }).fail(function(e){
+            console.log(e)
         });
         return false;
     });
