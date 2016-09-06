@@ -15,6 +15,7 @@
         "activeTab",
         "https://ajax.googleapis.com/",
         "https://localhost:8000/*",
-        "tabs"
+        "tabs",
+        "notifications"
     ]
 }

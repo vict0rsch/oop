@@ -1,5 +1,5 @@
 body{
-    width: 300px;
+    width: 500px;
 }
 
 #login_input, #password_input{
@@ -8,4 +8,21 @@ body{
 
 #get_data_button{
     margin-top: 50px;
+}
+
+#load_database_button{
+    margin-left: 50px;
+}
+
+#reset_database_button{
+    margin-left: 50px;
+}
+
+#cyto_container{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 0;
+    top: 100px;
+    z-index: 999;
 }

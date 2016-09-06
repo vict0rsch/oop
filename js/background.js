@@ -2,46 +2,6 @@ $(function(){
     localStorage["newProfile"]=false;
     console.log('Running Background JS');
 
-    function count_tabs() {
-        localStorage['numberTabsOpen'] = 0 
-        chrome.windows.getAll({populate:true},function(windows){
-            windows.forEach(function(window){
-                window.tabs.forEach(function(tab){
-                    localStorage['numberTabsOpen'] = parseInt(localStorage['numberTabsOpen']) + 1
-                });
-            });
-        });  
-    }
-
-    function get_indices(haystack, needle){
-        var returns = [];
-        var position = 0;
-        while(haystack.indexOf(needle, position) > -1){
-            var index = haystack.indexOf(needle, position);
-            returns.push(index);
-            position = index + needle.length;
-        }
-        return returns;
-    }
-
-
-    function parse_url(url){
-        var parser = document.createElement('a');
-        parser.href = url
-        new_url = parser.hostname
-        if (new_url.indexOf("www.")===0){
-            new_url = new_url.substring(4, new_url.length)
-        }
-        return new_url
-    }
-
-    function log_tab(onglet){
-        localStorage['currentTabUrl'] = onglet.url
-        localStorage['currentTabTitle'] = onglet.title
-        localStorage['currentTabDomain'] = parse_url(onglet.url)
-        localStorage['currentTabIsComplete'] = onglet.status === "complete"
-    }
-
     chrome.tabs.onUpdated.addListener(function(tab) {
         var tabId = tab
         console.log("updated")
@@ -50,7 +10,7 @@ $(function(){
                 function(array_of_tabs) {
                     var tab = array_of_tabs[0];
                     if (tab){
-                        log_tab(tab)
+                        log_tab(tab, 'u')
                         count_tabs()
                     }
                 }); 
@@ -60,10 +20,9 @@ $(function(){
 
     chrome.tabs.onHighlighted.addListener(function(tab) {
         var tabId = tab.tabIds[0]
-        console.log("highlighted")
         if (!isNaN(tabId)) {
             chrome.tabs.get(tabId, function(onglet){
-                log_tab(onglet)
+                log_tab(onglet, 'h')
                 count_tabs()
             });
         };
@@ -76,5 +35,8 @@ $(function(){
             localStorage['currentTabTitle'] = ""
         }
     });
+
+
+
 
 });

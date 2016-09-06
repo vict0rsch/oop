@@ -1,3 +1,7 @@
+if(localStorage['useLocally'] === 'true'|| localStorage['userLoggedIn'] === 'true'){
+        window.location.replace('/html/bonjour.html')
+    }
+
 $(function(){
 
     if(localStorage['useLocally'] === 'true'|| localStorage['userLoggedIn'] === 'true'){
