@@ -157,7 +157,7 @@ function get_parents(data, entity, res){
     res.push(parents)
     var tab = []
     for (var s of parents){
-        console.log(get_parents(data, data.entitys.id[s.parent], res))
+        get_parents(data, data.entitys.id[s.parent], res)
     }
     return res
 }
@@ -253,6 +253,7 @@ function notifyMe() {
     }
 }
 
+
 function log_tab(onglet, event){
     localStorage['currentTabUrl'] = onglet.url
     localStorage['currentTabTitle'] = onglet.title
@@ -270,4 +271,136 @@ function log_tab(onglet, event){
         }
     }
     notifyMe()
+}
+
+
+function get_cyto_data(data, entity){
+    var parents_arrays = get_parents(data, entity, [])
+    var parents = []
+    for (var p of parents_arrays){
+        for (var s of p){
+            parents.push(s)
+        }
+    }
+
+    var entitys = []
+    for (var share of parents){
+        p = data.entitys.id[share.parent]
+        c = data.entitys.id[share.child]
+        if(entitys.indexOf(c) === -1){
+            entitys.push(c)
+        } 
+        if(entitys.indexOf(p) === -1){
+            entitys.push(p)
+        }
+    }
+
+    var nodes =[]
+    for (var e of entitys){
+        width = parseInt(e.name.length*10)
+        e.width = width + 'px'
+        nodes.push({data:e})
+    }
+
+    var shares = []
+    var special_shares =[]
+    for (var s of parents){
+        var label
+        if (s.share == -1){
+            label = s.special
+        } else {
+            label = s.share + '%'
+        }
+        var temp_data = {}
+        temp_data.id = s.id
+        temp_data.source = s.parent
+        temp_data.target = s.child
+        temp_data.label = label
+        if(label.length > 10){
+                special_shares.push(s.id)
+        }
+        shares.push({data:temp_data})
+    }
+
+    if (special_shares.length > 0){
+        var temp_child
+        var temp_label
+        console.log('special shares')
+        console.log(special_shares)
+        var n = {}
+        n.id = -1
+        n.category = 's'
+        n.name = "ensemble"
+        nodes.push({data:n})
+
+        for (var s of shares){
+            s = s.data
+            if(special_shares.indexOf(s.id) > -1){
+                console.log('for (var s of special_shares)')
+                console.log(s)
+                temp_target = s.target
+                temp_label = s.label.split(' ')[0]
+                s.target = -1
+                s.label = ""
+                console.log('temp child  ' +s.target)
+            }
+        }
+        var temp_data = {}
+        temp_data.id = -2
+        temp_data.source = -1
+        temp_data.target = temp_target
+        temp_data.label = temp_label
+        shares.push({data:temp_data})
+
+    }
+
+    return {nodes: nodes, edges: shares}
+}
+
+
+function get_wiki_img_src(data, keys, index){
+    if (index === 0){
+        delete localStorage['wiki_src']
+        keys = []
+        for(var k in data.entitys.id) keys.push(k);
+    } else if (index === keys.length){
+        return
+    }
+    
+    var entity = data.entitys.id[keys[index]]
+    if (entity.category === 'm'){
+        var wikis = entity.wiki.split('/') 
+        var wiki = wikis[wikis.length - 1]
+        var query = "https://fr.wikipedia.org/w/api.php?action=parse&format=json&prop=text&page="+wiki
+        $.ajax( {
+            url: query,
+            dataType: 'json', 
+            xhrFields: { withCredentials: true },
+            success: function(response) { 
+                try {
+                    var r = $(response.parse.text['*'])
+                    console.log(entity.name)
+                    var src = $(r[2]).find('img')
+                    console.log(src)
+                    if (!localStorage['wiki_src']){
+                        var id = entity.id
+                        var w = {
+                            id: src 
+                        }
+                        localStorage['wiki_src'] = JSON.stringify(w)
+                    } else {
+                        var w = JSON.parse(localStorage['wiki_src'])
+                        w[entity.id] = src
+                        localStorage['wiki_src'] = JSON.stringify(w)
+                    }
+                } catch(e) {
+                    console.log(e)
+                } finally {
+                    get_wiki_img_src(data, keys, index + 1)
+                }
+                
+            }
+        });
+    }
+
 }
