@@ -28,12 +28,12 @@ $(function(){
                         url: 'https://localhost:8000/medias/get_data/',
                         success: function(data){
                             // Resolving Promise will launch then() below.
-                            console.log(data['shares'])
+                            console.log(data['shares']);
                             resolve(data['shares'])
                         }
                     }).fail(function(e){
                         // Rejecting promise to make db.open() fail.
-                        console.log(e)
+                        console.log(e);
                         reject(e)
                     });
                 }).then(function (data) {
@@ -61,12 +61,12 @@ $(function(){
                                     url: 'https://localhost:8000/medias/get_data/',
                                     success: function(data){
                                         // Resolving Promise will launch then() below.
-                                        console.log(data['entitys'])
+                                        console.log(data['entitys']);
                                         resolve(data['entitys'])
                                     }
                                 }).fail(function(e){
                                     // Rejecting promise to make db.open() fail.
-                                    console.log(e)
+                                    console.log(e);
                                     reject(e)
                                 });
                             }).then(function (data) {
@@ -92,7 +92,7 @@ $(function(){
 
     db.open(); // Will resolve when data is fully populated (or fail if error)
 
-    window.db = db
+    window.db = db;
     // Following operation will be queued until we're finished populating data:
     // db.someTable.each(function (obj) {
     //     // When we come here, data is fully populated and we can log all objects.
@@ -107,4 +107,4 @@ $(function(){
     //     // Note that we could also have catched it on db.open() but in this sample,
     //     // we show it here.
     // });
-})
+});

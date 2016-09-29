@@ -20,10 +20,13 @@ body{
 
 #cyto_container{
     width: 1000px;
-    height: 500px;
+    height: 300px;
     position: absolute;
     left: 0;
     top: 100px;
     z-index: 999;
     font-weight: bold;
+    margin-top: 20px;
 }
+
+

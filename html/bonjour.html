@@ -2,13 +2,20 @@
 <html>
 
     <head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="/css/bonjour.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery.qtip.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/test_css.css">
+
     <script src='/js/jquery-3.1.0.min.js'></script>
     <script src='/js/cytoscape.min.js'></script>
-<!--     <script src='/js/dexie.min.js'></script>
-    <script src='/js/dexie_db.js'></script> -->
+    <script src='/js/jquery.qtip.min.js'></script>
+    <script src='/js/cytoscape-qtip.js'></script>
+
     <script src='/js/background_utils.js'></script>
     <script src='/js/js_ext.js'></script>
-    <link rel="stylesheet" type="text/css" href="/css/bonjour.css">
+    
     </head>
 
     <body>
@@ -18,9 +25,14 @@
     <div id='bonjour_link_div'>
         <a id="go_to_options" href="">Options...</a>
     </div>
+    <div id='popup_buttons'>
+        <button class="btn btn-1 btn-1e" id='popup_zoom'>Agrandir</button>
+        <button class="btn btn-1 btn-1e" id='popup_reduce'>Rétrécir</button>
+        <button class="btn btn-1 btn-1e" id='popup_reset'>Taille par défaut</button>
+        </div>
     <div id='popup_cyto'>
     </div>
-    
+
     </body>
     
 

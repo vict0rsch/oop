@@ -15,8 +15,8 @@ $(function(){
     });
 
     $('#skip_login').click(function(e){
-        console.log('skipping login')
-        localStorage['useLocally']=true
+        console.log('skipping login');
+        localStorage['useLocally']=true;
         chrome.browserAction.setPopup({popup: "/html/bonjour.html"});
     });
 
