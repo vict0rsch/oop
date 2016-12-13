@@ -9,7 +9,7 @@ def get_entitys_from_list(names):
         try:
             entitys.append(Entity.objects.get(name=n))
         except:
-            print "Error adding :", n
+            print("Error adding :", n)
 
     # print 'trying to save {0} objects'.format(len(entitys))
     return entitys
@@ -28,11 +28,11 @@ def create_shares_100(company_name, media_names):
         try:
             s.save()
             count += 1
-            print 'added'
-            print m.name, ' ', company_name
+            print('added')
+            print(m.name, ' ', company_name)
         except ValidationError:
             pass
-    print 'Saved {0}/{1} Shares'.format(count, nb)
+    print('Saved {0}/{1} Shares'.format(count, nb))
 
 
 def title(name):
@@ -50,9 +50,9 @@ def title(name):
             w = score_in_word(w)
             titled_tab.append(w)
         except Exception as e:
-            print e
-            print name
-            print " -", word, "-"
+            print(e)
+            print(name)
+            print(" -", word, "-")
     return " ".join(w for w in titled_tab)
 
 

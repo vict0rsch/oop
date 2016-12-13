@@ -47,7 +47,7 @@ class Share(models.Model):
     def save(self, *args, **kwargs):
         if Share.objects.filter(child__name=self.child.name,
                                 parent__name=self.parent.name).count() > 0:
-            print'\n### SHARE SAVE ERROR : ', self.child.name, self.parent.name
+            print('\n### SHARE SAVE ERROR : ', self.child.name, self.parent.name)
             raise ValidationError('Entry exists')
         else:
             super(Share, self).save(*args, **kwargs)
