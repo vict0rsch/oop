@@ -4,14 +4,12 @@ from medias.models import *
 def get_entitys_from_list(names):
     entitys = []
     for n in names:
-        # print 'trying to append'
-        # print n
+
         try:
             entitys.append(Entity.objects.get(name=n))
         except:
             print("Error adding :", n)
 
-    # print 'trying to save {0} objects'.format(len(entitys))
     return entitys
 
 
@@ -69,7 +67,3 @@ def score_in_word(word):
         else:
             t = word.split("-")
             return "-".join(w.title() for w in t)
-
-
-# def get_all_parents(name):
-#     

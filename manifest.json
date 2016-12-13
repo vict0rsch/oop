@@ -1,8 +1,8 @@
 {
-    "name" :"extension chrome",
+    "name" :"Media graph",
     "manifest_version": 2,
     "version" :"1.0",
-    "description" :"Le truc duuu tutoriel",
+    "description" :"media-viz",
     "browser_action": {
         "default_icon": "icon.png",
         "default_popup": "/html/login.html"
