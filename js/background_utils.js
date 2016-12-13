@@ -460,7 +460,9 @@ function get_data(next) {
             console.log('Error getting data from server, trying for local JSON');
             console.log(e);
             $.getJSON("/data.json", function(data,status,xhr) {
-                store_data(data);
+                console.log('JSON DATA:')
+                console.log(data)
+                localStorage['data']=JSON.stringify(data)
                 try {
                     next(data)
                 } catch (e) {
@@ -644,7 +646,8 @@ function store_data(data) {
         }
     };
 
-    for (var s of data.shares) {
+    for (var s_id in data.shares) {
+        var s = data.shares[s_id]
         if (data_id.shares.parents[s.parent]) {
             data_id.shares.parents[s.parent].push(s);
         } else {
@@ -660,7 +663,8 @@ function store_data(data) {
     }
     ;
 
-    for (var e of data.entitys) {
+    for (var e_id in data.entitys) {
+        var e = data.entitys[e_id]
         data_id.entitys.id[e.id] = e;
         data_id.entitys.name[e.name] = e
     }
