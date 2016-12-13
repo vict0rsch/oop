@@ -457,8 +457,20 @@ function get_data(next) {
                 }
             }
         }).fail(function (e) {
-            console.log('Error getting data from server');
+            console.log('Error getting data from server, trying for local JSON');
             console.log(e);
+            $.getJSON("/data.json", function(json) {
+                store_data(json);
+                try {
+                    next(json)
+                } catch (e) {
+                    console.log("Error in get_data's function after loagdin local JSON data: " + arguments[0].name);
+                    console.log(e);
+                }
+            }).fail(function(e){
+                console.log('Error getting data from local JSON and Server ; ABORT');
+                console.log(e);
+            });
         });
 
     }
