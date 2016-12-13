@@ -459,10 +459,10 @@ function get_data(next) {
         }).fail(function (e) {
             console.log('Error getting data from server, trying for local JSON');
             console.log(e);
-            $.getJSON("/data.json", function(json) {
-                store_data(json);
+            $.getJSON("/data.json", function(data,status,xhr) {
+                store_data(data);
                 try {
-                    next(json)
+                    next(data)
                 } catch (e) {
                     console.log("Error in get_data's function after loagdin local JSON data: " + arguments[0].name);
                     console.log(e);
