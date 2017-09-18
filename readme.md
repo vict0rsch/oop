@@ -3,7 +3,7 @@
 ### Why 
 **Who owns the media we're reading?** Most of the time we don't know. Not that the information is secret, we just don't necessarily think about it.
 
-**Does it make any difference on the content?** Maybe. Sometimes. Often. Always. Depends, really. On the media, the owner, the piece of news, the time, location and country. Knowing who owns the media we're reading is a valuable information in itseflf. Not that it's a good or bad thing taht they're owned, we just ought to think critically about it and sometimes link this with the potential groups' other activities, in other industries
+**Does it make any difference on the content?** Maybe. Sometimes. Often. Always. Depends, really. On the media, the owner, the piece of news, the time, location and country. Knowing who owns the media we're reading is a valuable information in itself. Not that it's a good or bad thing that they're owned, we just ought to think critically about it and sometimes link this with the potential groups' other activities, in other industries.
 
 ### What
 
