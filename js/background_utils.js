@@ -16,7 +16,7 @@ function check_website(data, url) {
 
 function count_tabs() {
     localStorage['numberTabsOpen'] = 0;
-    chrome.windows.getAll({populate: true}, function (windows) {
+    chrome.windows.getAll({ populate: true }, function (windows) {
         windows.forEach(function (window) {
             window.tabs.forEach(function (tab) {
                 localStorage['numberTabsOpen'] = parseInt(localStorage['numberTabsOpen']) + 1
@@ -52,10 +52,10 @@ function find_other_special(data, entity) {
             e.label = "";
             e.source = s.parent;
             e.id = s.id;
-            result.shares.push({data: e});
+            result.shares.push({ data: e });
             var temp_node = data.entitys.id[s.parent];
             temp_node.width = parseInt(temp_node.name.length * 10);
-            result.nodes.push({data: temp_node})
+            result.nodes.push({ data: temp_node })
         }
     }
 
@@ -64,17 +64,17 @@ function find_other_special(data, entity) {
 
 
 function display_cyto(data, entity, container, first) {
-
+    var size;
     if (localStorage['popup_size'] && !isNaN(parseInt(localStorage['popup_size']))) {
         try {
-            var size = parseInt(localStorage['popup_size'])
+            size = parseInt(localStorage['popup_size'])
         } catch (err) {
             console.log(err);
-            var size = 500;
+            size = 500;
             localStorage['popup_size'] = 500
         }
     } else {
-        var size = 500;
+        size = 500;
         localStorage['popup_size'] = 500
     }
 
@@ -107,7 +107,7 @@ function display_cyto(data, entity, container, first) {
                     'color': 'rgb(107,36,50)',
                     'width': 'data(width)',
                     'text-valign': "center",
-                    'font-size': 17,
+                    'font-size': '3em',
                     // 'text-outline-width': 3,
                     // 'text-outline-color': '#F5A45D',
                 }
@@ -125,7 +125,7 @@ function display_cyto(data, entity, container, first) {
                     'height': '30px',
                     'width': 'data(width)',
                     'text-margin-y': '4px',
-                    'font-size': 30,
+                    'font-size': '3em',
                 }
             },
 
@@ -139,7 +139,7 @@ function display_cyto(data, entity, container, first) {
                     'height': '30px',
                     'font-weight': 'bolder',
                     'text-valign': "center",
-                    'font-size': 20,
+                    'font-size': '3em',
                 }
             },
 
@@ -156,27 +156,44 @@ function display_cyto(data, entity, container, first) {
                     // 'text-outline-width': 2,
                     // 'text-outline-color': '#888',
                     'border-width': 0,
-                    'border-color': '#8c8c8c'
+                    'border-color': '#8c8c8c',
+                    'font-size': '3em'
                 }
             },
 
             {
                 selector: 'edge',
                 style: {
-                    'width': 4,
+                    'width': 10,
                     'target-arrow-shape': 'triangle',
                     'line-color': 'rgb(210, 210, 210)',
                     'target-arrow-color': 'rgb(180, 180, 180)',
                     'curve-style': 'bezier',
-                    'label': 'data(label)'
+                    'label': 'data(label)',
+                    'font-size': '3em'
                 }
             }
         ],
 
         layout: {
             name: 'breadthfirst',
-            directed: true,
-            spacingFactor: 0.85,
+            fit: true, // whether to fit the viewport to the graph
+            directed: true, // whether the tree is directed downwards (or edges can point in any direction if false)
+            padding: 0, // padding on fit
+            circle: false, // put depths in concentric circles if true, put depths top down if false
+            spacingFactor: 0.65, // positive spacing factor, larger => more space between nodes (N.B. n/a if causes overlap)
+            boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
+            avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
+            nodeDimensionsIncludeLabels: true, // Excludes the label when calculating node bounding boxes for the layout algorithm
+            roots: undefined, // the roots of the trees
+            maximalAdjustments: 0, // how many times to try to position the nodes in a maximal way (i.e. no backtracking)
+            animate: true, // whether to transition the node positions
+            animationDuration: 1000, // duration of animation in ms if enabled
+            animationEasing: undefined, // easing of animation if enabled,
+            animateFilter: function (node, i) { return node.category == "m"; }, // a function that determines whether the node should be animated.  All nodes animated by default on animate enabled.  Non-animated nodes are positioned immediately when the layout starts
+            ready: undefined, // callback on layoutready
+            stop: undefined, // callback on layoutstop
+            transform: function (node, position) { return position; } // transform a given node position. Useful for changing flow direction in discrete layouts
         }
     });
 
@@ -246,7 +263,7 @@ function display_cyto(data, entity, container, first) {
                 visible: function () {
 
                     $('.click_qtip').qtip({
-                        style: {classes: 'btn btn-default'}
+                        style: { classes: 'btn btn-default' }
                     });
 
                     $('.click_qtip').click(function (event) {
@@ -288,14 +305,14 @@ function get_cyto_data(data, entity) {
     var children = [];
     for (var p of parents_arrays) {
         for (var s of p) {
-            parents.push(s)
+            parents.push(s);
         }
     }
 
 
     for (var c of children_arrays) {
         for (var s of c) {
-            children.push(s)
+            children.push(s);
         }
     }
 
@@ -306,10 +323,10 @@ function get_cyto_data(data, entity) {
         p = data.entitys.id[share.parent];
         c = data.entitys.id[share.child];
         if (entitys.indexOf(c) === -1) {
-            entitys.push(c)
+            entitys.push(c);
         }
         if (entitys.indexOf(p) === -1) {
-            entitys.push(p)
+            entitys.push(p);
         }
     }
 
@@ -317,10 +334,10 @@ function get_cyto_data(data, entity) {
         p = data.entitys.id[share.parent];
         c = data.entitys.id[share.child];
         if (entitys.indexOf(c) === -1) {
-            entitys.push(c)
+            entitys.push(c);
         }
         if (entitys.indexOf(p) === -1) {
-            entitys.push(p)
+            entitys.push(p);
         }
     }
 
@@ -328,10 +345,10 @@ function get_cyto_data(data, entity) {
     for (var e of entitys) {
         var width = parseInt(e.name.length * 10);
         if (e.category === 'm') {
-            width *= 2
+            width *= 2;
         }
         e.width = width + 'px';
-        nodes.push({data: e})
+        nodes.push({ data: e });
     }
 
     var shares = [];
@@ -352,7 +369,7 @@ function get_cyto_data(data, entity) {
         if (label.length > 10) {
             special_shares.push(s.id)
         }
-        shares.push({data: temp_data})
+        shares.push({ data: temp_data })
     }
 
     for (var s of parents) {
@@ -370,7 +387,7 @@ function get_cyto_data(data, entity) {
         if (label.length > 10) {
             special_shares.push(s.id)
         }
-        shares.push({data: temp_data})
+        shares.push({ data: temp_data })
     }
 
     if (special_shares.length > 0) {
@@ -380,7 +397,7 @@ function get_cyto_data(data, entity) {
         n.id = -1;
         n.category = 's';
         n.name = "(ensemble)";
-        nodes.push({data: n});
+        nodes.push({ data: n });
 
         for (var s of shares) {
             s = s.data;
@@ -396,7 +413,7 @@ function get_cyto_data(data, entity) {
         temp_data.source = -1;
         temp_data.target = temp_target;
         temp_data.label = temp_label;
-        shares.push({data: temp_data})
+        shares.push({ data: temp_data })
 
     }
 
@@ -410,7 +427,7 @@ function get_cyto_data(data, entity) {
     //     }}
     //     shares.push(temp_edge)
     // }
-    result = {nodes: nodes.concat(other_parents.nodes), edges: shares.concat(other_parents.shares)};
+    result = { nodes: nodes.concat(other_parents.nodes), edges: shares.concat(other_parents.shares) };
 
     return result
 }
@@ -459,17 +476,17 @@ function get_data(next) {
         }).fail(function (e) {
             console.log('Error getting data from server, trying for local JSON');
             console.log(e);
-            $.getJSON("/data.json", function(data,status,xhr) {
+            $.getJSON("/data.json", function (data, status, xhr) {
                 console.log('JSON DATA:')
                 console.log(data)
-                localStorage['data']=JSON.stringify(data)
+                localStorage['data'] = JSON.stringify(data)
                 try {
                     next(data)
                 } catch (e) {
                     console.log("Error in get_data's function after loagdin local JSON data: " + arguments[0].name);
                     console.log(e);
                 }
-            }).fail(function(e){
+            }).fail(function (e) {
                 console.log('Error getting data from local JSON and Server ; ABORT');
                 console.log(e);
             });
@@ -523,7 +540,7 @@ function get_wiki_img_src(data, keys, index) {
         $.ajax({
             url: query,
             dataType: 'json',
-            xhrFields: {withCredentials: true},
+            xhrFields: { withCredentials: true },
             success: function (response) {
                 try {
                     var r = $(response.parse.text['*']);
