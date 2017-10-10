@@ -36,7 +36,7 @@ At Chrome start up it may ask you whether or not to load this extension. Say yes
 # How to install - Front End Dev
 The current front-end development consists of moving the running prototype mentionned in the previous how to install to using a React + Redux combination.
 
-1. Clone the project 'git clone https://github.com/Vict0rSch/oop.git'
+1. Clone the project `git clone https://github.com/Vict0rSch/oop.git`
 2. Go to `oop/dev/react/`
 3. run `npm install`
 4. run `npm start` to start the dev server and hot-reloading of React Components
