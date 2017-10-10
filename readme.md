@@ -23,7 +23,7 @@ If you want to get involved, get in touch with me. This project is just starting
 
 As of now, only the French Media are supported and the information is based on [this]() work by *Le Monde Diplomatique*. It is but a prototype, not even an MVP and the database is static, included as a json-serialized file instead of the future server which is needed. I hope it changes soon!
 
-# How to install
+# How to install - Regular User
 
 1. Click the green "Clone or download" button then "Download ZIP"
 2. Extract the ZIP file wherever you like
@@ -32,3 +32,11 @@ As of now, only the French Media are supported and the information is based on [
 5. Click on "Load unpacked extension" and select the folder where you unzipped the file in 2.
 **DONE!**
 At Chrome start up it may ask you whether or not to load this extension. Say yes if you do ;) 
+
+# How to install - Front End Dev
+The current front-end development consists of moving the running prototype mentionned in the previous how to install to using a React + Redux combination.
+
+1. Clone the project 'git clone https://github.com/Vict0rSch/oop.git'
+2. Go to `oop/dev/react/`
+3. run `npm install`
+4. run `npm start` to start the dev server and hot-reloading of React Components
