@@ -1,2 +1,3 @@
 *.pyc
 .DS_Store
+./dev/react/node_modules/*
