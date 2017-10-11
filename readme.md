@@ -34,9 +34,10 @@ As of now, only the French Media are supported and the information is based on [
 At Chrome start up it may ask you whether or not to load this extension. Say yes if you do ;) 
 
 # How to install - Front End Dev
-The current front-end development consists of moving the running prototype mentionned in the previous how to install to using a React + Redux combination.
+The current front-end development consists of moving the running prototype (*c.f.* previous "How to install") to using a React + Redux combination.
 
 1. Clone the project `git clone https://github.com/Vict0rSch/oop.git`
-2. Go to `oop/dev/react/`
-3. run `npm install`
-4. run `npm start` to start the dev server and hot-reloading of React Components
+2. Go to `react/`: `cd ./oop/dev/react/`
+3. run `npm install` (or `yarn`)
+4. run `npm start` (or `yarn`) to start the dev server and hot-reloading of React Components
+5. That's it! The server runs on port `7777` so go to `http://localhost:7777/`
