@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     // 'webpack-hot-middleware/app',
-    './app/index'
+    './app/oop'
   ],
   output: {
     path: path.join(__dirname, 'dist'),

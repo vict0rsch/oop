@@ -26,7 +26,7 @@ function count_tabs() {
 }
 
 
-function find_other_special(data, entity) {
+function find_other_special(data, entity) { //moved
     var targets = [];
     for (var s in data.shares.parents[entity.id]) {
         s = data.shares.parents[entity.id][s];
@@ -63,7 +63,7 @@ function find_other_special(data, entity) {
 }
 
 
-function display_cyto(data, entity, container, first) {
+function display_cyto(data, entity, container, first) { //moved
     var size;
     if (localStorage['popup_size'] && !isNaN(parseInt(localStorage['popup_size']))) {
         try {
@@ -281,7 +281,7 @@ function display_cyto(data, entity, container, first) {
 }
 
 
-function get_children(data, entity, res) {
+function get_children(data, entity, res) { //moved
     var children = data.shares.parents[entity.id];
     if (!children) {
         return []
@@ -296,7 +296,7 @@ function get_children(data, entity, res) {
 }
 
 
-function get_cyto_data(data, entity) {
+function get_cyto_data(data, entity) { //moved
     var result;
     var parents_arrays = get_parents(data, entity, []);
     var children_arrays = get_children(data, entity, []);
@@ -433,7 +433,7 @@ function get_cyto_data(data, entity) {
 }
 
 
-function get_data(next) {
+function get_data(next) { //moved
     var parse_error = true;
     if (localStorage['data']) {
         try {
@@ -496,7 +496,7 @@ function get_data(next) {
 }
 
 
-function get_indices(haystack, needle) {
+function get_indices(haystack, needle) { //moved
     var returns = [];
     var position = 0;
     while (haystack.indexOf(needle, position) > -1) {
@@ -508,7 +508,7 @@ function get_indices(haystack, needle) {
 }
 
 
-function get_parents(data, entity, res) {
+function get_parents(data, entity, res) { //moved
     var parents = data.shares.children[entity.id];
     if (!parents) {
         return []
@@ -523,7 +523,7 @@ function get_parents(data, entity, res) {
 }
 
 
-function get_wiki_img_src(data, keys, index) {
+function get_wiki_img_src(data, keys, index) { //moved
     if (index === 0) {
         delete localStorage['wiki_src'];
         keys = [];
@@ -570,7 +570,7 @@ function get_wiki_img_src(data, keys, index) {
 }
 
 
-function log_tab(onglet) {
+function log_tab(onglet) { //moved
     localStorage['currentTabUrl'] = onglet.url;
     localStorage['currentTabTitle'] = onglet.title;
     localStorage['currentTabDomain'] = parse_url(onglet.url);
@@ -580,7 +580,7 @@ function log_tab(onglet) {
 }
 
 
-function notification(entity) {
+function notification(entity) { //moved
     var content = "";
     content = content + entity.name;
     var notification = new Notification(
@@ -596,7 +596,7 @@ function notification(entity) {
 }
 
 
-function notifyMe() {
+function notifyMe() { //moved
 
     if (Notification.permission !== "granted") {
         Notification.requestPermission();
@@ -640,7 +640,7 @@ function notifyMe() {
 }
 
 
-function parse_url(url) {
+function parse_url(url) { //moved
     var parser = document.createElement('a');
     parser.href = url;
     var new_url = parser.hostname;
@@ -651,7 +651,7 @@ function parse_url(url) {
 }
 
 
-function store_data(data) {
+function store_data(data) { //moved
     var data_id = {
         shares: {
             parents: {},
