@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-// import posts from './posts';
-// import comments from './comments';
+import entitys from './entitys';
+import shares from './shares';
 
 function dummy1(state = [], action) {
     console.log('dummy1', arguments);
@@ -13,8 +13,10 @@ function dummy2(state = [], action) {
     return state
 }
 
+
+
 const rootReducer = combineReducers({
-    dummy1, dummy2, routing: routerReducer
+    entitys, shares, routing: routerReducer
 });
 
 export default rootReducer;
