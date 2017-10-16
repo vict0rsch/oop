@@ -7,7 +7,7 @@ class Main extends React.Component {
             <div>
                 <h1>
                     <Link to='/'>
-                        OOP Home
+                        OOP Main Component Is Cool
                     </Link>
                 </h1>
                 {React.cloneElement(this.props.children, this.props)}
