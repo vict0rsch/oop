@@ -13,6 +13,10 @@ class InfoBoxEntity extends React.Component {
         let entity = this.props.data.entitys.ids[
             this.props.idToDisplay
         ];
+        // let location = this.props.location.pathname;
+        // let index = location.indexOf('/graph/');
+        // let newPath = location.slice(0, index) + '/graph/' + entity.id
+
         this.props.history.push('/graph/' + entity.id);
     }
 

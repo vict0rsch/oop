@@ -19,7 +19,6 @@ export function displayEntity(entityId){
 }
 
 export function updateEntityInfoBox(entityId){
-    console.log('Action called', 'UPDATE_ENTITY_INFOBOX', entityId);
     return {
         type: 'UPDATE_ENTITY_INFOBOX',
         entityId: parseInt(entityId, 10)

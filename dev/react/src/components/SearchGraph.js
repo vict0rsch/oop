@@ -12,6 +12,11 @@ class SearchGraph extends React.Component {
     logChange(val){
         if (val && val.id){
             if (this.props.data.idSet.has(parseInt(val.id, 10))){
+                // let location = this.props.location.pathname;
+                // let index = location.indexOf('/graph/');
+                // let newPath = location.slice(0, index) + '/graph/' + val.id
+        
+                // this.props.history.push(newPath);
                 this.props.history.push('/graph/' + val.id);
             }
         }

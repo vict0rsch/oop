@@ -74,7 +74,7 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
             {
                 selector: 'edge',
                 style: {
-                    'width': 10,
+                    'width': 15,
                     'target-arrow-shape': 'triangle',
                     'line-color': 'rgb(210, 210, 210)',
                     'target-arrow-color': 'rgb(180, 180, 180)',
@@ -91,12 +91,12 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
             directed: true, // whether the tree is directed downwards (or edges can point in any direction if false)
             padding: 0, // padding on fit
             circle: false, // put depths in concentric circles if true, put depths top down if false
-            spacingFactor: 0.65, // positive spacing factor, larger => more space between nodes (N.B. n/a if causes overlap)
+            spacingFactor: 0.8, // positive spacing factor, larger => more space between nodes (N.B. n/a if causes overlap)
             boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
             avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
             nodeDimensionsIncludeLabels: true, // Excludes the label when calculating node bounding boxes for the layout algorithm
             roots: undefined, // the roots of the trees
-            maximalAdjustments: 100, // how many times to try to position the nodes in a maximal way (i.e. no backtracking)
+            maximalAdjustments: 1000, // how many times to try to position the nodes in a maximal way (i.e. no backtracking)
             animate: false, // whether to transition the node positions
             animationDuration: 1000, // duration of animation in ms if enabled
             animationEasing: undefined, // easing of animation if enabled,

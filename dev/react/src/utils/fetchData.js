@@ -1,5 +1,7 @@
 import Axios from 'axios';
 import { getJSON } from 'jquery';
+import JSONdata from '../static/data.min.json';
+console.log(JSONdata);
 
 // Use local json data or fetch from server
 var USE_LOCAL = true;
@@ -48,6 +50,9 @@ function fetchData(component) {
                 }).fail(function (e) {
                     console.log('Error getting data from local JSON and Server ; ABORT');
                     console.log(e);
+                    component.props.setData(JSONdata);
+                    component.props.makeDataAvailable();
+                    localStorage.data = JSON.stringify(JSONdata);
                 });
             }).catch(
             (error) => {
