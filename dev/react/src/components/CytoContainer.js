@@ -58,7 +58,7 @@ class CytoContainer extends React.Component {
 
     render() {
         let cyStyle = {
-            height: '60%',
+            height: '600px',
             width: '80%',
             margin: '20px 0px',
             border: '1px solid black'
