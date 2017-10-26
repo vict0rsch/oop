@@ -7,38 +7,36 @@ import * as actionCreators from '../actions/actionCreators';
 import SearchGraph from './SearchGraph';
 
 class Header extends React.Component {
-    componentDidMount(){
-        const element = this;
-        fetchData(element);
-    }
-    render() {
-
-        return (
-            <div>
-                <h1>
+  componentDidMount() {
+    const element = this;
+    fetchData(element);
+  }
+  render() {
+    return (
+      <div>
+        <h1>
                     Wecome to OOP
-                    </h1>
-                <Link to='/'>Go Home</Link>
-                <SearchGraph {...this.props}/>
-            </div>
-        )
-    };
-};
+        </h1>
+        <Link to="/">Go Home</Link>
+        <SearchGraph {...this.props} />
+      </div>
+    );
+  }
+}
 
 
 function mapStateToProps(state) {
-    return {
-        data: state.data,
-        dataIsAvailable: state.dataIsAvailable,
-        currentDisplay: state.currentDisplay,
-        infoBox: state.infoBox
-    }
+  return {
+    data: state.data,
+    dataIsAvailable: state.dataIsAvailable,
+    currentDisplay: state.currentDisplay,
+    infoBox: state.infoBox,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actionCreators, dispatch);
+  return bindActionCreators(actionCreators, dispatch);
 }
 
-const ConnectHeader = connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
-export default ConnectHeader;

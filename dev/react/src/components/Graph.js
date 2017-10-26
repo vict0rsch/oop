@@ -5,40 +5,41 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 
 class _Graph extends React.Component {
-    constructor(props) {
-        super(props);
-        this.printProps = this.printProps.bind(this);
-    }
-    render() {
+  constructor(props) {
+    super(props);
+    this.printProps = this.printProps.bind(this);
+  }
+  render() {
+    const toBeDisplayed = 'unused_variable';
 
-        let toBeDisplayed = this.props.dataIsAvailable ? <CytoContainer {...this.props} printGraphProps={this.printProps} /> : <p>Waiting</p>;
-
-        return (
-            <div className='graph-div'>
+    return (
+      <div className="graph-div">
                 Graph.js Component -> {this.props.match.params.entityId}
-                {toBeDisplayed}
-            </div>
-        );
-    }
+        {this.props.dataIsAvailable ?
+          <CytoContainer {...this.props} printGraphProps={this.printProps} />
+            :
+          <p>Waiting</p>}
+      </div>
+    );
+  }
 
-    printProps() {
-        console.log('GRAPH PROPS', this.props);
-    }
-};
-
+  printProps() {
+    console.log('GRAPH PROPS', this.props);
+  }
+}
 
 
 function mapStateToProps(state) {
-    return {
-        data: state.data,
-        dataIsAvailable: state.dataIsAvailable,
-        currentDisplay: state.currentDisplay,
-        infoBox: state.infoBox
-    }
+  return {
+    data: state.data,
+    dataIsAvailable: state.dataIsAvailable,
+    currentDisplay: state.currentDisplay,
+    infoBox: state.infoBox,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actionCreators, dispatch);
+  return bindActionCreators(actionCreators, dispatch);
 }
 
 const Graph = connect(mapStateToProps, mapDispatchToProps)(_Graph);
