@@ -3,3 +3,4 @@
 dev/react/node_modules/
 dev/react/.idea
 *.log
+dev/react/build/*
