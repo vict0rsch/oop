@@ -2,3 +2,4 @@
 ./.DS_Store
 dev/react/node_modules/
 dev/react/.idea
+*.log
