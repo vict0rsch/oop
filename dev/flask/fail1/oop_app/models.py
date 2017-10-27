@@ -31,3 +31,5 @@ class Developer(Base):
 
     def __repr__(self):
         return '<Developer %r>' % (self.name)
+
+Base.metadata.create_all(bind=engine)
