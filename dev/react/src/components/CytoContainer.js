@@ -56,10 +56,11 @@ class CytoContainer extends React.Component {
 
   render() {
     const cyStyle = {
-      height: '600px',
-      width: '80%',
+      height: '60%',
+      width: '60%%',
       margin: '20px 0px',
-      border: '1px solid black',
+      border: '4px solid slategrey',
+      'border-radius': '5px'
     };
     let infoBox;
     if (this.props.infoBox.type === 'entity') {

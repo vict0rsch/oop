@@ -30,5 +30,4 @@
         "eslint-plugin-react": "^7.4.0"
     },
     "name": "create-oop"
-    // "homepage" : "http://oop-stage.herokuapp.com/react"
 }
