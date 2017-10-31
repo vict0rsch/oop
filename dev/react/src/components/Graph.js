@@ -10,7 +10,6 @@ class _Graph extends React.Component {
     this.printProps = this.printProps.bind(this);
   }
   render() {
-    const toBeDisplayed = 'unused_variable';
 
     return (
       <div className="graph-div">

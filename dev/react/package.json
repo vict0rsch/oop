@@ -10,7 +10,11 @@
     "dependencies": {
         "axios": "^0.16.2",
         "cytoscape": "^3.2.4",
+        "cytoscape-dagre": "^2.1.0",
+        "dagre": "^0.7.4",
+        "dagre-d3": "^0.4.17",
         "jquery": "^3.2.1",
+        "material-ui": "^0.19.4",
         "react": "^16.0.0",
         "react-dom": "^16.0.0",
         "react-redux": "^5.0.6",

@@ -1,9 +1,18 @@
 export function cytoParamsFromContainer(containerElement, cytoData) {
+    const newEdges = cytoData.edges.map((v, k) => {
+        return {
+            data : {
+                ...v.data,
+                id: v.data.id * 1000
+            }
+        }
+    });
+    console.log(newEdges);
     return {
         container: containerElement,
         elements: {
-            nodes: cytoData.nodes,
-            edges: cytoData.edges
+            nodes: [...cytoData.nodes],
+            edges: [...newEdges]
         },
 
         style: [ // the stylesheet for the graph
@@ -91,7 +100,7 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
             directed: true, // whether the tree is directed downwards (or edges can point in any direction if false)
             padding: 0, // padding on fit
             circle: false, // put depths in concentric circles if true, put depths top down if false
-            spacingFactor: 0.8, // positive spacing factor, larger => more space between nodes (N.B. n/a if causes overlap)
+            spacingFactor: 1, // positive spacing factor, larger => more space between nodes (N.B. n/a if causes overlap)
             boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
             avoidOverlap: true, // prevents node overlap, may overflow boundingBox if not enough space
             nodeDimensionsIncludeLabels: true, // Excludes the label when calculating node bounding boxes for the layout algorithm
@@ -107,97 +116,3 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
         }
     }
 };
-
-// export function cytoReady(cy) {
-
-    // if (JSON.parse(sessionStorage['history']).length > 1) {
-    //     if (!$('#previous_graph').length) {
-    //         $(container).parent().append('<button class="btn btn-1 btn-1e" id="previous_graph">Graphe précédent</button>')
-    //     }
-
-    //     $('#previous_graph').click(function (event) {
-    //         event.stopImmediatePropagation();
-    //         var history = JSON.parse(sessionStorage['history']);
-    //         history.pop();
-    //         var name = history[history.length - 1];
-    //         sessionStorage['history'] = JSON.stringify(history);
-    //         sessionStorage['return'] = 'true';
-    //         console.log('Click : ' + name);
-    //         display_cyto(data, data.entitys.name[name], container, false)
-    //     })
-    // } else if (JSON.parse(sessionStorage['history']).length == 1 && first) {
-    //     if ($('#previous_graph').length) {
-    //         $('#previous_graph').remove()
-    //     }
-    // } else {
-    //     if ($('#previous_graph').length) {
-    //         $('#previous_graph').remove()
-    //     }
-    // }
-//     cy.on('click', 'node', function (event) {
-//         console.log(event);
-//         var target = event.cyTarget;
-//         console.log(target);
-//         var sourceName = target.data("source");
-//         var targetName = target.data("target");
-
-//         var x = event.cyPosition.x;
-//         var y = event.cyPosition.y;
-
-//         console.log(target)
-//     });
-// }
-
-            // cy.nodes('[category != "s"]').qtip({
-            //     content: {
-            //         text: function () {
-            //             var text = '';
-            //             var entity = data.entitys.name[this.data().name];
-            //             if (entity.wiki) {
-            //                 text += '<a href=' + this.data().wiki + ' target=_blank>Wikipedia</a>';
-            //                 text += '<br><br>'
-            //             }
-
-            //             if (entity.website) {
-            //                 text += '<a href=' + this.data().website + ' target=_blank>Go to website</a>';
-            //                 text += '<br>'
-            //             }
-
-            //             text += '<button type = "button" class="click_qtip">Voir plus</button>';
-
-            //             return text
-            //         },
-            //         title: function () {
-            //             return this.data().name
-            //         },
-            //         button: true
-            //     },
-            //     position: {
-            //         my: 'top center',
-            //         at: 'bottom center'
-            //     },
-            //     style: {
-            //         classes: 'qtip-bootstrap',
-            //         tip: {
-            //             width: 10,
-            //             height: 5
-            //         }
-            //     },
-            //     events: {
-            //         visible: function () {
-
-            //             $('.click_qtip').qtip({
-            //                 style: { classes: 'btn btn-default' }
-            //             });
-
-            //             $('.click_qtip').click(function (event) {
-            //                 var name = event.target.parentNode.parentNode.childNodes[1].childNodes[0].innerHTML;
-            //                 var parent_1 = $(this).parent();
-            //                 var parent_2 = parent_1.parent();
-            //                 parent_2.hide();
-            //                 display_cyto(data, data.entitys.name[name], container, false)
-            //             })
-            //         },
-            //     }
-            // });
-            // }

@@ -1,13 +1,13 @@
 import Axios from 'axios';
 import { getJSON } from 'jquery';
 import JSONdata from '../static/data.min.json';
-console.log(JSONdata);
+console.log('JSONdata', JSONdata);
 
 // Use local json data or fetch from server
-var USE_LOCAL = true;
+var USE_LOCAL_ONLY = true;
 
 function fetchData(component) {
-    console.log('fetching data...')
+    console.log('fetching data...');
     // element is the react component
 
     // whether or not to go fetch the data
@@ -29,8 +29,11 @@ function fetchData(component) {
         fetch = true;
     }
 
-    if (fetch && USE_LOCAL) {
-        Axios.get('./data.min.json').then(
+    console.log(fetch && USE_LOCAL_ONLY);
+
+    if (fetch && USE_LOCAL_ONLY) {
+        console.log('Getting data (Axios)...');
+        Axios.get('http://oop-pro.herokuapp.com/data/').then(
             (response) => {
                 console.log('GET SUCCESSFUL!', response);
                 data = response.data;

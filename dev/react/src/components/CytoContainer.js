@@ -1,9 +1,12 @@
 import React from 'react';
 import cytoscape from 'cytoscape';
+import dagre from 'cytoscape-dagre';
 import { cytoParamsFromContainer } from '../utils/cytoParams';
 import { getCytoData } from '../utils/cytoUtils';
 import InfoBoxEntity from './InfoBox/InfoBoxEntity';
 import InfoBoxShare from './InfoBox/InfoBoxShare';
+
+cytoscape.use(dagre);
 
 class CytoContainer extends React.Component {
   constructor(props) {
@@ -20,7 +23,7 @@ class CytoContainer extends React.Component {
     console.log('* Cytoscape.js is rendering the graph.. with id', id);
 
     const entity = data.entitys.ids[id];
-    const cytoData = getCytoData(data, entity);
+    let cytoData = getCytoData(data, entity);
     console.log(cytoData);
     const cy = cytoscape(cytoParamsFromContainer(document.getElementById('cy'), cytoData));
     cy.ready(() => {
@@ -44,7 +47,7 @@ class CytoContainer extends React.Component {
 
   componentDidMount() {
     this.renderCytoscapeElement();
-  }
+  }  
 
   componentDidUpdate() {
     const location = parseInt(this.props.match.params.entityId, 10);
@@ -56,11 +59,11 @@ class CytoContainer extends React.Component {
 
   render() {
     const cyStyle = {
-      height: '60%',
-      width: '60%%',
+      height: '500px',
+      width: '60%',
       margin: '20px 0px',
       border: '4px solid slategrey',
-      'border-radius': '5px'
+      borderRadius: '5px'
     };
     let infoBox;
     if (this.props.infoBox.type === 'entity') {

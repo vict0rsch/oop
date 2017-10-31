@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 import SearchGraph from './SearchGraph';
+import AppBar from 'material-ui/AppBar';
 
 class Header extends React.Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class Header extends React.Component {
   render() {
     return (
       <div>
+        <AppBar showMenuIconButton={false}/>
         <h1>
                     Wecome to OOP
         </h1>

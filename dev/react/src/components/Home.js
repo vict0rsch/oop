@@ -9,7 +9,7 @@ class Home extends React.Component {
     return (
       <div>
         <h3>
-                    OOP Home Component Is COOOOool
+          OOP Home Component Is COOOOool
         </h3>
         <br />
         <div className="home-div">
