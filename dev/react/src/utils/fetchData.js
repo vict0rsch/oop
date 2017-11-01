@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { getJSON } from 'jquery';
 import JSONdata from '../static/data.min.json';
-console.log('JSONdata', JSONdata);
+import {formatData} from './formatData';
 
 // Use local json data or fetch from server
 var USE_LOCAL_ONLY = true;
@@ -36,7 +36,8 @@ function fetchData(component) {
         Axios.get('http://oop-pro.herokuapp.com/data/').then(
             (response) => {
                 console.log('GET SUCCESSFUL!', response);
-                data = response.data;
+                data = formatData(response.data);
+                console.log('JSONdata', JSONdata);
                 component.props.setData(data);
                 component.props.makeDataAvailable();
                 localStorage.data = JSON.stringify(data);

@@ -130,27 +130,27 @@ export function getCytoData(data, entity) {
 
     result = { nodes: nodes.concat(other_parents.nodes), edges: shares.concat(other_parents.shares) };
 
-    let newResult = {
-        nodes: [],
-        edges: []
-    };
-    newResult.edges = result.edges.map((v, k) => {
-        let newV = { data: {...v.data} };
-        const src = newV.data.source;
-        const trgt = newV.data.target;
-        const srcName = src > 0 ? data.entitys.ids[src].name : 'special';
-        const trgtName = trgt > 0 ? data.entitys.ids[trgt].name : 'special';
-        console.log(src, srcName, '--->', trgtName, trgt, newV);
-        return newV;
-    });
+    // let newResult = {
+    //     nodes: [],
+    //     edges: []
+    // };
+    // newResult.edges = result.edges.map((v, k) => {
+    //     let newV = { data: {...v.data} };
+    //     const src = newV.data.source;
+    //     const trgt = newV.data.target;
+    //     const srcName = src > 0 ? data.entitys.ids[src].name : 'special';
+    //     const trgtName = trgt > 0 ? data.entitys.ids[trgt].name : 'special';
+    //     console.log(src, srcName, '--->', trgtName, trgt, newV);
+    //     return newV;
+    // });
 
-    newResult.nodes = result.nodes.map((v, k) => {
-        let newV = { data: {...v.data} };
-        return newV;
-    });
+    // newResult.nodes = result.nodes.map((v, k) => {
+    //     let newV = { data: {...v.data} };
+    //     return newV;
+    // });
 
     // localStorage['cytoData_' + entity.id] = JSON.stringify(result);
-    return newResult;
+    return result;
 }
 
 function find_other_special(data, entity) {

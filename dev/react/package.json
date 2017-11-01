@@ -8,14 +8,16 @@
         "deploy": "react-scripts build && python add_dots_to_index.py && python deploy.py"
     },
     "dependencies": {
+        "autosuggest-highlight": "^3.1.1",
         "axios": "^0.16.2",
         "cytoscape": "^3.2.4",
-        "cytoscape-dagre": "^2.1.0",
-        "dagre": "^0.7.4",
         "dagre-d3": "^0.4.17",
         "jquery": "^3.2.1",
-        "material-ui": "^0.19.4",
+        "lodash": "^4.17.4",
+        "material-ui": "^1.0.0-beta.19",
+        "material-ui-icons": "^1.0.0-beta.17",
         "react": "^16.0.0",
+        "react-autosuggest": "^9.3.2",
         "react-dom": "^16.0.0",
         "react-redux": "^5.0.6",
         "react-router": "^4.2.0",
@@ -23,7 +25,9 @@
         "react-router-redux": "^4.0.8",
         "react-scripts": "1.0.14",
         "react-select": "^1.0.0-rc.10",
-        "redux": "^3.7.2"
+        "redux": "^3.7.2",
+        "typeface-roboto": "^0.0.43",
+        "url-parse": "^1.1.9"
     },
     "version": "0.1.0",
     "devDependencies": {

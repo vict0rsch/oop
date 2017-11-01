@@ -13,7 +13,6 @@ class _Graph extends React.Component {
 
     return (
       <div className="graph-div">
-                Graph.js Component -> {this.props.match.params.entityId}
         {this.props.dataIsAvailable ?
           <CytoContainer {...this.props} printGraphProps={this.printProps} />
             :

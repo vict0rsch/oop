@@ -25,11 +25,11 @@ class SearchGraph extends React.Component {
   render() {
     const searchStyle = {
       margin: '10px 0px 30px 0px',
-      width: '400px',
+      borderRadius: '0',
+      border: '0 0 1 0'
     };
     return (
       <div>
-        <p>Search for entity :</p>
         <Select
           name="form-field-name"
           value="one"
@@ -39,6 +39,7 @@ class SearchGraph extends React.Component {
           ignoreCase
           ignoreAccents
           style={searchStyle}
+          placeholder={''}
         />
       </div>
     );

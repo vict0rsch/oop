@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-
+import { withStyles } from 'material-ui/styles';
+import Button from 'material-ui/Button';
+import Icon from 'material-ui/Icon';
+import EntityCard from './EntityCard';
+import Timeline from 'material-ui-icons/Timeline';
 
 class InfoBoxEntity extends React.Component {
 
@@ -9,9 +13,6 @@ class InfoBoxEntity extends React.Component {
     const entity = this.props.data.entitys.ids[
       this.props.idToDisplay
     ];
-    // let location = this.props.location.pathname;
-    // let index = location.indexOf('/graph/');
-    // let newPath = location.slice(0, index) + '/graph/' + entity.id
 
     this.props.history.push(`/graph/${entity.id}`);
   };
@@ -20,26 +21,18 @@ class InfoBoxEntity extends React.Component {
     const entity = this.props.data.entitys.ids[
       this.props.idToDisplay
     ];
+    let graphButton;
+    if (entity.category !== 's' && entity.id !== this.props.match.params.entityId) {
+      graphButton = (<Button raised dense onClick={this.handleClick}>
+        See Graph &nbsp; &nbsp;<Timeline />
+      </Button>);
+    } else {
+      graphButton = undefined;
+    }
+
     return (
       <div id={`infoBoxEntity-${this.props.idToDisplay}`}>
-        <p>
-          {entity.name || ''}
-        </p>
-        <p>
-          {entity.long_name || ''}
-        </p>
-        <p>
-          {entity.website || ''}
-        </p>
-        <p>
-          {entity.wiki || ''}
-        </p>
-        {entity.category !== 's' && entity.id !== this.props.match.params.entityId &&
-        <Link
-            to={`/graph/${entity.id}`}
-            onClick={this.handleClick}>See more for {entity.name}
-            </Link>
-        }
+        <EntityCard title={entity.name} website={entity.website} wiki={entity.wiki} longName={entity.long_name} graphButton={graphButton} />
       </div>
     );
   }

@@ -1,12 +1,21 @@
 import React from 'react';
 import cytoscape from 'cytoscape';
-import dagre from 'cytoscape-dagre';
 import { cytoParamsFromContainer } from '../utils/cytoParams';
 import { getCytoData } from '../utils/cytoUtils';
 import InfoBoxEntity from './InfoBox/InfoBoxEntity';
 import InfoBoxShare from './InfoBox/InfoBoxShare';
+import { withStyles } from 'material-ui/styles';
+import Paper from 'material-ui/Paper';
 
-cytoscape.use(dagre);
+const styles = theme => ({
+  root: theme.mixins.gutters({
+    paddingTop: 16,
+    paddingBottom: 16,
+    marginTop: theme.spacing.unit * 3,
+    marginBotton: theme.spacing.unit * 3
+  }),
+});
+
 
 class CytoContainer extends React.Component {
   constructor(props) {
@@ -47,7 +56,7 @@ class CytoContainer extends React.Component {
 
   componentDidMount() {
     this.renderCytoscapeElement();
-  }  
+  }
 
   componentDidUpdate() {
     const location = parseInt(this.props.match.params.entityId, 10);
@@ -60,10 +69,7 @@ class CytoContainer extends React.Component {
   render() {
     const cyStyle = {
       height: '500px',
-      width: '60%',
-      margin: '20px 0px',
-      border: '4px solid slategrey',
-      borderRadius: '5px'
+      width: '100%',
     };
     let infoBox;
     if (this.props.infoBox.type === 'entity') {
@@ -74,14 +80,17 @@ class CytoContainer extends React.Component {
     } else {
       infoBox = <p>Error</p>;
     }
+    const { classes } = this.props;
     return (
-      <div className="node_selected">
-        <div id="cy" style={cyStyle} onContextMenu={this.handleContextMenu} />
+      <div>
+        <Paper className={classes.root} elevation={10}>
+          <div id="cy" style={cyStyle} onContextMenu={this.handleContextMenu} />
+        </Paper>
         {infoBox}
-      </div >
+      </div>
     );
   }
 }
 
 
-export default CytoContainer;
+export default withStyles(styles)(CytoContainer);

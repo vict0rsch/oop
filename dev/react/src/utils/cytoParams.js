@@ -7,7 +7,7 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
             }
         }
     });
-    console.log(newEdges);
+
     return {
         container: containerElement,
         elements: {

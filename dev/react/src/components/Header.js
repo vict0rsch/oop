@@ -6,11 +6,21 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 import SearchGraph from './SearchGraph';
 import AppBar from 'material-ui/AppBar';
+import MaterialSearchGraph from './MaterialSearchGraph';
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.redirect = this.redirect.bind(this);
+  }
+  
   componentDidMount() {
     const element = this;
     fetchData(element);
+  }
+  redirect(val){
+    console.log('OOOOKKKKK');
+    this.props.history.push(`/graph/${val.id}`)
   }
   render() {
     return (
@@ -21,6 +31,7 @@ class Header extends React.Component {
         </h1>
         <Link to="/">Go Home</Link>
         <SearchGraph {...this.props} />
+        {/* <MaterialSearchGraph {...this.props} redirect={this.redirect}/> */}
       </div>
     );
   }
