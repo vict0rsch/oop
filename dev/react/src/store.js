@@ -9,10 +9,10 @@ import rootReducer from './reducers/index';
 const browserHistory = createBrowserHistory();
 const hashHistory = createHashHistory();
 
-const USE_BROWER_HISTORY = false;
+const USE_BROWsER_HISTORY = false;
 
 let _history;
-if (USE_BROWER_HISTORY) {
+if (USE_BROWsER_HISTORY) {
     _history = browserHistory;
 } else {
     _history = hashHistory;
