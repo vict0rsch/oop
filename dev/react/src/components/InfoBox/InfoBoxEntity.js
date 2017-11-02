@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Button from 'material-ui/Button';
-import Icon from 'material-ui/Icon';
 import EntityCard from './EntityCard';
 import Timeline from 'material-ui-icons/Timeline';
 

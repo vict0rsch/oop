@@ -1,5 +1,5 @@
-import { createStore, compose } from 'redux';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 import { createBrowserHistory, createHashHistory } from 'history';
 
 
@@ -18,6 +18,10 @@ if (USE_BROWsER_HISTORY) {
     _history = hashHistory;
 }
 
+export const history = _history;
+
+const middleware = routerMiddleware(history);
+
 // create an object for the default data
 const defaultState = {
     data: {},
@@ -29,13 +33,12 @@ const defaultState = {
     }
 };
 
-const enhancers = compose(
+const enhancers = compose(applyMiddleware(middleware),
     window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
 const store = createStore(rootReducer, defaultState, enhancers);
 
-export const history = syncHistoryWithStore(_history, store);
 
 // By default reducers are not hot reloaded, only components
 // To make them hot reloadable : 

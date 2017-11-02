@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-import URL from 'url-parse';
 import OpenInNew from 'material-ui-icons/OpenInNew';
 
 const styles = theme => ({
