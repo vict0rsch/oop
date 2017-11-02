@@ -35,7 +35,6 @@ class SearchGraph extends React.Component {
           value="one"
           options={this.props.data.optionsData}
           onChange={this.logChange}
-          autofocus
           ignoreCase
           ignoreAccents
           style={searchStyle}

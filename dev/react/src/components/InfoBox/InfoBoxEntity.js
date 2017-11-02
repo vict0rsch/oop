@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { withStyles } from 'material-ui/styles';
+import { withRouter } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import Icon from 'material-ui/Icon';
 import EntityCard from './EntityCard';
@@ -23,7 +22,7 @@ class InfoBoxEntity extends React.Component {
     ];
     let graphButton;
     if (entity.category !== 's' && entity.id !== this.props.match.params.entityId) {
-      graphButton = (<Button raised dense onClick={this.handleClick}>
+      graphButton = (<Button style={{color:'green'}} dense onClick={this.handleClick}>
         See Graph &nbsp; &nbsp;<Timeline />
       </Button>);
     } else {

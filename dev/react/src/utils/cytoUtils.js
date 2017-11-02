@@ -149,7 +149,7 @@ export function getCytoData(data, entity) {
     //     return newV;
     // });
 
-    // localStorage['cytoData_' + entity.id] = JSON.stringify(result);
+    localStorage['cytoData_' + entity.id] = JSON.stringify(result);
     return result;
 }
 
