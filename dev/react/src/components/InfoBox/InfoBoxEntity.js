@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import Button from 'material-ui/Button';
 import EntityCard from './EntityCard';
 import Timeline from 'material-ui-icons/Timeline';
@@ -20,8 +19,8 @@ class InfoBoxEntity extends React.Component {
       this.props.idToDisplay
     ];
     let graphButton;
-    if (entity.category !== 's' && entity.id !== this.props.match.params.entityId) {
-      graphButton = (<Button style={{color:'green'}} dense onClick={this.handleClick}>
+    if (entity.category !== 's' && entity.id !== parseInt(this.props.match.params.entityId, 10)) {
+      graphButton = (<Button style={{ color: 'green' }} dense onClick={this.handleClick}>
         See Graph &nbsp; &nbsp;<Timeline />
       </Button>);
     } else {
@@ -36,5 +35,4 @@ class InfoBoxEntity extends React.Component {
   }
 }
 
-
-export default withRouter(InfoBoxEntity);
+export default InfoBoxEntity;

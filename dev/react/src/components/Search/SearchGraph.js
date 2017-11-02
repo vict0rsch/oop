@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
@@ -45,4 +44,4 @@ class SearchGraph extends React.Component {
   }
 }
 
-export default withRouter(SearchGraph);
+export default SearchGraph;
