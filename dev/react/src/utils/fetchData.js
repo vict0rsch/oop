@@ -7,7 +7,7 @@ import {formatData} from './formatData';
 var USE_LOCAL_ONLY = true;
 
 function fetchData(component) {
-    console.log('fetching data...');
+    console.log('Fetching data...');
     // element is the react component
 
     // whether or not to go fetch the data
@@ -17,12 +17,12 @@ function fetchData(component) {
 
     if (localStorage.data) {
         try {
-            console.log('Loading local data');
+            console.log('Loading localStorage data');
             data = JSON.parse(localStorage.data);
             component.props.setData(data);
             component.props.makeDataAvailable();
         } catch (e) {
-            console.log('Error loading local data; fetching new version...');
+            console.log('Error loading localStorage data; getting new version...');
             fetch = true;
         }
     } else {
@@ -35,9 +35,8 @@ function fetchData(component) {
         console.log('Getting data (Axios)...');
         Axios.get('http://oop-pro.herokuapp.com/data/').then(
             (response) => {
-                console.log('GET SUCCESSFUL!', response);
+                console.log('Success.');
                 data = formatData(response.data);
-                console.log('JSONdata', JSONdata);
                 component.props.setData(data);
                 component.props.makeDataAvailable();
                 localStorage.data = JSON.stringify(data);

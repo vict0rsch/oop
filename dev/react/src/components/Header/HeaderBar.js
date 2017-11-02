@@ -25,7 +25,6 @@ const styles = theme => ({
 
 function HeaderBar(props) {
   const { classes } = props;
-  console.log(props);
 
   return (
     <div className={classes.root}>

@@ -24,7 +24,7 @@ const router = (
         <ConnectedRouter history={history}>
             <MuiThemeProvider theme={createMuiTheme()}>
                 <div>
-                    <Header />
+                    <Header history={history}/>
                     <Switch>
                         <Route exact path='/' component={Home}></Route>
                         <Route path='/graph/:entityId' component={Graph}></Route>
