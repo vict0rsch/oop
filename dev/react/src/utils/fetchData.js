@@ -29,8 +29,6 @@ function fetchData(component) {
         fetch = true;
     }
 
-    console.log(fetch && USE_LOCAL_ONLY);
-
     if (fetch && USE_LOCAL_ONLY) {
         console.log('Getting data (Axios)...');
         Axios.get('http://oop-pro.herokuapp.com/data/').then(

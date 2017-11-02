@@ -29,7 +29,7 @@ class CytoContainer extends React.Component {
     const container = this;
     const data = this.props.data;
     const id = this.props.match.params.entityId;
-    console.log('* Cytoscape.js is rendering the graph.. with id', id);
+    console.log('* Rendering Graph', id);
 
     const entity = data.entitys.ids[id];
     let cytoData = getCytoData(data, entity);
