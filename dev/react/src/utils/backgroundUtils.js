@@ -92,8 +92,8 @@ function get_indices(haystack, needle) {
 
 function check_website(data, url) {
     var e;
-    for (var entity in data.entitys.id) {
-        e = data.entitys.id[entity];
+    for (var entity in data.entities.id) {
+        e = data.entities.id[entity];
         if (e.website) {
             var website = parse_url(e.website);
             if (url.indexOf(website) !== -1) {
@@ -109,12 +109,12 @@ function get_wiki_img_src(data, keys, index) {
     if (index === 0) {
         delete localStorage['wiki_src'];
         keys = [];
-        for (var k in data.entitys.id) keys.push(k);
+        for (var k in data.entities.id) keys.push(k);
     } else if (index === keys.length) {
         return
     }
 
-    var entity = data.entitys.id[keys[index]];
+    var entity = data.entities.id[keys[index]];
     if (entity.category === 'm') {
         var wikis = entity.wiki.split('/');
         var wiki = wikis[wikis.length - 1];
@@ -158,7 +158,7 @@ function store_data(data) {
             parents: {},
             children: {}
         },
-        entitys: {
+        entities: {
             id: {},
             name: {}
         }
@@ -166,25 +166,25 @@ function store_data(data) {
 
     for (var s_id in data.shares) {
         var s = data.shares[s_id]
-        if (data_id.shares.parents[s.parent]) {
-            data_id.shares.parents[s.parent].push(s);
+        if (data_id.shares.parents[s.parent_id]) {
+            data_id.shares.parents[s.parent_id].push(s);
         } else {
-            data_id.shares.parents[s.parent] = [s];
+            data_id.shares.parents[s.parent_id] = [s];
         }
 
-        if (data_id.shares.children[s.child]) {
-            data_id.shares.children[s.child].push(s);
+        if (data_id.shares.children[s.child_id]) {
+            data_id.shares.children[s.child_id].push(s);
         } else {
-            data_id.shares.children[s.child] = [s];
+            data_id.shares.children[s.child_id] = [s];
         }
 
     }
     ;
 
-    for (var e_id in data.entitys) {
-        var e = data.entitys[e_id]
-        data_id.entitys.id[e.id] = e;
-        data_id.entitys.name[e.name] = e
+    for (var e_id in data.entities) {
+        var e = data.entities[e_id]
+        data_id.entities.id[e.id] = e;
+        data_id.entities.name[e.name] = e
     }
     ;
 

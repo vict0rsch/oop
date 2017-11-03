@@ -25,33 +25,33 @@ export default function getCytoData(data, entity) {
         }
     }
 
-    var entitys = [];
+    var entities = [];
 
 
     for (var share of children) {
-        p = data.entitys.ids[share.parent];
-        c = data.entitys.ids[share.child];
-        if (entitys.indexOf(c) === -1) {
-            entitys.push(c);
+        p = data.entities.ids[share.parent_id];
+        c = data.entities.ids[share.child_id];
+        if (entities.indexOf(c) === -1) {
+            entities.push(c);
         }
-        if (entitys.indexOf(p) === -1) {
-            entitys.push(p);
+        if (entities.indexOf(p) === -1) {
+            entities.push(p);
         }
     }
 
     for (share of parents) {
-        p = data.entitys.ids[share.parent];
-        c = data.entitys.ids[share.child];
-        if (entitys.indexOf(c) === -1) {
-            entitys.push(c);
+        p = data.entities.ids[share.parent_id];
+        c = data.entities.ids[share.child_id];
+        if (entities.indexOf(c) === -1) {
+            entities.push(c);
         }
-        if (entitys.indexOf(p) === -1) {
-            entitys.push(p);
+        if (entities.indexOf(p) === -1) {
+            entities.push(p);
         }
     }
 
     var nodes = [];
-    for (var e of entitys) {
+    for (var e of entities) {
         var width = parseInt(e.name.length * WIDTH_FACTOR, 10);
         if (e.category === 'm') {
             width *= 1.5;
@@ -73,8 +73,8 @@ export default function getCytoData(data, entity) {
         }
         var temp_data = {};
         temp_data.id = s.id;
-        temp_data.source = s.parent;
-        temp_data.target = s.child;
+        temp_data.source = s.parent_id;
+        temp_data.target = s.child_id;
         temp_data.label = label;
         if (label.length > 10) {
             special_shares.push(s.id);
@@ -90,8 +90,8 @@ export default function getCytoData(data, entity) {
         }
         temp_data = {};
         temp_data.id = s.id;
-        temp_data.source = s.parent;
-        temp_data.target = s.child;
+        temp_data.source = s.parent_id;
+        temp_data.target = s.child_id;
         temp_data.label = label;
         if (label.length > 10) {
             special_shares.push(s.id);
@@ -138,8 +138,8 @@ export default function getCytoData(data, entity) {
     //     let newV = { data: {...v.data} };
     //     const src = newV.data.source;
     //     const trgt = newV.data.target;
-    //     const srcName = src > 0 ? data.entitys.ids[src].name : 'special';
-    //     const trgtName = trgt > 0 ? data.entitys.ids[trgt].name : 'special';
+    //     const srcName = src > 0 ? data.entities.ids[src].name : 'special';
+    //     const trgtName = trgt > 0 ? data.entities.ids[trgt].name : 'special';
     //     console.log(src, srcName, '--->', trgtName, trgt, newV);
     //     return newV;
     // });
@@ -165,7 +165,7 @@ function find_other_special(data, entity) {
     var other_parents = [];
     for (s in targets) {
         s = targets[s];
-        other_parents = other_parents.concat(data.shares.children[s.child])
+        other_parents = other_parents.concat(data.shares.children[s.child_id])
     }
 
     var result = {
@@ -173,14 +173,14 @@ function find_other_special(data, entity) {
         nodes: [],
     };
     for (s of other_parents) {
-        if (s.parent !== entity.id) {
+        if (s.parent_id !== entity.id) {
             var e = {};
             e.target = -1;
             e.label = "";
-            e.source = s.parent;
+            e.source = s.parent_id;
             e.id = s.id;
             result.shares.push({ data: e });
-            var temp_node = data.entitys.ids[s.parent];
+            var temp_node = data.entities.ids[s.parent_id];
             temp_node.width = temp_node.name.length * WIDTH_FACTOR;
             result.nodes.push({ data: temp_node });
         }
@@ -197,7 +197,7 @@ function getChildren(data, entity, res) {
 
     res.push(children);
     for (var s of children) {
-        getChildren(data, data.entitys.ids[s.child], res);
+        getChildren(data, data.entities.ids[s.child_id], res);
     }
     return res
 }
@@ -210,7 +210,7 @@ function getParents(data, entity, res) {
 
     res.push(parents);
     for (var s of parents) {
-        getParents(data, data.entitys.ids[s.parent], res)
+        getParents(data, data.entities.ids[s.parent_id], res)
     }
     return res
 }
