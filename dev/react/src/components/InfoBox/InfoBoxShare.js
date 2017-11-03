@@ -5,8 +5,8 @@ class InfoBoxShare extends React.Component {
     const label = this.props.share.label;
     const source = this.props.share.source;
     const target = this.props.share.target;
-    const sourceName = this.props.data.entitys.ids[source].name;
-    const targetName = this.props.data.entitys.ids[target].name;
+    const sourceName = this.props.data.entities.ids[source].name;
+    const targetName = this.props.data.entities.ids[target].name;
 
     const str = `${sourceName} owns ${targetName} (${label})`;
     return (

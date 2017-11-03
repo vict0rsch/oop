@@ -1,5 +1,5 @@
 function dataToOptions(data) {
-  const dict = data.entitys.ids;
+  const dict = data.entities.ids;
   return Object.keys(dict).map((k) => {
     const label = dict[k].name;
     const value = label.toLowerCase();
@@ -10,7 +10,7 @@ function dataToOptions(data) {
 }
 
 function getIdSet(data) {
-  const s = new Set(Object.keys(data.entitys.ids).map(k => parseInt(k, 10)));
+  const s = new Set(Object.keys(data.entities.ids).map(k => parseInt(k, 10)));
   return s;
 }
 

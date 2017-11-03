@@ -7,7 +7,7 @@ import Home from './Home';
 function mapStateToProps(state) {
   return {
     shares: state.shares,
-    entitys: state.entitys,
+    entities: state.entities,
   };
 }
 

@@ -20,7 +20,7 @@ class CytoContainer extends React.Component {
     const data = this.props.data;
     const id = this.props.match.params.entityId;
 
-    const entity = data.entitys.ids[id];
+    const entity = data.entities.ids[id];
     let cytoData = getCytoData(data, entity);
     const cy = cytoscape(cytoParamsFromContainer(document.getElementById('cy'), cytoData));
     cy.ready(() => {

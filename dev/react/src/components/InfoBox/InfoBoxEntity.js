@@ -8,7 +8,7 @@ class InfoBoxEntity extends React.Component {
 
 
   handleClick = () => {
-    const entity = this.props.data.entitys.ids[
+    const entity = this.props.data.entities.ids[
       this.props.idToDisplay
     ];
 
@@ -16,7 +16,7 @@ class InfoBoxEntity extends React.Component {
   };
 
   render() {
-    const entity = this.props.data.entitys.ids[
+    const entity = this.props.data.entities.ids[
       this.props.idToDisplay
     ];
     let graphButton;
