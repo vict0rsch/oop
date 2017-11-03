@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import SearchIcon from 'material-ui-icons/Search';
+import ClearIcon from 'material-ui-icons/Clear';
 
 
 const styles = theme => ({
@@ -29,7 +30,7 @@ class SearchButton extends React.Component {
     render() {
         return (
             <Button raised fab aria-label="search" className={this.props.classes.button} onClick={this.handleClick}>
-                <SearchIcon />
+                {this.props.showSearchBar ? <ClearIcon /> : <SearchIcon />}
             </Button>
         );
     }
