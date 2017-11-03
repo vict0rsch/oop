@@ -11,14 +11,10 @@ class _Graph extends React.Component {
   }
   render() {
 
-    return (
-      <div className="graph-div">
-        {this.props.dataIsAvailable ?
+    return this.props.dataIsAvailable ?
           <CytoContainer {...this.props} printGraphProps={this.printProps} />
             :
-          <p>Waiting</p>}
-      </div>
-    );
+          <p>Waiting</p>;
   }
 
   printProps() {
@@ -33,6 +29,7 @@ function mapStateToProps(state) {
     dataIsAvailable: state.dataIsAvailable,
     currentDisplay: state.currentDisplay,
     infoBox: state.infoBox,
+    showSearchBar: state.showSearchBar
   };
 }
 

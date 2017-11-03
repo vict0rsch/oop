@@ -1,4 +1,4 @@
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import getMuiTheme from 'material-ui/styles/createMuiTheme';
 import foreseaColors from './colors';
 
 import {
@@ -11,15 +11,15 @@ import {
   getContrastRatio,
   getLuminance,
   lighten,
-} from 'material-ui/utils/colorManipulator';
+} from 'material-ui/styles/colorManipulator';
 // import spacing from 'material-ui/styles/spacing';
 // import typography from 'material-ui/styles/typography';
 import spacing from './spacing';
 import typography from './typography';
-import 'material-ui/styles/colors';
+import 'material-ui/colors';
 
 
-const _colors = require('material-ui/styles/colors');
+const _colors = require('material-ui/colors');
 
 const red50 = '#ffebee';
 const red100 = '#ffcdd2';
@@ -308,7 +308,7 @@ const darkWhite = 'rgba(255, 255, 255, 0.87)';
 const lightWhite = 'rgba(255, 255, 255, 0.54)';
 
 
-const _colorManipulator = require('material-ui/utils/colorManipulator');
+const _colorManipulator = require('material-ui/styles/colorManipulator');
 
 
 const palette = {

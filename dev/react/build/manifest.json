@@ -1,15 +1,23 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "192x192",
-      "type": "image/png"
-    }
-  ],
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "name" :"OOP React",
+  "manifest_version": 2,
+  "version" :"1.0",
+  "description" :"media-viz",
+  "browser_action": {
+      "default_icon": "icon.png",
+      "default_popup": "index.html"
+  },
+  // "background": {
+  //     "page": "background.html"
+  // },
+  "permissions": [
+      "activeTab",
+      "https://ajax.googleapis.com/",
+      "https://fr.wikipedia.org/*",
+      "https://en.wikipedia.org/*",
+      "https://oop-pro.herokuapp.com/*",
+      "tabs",
+      "notifications",
+      "storage"
+  ]
 }

@@ -4,7 +4,8 @@ function dataToOptions(data) {
     const label = dict[k].name;
     const value = label.toLowerCase();
     const id = k;
-    return { label, value, id };
+    const className = 'select-options';
+    return { label, value, id, className };
   });
 }
 

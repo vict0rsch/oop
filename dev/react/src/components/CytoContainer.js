@@ -4,18 +4,7 @@ import { cytoParamsFromContainer } from '../utils/cytoParams';
 import { getCytoData } from '../utils/cytoUtils';
 import InfoBoxEntity from './InfoBox/InfoBoxEntity';
 import InfoBoxShare from './InfoBox/InfoBoxShare';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-
-const styles = theme => ({
-  root: theme.mixins.gutters({
-    paddingTop: 16,
-    paddingBottom: 16,
-    marginTop: theme.spacing.unit * 3,
-    marginBotton: theme.spacing.unit * 3
-  }),
-});
-
+import SearchButton from './Search/SearchButton';
 
 class CytoContainer extends React.Component {
   constructor(props) {
@@ -29,7 +18,6 @@ class CytoContainer extends React.Component {
     const container = this;
     const data = this.props.data;
     const id = this.props.match.params.entityId;
-    console.log('* Rendering Graph', id);
 
     const entity = data.entitys.ids[id];
     let cytoData = getCytoData(data, entity);
@@ -67,8 +55,9 @@ class CytoContainer extends React.Component {
 
   render() {
     const cyStyle = {
-      height: '500px',
-      width: '100%',
+      height: '400px',
+      width: '785px',
+      padding: '0px'
     };
     let infoBox;
     if (this.props.infoBox.type === 'entity') {
@@ -79,12 +68,10 @@ class CytoContainer extends React.Component {
     } else {
       infoBox = <p>Error</p>;
     }
-    const { classes } = this.props;
     return (
       <div>
-        <Paper className={classes.root} elevation={10}>
-          <div id="cy" style={cyStyle} onContextMenu={this.handleContextMenu} />
-        </Paper>
+        <div id="cy" style={cyStyle} onContextMenu={this.handleContextMenu} />
+        <SearchButton {...this.props} />
         {infoBox}
       </div>
     );
@@ -92,4 +79,4 @@ class CytoContainer extends React.Component {
 }
 
 
-export default withStyles(styles)(CytoContainer);
+export default CytoContainer;

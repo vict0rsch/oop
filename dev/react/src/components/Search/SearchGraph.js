@@ -11,16 +11,20 @@ class SearchGraph extends React.Component {
   logChange(val) {
     if (val && val.id) {
       if (this.props.data.idSet.has(parseInt(val.id, 10))) {
+        this.props.updateEntityInfoBox(val.id);
         this.props.history.push(`/graph/${val.id}`);
+        console.log(this);
       }
     }
   }
 
   render() {
-    const searchStyle = {
-      margin: '10px 0px 30px 0px',
-      borderRadius: '0',
-      border: '0 0 1 0'
+    let searchStyle = {
+      margin: '0px 0px 15px 0px',
+      border: '0px 0px 1px 0px',
+      borderRadius: '0px',
+      zIndex:999,
+      width:'785px'
     };
     return (
       <div>
@@ -32,7 +36,7 @@ class SearchGraph extends React.Component {
           ignoreCase
           ignoreAccents
           style={searchStyle}
-          placeholder={''}
+          placeholder={'Search for Entity...'}
         />
       </div>
     );

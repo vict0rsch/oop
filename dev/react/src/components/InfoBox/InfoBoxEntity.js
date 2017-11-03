@@ -3,6 +3,7 @@ import Button from 'material-ui/Button';
 import EntityCard from './EntityCard';
 import Timeline from 'material-ui-icons/Timeline';
 
+
 class InfoBoxEntity extends React.Component {
 
 
@@ -29,7 +30,7 @@ class InfoBoxEntity extends React.Component {
 
     return (
       <div id={`infoBoxEntity-${this.props.idToDisplay}`}>
-        <EntityCard title={entity.name} website={entity.website} wiki={entity.wiki} longName={entity.long_name} graphButton={graphButton} />
+          <EntityCard entity={entity} graphButton={graphButton} />
       </div>
     );
   }

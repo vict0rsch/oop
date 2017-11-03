@@ -32,3 +32,9 @@ export function updateShareInfoBox(share) {
     share,
   };
 }
+
+export function toggleSearchBar(){
+  return {
+    type: 'TOGGLE_SEARCH_BAR'
+  };
+}
