@@ -29,7 +29,7 @@ class InfoBoxEntity extends React.Component {
     }
 
     return (
-      <div id={`infoBoxEntity-${this.props.idToDisplay}`}>
+      <div style={{width: '792px'}}>
           <EntityCard entity={entity} graphButton={graphButton} />
       </div>
     );
