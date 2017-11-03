@@ -6,7 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import SearchIcon from 'material-ui-icons/Search';
 import ClearIcon from 'material-ui-icons/Clear';
-import InfoIcon from 'material-ui-icons/InfoOutline';
+import HomeIcon from 'material-ui-icons/Home';
 
 
 const styles = theme => ({
@@ -18,7 +18,7 @@ const styles = theme => ({
     },
 });
 
-class SearchButton extends React.Component {
+class HomeButton extends React.Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -31,14 +31,14 @@ class SearchButton extends React.Component {
     render() {
         return (
             <Button raised fab aria-label="search" className={this.props.classes.button} onClick={this.handleClick}>
-                {this.props.showSearchBar ? <InfoIcon /> : <InfoIcon />}
+                {this.props.showSearchBar ? <HomeIcon /> : <HomeIcon />}
             </Button>
         );
     }
 }
 
-SearchButton.propTypes = {
+HomeButton.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SearchButton);
+export default withStyles(styles)(HomeButton);
