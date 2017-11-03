@@ -19,7 +19,6 @@ export function formatData(serverData) {
     });
 
     serverData.shares.map((v, i) => {
-        console.log(v);
         const newShare = {
             child_id: v.child_id,
             parent_id: v.parent_id,
@@ -41,7 +40,6 @@ export function formatData(serverData) {
             data.shares.parents[newShare.parent_id] = [newShare];
         }
     });
-    console.log('FORMATTED DATA', data);
     return data;
 
 };
