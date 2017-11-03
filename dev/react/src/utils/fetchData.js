@@ -33,31 +33,18 @@ function fetchData(component) {
         console.log('Getting data (Axios)...');
         Axios.get('http://oop-pro.herokuapp.com/data/').then(
             (response) => {
-                console.log('Success.');
+                console.log('Success (getting data)');
                 data = formatData(response.data);
                 component.props.setData(data);
                 component.props.makeDataAvailable();
                 localStorage.data = JSON.stringify(data);
             },
             (error) => {
-                console.log('Server Error');
+                console.log('Server Error  (getting data)');
                 console.log(error);
-                getJSON("/data.min.json", function (data, status, xhr) {
-                    console.log('JSON DATA:')
-                    console.log(data)
-                    component.props.setData(data);
-                    component.props.makeDataAvailable();
-                    localStorage.data = JSON.stringify(data);
-                }).fail(function (e) {
-                    console.log('Error getting data from local JSON and Server ; ABORT');
-                    console.log(e);
-                    component.props.setData(JSONdata);
-                    component.props.makeDataAvailable();
-                    localStorage.data = JSON.stringify(JSONdata);
-                });
             }).catch(
             (error) => {
-                console.log('Error parsing JSON');
+                console.log('Catching JS Error (getting data)');
                 console.log(error);
             });
     }
