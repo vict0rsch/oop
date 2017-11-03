@@ -25,19 +25,19 @@ class CytoContainer extends React.Component {
     const cy = cytoscape(cytoParamsFromContainer(document.getElementById('cy'), cytoData));
     cy.ready(() => {
       cy.elements('node[category != "s"]').on(
-        'click',
+        'tap',
         (event) => {
           container.props.updateEntityInfoBox(event.target.id());
         },
       );
-      cy.elements('edge').on(
-        'click',
-        (event) => {
-          if (parseInt(event.target.data().target, 10) >= 0 && parseInt(event.target.data().source, 10) >= 0) {
-            container.props.updateShareInfoBox(event.target.data());
-          }
-        },
-      );
+      // cy.elements('edge').on(
+      //   'click',
+      //   (event) => {
+      //     if (parseInt(event.target.data().target, 10) >= 0 && parseInt(event.target.data().source, 10) >= 0) {
+      //       container.props.updateShareInfoBox(event.target.data());
+      //     }
+      //   },
+      // );
     });
     this.cy = cy;
   }
