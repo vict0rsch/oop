@@ -1,6 +1,5 @@
 export function cytoParamsFromContainer(containerElement, cytoData) {
     const spacing = 0.65 * Math.pow(cytoData.edges.length, 0.08);
-    console.log(spacing);
     const nodes = cytoData.nodes.map((v, k) => {
         return {
             data: {
@@ -10,7 +9,6 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
             }
         }
     });
-    console.log(nodes);
 
     const baseNodeStyle = {
         'background-opacity': 0,
