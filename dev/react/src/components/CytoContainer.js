@@ -4,7 +4,8 @@ import { cytoParamsFromContainer } from '../utils/cytoParams';
 import { getCytoData } from '../utils/cytoUtils';
 import InfoBoxEntity from './InfoBox/InfoBoxEntity';
 import InfoBoxShare from './InfoBox/InfoBoxShare';
-import SearchButton from './Search/SearchButton';
+import SearchButton from './Buttons/SearchButton';
+import InfoButton from './Buttons/InfoButton';
 
 class CytoContainer extends React.Component {
   constructor(props) {
@@ -72,6 +73,7 @@ class CytoContainer extends React.Component {
       <div>
         <div id="cy" style={cyStyle} onContextMenu={this.handleContextMenu} />
         <SearchButton {...this.props} />
+        <InfoButton {...this.props} />
         {infoBox}
       </div>
     );
