@@ -21,7 +21,7 @@ class InfoBoxEntity extends React.Component {
     ];
     let graphButton;
     if (entity.category !== 's' && entity.id !== parseInt(this.props.match.params.entityId, 10)) {
-      graphButton = (<Button style={{ color: 'green' }} dense onClick={this.handleClick}>
+      graphButton = (<Button style={{ color: 'green' }} onClick={this.handleClick}>
         See Graph &nbsp; &nbsp;<Timeline />
       </Button>);
     } else {
