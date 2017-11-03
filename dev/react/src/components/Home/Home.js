@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/actionCreators';
+import * as actionCreators from '../../actions/actionCreators';
+import Intent from './Intent';
 
 class Home extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class Home extends React.Component {
         <div className="home-div">
           <Link to="/graph/142">Go to Graph 142</Link>
         </div>
+        <Intent />
       </div>
     );
   }

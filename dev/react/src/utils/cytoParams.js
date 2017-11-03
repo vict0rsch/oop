@@ -51,13 +51,14 @@ const dagreLayout = {
 };
 
 export function cytoParamsFromContainer(containerElement, cytoData) {
+    var layout;
     if (cytoData.edges.length < 10){
         const spacing = 1.8 * Math.pow(cytoData.edges.length, 0.08);
-        var layout = dagreLayout;
+        layout = dagreLayout;
         layout.spacingFactor = spacing;
     } else {
         const spacing = 0.5 * Math.pow(cytoData.edges.length, 0.08);
-        var layout = breadthFirstLayout;
+        layout = breadthFirstLayout;
         layout.spacingFactor = spacing;
     }
     
