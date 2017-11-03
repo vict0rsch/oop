@@ -1,18 +1,13 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import fetchData from '../../utils/fetchData';
 import * as actionCreators from '../../actions/actionCreators';
 
-// import AppBar from 'material-ui/AppBar';
-// import IconButton from 'material-ui/IconButton';
-// import HomeIcon from 'material-ui-icons/Home'
-
-// import HeaderBar from './HeaderBar';
-// import MaterialSearchGraph from '../Search/MaterialSearchGraph';
 import SearchGraph from '../Search/SearchGraph';
+import Spinner from 'react-spinner';
 
 class Header extends React.Component {
   constructor(props) {
@@ -29,17 +24,9 @@ class Header extends React.Component {
     this.props.history.push(`/graph/${val.id}`)
   }
   render() {
-    // const classes = this.props;
-    // const iconButton = (
-    //   <IconButton className={classes.menuButton} color="primary" aria-label="Menu">
-    //     <Link to="/"><HomeIcon style={{color: 'white'}}/></Link>
-    //   </IconButton>
-    // );
     return (
       <div>
-        {/* <HeaderBar {...this.props} iconButton={iconButton} /> */}
-        {this.props.showSearchBar && <SearchGraph {...this.props} />}
-        {/* <MaterialSearchGraph {...this.props} redirect={this.redirect}/> */}
+        {this.props.showSearchBar && this.props.dataIsAvailable && <SearchGraph {...this.props} />}
       </div>
     );
   }
