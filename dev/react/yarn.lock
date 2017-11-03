@@ -1784,6 +1784,12 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
+cytoscape-dagre@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/cytoscape-dagre/-/cytoscape-dagre-2.1.0.tgz#74345af05af4b9297dea736497a5f0f77d97e16c"
+  dependencies:
+    dagre "~0.7.4"
+
 cytoscape@^3.2.4:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-3.2.5.tgz#cd50ab9fcd6a12e51d2e8e5a13f1e5aeb2cd84c8"
@@ -1810,7 +1816,7 @@ dagre-d3@^0.4.17:
     graphlib "^1.0.5"
     lodash "^3.10.0"
 
-dagre@^0.7.3:
+dagre@^0.7.3, dagre@~0.7.4:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/dagre/-/dagre-0.7.4.tgz#de72f0e74a550ce11ce638f0a136fed712398022"
   dependencies:

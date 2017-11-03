@@ -12,6 +12,7 @@
         "autosuggest-highlight": "^3.1.1",
         "axios": "^0.16.2",
         "cytoscape": "^3.2.4",
+        "cytoscape-dagre": "^2.1.0",
         "dagre-d3": "^0.4.17",
         "history": "^4.7.2",
         "jquery": "^3.2.1",
