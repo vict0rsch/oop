@@ -10,7 +10,3 @@ html {
   height: 600px;
   width: 800px;
 }
-
-.select-options .is-focused{
-  background-color: rgb(97, 73, 51);
-}
