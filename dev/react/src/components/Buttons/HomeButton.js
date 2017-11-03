@@ -4,8 +4,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import SearchIcon from 'material-ui-icons/Search';
-import ClearIcon from 'material-ui-icons/Clear';
 import HomeIcon from 'material-ui-icons/Home';
 
 

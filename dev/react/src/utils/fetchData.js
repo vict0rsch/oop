@@ -1,6 +1,4 @@
 import Axios from 'axios';
-import { getJSON } from 'jquery';
-import JSONdata from '../static/data.min.json';
 import {formatData} from './formatData';
 
 // Use local json data or fetch from server
