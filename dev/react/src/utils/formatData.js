@@ -16,6 +16,7 @@ export function formatData(serverData) {
     serverData.entities.map((v, i) => {
         data.entities.names[v.name] = v;
         data.entities.ids[v.id] = v;
+        return undefined;
     });
 
     serverData.shares.map((v, i) => {
@@ -24,7 +25,7 @@ export function formatData(serverData) {
             parent_id: v.parent_id,
             special: v.special,
             share: v.value,
-            id:shareId
+            id: shareId
         };
         shareId -= 1;
         console.log(newShare);
@@ -39,6 +40,7 @@ export function formatData(serverData) {
         } else {
             data.shares.parents[newShare.parent_id] = [newShare];
         }
+        return undefined;
     });
     return data;
 
