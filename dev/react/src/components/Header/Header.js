@@ -7,7 +7,6 @@ import fetchData from '../../utils/fetchData';
 import * as actionCreators from '../../actions/actionCreators';
 
 import SearchGraph from '../Search/SearchGraph';
-import Spinner from 'react-spinner';
 
 class Header extends React.Component {
   constructor(props) {
