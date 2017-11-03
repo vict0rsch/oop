@@ -13,7 +13,6 @@ class SearchGraph extends React.Component {
       if (this.props.data.idSet.has(parseInt(val.id, 10))) {
         this.props.updateEntityInfoBox(val.id);
         this.props.history.push(`/graph/${val.id}`);
-        console.log(this);
       }
     }
   }
