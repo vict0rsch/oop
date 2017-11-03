@@ -1,8 +1,8 @@
 const WIDTH_FACTOR = 20;
 
-export function getCytoData(data, entity) {
+export default function getCytoData(data, entity) {
     if (localStorage['cytoData_' + entity.id]) {
-        console.log('using local data');
+        // console.log('using local data');
         return JSON.parse(localStorage['cytoData_' + entity.id]);
     }
 

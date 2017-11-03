@@ -1,11 +1,11 @@
 import React from 'react';
 import cytoscape from 'cytoscape';
 import { cytoParamsFromContainer } from '../utils/cytoParams';
-import { getCytoData } from '../utils/cytoUtils';
+import getCytoData from '../utils/getCytoData';
 import InfoBoxEntity from './InfoBox/InfoBoxEntity';
 import InfoBoxShare from './InfoBox/InfoBoxShare';
 import SearchButton from './Buttons/SearchButton';
-import InfoButton from './Buttons/InfoButton';
+import HomeButton from './Buttons/HomeButton';
 
 class CytoContainer extends React.Component {
   constructor(props) {
@@ -73,7 +73,7 @@ class CytoContainer extends React.Component {
       <div>
         <div id="cy" style={cyStyle} onContextMenu={this.handleContextMenu} />
         <SearchButton {...this.props} />
-        <InfoButton {...this.props} />
+        <HomeButton {...this.props} />
         {infoBox}
       </div>
     );
