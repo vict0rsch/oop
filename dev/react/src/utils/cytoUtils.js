@@ -57,7 +57,7 @@ export function getCytoData(data, entity) {
             width *= 1.5;
             width = parseInt(width, 10);
         }
-        e.width = width + 'px';
+        e.width = width;
         nodes.push({ data: e });
     }
 
@@ -181,7 +181,7 @@ function find_other_special(data, entity) {
             e.id = s.id;
             result.shares.push({ data: e });
             var temp_node = data.entitys.ids[s.parent];
-            temp_node.width = temp_node.name.length * WIDTH_FACTOR + 'px';
+            temp_node.width = temp_node.name.length * WIDTH_FACTOR;
             result.nodes.push({ data: temp_node });
         }
     }
