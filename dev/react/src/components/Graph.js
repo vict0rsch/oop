@@ -3,6 +3,7 @@ import CytoContainer from './CytoContainer';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
+import Spinner from 'react-spinner';
 
 class _Graph extends React.Component {
   constructor(props) {
@@ -12,9 +13,12 @@ class _Graph extends React.Component {
   render() {
 
     return this.props.dataIsAvailable ?
-          <CytoContainer {...this.props} printGraphProps={this.printProps} />
-            :
-          <p>Waiting</p>;
+      <CytoContainer {...this.props} printGraphProps={this.printProps} />
+      :
+      <div><p style={{ textAlign: 'center' }}>Getting Data... </p><br /><Spinner style={{
+        height: 50,
+        width: 50,
+      }} /></div>;
   }
 
   printProps() {
