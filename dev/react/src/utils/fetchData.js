@@ -7,7 +7,7 @@ import {formatData} from './formatData';
 var USE_LOCAL_ONLY = true;
 
 function fetchData(component) {
-    console.log('Fetching data...');
+    // console.log('Fetching data...');
     // element is the react component
 
     // whether or not to go fetch the data
@@ -17,7 +17,7 @@ function fetchData(component) {
 
     if (localStorage.data) {
         try {
-            console.log('Loading localStorage data');
+            // console.log('Loading localStorage data');
             data = JSON.parse(localStorage.data);
             component.props.setData(data);
             component.props.makeDataAvailable();
