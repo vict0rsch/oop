@@ -6,6 +6,8 @@ import InfoBoxEntity from './InfoBox/InfoBoxEntity';
 import InfoBoxShare from './InfoBox/InfoBoxShare';
 import SearchButton from './Buttons/SearchButton';
 import HomeButton from './Buttons/HomeButton';
+import SearchGraph from './Search/SearchGraph';
+
 
 class CytoContainer extends React.Component {
   constructor(props) {
@@ -71,6 +73,7 @@ class CytoContainer extends React.Component {
     }
     return (
       <div>
+        {this.props.showSearchBar && this.props.dataIsAvailable && <SearchGraph {...this.props} />}
         <div id="cy" style={cyStyle} onContextMenu={this.handleContextMenu} />
         <SearchButton {...this.props} />
         <HomeButton {...this.props} />

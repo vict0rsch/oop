@@ -27,6 +27,7 @@ const defaultState = {
     data: {},
     dataIsAvailable: false,
     showSearchBar: false,
+    showIntent: false,
     currentDisplay: -1,
     infoBox: {
         type: '',

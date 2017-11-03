@@ -25,7 +25,7 @@ class Header extends React.Component {
   render() {
     return (
       <div>
-        {this.props.showSearchBar && this.props.dataIsAvailable && <SearchGraph {...this.props} />}
+        
       </div>
     );
   }
@@ -38,7 +38,8 @@ function mapStateToProps(state) {
     dataIsAvailable: state.dataIsAvailable,
     currentDisplay: state.currentDisplay,
     infoBox: state.infoBox,
-    showSearchBar: state.showSearchBar
+    showSearchBar: state.showSearchBar,
+    showIntent: state.showIntent
   };
 }
 

@@ -4,6 +4,9 @@ import frMdSource from '../../static/texts/intentFr';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Markdown from 'react-markdown';
+import Paper from 'material-ui/Paper';
+import ClearIcon from 'material-ui-icons/Clear';
+import Button from 'material-ui/Button';
 
 let lang = navigator.language || navigator.userLanguage;
 lang = lang === 'fr' ? lang : 'en';
@@ -16,6 +19,13 @@ if (lang === 'fr') {
 }
 
 const styles = theme => ({
+    root: theme.mixins.gutters({
+        padding: 30,
+        marginTop: theme.spacing.unit * 3,
+        width: '700px',
+        display: 'inline-block',
+        marginBottom: '30px'
+    }),
     card: {
         minWidth: 275,
     },
@@ -31,7 +41,7 @@ const styles = theme => ({
     },
     pos: {
         marginBottom: 12,
-        color: theme.palette.text.secondary,
+        color: theme.palette.text.primary,
     },
 });
 
@@ -40,24 +50,37 @@ class Intent extends Component {
 
     render() {
         const typoStyle = {
-            display: 'inline-block',
-            fontSize: '0.8em',
-            width: '700px',
+            fontSize: '1em',
             textAlign: 'justify',
             textJustify: 'auto',
-            fontWeight:350,
-            marginLeft:'-8px',
-            letterSpacing: '2'
+            fontWeight: 200,
+            padding: '20px 50px'
         };
 
+        const clearStyle = {
+            height: '40px',
+            width: '40px'
+        };
+
+        const { classes } = this.props;
+
         return (
-            <div style={{ width: '100%', textAlign: 'center' }}>
-                <Typography type="headline" style={typoStyle} >
-                    <Markdown source={mdSource} escapeHtml={false}/>
-                    <a href="https://www.monde-diplomatique.fr/cartes/ppa" target="_blank">*Le Monde Diplomatique</a>
-                </Typography>
-                
-            </div>);
+            <div style={{
+                textAlign: 'center',
+                marginLeft: '-8px',
+                width: '800px'
+            }}>
+                <Paper className={classes.root} elevation={4}>
+                    <Typography type="body1" style={typoStyle} component="div" className={classes.pos}>
+                        <Markdown source={mdSource} escapeHtml={false} />
+                        <a href="https://www.monde-diplomatique.fr/cartes/ppa" rel="noopener noreferrer" target="_blank">*Le Monde Diplomatique</a>
+                    </Typography>
+                    <Button  onClick={this.props.toggleIntent}>
+                        <ClearIcon style={ clearStyle }/>
+                    </Button>
+                </Paper>
+            </div>
+        );
 
     }
 }

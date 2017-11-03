@@ -38,3 +38,9 @@ export function toggleSearchBar(){
     type: 'TOGGLE_SEARCH_BAR'
   };
 }
+
+export function toggleIntent(){
+  return {
+    type: 'TOGGLE_INTENT'
+  };
+}
