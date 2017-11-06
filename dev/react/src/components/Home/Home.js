@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
@@ -7,7 +6,7 @@ import Intent from './Intent';
 import LearnAbout from './LearnAbout';
 import SearchGraph from '../Search/SearchGraph';
 import ShowSearchBar from './ShowSearchBar';
-import HideSearchBar from './HideSearchBar';
+
 
 class Home extends React.Component {
   render() {
@@ -18,7 +17,7 @@ class Home extends React.Component {
         </h1>
         <br />
 
-        {this.props.show.searchBar ? <div><SearchGraph {...this.props} width='690px'/> <HideSearchBar {...this.props} /></div> : <ShowSearchBar {...this.props} />}
+        {this.props.show.searchBar ? <div><SearchGraph {...this.props}/> </div> : <ShowSearchBar {...this.props} />}
 
         {!this.props.show.intent && <LearnAbout {...this.props} />}
         {this.props.show.intent && <Intent {...this.props} />}

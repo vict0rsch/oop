@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import fetchData from '../../utils/fetchData';
 import * as actionCreators from '../../actions/actionCreators';
 
-import SearchGraph from '../Search/SearchGraph';
 
 class Header extends React.Component {
   constructor(props) {
@@ -19,7 +18,6 @@ class Header extends React.Component {
     fetchData(element);
   }
   redirect(val) {
-    console.log('OOOOKKKKK');
     this.props.history.push(`/graph/${val.id}`)
   }
   render() {
