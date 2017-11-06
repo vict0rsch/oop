@@ -35,12 +35,13 @@ const defaultState = {
     }
 };
 
-const enhancers = compose(applyMiddleware(middleware),
+const enhancers = compose(autoRehydrate(), applyMiddleware(middleware),
     window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
 const store = createStore(rootReducer, defaultState, enhancers);
 
+persistStore(store);
 
 // By default reducers are not hot reloaded, only components
 // To make them hot reloadable : 
