@@ -11,7 +11,7 @@ function dataToOptions(data) {
 
 function getIdSet(data) {
   const s = new Set(Object.keys(data.entities.ids).map(k => parseInt(k, 10)));
-  return s;
+  return Array.from(s);
 }
 
 function data(state = [], action) {

@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux'
 import registerServiceWorker from './registerServiceWorker';
 
-// import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
 import store, { history } from './store';
@@ -15,9 +14,6 @@ import Graph from './components/Graph/Graph';
 import Header from './components/Header/Header';
 
 import './style/index.css';
-
-
-// import baseTheme from './theme/baseTheme.js';
 
 const router = (
     <Provider store={store}>

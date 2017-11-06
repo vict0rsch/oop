@@ -29,8 +29,8 @@ class InfoBoxEntity extends React.Component {
     }
 
     return (
-      <div style={{width: '784px'}}>
-          <EntityCard entity={entity} graphButton={graphButton} />
+      <div style={{ width: '730px', margin: 'auto' }}>
+        <EntityCard entity={entity} graphButton={graphButton} />
       </div>
     );
   }

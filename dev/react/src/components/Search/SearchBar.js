@@ -11,7 +11,7 @@ class SearchBar extends React.Component {
 
   logChange(val) {
     if (val && val.id) {
-      if (this.props.data.idSet.has(parseInt(val.id, 10))) {
+      if (this.props.data.idSet.indexOf(parseInt(val.id, 10)) > -1) {
         if (this.props.show.intent){
           this.props.toggleIntent();
         }
