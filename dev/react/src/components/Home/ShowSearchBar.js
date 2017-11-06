@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Icon from 'material-ui-icons/Search';
 import Button from 'material-ui/Button';
 
-class HomeSearchBar extends Component {
+class ShowSearchBar extends Component {
     render() {
         const iconStyle = {
             height: '30px',
@@ -21,4 +21,4 @@ class HomeSearchBar extends Component {
     }
 }
 
-export default HomeSearchBar;
+export default ShowSearchBar;

@@ -25,6 +25,10 @@ html {
   width: 800px;
 }
 
+.Select-control {
+  margin: 0px !important;
+}
+
 
 /* REACT-SPINNER */
 

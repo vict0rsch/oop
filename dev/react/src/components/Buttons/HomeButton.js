@@ -23,6 +23,7 @@ class HomeButton extends React.Component {
     }
 
     handleClick() {
+        this.props.toggleSearchBar();
         this.props.history.push('/');
     }
 

@@ -73,7 +73,7 @@ class CytoContainer extends React.Component {
     }
     return (
       <div>
-        {this.props.showSearchBar && this.props.dataIsAvailable && <SearchGraph {...this.props} />}
+        {this.props.show.searchBar && this.props.dataIsAvailable && <SearchGraph {...this.props} />}
         <div id="cy" style={cyStyle} onContextMenu={this.handleContextMenu} />
         <SearchButton {...this.props} />
         <HomeButton {...this.props} />

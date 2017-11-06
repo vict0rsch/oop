@@ -23,10 +23,13 @@ class SearchGraph extends React.Component {
       border: '0px 0px 1px 0px',
       borderRadius: '0px',
       zIndex:999,
-      width:'785px'
+      width:'785px',
     };
+    if (this.props.width){
+      searchStyle.width = this.props.width;
+    }
     return (
-      <div>
+      <div style={{display:'inline-block', verticalAlign:'middle'}}>
         <Select
           name="form-field-name"
           value="one"
