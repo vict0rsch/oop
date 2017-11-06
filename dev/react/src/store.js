@@ -26,8 +26,7 @@ const middleware = routerMiddleware(history);
 const defaultState = {
     data: {},
     dataIsAvailable: false,
-    showSearchBar: false,
-    showIntent: false,
+    show: {},
     currentDisplay: -1,
     infoBox: {
         type: '',

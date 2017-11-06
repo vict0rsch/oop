@@ -38,8 +38,7 @@ function mapStateToProps(state) {
     dataIsAvailable: state.dataIsAvailable,
     currentDisplay: state.currentDisplay,
     infoBox: state.infoBox,
-    showSearchBar: state.showSearchBar,
-    showIntent: state.showIntent
+    show: state.show
   };
 }
 

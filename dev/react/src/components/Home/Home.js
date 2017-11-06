@@ -17,10 +17,10 @@ class Home extends React.Component {
         </h1>
         <br />
 
-        {this.props.showSearchBar ? <SearchGraph {...this.props}/> : <HomeSearchBar {...this.props}/>}
-        {!this.props.showIntent && <LearnAbout {...this.props}/>}
+        {this.props.show.searchBar ? <SearchGraph {...this.props}/> : <HomeSearchBar {...this.props}/>}
+        {!this.props.show.intent && <LearnAbout {...this.props}/>}
 
-        {this.props.showIntent && <Intent {...this.props} />}
+        {this.props.show.intent && <Intent {...this.props} />}
       </div>
     );
   }
@@ -33,8 +33,7 @@ function mapStateToProps(state) {
     dataIsAvailable: state.dataIsAvailable,
     currentDisplay: state.currentDisplay,
     infoBox: state.infoBox,
-    showSearchBar: state.showSearchBar,
-    showIntent: state.showIntent
+    show: state.show
   };
 }
 
