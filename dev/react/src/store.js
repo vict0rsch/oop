@@ -1,5 +1,6 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
+import {autoRehydrate, persistStore} from 'redux-persist';
 import { createBrowserHistory, createHashHistory } from 'history';
 
 

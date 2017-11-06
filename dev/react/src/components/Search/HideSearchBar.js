@@ -6,11 +6,11 @@ class HideSearchBar extends Component {
     render() {
         const iconStyle = {
             height: '30px',
-            width: '30px'
+            width: '30px',
         };
         return (
             <div style={{display:'inline-block', verticalAlign:'middle'}}>
-                <Button onClick={this.props.toggleSearchBar} style={{ verticalAlign: 'middle'}}><Icon style={iconStyle}/></Button>
+                <Button onClick={this.props.toggleSearchBar} style={{ verticalAlign: 'middle', height:'30px', 'padding': 0}}><Icon style={iconStyle}/></Button>
             </div>
         );
     }
