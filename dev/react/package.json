@@ -31,6 +31,7 @@
         "react-select": "^1.0.0-rc.10",
         "react-spinner": "^0.2.7",
         "redux": "^3.7.2",
+        "redux-persist": "^5.2.2",
         "typeface-roboto": "^0.0.43",
         "url-parse": "^1.1.9"
     },
