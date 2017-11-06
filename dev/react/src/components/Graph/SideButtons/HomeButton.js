@@ -12,7 +12,7 @@ const styles = theme => ({
         position: "fixed",
         height: '10px',
         width: '38px',
-        margin: "-340px 15px"
+        margin: "-388px 15px"
     },
 });
 
@@ -30,7 +30,7 @@ class HomeButton extends React.Component {
     render() {
         return (
             <Button raised fab aria-label="search" className={this.props.classes.button} onClick={this.handleClick}>
-                {this.props.showSearchBar ? <HomeIcon /> : <HomeIcon />}
+                <HomeIcon />
             </Button>
         );
     }

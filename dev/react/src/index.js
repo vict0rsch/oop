@@ -11,7 +11,7 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
 import store, { history } from './store';
 import Home from './components/Home/Home';
-import Graph from './components/Graph';
+import Graph from './components/Graph/Graph';
 import Header from './components/Header/Header';
 
 import './style/index.css';

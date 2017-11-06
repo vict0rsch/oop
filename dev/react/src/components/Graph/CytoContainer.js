@@ -1,11 +1,11 @@
 import React from 'react';
 import cytoscape from 'cytoscape';
-import { cytoParamsFromContainer } from '../utils/cytoParams';
-import getCytoData from '../utils/getCytoData';
+import { cytoParamsFromContainer } from '../../utils/cytoParams';
+import getCytoData from '../../utils/getCytoData';
 import InfoBoxEntity from './InfoBox/InfoBoxEntity';
 import InfoBoxShare from './InfoBox/InfoBoxShare';
 import SideButtons from './SideButtons/SideButtons';
-import SearchGraph from './Search/SearchGraph';
+import SearchBar from '../Search/SearchBar';
 
 
 class CytoContainer extends React.Component {
@@ -72,7 +72,7 @@ class CytoContainer extends React.Component {
     }
     return (
       <div>
-        {this.props.show.searchBar && this.props.dataIsAvailable && <SearchGraph {...this.props} />}
+        {this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar {...this.props} />}
         <div id="cy" style={cyStyle} onContextMenu={this.handleContextMenu} />
         <SideButtons {...this.props}/>
         {infoBox}

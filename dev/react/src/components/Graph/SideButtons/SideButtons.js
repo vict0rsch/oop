@@ -6,8 +6,8 @@ class SideButtons extends Component {
     render() {
         return (
             <div>
-                {!this.props.show.searchBar && <SearchButton {...this.props} />}
                 <HomeButton {...this.props} />
+                <SearchButton {...this.props} />
             </div>
         );
     }

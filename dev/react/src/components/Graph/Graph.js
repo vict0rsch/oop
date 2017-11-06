@@ -2,7 +2,7 @@ import React from 'react';
 import CytoContainer from './CytoContainer';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/actionCreators';
+import * as actionCreators from '../../actions/actionCreators';
 import Spinner from 'react-spinner';
 
 class _Graph extends React.Component {
