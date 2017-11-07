@@ -6,9 +6,31 @@ import Intent from './Intent';
 import LearnAbout from './LearnAbout';
 import SearchBar from '../Search/SearchBar';
 import ShowSearchBar from './ShowSearchBar';
+import {check_website} from '../../utils/backgroundUtils';
 
 
 class Home extends React.Component {
+
+
+  componentWillMount() {
+    const component = this;
+    try {
+      window.chrome.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
+        var url = tabs[0].url;
+        if (component.props.dataIsAvailable){
+          const entity = check_website(component.props.data, url);
+          if (entity){
+            component.props.history.push('/graph/' + entity.id);
+          }
+        }
+      });
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
+
   render() {
     return (
       <div>

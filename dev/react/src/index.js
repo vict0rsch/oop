@@ -32,4 +32,4 @@ const router = (
 );
 
 ReactDOM.render(router, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();

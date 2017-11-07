@@ -18,7 +18,7 @@ function get_data(next) {
     next(data);
 }
 
-export function check_website(data, url) {
+function check_website(data, url) {
     var e;
     for (var entity in data.entities.ids) {
         e = data.entities.ids[entity];

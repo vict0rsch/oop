@@ -1,4 +1,4 @@
-fetchDataBackground()
+fetchData();
 
 $(function(){
     localStorage["newProfile"]=false;
@@ -19,19 +19,6 @@ $(function(){
         };
     });
 
-    // chrome.tabs.onHighlighted.addListener(function(tab) {
-    //     console.log('onHighlighted ______')
-    //     console.log(tab)
-    //     var tabId = tab.tabIds[0]
-    //     if (!isNaN(tabId)) {
-    //         chrome.tabs.get(tabId, function(onglet){
-    //             log_tab(onglet)
-    //             count_tabs()
-    //         });
-    //     };
-    // });
-
-
     chrome.tabs.onCreated.addListener(function(tab) {
         sessionStorage['tab_' + tab.id +'_previous'] = tab.url;
         log_tab(tab);
@@ -46,8 +33,5 @@ $(function(){
             localStorage['currentTabTitle'] = ""
         }
     });
-
-
-
 
 });

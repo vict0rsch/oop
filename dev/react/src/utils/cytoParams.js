@@ -57,7 +57,7 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
         layout = dagreLayout;
         layout.spacingFactor = spacing;
     } else {
-        const spacing = 0.5 * Math.pow(cytoData.edges.length, 0.08);
+        const spacing = 0.35 * Math.pow(cytoData.edges.length, 0.08);
         layout = breadthFirstLayout;
         layout.spacingFactor = spacing;
     }
@@ -144,11 +144,12 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
                 style: {
                     'width': 10,
                     'target-arrow-shape': 'triangle',
-                    'line-color': 'rgb(210, 210, 210)',
-                    'target-arrow-color': 'rgb(180, 180, 180)',
+                    'line-color': 'rgb(225, 225, 225)',
+                    'target-arrow-color': 'rgb(190, 190, 190)',
                     'curve-style': 'bezier', // haystack bezier segments unbundled-bezier
                     'label': 'data(label)',
-                    'font-size': '3em',
+                    'font-size': '2em',
+                    'color': 'rgb(140, 140, 140)',
                     'text-rotation': cytoData.edges.length > 10 ? 'autorotate' : 'none',
                 }
             }
