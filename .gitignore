@@ -1,6 +1,6 @@
 *.pyc
 ./.DS_Store
-dev/react/node_modules/
-dev/react/.idea
+react/node_modules/
+react/.idea
 *.log
-dev/react/build/*
+react/build/*
