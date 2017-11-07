@@ -6,7 +6,7 @@ import Intent from './Intent';
 import LearnAbout from './LearnAbout';
 import SearchBar from '../Search/SearchBar';
 import ShowSearchBar from './ShowSearchBar';
-import {check_website} from '../../utils/backgroundUtils';
+import { check_website } from '../../utils/backgroundUtils';
 
 
 class Home extends React.Component {
@@ -17,9 +17,11 @@ class Home extends React.Component {
     try {
       window.chrome.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
         var url = tabs[0].url;
-        if (component.props.dataIsAvailable){
+        if (component.props.dataIsAvailable) {
           const entity = check_website(component.props.data, url);
-          if (entity){
+          if (entity && !sessionStorage['default_' + entity.id]) {
+            sessionStorage['default_' + entity.id] = 'true';
+            component.props.updateEntityInfoBox(entity.id);
             component.props.history.push('/graph/' + entity.id);
           }
         }
@@ -39,7 +41,7 @@ class Home extends React.Component {
         </h1>
         <br />
 
-        {this.props.show.searchBar ? <div> <SearchBar {...this.props} /> </div> : <ShowSearchBar {...this.props} />}
+        {this.props.show.searchBar ? <div> <SearchBar {...this.props} /> </div> : this.props.dataIsAvailable && <ShowSearchBar {...this.props} />}
 
         {!this.props.show.intent && <LearnAbout {...this.props} />}
         {this.props.show.intent && <Intent {...this.props} />}

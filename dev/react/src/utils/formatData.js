@@ -28,7 +28,7 @@ export function formatData(serverData) {
             id: shareId
         };
         shareId -= 1;
-        console.log(newShare);
+
         if (_.has(data.shares.children, newShare.child_id)) {
             data.shares.children[newShare.child_id].push(newShare);
         } else {
