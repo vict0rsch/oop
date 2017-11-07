@@ -22,7 +22,6 @@ class WikiCard extends Component {
         let query_url = 'https://' + lang + '.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro=&explaintext=&titles='
         let escapedTitle = pageTitle.indexOf('%') > -1 ? pageTitle : encodeURIComponent(pageTitle);
         escapedTitle = escapedTitle.replace('%25C3%2589', 'E').replace("'", '%27');
-        console.log(pageTitle, '->',escapedTitle);
         query_url += escapedTitle;
 
 

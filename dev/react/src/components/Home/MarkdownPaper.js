@@ -82,7 +82,7 @@ class MarkdownPaper extends Component {
 
     render() {
         const typoStyle = {
-            fontSize: '1em',
+            fontSize: '1.2em',
             textAlign: 'justify',
             textJustify: 'auto',
             fontWeight: 200,

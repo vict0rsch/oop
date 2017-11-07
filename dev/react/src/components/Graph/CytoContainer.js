@@ -13,16 +13,28 @@ class CytoContainer extends React.Component {
     super(props);
     this.renderCytoscapeElement = this.renderCytoscapeElement.bind(this);
     this.props.updateEntityInfoBox(this.props.match.params.entityId);
+    this.state = {
+      update: false
+    };
   }
 
 
   renderCytoscapeElement() {
+    const time = false;
+    if (time) {
+      console.time('Full Cyto');
+      console.time('      Data Cyto');
+    }
     const container = this;
     const data = this.props.data;
     const id = this.props.match.params.entityId;
 
     const entity = data.entities.ids[id];
     let cytoData = getCytoData(data, entity);
+    if (time) {
+      console.timeEnd('      Data Cyto');
+      console.time('      Render Cyto');
+    }
     const cy = cytoscape(cytoParamsFromContainer(document.getElementById('cy'), cytoData));
     cy.ready(() => {
       cy.elements('node[category != "s"]').on(
@@ -31,6 +43,10 @@ class CytoContainer extends React.Component {
           container.props.updateEntityInfoBox(event.target.id());
         },
       );
+      if (time) {
+        console.timeEnd('      Render Cyto');
+        console.timeEnd('Full Cyto');
+      }
       // cy.elements('edge').on(
       //   'click',
       //   (event) => {
@@ -44,7 +60,9 @@ class CytoContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.renderCytoscapeElement();
+    this.setState({
+      update: true
+    });
   }
 
   componentDidUpdate() {
@@ -74,7 +92,7 @@ class CytoContainer extends React.Component {
       <div>
         {this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar {...this.props} />}
         <div id="cy" style={cyStyle} onContextMenu={this.handleContextMenu} />
-        <SideButtons {...this.props}/>
+        <SideButtons {...this.props} />
         {infoBox}
       </div>
     );
