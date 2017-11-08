@@ -1,3 +1,11 @@
+#### Regular User
+Installation guide to use the (for now) unofficial Chrome Extension at the end of the page!
+
+#### Devs
+See install quick guide at the end of this Readme, check out the Wiki for more technical info
+
+---
+
 # Open Ownership Project - OOP
 
 ### Why 
