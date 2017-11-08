@@ -1,10 +1,12 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { check_website } from '../../utils/backgroundUtils';
 import * as actionCreators from '../../actions/actionCreators';
+import { getTranslate, getActiveLanguage } from 'react-localize-redux';
+
 import LearnAbout from './LearnAbout';
 import HomeSearchBar from './HomeSearchBar';
-import { check_website } from '../../utils/backgroundUtils';
 
 
 class Home extends React.Component {
@@ -38,7 +40,7 @@ class Home extends React.Component {
           Open Ownership Project
         </h1>
         <br />
-        <HomeSearchBar {...this.props}/>
+        <HomeSearchBar {...this.props} />
         <LearnAbout {...this.props} />
       </div>
     );
@@ -52,7 +54,9 @@ function mapStateToProps(state) {
     dataIsAvailable: state.dataIsAvailable,
     currentDisplay: state.currentDisplay,
     infoBox: state.infoBox,
-    show: state.show
+    show: state.show,
+    translate: getTranslate(state.locale),
+    currentLanguage: getActiveLanguage(state.locale).code
   };
 }
 

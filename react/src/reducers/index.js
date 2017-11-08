@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import { localeReducer as locale } from 'react-localize-redux';
+
 import data from './data';
-import currentDisplay from './currentDisplay';
-import infoBox from './infoBox';
-import dataIsAvailable from './dataIsAvailable';
 import show from './show';
+import infoBox from './infoBox';
+import currentDisplay from './currentDisplay';
+import dataIsAvailable from './dataIsAvailable';
 
 
 
 const rootReducer = combineReducers({
-    show, dataIsAvailable, data, currentDisplay, infoBox, router: routerReducer
+    locale, show, dataIsAvailable, data, currentDisplay, infoBox, router: routerReducer
 });
 
 export default rootReducer;

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 import Waiting from '../Waiting';
+import { getTranslate, getActiveLanguage } from 'react-localize-redux';
 
 class _Graph extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class _Graph extends React.Component {
     return this.props.dataIsAvailable ?
       <CytoContainer {...this.props} printGraphProps={this.printProps} />
       :
-      <Waiting/>;
+      <Waiting />;
   }
 
   printProps() {
@@ -30,7 +31,9 @@ function mapStateToProps(state) {
     dataIsAvailable: state.dataIsAvailable,
     currentDisplay: state.currentDisplay,
     infoBox: state.infoBox,
-    show: state.show
+    show: state.show,
+    translate: getTranslate(state.locale),
+    currentLanguage: getActiveLanguage(state.locale).code
   };
 }
 

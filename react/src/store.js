@@ -1,11 +1,11 @@
-import { createStore, compose, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import {autoRehydrate, persistStore} from 'redux-persist';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { createBrowserHistory, createHashHistory } from 'history';
-
+import { initialize, addTranslation, addTranslationForLanguage, setActiveLanguage } from 'react-localize-redux';
 
 // import the root reducer
-import rootReducer from './reducers/index';
+import combinedReducer from './reducers/index';
 
 const browserHistory = createBrowserHistory();
 const hashHistory = createHashHistory();
@@ -35,7 +35,16 @@ const enhancers = compose(autoRehydrate(), applyMiddleware(middleware),
     window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-const store = createStore(rootReducer, defaultState, enhancers);
+const store = createStore(combinedReducer, defaultState, enhancers);
+
+// Multi-language support
+let languageToUse = navigator.language || navigator.userLanguage;
+languageToUse = languageToUse === 'fr' ? languageToUse : 'en';
+const languages = ['en', 'fr'];
+store.dispatch(initialize(languages));//, { defaultLanguage: 'fr' }));
+const json = require('./static/texts/global.locale.json');
+store.dispatch(addTranslation(json));
+store.dispatch(setActiveLanguage(languageToUse));
 
 persistStore(store);
 
@@ -43,8 +52,8 @@ persistStore(store);
 // To make them hot reloadable : 
 if (module.hot) {
     module.hot.accept('./reducers/', () => {
-        const nextRootReducer = require('./reducers/index').default;
-        store.replaceReducer(nextRootReducer);
+        const nextCombinedReducer = require('./reducers/index').default;
+        store.replaceReducer(nextCombinedReducer);
     })
 }
 
