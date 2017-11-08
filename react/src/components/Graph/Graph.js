@@ -1,10 +1,11 @@
 import React from 'react';
-import CytoContainer from './CytoContainer';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions/actionCreators';
+import mapStateToProps from '../../store/defaultMapStateToProps';
+
+import CytoContainer from './CytoContainer';
 import Waiting from '../Waiting';
-import { getTranslate, getActiveLanguage } from 'react-localize-redux';
 
 class _Graph extends React.Component {
 
@@ -15,19 +16,6 @@ class _Graph extends React.Component {
       :
       <Waiting />;
   }
-}
-
-
-function mapStateToProps(state) {
-  return {
-    data: state.data,
-    dataIsAvailable: state.dataIsAvailable,
-    currentDisplay: state.currentDisplay,
-    infoBox: state.infoBox,
-    show: state.show,
-    translate: getTranslate(state.locale),
-    currentLanguage: getActiveLanguage(state.locale).code
-  };
 }
 
 function mapDispatchToProps(dispatch) {
