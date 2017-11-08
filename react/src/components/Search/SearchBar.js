@@ -31,8 +31,8 @@ class SearchBar extends React.Component {
     };
 
     return (
-      <div>
-        <div style={{ display: 'inline-block', verticalAlign: 'middle', margin:'0px 10px'}}>
+      <div style={{marginBottom:'30px'}}>
+        <div style={{ display: 'inline-block', verticalAlign: 'middle'}}>
           <Select
             name="form-field-name"
             value="one"

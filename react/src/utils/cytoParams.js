@@ -52,7 +52,7 @@ const dagreLayout = {
 
 export function cytoParamsFromContainer(containerElement, cytoData) {
     var layout;
-    if (cytoData.edges.length < 10){
+    if (cytoData.edges.length < 10) {
         const spacing = 1.8 * Math.pow(cytoData.edges.length, 0.08);
         layout = dagreLayout;
         layout.spacingFactor = spacing;
@@ -61,13 +61,41 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
         layout = breadthFirstLayout;
         layout.spacingFactor = spacing;
     }
+
+    function addOneLineBreak(string) {
+        const index = parseInt(string.length / 2);
+        let s1 = string.slice(0, index);
+        let s2 = string.slice(index);
+        let reverseS1 = s1.split("").reverse().join("");
+
+        const space1 = reverseS1.indexOf(' ');
+        const space2 = s2.indexOf(' ');
+
+        if (space1 > -1 && space2 > -1) {
+            if (space1 > space2) {
+                s2 = s2.slice(0, space2) + '\n' + s2.slice(space2 + 1);
+                return reverseS1.split("").reverse().join("") + s2
+            } else {
+                reverseS1 = reverseS1.slice(0, space1) + '\n' + reverseS1.slice(space1 + 1);
+                return reverseS1.split("").reverse().join("") + s2
+            }
+        } else if (space2 > -1) {
+            s2 = s2.slice(0, space2) + '\n' + s2.slice(space2 + 1);
+            return reverseS1.split("").reverse().join("") + s2
+        } else if (space1 > -1) {
+            reverseS1 = reverseS1.slice(0, space1) + '\n' + reverseS1.slice(space1 + 1);
+            return reverseS1.split("").reverse().join("") + s2
+        } else {
+            return string
+        }
+    }
     
     const nodes = cytoData.nodes.map((v, k) => {
         return {
             data: {
                 ...v.data,
-                name: v.data.name.replace(/ /g, '\n'),
-                widthPx: v.data.width + 'px'
+                name: addOneLineBreak(v.data.name),
+                widthPx: v.data.width + 40 + 'px'
             }
         }
     });
@@ -151,6 +179,7 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
                     'font-size': '2em',
                     'color': 'rgb(140, 140, 140)',
                     'text-rotation': cytoData.edges.length > 10 ? 'autorotate' : 'none',
+                    'arrow-scale': 1.5
                 }
             }
         ],

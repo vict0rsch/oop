@@ -15,11 +15,29 @@ import Header from './components/Header/Header';
 
 import './style/index.css';
 
+const defaultStyle = {
+
+};
+
+const styles = {
+    'browser': {
+        ...defaultStyle
+    },
+    'chromeExtension': {
+        ...defaultStyle,
+        height: '600px',
+        width: '754px',
+    },
+    'mobile': {
+        ...defaultStyle
+    }
+}
+
 const router = (
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <MuiThemeProvider theme={createMuiTheme()}>
-                <div>
+                <div id='index' style={styles[store.getState().clientType]}>
                     <Header history={history} />
                     <Switch>
                         <Route exact path='/' component={Home}></Route>
@@ -34,7 +52,7 @@ const router = (
 ReactDOM.render(router, document.getElementById('root'));
 
 const isChromeExtension = window.chrome.tabs !== undefined;
-if (! isChromeExtension){
+if (!isChromeExtension) {
     console.log('Registering Service Worker');
     registerServiceWorker();
 } else {

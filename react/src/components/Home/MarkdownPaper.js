@@ -6,13 +6,10 @@ import Paper from 'material-ui/Paper';
 import ClearIcon from 'material-ui-icons/Clear';
 import Button from 'material-ui/Button';
 
-
-
 const styles = theme => ({
     root: theme.mixins.gutters({
         padding: 30,
         marginTop: theme.spacing.unit * 3,
-        width: '700px',
         display: 'inline-block',
         marginBottom: '30px'
     }),
@@ -43,7 +40,7 @@ class MarkdownPaper extends Component {
 
         var lang = navigator.language || navigator.userLanguage;
         lang = lang === 'fr' ? lang : 'en';
-        
+
         var mdSource, swicthToLang;
         if (lang === 'fr') {
             mdSource = this.props.frMdSource;
@@ -81,6 +78,13 @@ class MarkdownPaper extends Component {
 
 
     render() {
+
+        const widths = {
+            'chromeExtension': '700px',
+            'mobile': '90%',
+            'browser': '60%'
+        }
+
         const typoStyle = {
             fontSize: '1.2em',
             textAlign: 'justify',
@@ -98,7 +102,7 @@ class MarkdownPaper extends Component {
 
         return (
             <div>
-                <Paper className={classes.root} elevation={4}>
+                <Paper style={{width:widths[this.props.clientType]}} className={classes.root} elevation={4}>
                     <Button onClick={this.toggleLanguage} style={{ fontSize: '0.8em' }}>
                         (Switch to {this.state.swicthToLang})
                     </Button>

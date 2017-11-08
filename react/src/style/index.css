@@ -21,14 +21,13 @@ html {
   /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #ECE9E6, #FFFFFF);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  height: 600px;
-  width: 800px;
+  /* height: 600px;
+  width: 800px; */
 }
 
-.Select-control {
-  margin: 0px !important;
-}
-
+/* .show {
+  background-color: rgb(120, 217, 247) !important;
+} */
 
 /* REACT-SPINNER */
 

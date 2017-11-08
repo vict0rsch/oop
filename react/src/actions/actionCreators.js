@@ -44,3 +44,9 @@ export function toggleIntent(){
     type: 'TOGGLE_INTENT'
   };
 }
+
+export function toggleContact(){
+  return {
+    type: 'TOGGLE_CONTACT'
+  };
+}

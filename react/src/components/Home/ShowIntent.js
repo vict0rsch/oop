@@ -10,7 +10,7 @@ export default class ShowIntent extends Component {
         };
         return (
             <div style={{ marginTop: '20px' }}>
-                <Button raised onClick={this.props.toggleIntent}>
+                <Button raised onClick={this.props.toggleIntent} className='show'>
                     {this.props.translate('home.learnAbout')} &nbsp;
                     <Icon style={iconStyle} />
                 </Button>
