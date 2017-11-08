@@ -2,10 +2,8 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
-import Intent from './Intent';
 import LearnAbout from './LearnAbout';
-import SearchBar from '../Search/SearchBar';
-import ShowSearchBar from './ShowSearchBar';
+import HomeSearchBar from './HomeSearchBar';
 import { check_website } from '../../utils/backgroundUtils';
 
 
@@ -37,14 +35,11 @@ class Home extends React.Component {
     return (
       <div>
         <h1 style={{ textAlign: 'center' }}>
-          Welcome to the Open Ownership Project
+          Open Ownership Project
         </h1>
         <br />
-
-        {this.props.show.searchBar ? <div> <SearchBar {...this.props} /> </div> : this.props.dataIsAvailable && <ShowSearchBar {...this.props} />}
-
-        {!this.props.show.intent && <LearnAbout {...this.props} />}
-        {this.props.show.intent && <Intent {...this.props} />}
+        <HomeSearchBar {...this.props}/>
+        <LearnAbout {...this.props} />
       </div>
     );
   }
