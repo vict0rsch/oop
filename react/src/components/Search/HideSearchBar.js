@@ -9,7 +9,7 @@ class HideSearchBar extends Component {
             width: '30px',
         };
         return (
-            <div style={{display:'inline-block', verticalAlign:'middle'}}>
+            <div style={{display:'inline-block', verticalAlign:'top', marginLeft:'20px'}}>
                 <Button onClick={this.props.toggleSearchBar} style={{ verticalAlign: 'middle', height:'30px', 'padding': 0}}><Icon style={iconStyle}/></Button>
             </div>
         );
