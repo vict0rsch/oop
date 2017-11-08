@@ -1,3 +1,11 @@
+#### Regular User
+Installation guide to use the (for now) unofficial Chrome Extension at the end of the page!
+
+#### Devs
+See install quick guide at the end of this Readme, check out the Wiki for more technical info
+
+---
+
 # Open Ownership Project - OOP
 
 ### Why 
@@ -29,15 +37,14 @@ As of now, only the French Media are supported and the information is based on [
 2. Extract the ZIP file wherever you like
 3. In Chrome, go to Extensions : chrome://extensions/
 4. Allow the "Developper Mode" by clicking on the checkbox
-5. Click on "Load unpacked extension" and select the folder where you unzipped the file in 2.
+5. Click on "Load unpacked extension" and, within the folder where you unzipped the file in 2. select the `Chrome Extension` folder.
 **DONE!**
 At Chrome start up it may ask you whether or not to load this extension. Say yes if you do ;) 
 
 # How to install - Front End Dev
-The current front-end development consists of moving the running prototype (*c.f.* previous "How to install") to using a React + Redux combination.
 
 1. Clone the project `git clone https://github.com/Vict0rSch/oop.git`
-2. Go to `react/`: `cd ./oop/dev/react/`
+2. Go to `react/`: `cd ./oop/react/`
 3. run `npm install` (or `yarn`)
 4. run `npm start` (or `yarn`) to start the dev server and hot-reloading of React Components
 5. That's it! The server runs on port `7777` so go to `http://localhost:7777/`
