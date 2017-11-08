@@ -23,6 +23,9 @@ class Home extends React.Component {
           if (entity && !sessionStorage['default_' + entity.id]) {
             sessionStorage['default_' + entity.id] = 'true';
             component.props.updateEntityInfoBox(entity.id);
+            if (component.props.show.searchBar) {
+              component.props.toggleSearchBar()
+            }
             component.props.history.push('/graph/' + entity.id);
           }
         }
@@ -54,7 +57,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
-
-// get in touch https://goo.gl/forms/Zzj9WSmImS7iIKJM2
-// en edit https://goo.gl/forms/xuS5Jl4ufXFQDrIl1
-// fr edit https://goo.gl/forms/e4PfpqAAXs6T4ZdE2
