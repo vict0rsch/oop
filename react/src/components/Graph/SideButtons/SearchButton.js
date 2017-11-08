@@ -29,7 +29,7 @@ class SearchButton extends React.Component {
 
     render() {
         return (
-            <Button raised disabled={this.props.showSearchBar} fab aria-label="search" className={this.props.classes.button} onClick={this.handleClick}>
+            <Button raised disabled={this.props.show.searchBar} fab aria-label="search" className={this.props.classes.button} onClick={this.handleClick}>
                  <SearchIcon />
             </Button>
         );

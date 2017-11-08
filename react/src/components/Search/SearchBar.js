@@ -32,8 +32,14 @@ class SearchBar extends React.Component {
       width: '650px',
     };
 
+    const textAligns = {
+      'browser':'center',
+      'mobile': 'inherit',
+      'chromeExtension': 'inherit'
+    }
+
     return (
-      <div style={{marginBottom:'30px'}}>
+      <div style={{marginBottom:'30px', textAlign:textAligns[this.props.clientType]}}>
         <div style={{ display: 'inline-block', verticalAlign: 'middle'}}>
           <Select
             name="form-field-name"

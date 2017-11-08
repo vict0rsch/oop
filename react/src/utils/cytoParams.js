@@ -63,7 +63,7 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
     }
 
     function addOneLineBreak(string) {
-        const index = parseInt(string.length / 2);
+        const index = parseInt(string.length / 2, 10);
         let s1 = string.slice(0, index);
         let s2 = string.slice(index);
         let reverseS1 = s1.split("").reverse().join("");
@@ -89,13 +89,13 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
             return string
         }
     }
-    
+
     const nodes = cytoData.nodes.map((v, k) => {
         return {
             data: {
                 ...v.data,
                 name: addOneLineBreak(v.data.name),
-                widthPx: v.data.width + 40 + 'px'
+                widthPx: v.data.width + 60 + 'px'
             }
         }
     });
