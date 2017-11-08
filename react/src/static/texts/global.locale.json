@@ -2,7 +2,8 @@
     "test": ["test_en", "text_fr"],
     "home": {
         "searchBar": ["Search The Graph", "Rechercher dans le Graphe"],
-        "learnAbout": ["Learn About OOP", "En Savoir Plus"]
+        "learnAbout": ["About the Open Ownerrship Project", "À propos de Open Ownership Project"],
+        "contact": ["Contact", "Contact"]
     },
     "search": {
         "searchPlaceholder": ["Search for Entity...", "Rechercher une entité..."]

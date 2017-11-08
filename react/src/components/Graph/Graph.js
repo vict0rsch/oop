@@ -12,7 +12,7 @@ class _Graph extends React.Component {
   render() {
 
     return this.props.dataIsAvailable ?
-      <CytoContainer {...this.props} printGraphProps={this.printProps} />
+      <CytoContainer {...this.props} />
       :
       <Waiting />;
   }

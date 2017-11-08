@@ -20,6 +20,7 @@ class CytoContainer extends React.Component {
 
 
   renderCytoscapeElement() {
+    console.log('rendering.')
     const time = false;
     if (time) {
       console.time('Full Cyto');
@@ -77,18 +78,33 @@ class CytoContainer extends React.Component {
   }
 
   render() {
-    const cyStyle = {
-      height: '400px',
-      width: '770px',
-      padding: '0px'
+    const defaultStyle = {
+      margin: 'auto',
+      width: '70%'
     };
-
+    
+    const styles = {
+      'browser': {
+        ...defaultStyle,
+        height: parseInt(window.screen.availHeight / 2, 10) + 'px',
+      },
+      'chromeExtension': {
+        ...defaultStyle,
+        height: '400px',
+        width: '770px',
+        padding: '0px'
+      },
+      'mobile': {
+        ...defaultStyle
+      }
+    }
+  
     return (
       <div>
         {this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar {...this.props} />}
-        <div id="cy" style={cyStyle} onContextMenu={this.handleContextMenu} />
+        <div id="cy" style={styles[this.props.clientType]} onContextMenu={this.handleContextMenu} />
         <SideButtons {...this.props} />
-        <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki}/>
+        <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki} />
       </div>
     );
   }

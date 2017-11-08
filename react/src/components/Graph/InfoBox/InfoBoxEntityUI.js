@@ -3,10 +3,28 @@ import InfoBoxEntity from './InfoBoxEntity';
 
 export default class InfoBoxEntityUI extends Component {
     render() {
+
+        const defaultStyle = {
+            margin: 'auto'
+        };
+
+        const styles = {
+            'browser': {
+                ...defaultStyle,
+                width: '70%'    
+            },
+            'chromeExtension': {
+                ...defaultStyle,
+                width: '730px'
+            },
+            'mobile': {
+                ...defaultStyle
+            }
+        }
         return this.props.infoBox.type === 'entity'
             &&
             (
-                <div style={{ width: '730px', margin: 'auto' }}>
+                <div style={styles[this.props.clientType]}>
                     <InfoBoxEntity {...this.props} idToDisplay={this.props.infoBox.data} changeWiki={this.props.changeWiki} />
                 </div>
             )
