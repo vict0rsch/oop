@@ -9,7 +9,6 @@ import { getTranslate, getActiveLanguage } from 'react-localize-redux';
 class _Graph extends React.Component {
   constructor(props) {
     super(props);
-    this.printProps = this.printProps.bind(this);
   }
   render() {
 
@@ -17,10 +16,6 @@ class _Graph extends React.Component {
       <CytoContainer {...this.props} printGraphProps={this.printProps} />
       :
       <Waiting />;
-  }
-
-  printProps() {
-    console.log('GRAPH PROPS', this.props);
   }
 }
 

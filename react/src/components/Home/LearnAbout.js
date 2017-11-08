@@ -14,7 +14,12 @@ class LearnAbout extends Component {
             <Intent {...this.props} />
             :
             <div style={{ marginTop: '20px' }}>
-                <Button onClick={this.props.toggleIntent} style={{ verticalAlign: 'middle' }}><span style={{ verticalAlign: 'middle' }}>Learn about OOP &nbsp;</span> <Icon style={iconStyle} /></Button>
+                <Button onClick={this.props.toggleIntent} style={{ verticalAlign: 'middle' }}>
+                    <span style={{ verticalAlign: 'middle' }}>
+                        {this.props.translate('home.learnAbout')} &nbsp;
+                    </span>
+                    <Icon style={iconStyle} />
+                </Button>
             </div>
 
     }

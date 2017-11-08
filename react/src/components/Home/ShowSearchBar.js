@@ -12,7 +12,7 @@ class ShowSearchBar extends Component {
             <div style={{ marginTop: '20px' }}>
                 <Button raised onClick={this.props.toggleSearchBar} style={{ verticalAlign: 'middle' }}>
                     <span style={{ verticalAlign: 'middle' }}>
-                        Search the Graph &nbsp;
+                        {this.props.translate('home.searchBar')} &nbsp;
                     </span>
                     <Icon style={iconStyle} />
                 </Button>

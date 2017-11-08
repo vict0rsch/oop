@@ -22,7 +22,7 @@ class InfoBoxEntity extends React.Component {
     let graphButton;
     if (entity.category !== 's' && entity.id !== parseInt(this.props.match.params.entityId, 10)) {
       graphButton = (<Button style={{ color: 'green' }} onClick={this.handleClick}>
-        See Graph &nbsp; &nbsp;<Timeline />
+        {this.props.translate('graph.seeGraphButton')} &nbsp; &nbsp;<Timeline />
       </Button>);
     } else {
       graphButton = undefined;
@@ -30,7 +30,12 @@ class InfoBoxEntity extends React.Component {
 
     return (
       <div style={{ width: '730px', margin: 'auto' }}>
-        <EntityCard entity={entity} graphButton={graphButton} changeWiki={this.props.changeWiki}/>
+        <EntityCard
+          entity={entity}
+          graphButton={graphButton}
+          changeWiki={this.props.changeWiki}
+          translate={this.props.translate}
+        />
       </div>
     );
   }

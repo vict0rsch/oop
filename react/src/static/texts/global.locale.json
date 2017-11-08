@@ -1,3 +1,14 @@
 {
-    "test": ["test_en", "text_fr"]
+    "test": ["test_en", "text_fr"],
+    "home": {
+        "searchBar": ["Search The Graph", "Rechercher dans le Graphe"],
+        "learnAbout": ["Learn About OOP", "En Savoir Plus"]
+    },
+    "search": {
+        "searchPlaceholder": ["Search for Entity...", "Rechercher une entité..."]
+    },
+    "graph": {
+        "websiteButton": ["Website", "Site Web"],
+        "seeGraphButton": ["See Graph", "Voir le Graphe"]
+    }
 }

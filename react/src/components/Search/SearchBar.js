@@ -41,7 +41,7 @@ class SearchBar extends React.Component {
             ignoreCase
             ignoreAccents
             style={searchStyle}
-            placeholder={'Search for Entity...'}
+            placeholder={this.props.translate('search.searchPlaceholder')}
           />
         </div>
         <HideSearchBar {...this.props} />

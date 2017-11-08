@@ -39,7 +39,7 @@ class EntityCard extends Component {
 
         const website = this.props.entity.website ? (
             <Button target='_blank' className={classes.button} href={this.props.entity.website}>
-                Website &nbsp; <OpenInNew />
+                {this.props.translate('graph.websiteButton')} &nbsp; <OpenInNew />
             </Button>) : undefined;
 
         const style = {
