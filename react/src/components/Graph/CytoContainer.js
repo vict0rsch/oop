@@ -14,7 +14,8 @@ class CytoContainer extends React.Component {
     this.renderCytoscapeElement = this.renderCytoscapeElement.bind(this);
     this.props.updateEntityInfoBox(this.props.match.params.entityId);
     this.state = {
-      update: false
+      update: false,
+      changeWiki: false
     };
   }
 
@@ -40,6 +41,9 @@ class CytoContainer extends React.Component {
       cy.elements('node[category != "s"]').on(
         'tap',
         (event) => {
+          this.setState({
+            changeWiki: true
+          });
           container.props.updateEntityInfoBox(event.target.id());
         },
       );
@@ -81,7 +85,7 @@ class CytoContainer extends React.Component {
     };
     let infoBox;
     if (this.props.infoBox.type === 'entity') {
-      infoBox = <InfoBoxEntity {...this.props} idToDisplay={this.props.infoBox.data} />;
+      infoBox = <InfoBoxEntity {...this.props} idToDisplay={this.props.infoBox.data} changeWiki={this.state.changeWiki}/>;
     } else if (this.props.infoBox.type === 'share') {
       console.log(this.props.infoBox);
       infoBox = <InfoBoxShare {...this.props} share={this.props.infoBox.data} />;

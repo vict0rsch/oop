@@ -5,11 +5,18 @@ class WikiCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            extract: ''
+            extract: 'Looking for a Wikipedia Summary...'
         }
     }
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps.changeWiki){
+            this.setState(
+                {
+                    extract: 'Looking for a Wikipedia Summary...'
+                }
+            );
+        }
 
         const entity = nextProps.entity;
 

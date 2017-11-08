@@ -65,7 +65,7 @@ class EntityCard extends Component {
                 {/* </CardContent> */}
                 <div style={{ textAlign: 'justify', textJustify: 'auto' }}>
                     <Typography type="body1" className={classes.title}>
-                        <WikiCard entity={this.props.entity} />
+                        <WikiCard entity={this.props.entity} changeWiki={this.props.changeWiki}/>
                     </Typography>
                 </div>
 
