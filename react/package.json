@@ -7,7 +7,7 @@
         "start": "react-scripts start",
         "deploy": "react-scripts build && python add_dots_to_index.py && python deploy.py",
         "aws": "react-scripts build && aws s3 sync ./build s3://oop-dev-build",
-        "push-extension": "react-scripts build && cp -r ./build/* ../Chrome\\ Extension/ && git add ../Chrome\\ Extension/* && git commit -m 'update extension' && git push origin master "
+        "push-extension": "react-scripts build && cp -r ./build/* ../Chrome\\ Extension/ && git add ../Chrome\\ Extension/*  ./build/* && git commit -m 'update extension' && git push origin master "
     },
     "dependencies": {
         "autosuggest-highlight": "^3.1.1",
