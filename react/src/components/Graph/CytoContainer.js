@@ -2,8 +2,7 @@ import React from 'react';
 import cytoscape from 'cytoscape';
 import { cytoParamsFromContainer } from '../../utils/cytoParams';
 import getCytoData from '../../utils/getCytoData';
-import InfoBoxEntity from './InfoBox/InfoBoxEntity';
-import InfoBoxShare from './InfoBox/InfoBoxShare';
+import InfoBoxEntityUI from './InfoBox/InfoBoxEntityUI';
 import SideButtons from './SideButtons/SideButtons';
 import SearchBar from '../Search/SearchBar';
 
@@ -83,21 +82,13 @@ class CytoContainer extends React.Component {
       width: '770px',
       padding: '0px'
     };
-    let infoBox;
-    if (this.props.infoBox.type === 'entity') {
-      infoBox = <InfoBoxEntity {...this.props} idToDisplay={this.props.infoBox.data} changeWiki={this.state.changeWiki}/>;
-    } else if (this.props.infoBox.type === 'share') {
-      console.log(this.props.infoBox);
-      infoBox = <InfoBoxShare {...this.props} share={this.props.infoBox.data} />;
-    } else {
-      infoBox = <p>Error</p>;
-    }
+
     return (
       <div>
         {this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar {...this.props} />}
         <div id="cy" style={cyStyle} onContextMenu={this.handleContextMenu} />
         <SideButtons {...this.props} />
-        {infoBox}
+        <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki}/>
       </div>
     );
   }

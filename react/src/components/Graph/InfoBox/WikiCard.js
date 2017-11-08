@@ -59,7 +59,6 @@ class WikiCard extends Component {
     }
 
     render() {
-        // const query = getWikiExtract(this.props.entity);
         return (
             <span>
                 {this.state.extract}

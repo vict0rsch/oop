@@ -29,14 +29,13 @@ class InfoBoxEntity extends React.Component {
     }
 
     return (
-      <div style={{ width: '730px', margin: 'auto' }}>
+      
         <EntityCard
           entity={entity}
           graphButton={graphButton}
           changeWiki={this.props.changeWiki}
           translate={this.props.translate}
         />
-      </div>
     );
   }
 }
