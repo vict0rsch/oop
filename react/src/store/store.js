@@ -1,11 +1,11 @@
 import { routerMiddleware } from 'react-router-redux';
-import {autoRehydrate, persistStore} from 'redux-persist';
+import { autoRehydrate, persistStore } from 'redux-persist';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { createBrowserHistory, createHashHistory } from 'history';
 import { initialize, addTranslation, setActiveLanguage } from 'react-localize-redux';
 
 // import the root reducer
-import combinedReducer from './reducers/index';
+import combinedReducer from '../reducers/index';
 
 const browserHistory = createBrowserHistory();
 const hashHistory = createHashHistory();
@@ -42,17 +42,33 @@ let languageToUse = navigator.language || navigator.userLanguage;
 languageToUse = languageToUse === 'fr' ? languageToUse : 'en';
 const languages = ['en', 'fr'];
 store.dispatch(initialize(languages));//, { defaultLanguage: 'fr' }));
-const json = require('./static/texts/global.locale.json');
+const json = require('../static/texts/global.locale.json');
 store.dispatch(addTranslation(json));
 store.dispatch(setActiveLanguage(languageToUse));
+
+// Set Client type
+let clientType;
+const isChromeExtension = window.chrome.tabs !== undefined;
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    clientType = 'mobile';
+} else if (isChromeExtension){
+    clientType = 'chromeExtension';
+} else {
+    clientType = "browser";
+}
+
+store.dispatch({
+    type: 'SET_CLIENT_TYPE',
+    clientType
+});
 
 persistStore(store);
 
 // By default reducers are not hot reloaded, only components
 // To make them hot reloadable : 
 if (module.hot) {
-    module.hot.accept('./reducers/', () => {
-        const nextCombinedReducer = require('./reducers/index').default;
+    module.hot.accept('../reducers/', () => {
+        const nextCombinedReducer = require('../reducers/index').default;
         store.replaceReducer(nextCombinedReducer);
     })
 }

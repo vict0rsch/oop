@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { check_website } from '../../utils/backgroundUtils';
 import * as actionCreators from '../../actions/actionCreators';
-import { getTranslate, getActiveLanguage } from 'react-localize-redux';
+import mapStateToProps from '../../store/defaultMapStateToProps';
 
 import LearnAbout from './LearnAbout';
 import HomeSearchBar from './HomeSearchBar';
@@ -14,7 +14,7 @@ class Home extends React.Component {
 
   componentWillMount() {
     const component = this;
-    try {
+    if (this.props.clientType === 'chromeExtension') {
       window.chrome.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
         var url = tabs[0].url;
         if (component.props.dataIsAvailable) {
@@ -26,9 +26,6 @@ class Home extends React.Component {
           }
         }
       });
-    }
-    catch (err) {
-      console.log('Not Chrome Extension');
     }
   }
 
@@ -48,17 +45,7 @@ class Home extends React.Component {
 }
 
 
-function mapStateToProps(state) {
-  return {
-    data: state.data,
-    dataIsAvailable: state.dataIsAvailable,
-    currentDisplay: state.currentDisplay,
-    infoBox: state.infoBox,
-    show: state.show,
-    translate: getTranslate(state.locale),
-    currentLanguage: getActiveLanguage(state.locale).code
-  };
-}
+
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);

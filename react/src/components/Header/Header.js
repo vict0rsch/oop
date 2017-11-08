@@ -2,6 +2,7 @@ import React from 'react';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import mapStateToProps from '../../store/defaultMapStateToProps';
 
 import fetchData from '../../utils/fetchData';
 import * as actionCreators from '../../actions/actionCreators';
@@ -27,17 +28,6 @@ class Header extends React.Component {
       </div>
     );
   }
-}
-
-
-function mapStateToProps(state) {
-  return {
-    data: state.data,
-    dataIsAvailable: state.dataIsAvailable,
-    currentDisplay: state.currentDisplay,
-    infoBox: state.infoBox,
-    show: state.show
-  };
 }
 
 function mapDispatchToProps(dispatch) {
