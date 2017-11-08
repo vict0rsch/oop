@@ -2,7 +2,7 @@ import { routerMiddleware } from 'react-router-redux';
 import {autoRehydrate, persistStore} from 'redux-persist';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { createBrowserHistory, createHashHistory } from 'history';
-import { initialize, addTranslation, addTranslationForLanguage, setActiveLanguage } from 'react-localize-redux';
+import { initialize, addTranslation, setActiveLanguage } from 'react-localize-redux';
 
 // import the root reducer
 import combinedReducer from './reducers/index';

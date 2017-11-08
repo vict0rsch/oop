@@ -7,9 +7,7 @@ import Waiting from '../Waiting';
 import { getTranslate, getActiveLanguage } from 'react-localize-redux';
 
 class _Graph extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
   render() {
 
     return this.props.dataIsAvailable ?
