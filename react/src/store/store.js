@@ -6,6 +6,7 @@ import { initialize, addTranslation, setActiveLanguage } from 'react-localize-re
 
 // import the root reducer
 import combinedReducer from '../reducers/index';
+import defaultState from './defaultState';
 
 const browserHistory = createBrowserHistory();
 const hashHistory = createHashHistory();
@@ -19,17 +20,6 @@ if (USE_BROWSER_HISTORY) {
 export const history = _history;
 
 const middleware = routerMiddleware(history);
-
-const defaultState = {
-    data: {},
-    dataIsAvailable: false,
-    show: {},
-    currentDisplay: -1,
-    infoBox: {
-        type: '',
-        data: []
-    }
-};
 
 const enhancers = compose(autoRehydrate(), applyMiddleware(middleware),
     window.devToolsExtension ? window.devToolsExtension() : f => f

@@ -7,6 +7,7 @@ import mapStateToProps from '../../store/defaultMapStateToProps';
 
 import LearnAbout from './LearnAbout';
 import HomeSearchBar from './HomeSearchBar';
+import Contact from './Contact';
 
 
 class Home extends React.Component {
@@ -39,6 +40,7 @@ class Home extends React.Component {
         <br />
         <HomeSearchBar {...this.props} />
         <LearnAbout {...this.props} />
+        <Contact {...this.props} />
       </div>
     );
   }
@@ -52,3 +54,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
+// get in touch https://goo.gl/forms/Zzj9WSmImS7iIKJM2
+// en edit https://goo.gl/forms/xuS5Jl4ufXFQDrIl1
+// fr edit https://goo.gl/forms/e4PfpqAAXs6T4ZdE2
