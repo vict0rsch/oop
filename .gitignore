@@ -4,3 +4,4 @@ react/node_modules/
 react/.idea
 *.log
 react/build/*
+.vscode
