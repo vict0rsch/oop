@@ -8,7 +8,8 @@ function mapStateToProps(state) {
       infoBox: state.infoBox,
       show: state.show,
       translate: getTranslate(state.locale),
-      currentLanguage: getActiveLanguage(state.locale).code
+      currentLanguage: getActiveLanguage(state.locale).code,
+      clientType: state.clientType
     };
   }
 

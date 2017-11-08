@@ -10,6 +10,11 @@ function show(state = false, action) {
                 ...state,
                 searchBar: !state.searchBar
             };
+        case 'TOGGLE_CONTACT':
+            return {
+                ...state,
+                contact: !state.contact
+            };
         default:
             return state;
     }
