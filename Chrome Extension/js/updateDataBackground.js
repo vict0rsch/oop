@@ -1,9 +1,9 @@
 function updateData() {
     if (localStorage.dataTimestamp) {
-        const ts = parseInt(localStorage.dataTimestamp, 10);
-        const ts2 = Math.round((new Date()).getTime() / 1000);
+        var ts = parseInt(localStorage.dataTimestamp, 10);
+        var ts2 = Math.round((new Date()).getTime() / 1000);
 
-        const checkEvery = 20;//3600 * 24; // 1 day
+        var checkEvery = 20;//3600 * 24; // 1 day
     }
     if (!localStorage.dataTimestamp || ts2 - ts > checkEvery) {
         console.log('Looking for DB Update...');
