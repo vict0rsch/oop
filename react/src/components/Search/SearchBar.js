@@ -49,6 +49,10 @@ class SearchBar extends React.Component {
       textAlign: textAligns[this.props.clientType]
     };
 
+    if (this.props.location.pathname === '/' && this.props.clientType === 'browser' ){
+      searchBarDivStyle.marginLeft = '-50px';
+    }
+
     const selectDivStyle = {
       ...selectStyle
     };

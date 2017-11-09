@@ -6,4 +6,3 @@ function clientType(state = 'chromeExtension', action) {
   }
   
   export default clientType;
-  

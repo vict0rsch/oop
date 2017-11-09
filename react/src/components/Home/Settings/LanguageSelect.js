@@ -23,8 +23,8 @@ const styles = theme => ({
 class LanguageSelect extends React.Component {
 
     handleChange = name => event => {
-        console.log(this.props.setLanguage, event.target.value);
-        this.props.setLanguage(event.target.value);
+        console.log(this.props.setActiveLanguage, event.target.value, this.props.currentLanguage);
+        this.props.setActiveLanguage(event.target.value);
     };
 
     render() {
@@ -33,7 +33,7 @@ class LanguageSelect extends React.Component {
         return (
             <form className={classes.container} autoComplete="off">
                 <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="age-simple">Age</InputLabel>
+                    <InputLabel htmlFor="age-simple">{this.props.translate('home.settings.languageButton')}</InputLabel>
                     <Select
                         value={this.props.currentLanguage}
                         onChange={this.handleChange('age')}
