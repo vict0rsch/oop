@@ -34,7 +34,7 @@ def update_locale(file_sets):
             myFile = text_location + file_name
             new_lines = ['"']
 
-            with open(myFile + '.md', 'r') as f:
+            with open(myFile, 'r') as f:
                 lines = f.readlines()
 
             for l in lines:
@@ -53,7 +53,7 @@ if __name__ == '__main__':
 
     file_sets = [
         {
-            'names': ['intent/intentEn', 'intent/intentFr'],
+            'names': ['intent/intentEn.md', 'intent/intentFr.md'],
             'locale_keys': ['home', 'intentPaperMd']
         },
     ]
