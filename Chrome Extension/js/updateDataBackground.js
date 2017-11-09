@@ -5,7 +5,7 @@ function updateData() {
 
         var checkEvery = 20;//3600 * 24; // 1 day
     }
-    if (!localStorage.dataTimestamp || ts2 - ts > checkEvery) {
+    if ((!localStorage.dataTimestamp || ts2 - ts > checkEvery) && localStorage.fetchingData !== 'true') {
         console.log('Looking for DB Update...');
         axios.get('http://oop-pro.herokuapp.com/db_meta_data').then(
             (response) => {
