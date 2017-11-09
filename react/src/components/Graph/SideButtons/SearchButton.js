@@ -10,11 +10,16 @@ import SearchIcon from 'material-ui-icons/Search';
 
 const styles = theme => ({
     button: {
-        position: "fixed",
-        height: '10px',
-        width: '38px',
-        margin: "-340px 15px"
+        height: '50px',
+        width: '50px',
+        display: 'block',
+        margin: '20px',
+        verticalAlign: 'middle'
     },
+    icon: {
+        height: '30px',
+        width: '30px',
+    }
 });
 
 class SearchButton extends React.Component {
@@ -30,7 +35,7 @@ class SearchButton extends React.Component {
     render() {
         return (
             <Button raised disabled={this.props.show.searchBar} fab aria-label="search" className={this.props.classes.button} onClick={this.handleClick}>
-                 <SearchIcon />
+                 <SearchIcon className={this.props.classes.icon}/>
             </Button>
         );
     }

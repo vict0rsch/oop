@@ -4,8 +4,15 @@ import HomeButton from './HomeButton';
 
 class SideButtons extends Component {
     render() {
+
+        const sideButtonDivStyle = {
+            position: 'fixed',
+            top: '80px',
+            left: '5%'
+        }
+
         return (
-            <div>
+            <div style={sideButtonDivStyle}>
                 <HomeButton {...this.props} />
                 <SearchButton {...this.props} />
             </div>
