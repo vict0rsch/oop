@@ -4,11 +4,12 @@ import { bindActionCreators } from 'redux';
 import { check_website } from '../../utils/backgroundUtils';
 import * as actionCreators from '../../actions/actionCreators';
 import mapStateToProps from '../../store/defaultMapStateToProps';
+import { setActiveLanguage } from 'react-localize-redux';
 
 import LearnAbout from './LearnAbout/LearnAbout';
 import HomeSearchBar from './HomeSearchBar/HomeSearchBar';
 import Contact from './Contact/Contact';
-// import Settings from './Settings/Settings';
+import Settings from './Settings/Settings';
 
 
 class Home extends React.Component {
@@ -46,7 +47,7 @@ class Home extends React.Component {
           <HomeSearchBar {...this.props} />
           <LearnAbout {...this.props} />
           <Contact {...this.props} />
-          {/* <Settings {...this.props} /> */}
+          <Settings {...this.props} />
         </div>
       </div>
     );
@@ -55,9 +56,16 @@ class Home extends React.Component {
 
 
 
+console.log(actionCreators);
+console.log({ setActiveLanguage });
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
+  return bindActionCreators(
+    {
+      ...actionCreators,
+      setActiveLanguage
+    },
+    dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
