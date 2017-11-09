@@ -6,7 +6,6 @@ Non! Enfin peut-être. Parfois. Souvent. Toujours? En réalité, ça dépend: du
 
 C'est pour cela que nous avons créé l'**Open Ownership Project**: pour fournir au citoyen un moyen simple et rapide pour accéder à ce type d'information. Ce moyen doit être simple, visuel, ouvert et accessible à tous, nous devons le construire ensemble. C'est pour cela que nous avons choisi d'en faire une extension pour navigateur: elle est toujours là, prête à nous fournir une méta-information et nous rappeler qu'il est possible (pas automatique!) que le contenu soit biaisé.
 
-<br/>
 
 #### D'où vient le Graphe?
 
