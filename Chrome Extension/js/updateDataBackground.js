@@ -1,6 +1,6 @@
 function updateData() {
-    if (localStorage.data_timestamp) {
-        const ts = parseInt(localStorage.data_timestamp, 10);
+    if (localStorage.dataTimestamp) {
+        const ts = parseInt(localStorage.dataTimestamp, 10);
         const ts2 = Math.round((new Date()).getTime() / 1000);
 
         const checkEvery = 3600 * 24; // 1 day
