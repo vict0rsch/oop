@@ -32,17 +32,9 @@ def update_locale(file_sets):
         for file_name in file_set['names']:
             print(file_name, '...', end='')
             myFile = text_location + file_name
-            new_lines = ['"']
-
             with open(myFile, 'r') as f:
                 lines = f.readlines()
-
-            for l in lines:
-                new_lines.append(
-                    l.replace("\n", "\\n")
-                )
-            new_lines.append('"')
-            new_line = ''.join(new_lines)
+            new_line = ''.join(lines)
             new_value.append(new_line)
         nested_set(global_locale, file_set['locale_keys'], new_value)
 
