@@ -11,7 +11,7 @@ export default class ShowContact extends Component {
         return (
             <div style={{ marginTop: '20px' }}>
                 <Button raised onClick={this.props.toggleContact}>
-                    {this.props.translate('home.contact')} &nbsp;
+                    {this.props.translate('home.contactButton')} &nbsp;
                     <Icon style={iconStyle} />
                 </Button>
             </div>
