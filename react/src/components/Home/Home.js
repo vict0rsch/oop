@@ -8,7 +8,7 @@ import mapStateToProps from '../../store/defaultMapStateToProps';
 import LearnAbout from './LearnAbout/LearnAbout';
 import HomeSearchBar from './HomeSearchBar/HomeSearchBar';
 import Contact from './Contact/Contact';
-import Settings from './Settings/Settings';
+// import Settings from './Settings/Settings';
 
 
 class Home extends React.Component {
@@ -46,7 +46,7 @@ class Home extends React.Component {
           <HomeSearchBar {...this.props} />
           <LearnAbout {...this.props} />
           <Contact {...this.props} />
-          <Settings {...this.props} />
+          {/* <Settings {...this.props} /> */}
         </div>
       </div>
     );
