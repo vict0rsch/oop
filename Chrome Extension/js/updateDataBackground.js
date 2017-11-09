@@ -7,7 +7,7 @@ function updateData() {
 
         if (ts2 - ts > checkEvery) {
             console.log('Looking for DB Update...');
-            axios.get('http://oop-pro.herokuapp.com/db_meta_data/').then(
+            axios.get('http://oop-pro.herokuapp.com/db_meta_data').then(
                 (response) => {
                     console.log('Success (updating data)');
                     const dbMetaData = JSON.parse(response.data);
