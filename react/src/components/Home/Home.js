@@ -42,11 +42,11 @@ class Home extends React.Component {
           Open Ownership Project
         </h1>
         <br />
-        <div style={{paddingLeft:this.props.clientType === 'browser' ? '50px' : '0px'}}>
-        <HomeSearchBar {...this.props} />
-        <LearnAbout {...this.props} />
-        <Contact {...this.props} />
-        <Settings {...this.props} />
+        <div style={{ paddingLeft: this.props.clientType === 'browser' ? '50px' : '0px' }}>
+          <HomeSearchBar {...this.props} />
+          <LearnAbout {...this.props} />
+          <Contact {...this.props} />
+          <Settings {...this.props} />
         </div>
       </div>
     );
