@@ -9,11 +9,16 @@ import HomeIcon from 'material-ui-icons/Home';
 
 const styles = theme => ({
     button: {
-        position: "fixed",
-        height: '10px',
-        width: '38px',
-        margin: "-388px 15px"
+        height: '50px',
+        width: '50px',
+        display: 'block',
+        margin: '20px',
+        verticalAlign: 'middle'
     },
+    icon: {
+        height: '30px',
+        width: '30px',
+    }
 });
 
 class HomeButton extends React.Component {
@@ -23,14 +28,15 @@ class HomeButton extends React.Component {
     }
 
     handleClick() {
-        this.props.toggleSearchBar();
+        this.props.show.searchBar && this.props.toggleSearchBar();
         this.props.history.push('/');
     }
 
     render() {
+
         return (
             <Button raised fab aria-label="search" className={this.props.classes.button} onClick={this.handleClick}>
-                <HomeIcon />
+                <HomeIcon className={this.props.classes.icon}/>
             </Button>
         );
     }
