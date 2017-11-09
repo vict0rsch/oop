@@ -9,7 +9,6 @@ No! Maybe. Sometimes. Often. Always? It depends, really: on the media, the owner
 
 This is why we started the **Open Ownership Project**: to provide citizens with an easy way to access this kind of information. It should be visual. It should be open. It should be thought-through together, as a community. It should therefore be a browser plugin: just a mouse-click away - enabling us to find out whether the information we are reading could be biased. 
 
-<br/>
 
 #### Where does the graph come from?
 
