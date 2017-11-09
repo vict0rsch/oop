@@ -5,9 +5,16 @@ import HomePaper from '../Paper/HomePaper'
 class SettingsPaper extends Component {
 
     render() {
-        return <HomePaper content={
-            <LanguageSelect {...this.props} />
-        } />
+        return (
+            <div style={{ textAlign: 'center' }}>
+                <HomePaper
+                    {...this.props}
+                    toggle={this.props.toggleSettings}
+                    content={
+                        <LanguageSelect {...this.props} />
+                    } />
+            </div>
+        );
     }
 }
 

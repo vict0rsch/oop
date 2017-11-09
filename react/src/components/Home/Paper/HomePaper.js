@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
+import ClearIcon from 'material-ui-icons/Clear';
+import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
     root: theme.mixins.gutters({
@@ -22,12 +25,31 @@ class HomePaper extends Component {
             'browser': '60%'
         }
 
+        const clearStyle = {
+            height: '40px',
+            width: '40px'
+        };
+
+        const typoStyle = {
+            fontSize: '1.2em',
+            textAlign: 'justify',
+            textJustify: 'auto',
+            fontWeight: 200,
+            padding: '20px 50px'
+        };
+
+
         const { classes } = this.props;
 
         return (
-            <div>
+            <div style={{ marginLeft: this.props.clientType === 'browser' ? '-50px' : '0' }}>
                 <Paper style={{ width: widths[this.props.clientType] }} className={classes.root} elevation={4}>
+                    <Button onClick={this.props.toggle}>
+                        <ClearIcon style={clearStyle} />
+                    </Button>
+                    <Typography type="body1" style={typoStyle} component="div" >
                     {this.props.content}
+                    </Typography>
                 </Paper>
             </div>
         );

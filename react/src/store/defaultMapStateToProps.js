@@ -9,7 +9,6 @@ function mapStateToProps(state) {
       show: state.show,
       translate: getTranslate(state.locale),
       currentLanguage: getActiveLanguage(state.locale).code,
-      activeLanguage: state.activeLanguage,
       clientType: state.clientType
     };
   }

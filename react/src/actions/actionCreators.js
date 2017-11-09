@@ -33,33 +33,33 @@ export function updateShareInfoBox(share) {
   };
 }
 
-export function toggleSearchBar(){
+export function toggleSearchBar() {
   return {
     type: 'TOGGLE_SEARCH_BAR'
   };
 }
 
-export function toggleIntent(){
+export function toggleIntent() {
   return {
     type: 'TOGGLE_INTENT'
   };
 }
 
-export function toggleContact(){
+export function toggleContact() {
   return {
     type: 'TOGGLE_CONTACT'
   };
 }
 
-export function toggleSettings(){
+export function toggleSettings() {
   return {
     type: 'TOGGLE_SETTINGS'
   };
 }
 
-export function setLanguage(language){
+export function setActiveLanguage(languageCode) {
   return {
-    type: 'SET_LANGUAGE',
-    language
+    type: 'SET_ACTIVE_LANGUAGE',
+    payload: { languageCode: languageCode }
   };
 }
