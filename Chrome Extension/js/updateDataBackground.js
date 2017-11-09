@@ -13,7 +13,8 @@ function updateData() {
                 const dbMetaData = response.data;
                 const oldMetaData = localStorage.dbMetaData ? JSON.parse(localStorage.dbMetaData) : undefined;
                 if (oldMetaData === undefined || oldMetaData.version < dbMetaData.version) {
-                    fetchData();
+                    console.log('Updating data')
+                    fetchData(true);
                     localStorage.dbMetaData = JSON.stringify(dbMetaData);
                 }
                 localStorage.dataTimestamp = Math.round((new Date()).getTime() / 1000);
