@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 import MarkdownPaper from '../MarkdownPaper';
-import enMdSource from '../../../static/texts/intentEn';
-import frMdSource from '../../../static/texts/intentFr';
 
 class Intent extends Component {
     render() {
@@ -11,8 +9,7 @@ class Intent extends Component {
             <div style={{textAlign:'center'}}>
                 <MarkdownPaper
                     {...this.props}
-                    enMdSource={enMdSource}
-                    frMdSource={frMdSource}
+                    source={this.props.translate('home.intentPaperMd')}
                     extra={link}
                     toggle={this.props.toggleIntent}
                 />
