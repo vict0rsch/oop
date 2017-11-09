@@ -37,7 +37,7 @@ const dagreLayout = {
 
     // general layout options
     fit: true, // whether to fit to viewport
-    padding: 10, // fit padding
+    padding: '10px', // fit padding
     spacingFactor: undefined, // Applies a multiplicative factor (>0) to expand or compress the overall area that the nodes take up
     nodeDimensionsIncludeLabels: true, // whether labels should be included in determining the space used by a node (default true)
     animate: false, // whether to transition the node positions
