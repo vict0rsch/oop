@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MarkdownPaper from './MarkdownPaper';
+import MarkdownPaper from '../MarkdownPaper';
 
 const enMdSource = [
     '**Get in touch**:\n [(Google Form)](https://goo.gl/forms/Zzj9WSmImS7iIKJM2)\n',
