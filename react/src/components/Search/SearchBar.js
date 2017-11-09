@@ -12,35 +12,51 @@ class SearchBar extends React.Component {
   logChange(val) {
     if (val && val.id) {
       if (this.props.data.idSet.indexOf(parseInt(val.id, 10)) > -1) {
-        if (this.props.show.intent){
-          this.props.toggleIntent();
+        if (this.props.location.pathname !== '/graph/' + val.id) {
+          if (this.props.show.intent) {
+            this.props.toggleIntent();
+          }
+          console.log(this.props.location);
+          this.props.show.searchBar && this.props.location.pathname === '/' && this.props.toggleSearchBar();
+          this.props.updateEntityInfoBox(val.id);
+          this.props.history.push(`/graph/${val.id}`);
         }
-        console.log(this.props.location);
-        this.props.show.searchBar && this.props.location.pathname === '/' && this.props.toggleSearchBar();
-        this.props.updateEntityInfoBox(val.id);
-        this.props.history.push(`/graph/${val.id}`);
       }
     }
   }
 
   render() {
-    let searchStyle = {
-      margin: '0px 0px 15px 0px',
-      border: '0px 0px 1px 0px',
+
+    let selectStyle = {
+      borderWidth: '1px',
       borderRadius: '0px',
       zIndex: 999,
-      width: '650px',
+      width: '630px',
+      margin: 'auto',
+      marginBottom: '15px'
     };
-
-    const textAligns = {
-      'browser':'center',
-      'mobile': 'inherit',
-      'chromeExtension': 'inherit'
+    if (this.props.clientType === 'mobile') {
+      selectStyle.width = '250px';
     }
 
+
+    const textAligns = {
+      'browser': 'center',
+      'mobile': 'inherit',
+      'chromeExtension': 'center'
+    }
+    const searchBarDivStyle = {
+      marginBottom: '15px',
+      textAlign: textAligns[this.props.clientType]
+    };
+
+    const selectDivStyle = {
+      ...selectStyle
+    };
+
     return (
-      <div style={{marginBottom:'30px', textAlign:textAligns[this.props.clientType]}}>
-        <div style={{ display: 'inline-block', verticalAlign: 'middle'}}>
+      <div style={searchBarDivStyle}>
+        <div style={selectDivStyle}>
           <Select
             name="form-field-name"
             value="one"
@@ -48,8 +64,12 @@ class SearchBar extends React.Component {
             onChange={this.logChange}
             ignoreCase
             ignoreAccents
-            style={searchStyle}
+            style={selectStyle}
+            menuStyle={{ backgroundColor: 'rgba(204, 172, 149, 0.35)' }}
             placeholder={this.props.translate('search.searchPlaceholder')}
+            arrowRenderer={() => null}
+            autoBlur
+            clearable={false}
           />
         </div>
         <HideSearchBar {...this.props} />
