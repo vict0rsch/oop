@@ -16,6 +16,7 @@ function updateData() {
                         fetchData();
                         localStorage.dbMetaData = JSON.stringify(dbMetaData);
                     }
+                    localStorage.dataTimestamp = Math.round((new Date()).getTime() / 1000);
                 },
                 (error) => {
                     console.log('Server Error  (updating data)');
