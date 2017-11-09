@@ -26,6 +26,7 @@ function fetchData() {
                 console.log('Success (getting data)');
                 data = formatData(response.data);
                 localStorage.data = JSON.stringify(data);
+                localStorage.dataTimestamp = Math.round((new Date()).getTime() / 1000);
             },
             (error) => {
                 console.log('Server Error  (getting data)');

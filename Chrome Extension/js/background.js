@@ -1,4 +1,5 @@
 fetchData();
+updateData();
 
 $(function(){
     localStorage["newProfile"]=false;
