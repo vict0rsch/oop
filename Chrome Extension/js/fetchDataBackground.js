@@ -1,4 +1,4 @@
-function fetchData() {
+function fetchData(force) {
     // console.log('Fetching data...');
     // element is the react component
 
@@ -19,7 +19,7 @@ function fetchData() {
         fetch = true;
     }
 
-    if (fetch) {
+    if (fetch || force) {
         console.log('Getting data (Axios)...');
         axios.get('http://oop-pro.herokuapp.com/data/').then(
             (response) => {
