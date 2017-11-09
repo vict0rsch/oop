@@ -2,7 +2,7 @@
     "test": ["test_en", "text_fr"],
     "home": {
         "searchBar": ["Search The Graph", "Rechercher dans le Graphe"],
-        "learnAbout": ["About the Open Ownerrship Project", "\u00c0 propos de Open Ownership Project"],
+        "learnAbout": ["About the Open Ownership Project", "\u00c0 propos de Open Ownership Project"],
         "contactButton": ["Contact", "Contact"],
         "settingsButton": ["Settings", "Paramètres"],
         "contactPaperMd": [

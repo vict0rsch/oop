@@ -1,13 +1,13 @@
 function updateData() {
-    if (localStorage.data_timestamp) {
-        const ts = parseInt(localStorage.data_timestamp, 10);
+    if (localStorage.dataTimestamp) {
+        const ts = parseInt(localStorage.dataTimestamp, 10);
         const ts2 = Math.round((new Date()).getTime() / 1000);
 
-        const checkEvery = 3600 * 24; // 1 day
+        const checkEvery = 20;//3600 * 24; // 1 day
 
         if (ts2 - ts > checkEvery) {
-            
-            axios.get('http://oop-pro.herokuapp.com/db_meta_data/').then(
+            console.log('Looking for DB Update...');
+            axios.get('http://oop-pro.herokuapp.com/db_meta_data').then(
                 (response) => {
                     console.log('Success (updating data)');
                     const dbMetaData = JSON.parse(response.data);
