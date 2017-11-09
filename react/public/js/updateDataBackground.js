@@ -10,8 +10,8 @@ function updateData() {
             axios.get('http://oop-pro.herokuapp.com/db_meta_data').then(
                 (response) => {
                     console.log('Success (updating data)');
-                    const dbMetaData = JSON.parse(response.data);
-                    const oldMetaData = JSON.parse(localStorage.dbMetaData);
+                    const dbMetaData = response.data;
+                    const oldMetaData = localStorage.dbMetaData ? JSON.parse(localStorage.dbMetaData) : undefined;
                     if (oldMetaData === undefined || oldMetaData.version < dbMetaData.version){
                         fetchData();
                         localStorage.dbMetaData = JSON.stringify(dbMetaData);
