@@ -34,48 +34,6 @@ const styles = theme => ({
 
 
 class MarkdownPaper extends Component {
-    constructor(props) {
-        super(props);
-        this.toggleLanguage = this.toggleLanguage.bind(this);
-
-        var lang = navigator.language || navigator.userLanguage;
-        lang = lang === 'fr' ? lang : 'en';
-
-        var mdSource, swicthToLang;
-        if (lang === 'fr') {
-            mdSource = this.props.frMdSource;
-            swicthToLang = 'en';
-        } else {
-            mdSource = this.props.enMdSource;
-            swicthToLang = 'fr';
-        }
-
-        this.state = {
-            mdSource,
-            swicthToLang,
-        };
-
-    }
-
-
-    toggleLanguage() {
-        if (this.state.mdSource === this.props.frMdSource) {
-            this.setState(
-                {
-                    mdSource: this.props.enMdSource,
-                    swicthToLang: 'fr'
-                }
-            );
-        } else {
-            this.setState(
-                {
-                    mdSource: this.props.frMdSource,
-                    swicthToLang: 'en'
-                }
-            );
-        }
-    }
-
 
     render() {
 
@@ -103,15 +61,11 @@ class MarkdownPaper extends Component {
         return (
             <div>
                 <Paper style={{width:widths[this.props.clientType]}} className={classes.root} elevation={4}>
-                    <Button onClick={this.toggleLanguage} style={{ fontSize: '0.8em' }}>
-                        (Switch to {this.state.swicthToLang})
-                    </Button>
-                    <br />
                     <Button onClick={this.props.toggle}>
                         <ClearIcon style={clearStyle} />
                     </Button>
                     <Typography type="body1" style={typoStyle} component="div" className={classes.pos}>
-                        <Markdown source={this.state.mdSource} escapeHtml={false} />
+                        <Markdown source={this.props.source} escapeHtml={false} />
                         {this.props.extra}
                     </Typography>
                 </Paper>
