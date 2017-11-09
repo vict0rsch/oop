@@ -4,6 +4,7 @@
         "searchBar": ["Search The Graph", "Rechercher dans le Graphe"],
         "learnAbout": ["About the Open Ownerrship Project", "\u00c0 propos de Open Ownership Project"],
         "contactButton": ["Contact", "Contact"],
+        "settingsButton": ["Settings", "Paramètres"],
         "contactPaperMd": [
             "**Contactez-nous**:\n [(Google Form)](https://goo.gl/forms/Zzj9WSmImS7iIKJM2)\n\n**Sugg\u00e9rer une modification**:\n [(Google Form)](https://goo.gl/forms/xuS5Jl4ufXFQDrIl1)\n\n**Github**: [Frontend](https://github.com/vict0rsch/oop) | [Backend](https://github.com/vict0rsch/oop-back) \n",
             "**Get in touch**:\n [(Google Form)](https://goo.gl/forms/Zzj9WSmImS7iIKJM2)\n\n**Suggest Edit**:\n [(Google Form)](https://goo.gl/forms/xuS5Jl4ufXFQDrIl1)\n\n**Github**: [Frontend](https://github.com/vict0rsch/oop) | [Backend](https://github.com/vict0rsch/oop-back) \n"

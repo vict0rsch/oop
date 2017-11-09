@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ShowContact from "./ShowContact";
 import ContactPaper from './ContactPaper';
 
-class LearnAbout extends Component {
+class Contact extends Component {
     render() {
 
         return this.props.show.contact
@@ -14,4 +14,4 @@ class LearnAbout extends Component {
     }
 }
 
-export default LearnAbout;
+export default Contact;

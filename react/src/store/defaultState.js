@@ -6,7 +6,8 @@ const defaultState = {
     infoBox: {
         type: '',
         data: []
-    }
+    },
+    activeLanguage: 'en'
 };
 
 export default defaultState;

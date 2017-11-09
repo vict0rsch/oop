@@ -8,11 +8,12 @@ import infoBox from './infoBox';
 import clientType from './clientType';
 import currentDisplay from './currentDisplay';
 import dataIsAvailable from './dataIsAvailable';
+import activeLanguage from './activeLanguage'
 
 
 
 const rootReducer = combineReducers({
-    clientType, locale, show, dataIsAvailable, data, currentDisplay, infoBox, router: routerReducer
+    activeLanguage, clientType, locale, show, dataIsAvailable, data, currentDisplay, infoBox, router: routerReducer
 });
 
 export default rootReducer;

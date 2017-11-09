@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MarkdownPaper from '../MarkdownPaper';
+import MarkdownPaper from '../Paper/MarkdownPaper';
 
 class ContactPaper extends Component {
 

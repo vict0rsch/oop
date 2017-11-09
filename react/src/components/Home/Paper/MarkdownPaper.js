@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import Markdown from 'react-markdown';
-import Paper from 'material-ui/Paper';
+import HomePaper from './HomePaper';
 import ClearIcon from 'material-ui-icons/Clear';
 import Button from 'material-ui/Button';
 
@@ -36,13 +36,6 @@ const styles = theme => ({
 class MarkdownPaper extends Component {
 
     render() {
-
-        const widths = {
-            'chromeExtension': '700px',
-            'mobile': '90%',
-            'browser': '60%'
-        }
-
         const typoStyle = {
             fontSize: '1.2em',
             textAlign: 'justify',
@@ -58,9 +51,9 @@ class MarkdownPaper extends Component {
 
         const { classes } = this.props;
 
-        return (
-            <div>
-                <Paper style={{width:widths[this.props.clientType]}} className={classes.root} elevation={4}>
+        return <HomePaper
+            content={
+                (<div>
                     <Button onClick={this.props.toggle}>
                         <ClearIcon style={clearStyle} />
                     </Button>
@@ -68,9 +61,10 @@ class MarkdownPaper extends Component {
                         <Markdown source={this.props.source} escapeHtml={false} />
                         {this.props.extra}
                     </Typography>
-                </Paper>
-            </div>
-        );
+                </div>
+                )
+            }
+        />
 
     }
 }
