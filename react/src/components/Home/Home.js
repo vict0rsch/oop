@@ -5,9 +5,9 @@ import { check_website } from '../../utils/backgroundUtils';
 import * as actionCreators from '../../actions/actionCreators';
 import mapStateToProps from '../../store/defaultMapStateToProps';
 
-import LearnAbout from './LearnAbout';
-import HomeSearchBar from './HomeSearchBar';
-import Contact from './Contact';
+import LearnAbout from './LearnAbout/LearnAbout';
+import HomeSearchBar from './HomeSearchBar/HomeSearchBar';
+import Contact from './Contact/Contact';
 
 
 class Home extends React.Component {

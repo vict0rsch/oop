@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import MarkdownPaper from './MarkdownPaper';
-import enMdSource from '../../static/texts/intentEn';
-import frMdSource from '../../static/texts/intentFr';
+
+import MarkdownPaper from '../MarkdownPaper';
+import enMdSource from '../../../static/texts/intentEn';
+import frMdSource from '../../../static/texts/intentFr';
 
 class Intent extends Component {
     render() {

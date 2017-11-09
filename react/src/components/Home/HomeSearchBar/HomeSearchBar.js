@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ShowSearchBar from './ShowSearchBar';
-import SearchBar from '../Search/SearchBar';
-import Waiting from '../Waiting';
+import SearchBar from '../../Search/SearchBar';
+import Waiting from '../../Waiting';
 
 class HomeSearchBar extends Component {
     render() {
