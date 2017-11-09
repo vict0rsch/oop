@@ -15,6 +15,11 @@ function show(state = false, action) {
                 ...state,
                 contact: !state.contact
             };
+        case 'TOGGLE_SETTINGS':
+            return {
+                ...state,
+                settings: !state.settings
+            };
         default:
             return state;
     }

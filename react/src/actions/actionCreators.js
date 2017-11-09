@@ -50,3 +50,16 @@ export function toggleContact(){
     type: 'TOGGLE_CONTACT'
   };
 }
+
+export function toggleSettings(){
+  return {
+    type: 'TOGGLE_SETTINGS'
+  };
+}
+
+export function setLanguage(language){
+  return {
+    type: 'SET_LANGUAGE',
+    language
+  };
+}
