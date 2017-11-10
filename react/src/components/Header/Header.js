@@ -1,13 +1,11 @@
 import React from 'react';
 
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import mapStateToProps from '../../store/defaultMapStateToProps';
-import { setActiveLanguage } from 'react-localize-redux';
+import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 
 
 import fetchData from '../../utils/fetchData';
-import * as actionCreators from '../../actions/actionCreators';
 
 
 class Header extends React.Component {
@@ -30,15 +28,6 @@ class Header extends React.Component {
       </div>
     );
   }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    {
-      ...actionCreators,
-      setActiveLanguage
-    },
-    dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
