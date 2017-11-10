@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ShowSettings from "./ShowSettings";
+import ShowButton from "../ShowButton";
 import SettingsPaper from './SettingsPaper';
 
 class Settings extends Component {
@@ -9,7 +9,11 @@ class Settings extends Component {
             ?
             <SettingsPaper {...this.props} />
             :
-            <ShowSettings {...this.props} />
+            <ShowButton
+                {...this.props}
+                toggle={this.props.toggleSettings}
+                toTranslate={'home.settingsButton'}
+            />
 
     }
 }

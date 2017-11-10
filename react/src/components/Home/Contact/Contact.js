@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ShowContact from "./ShowContact";
+import ShowButton from "../ShowButton";
 import ContactPaper from './ContactPaper';
 
 class Contact extends Component {
@@ -9,7 +9,11 @@ class Contact extends Component {
             ?
             <ContactPaper {...this.props} />
             :
-            <ShowContact {...this.props} />
+            <ShowButton
+                {...this.props}
+                toggle={this.props.toggleContact}
+                toTranslate={'home.contactButton'}
+            />
 
     }
 }
