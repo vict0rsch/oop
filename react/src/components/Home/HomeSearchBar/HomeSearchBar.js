@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
-import ShowSearchBar from './ShowSearchBar';
+import ShowButton from '../ShowButton';
 import SearchBar from '../../Search/SearchBar';
 import Waiting from '../../Waiting';
 
 class HomeSearchBar extends Component {
     render() {
-        return this.props.dataIsAvailable 
-            ? 
-                this.props.show.searchBar
+        return this.props.dataIsAvailable
+            ?
+            this.props.show.searchBar
                 ?
                 <SearchBar {...this.props} />
                 :
-                <ShowSearchBar {...this.props} />
+                <ShowButton
+                    {...this.props}
+                    toggle={this.props.toggleSearchBar}
+                    toTranslate={'home.searchBar'}
+                    search
+                />
             :
-            <Waiting/>
+            <Waiting />
     }
 }
 

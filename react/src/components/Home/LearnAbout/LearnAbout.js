@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ShowIntent from "./ShowIntent";
+import ShowButton from "../ShowButton";
 import Intent from './Intent';
 
 class LearnAbout extends Component {
@@ -9,7 +9,11 @@ class LearnAbout extends Component {
             ?
             <Intent {...this.props} />
             :
-            <ShowIntent {...this.props} />
+            <ShowButton
+                {...this.props}
+                toggle={this.props.toggleIntent}
+                toTranslate={'home.learnAbout'}
+            />
 
     }
 }

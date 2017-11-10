@@ -16,7 +16,7 @@ class SearchBar extends React.Component {
           if (this.props.show.intent) {
             this.props.toggleIntent();
           }
-          this.props.show.searchBar && this.props.location.pathname === '/' && this.props.toggleSearchBar();
+          this.props.show.searchBar && this.props.location.pathname === '/' && this.props.closeAll();
           this.props.updateEntityInfoBox(val.id);
           this.props.history.push(`/graph/${val.id}`);
         }
