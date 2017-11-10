@@ -20,6 +20,15 @@ function show(state = false, action) {
                 ...state,
                 settings: !state.settings
             };
+        case 'CLOSE_ALL':
+            let newState = {
+                ...state
+            }
+            for (var i in state){
+                newState[i] = false
+            }
+            return newState;
+
         default:
             return state;
     }
