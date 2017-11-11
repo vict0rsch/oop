@@ -38,18 +38,12 @@ class SearchBar extends React.Component {
       selectStyle.width = '250px';
     }
 
-
-    const textAligns = {
-      'browser': 'center',
-      'mobile': 'inherit',
-      'chromeExtension': 'center'
-    }
     const searchBarDivStyle = {
       marginBottom: '15px',
-      textAlign: textAligns[this.props.clientType]
+      textAlign: 'center'
     };
 
-    if (this.props.location.pathname === '/' && this.props.clientType === 'browser' ){
+    if (this.props.location.pathname === '/' && this.props.clientType === 'browser') {
       searchBarDivStyle.marginLeft = '-50px';
     }
 
