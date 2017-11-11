@@ -5,7 +5,7 @@ class Waiting extends Component {
     render() {
         return (
             <div>
-                <p style={{ textAlign: 'center' }}>Getting Data... </p>
+                <p style={{ textAlign: 'center' }}>{this.props.translate(this.props.toTranslate)}</p>
                 <br />
                 <Spinner
                     style={
