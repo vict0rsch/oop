@@ -80,13 +80,13 @@ class CytoContainer extends React.Component {
   render() {
     const defaultStyle = {
       margin: 'auto',
-      width: '70%'
+      width: '70%',
+      height: parseInt(window.screen.availHeight / 2, 10) + 'px',
     };
     
     const styles = {
       'browser': {
         ...defaultStyle,
-        height: parseInt(window.screen.availHeight / 2, 10) + 'px',
       },
       'chromeExtension': {
         ...defaultStyle,
@@ -95,7 +95,8 @@ class CytoContainer extends React.Component {
         padding: '0px'
       },
       'mobile': {
-        ...defaultStyle
+        ...defaultStyle,
+        minHeight: '300px'
       }
     }
   
