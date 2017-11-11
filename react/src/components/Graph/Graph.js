@@ -14,7 +14,7 @@ class _Graph extends React.Component {
     return this.props.dataIsAvailable ?
       <CytoContainer {...this.props} />
       :
-      <Waiting />;
+      <Waiting translate={this.props.translate} toTranslate='home.loadingData' />;
   }
 }
 
