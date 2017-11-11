@@ -38,6 +38,23 @@ class HomePaper extends Component {
             padding: '20px 50px'
         };
 
+        const typoStyles = {
+            'browser': {
+                ...typoStyle,
+                fontSize: '1em',
+            },
+            'chromeExtension': {
+                ...typoStyle
+            },
+            'mobile': {
+                ...typoStyle,
+                fontSize: '0.8em',
+                padding: '20px'
+            }
+        }
+
+
+
 
         const { classes } = this.props;
 
@@ -47,8 +64,8 @@ class HomePaper extends Component {
                     <Button onClick={this.props.toggle}>
                         <ClearIcon style={clearStyle} />
                     </Button>
-                    <Typography type="body1" style={typoStyle} component="div" >
-                    {this.props.content}
+                    <Typography type="body1" style={typoStyles[this.props.clientType]} component="div" >
+                        {this.props.content}
                     </Typography>
                 </Paper>
             </div>
