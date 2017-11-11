@@ -29,6 +29,11 @@
             "searchTooltip": ["Search the Graph", "Rechercher dans le Graphe"],
             "searchTooltipDisabled": ["Use the Search Bar at the top!", "Utilisez la Barre de Recherche en haut!"]
         },
-        "loadingWiki": ["Looking for a Wikipedia Summary...", "En attente d'un résumé de Wikipedia..."]
+        "wiki":{
+            "loading": ["Looking for a Wikipedia Summary...", "En attente d'un résumé de Wikipedia..."],
+            "noData": ["Could not find data on Wikipedia", "Nous n'avons pas trouvé d'information sur Wikipedia"],
+            "cannotConnect": ["Could not connect to Wikipedia", "Connexion à Wikipedia impossible"],
+            "jsError": ["Internal error. Sorry :(", "Erreur interne. Désolé :("]
+        }
     }
 }
