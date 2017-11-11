@@ -23,11 +23,14 @@ class Home extends React.Component {
         if (component.props.dataIsAvailable) {
           const entity = check_website(component.props.data, url);
           if (entity && !sessionStorage['default_' + entity.id]) {
+            // an entity was found and it is the first time 
+            // the Extension sees this entity for this session
+            // (It is assumed that if the user re-clicks on the Extension
+            // during the session they intend to access the whole Extension)
             sessionStorage['default_' + entity.id] = 'true';
             component.props.updateEntityInfoBox(entity.id);
-            if (component.props.show.searchBar) {
-              component.props.toggleSearchBar()
-            }
+            component.props.displayEntity(entity.id)
+            component.props.closeALl()
             component.props.history.push('/graph/' + entity.id);
           }
         }
