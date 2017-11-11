@@ -18,7 +18,7 @@ class HomeSearchBar extends Component {
                     search
                 />
             :
-            <Waiting />
+            <Waiting translate={this.props.translate} toTranslate='home.loadingData'/>
     }
 }
 

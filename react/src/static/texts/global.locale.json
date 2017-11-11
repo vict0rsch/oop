@@ -15,13 +15,20 @@
         ],
         "settings": {
             "languageButton": ["Language", "Langue"]
-        }
+        },
+        "loadingData": ["Getting Data...", "Chargement des données..."]
     },
     "search": {
         "searchPlaceholder": ["Search for Entity...", "Rechercher une entit\u00e9..."]
     },
     "graph": {
         "websiteButton": ["Website", "Site Web"],
-        "seeGraphButton": ["See Complete Graph", "Voir le Graphe Complet"]
+        "seeGraphButton": ["See Complete Graph", "Voir le Graphe Complet"],
+        "sideButtons": {
+            "homeTooltip": ["Go home", "Retour à l'Accueil"],
+            "searchTooltip": ["Search the Graph", "Rechercher dans le Graphe"],
+            "searchTooltipDisabled": ["Use the Search Bar at the top!", "Utilisez la Barre de Recherche en haut!"]
+        },
+        "loadingWiki": ["Looking for a Wikipedia Summary...", "En attente d'un résumé de Wikipedia..."]
     }
 }
