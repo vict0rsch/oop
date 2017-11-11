@@ -36,6 +36,8 @@ class InfoBoxEntity extends React.Component {
           changeWiki={this.props.changeWiki}
           translate={this.props.translate}
           currentLanguage={this.props.currentLanguage}
+          infoBox={this.props.infoBox}
+          data={this.props.data}
         />
     );
   }

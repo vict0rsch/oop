@@ -6,23 +6,20 @@ class WikiCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            extract: <Waiting translate={this.props.translate} toTranslate='graph.loadingWiki' />
+            extract: <Waiting translate={this.props.translate} toTranslate='graph.wiki.loading' />
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.changeWiki) {
-            this.setState(
-                {
-                    extract: <Waiting translate={this.props.translate} toTranslate='graph.loadingWiki' />
-                }
-            );
+        if (nextProps.infoBox.data === this.props.infoBox.data){
+            return
         }
-
-        const entity = nextProps.entity;
+        const entity = this.props.data.entities.ids[nextProps.infoBox.data];
+        console.log(entity.name)
 
         const wiki = entity.wiki.split('/');
         const pageTitle = wiki[wiki.length - 1];
+
         let lang = nextProps.currentLanguage;
 
         let query_url = 'https://' + lang + '.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro=&explaintext=&titles='
@@ -47,7 +44,7 @@ class WikiCard extends Component {
                     console.log('No data.query', response);
                     this.setState(
                         {
-                            extract: ''
+                            extract: this.props.translate('graph.wiki.noData')
                         }
                     );
                 }
@@ -56,7 +53,7 @@ class WikiCard extends Component {
                 console.log('Get Wiki Error', error)
                 this.setState(
                     {
-                        extract: ''
+                        extract: this.props.translate('graph.wiki.cannotConnect')
                     }
                 );
             }
@@ -64,7 +61,7 @@ class WikiCard extends Component {
             console.log('Get Wiki Javascript Caught Error', error)
             this.setState(
                 {
-                    extract: ''
+                    extract: this.translate('graph.wiki.jsError')
                 }
             );
         })
