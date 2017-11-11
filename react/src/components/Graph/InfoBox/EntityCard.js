@@ -54,8 +54,8 @@ class EntityCard extends Component {
                 {this.props.graphButton}
 
                 <div style={{ textAlign: 'justify', textJustify: 'auto' }}>
-                    <Typography type="body1" className={classes.title}>
-                        <WikiCard entity={this.props.entity} changeWiki={this.props.changeWiki}/>
+                    <Typography type="body1" className={classes.title} component='div'>
+                        <WikiCard {...this.props}/>
                     </Typography>
                 </div>
 
