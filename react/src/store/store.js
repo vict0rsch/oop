@@ -38,7 +38,12 @@ store.dispatch(setActiveLanguage(languageToUse));
 
 // Set Client type
 let clientType;
-const isChromeExtension = window.chrome.tabs !== undefined;
+try{
+    const isChromeExtension = window.chrome.tabs !== undefined;
+} catch (error){
+    //Not Chrome browse
+    const isChromeExtension = false;
+}
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     clientType = 'mobile';
 } else if (isChromeExtension){
