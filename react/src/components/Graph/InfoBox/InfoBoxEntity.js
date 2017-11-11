@@ -35,6 +35,7 @@ class InfoBoxEntity extends React.Component {
           graphButton={graphButton}
           changeWiki={this.props.changeWiki}
           translate={this.props.translate}
+          currentLanguage={this.props.currentLanguage}
         />
     );
   }

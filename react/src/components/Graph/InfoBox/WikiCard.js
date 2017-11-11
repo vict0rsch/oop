@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Waiting from '../../Waiting';
 
 class WikiCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            extract: 'Looking for a Wikipedia Summary...'
+            extract: <Waiting translate={this.props.translate} toTranslate='graph.loadingWiki' />
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.changeWiki){
+        if (nextProps.changeWiki) {
             this.setState(
                 {
-                    extract: 'Looking for a Wikipedia Summary...'
+                    extract: <Waiting translate={this.props.translate} toTranslate='graph.loadingWiki' />
                 }
             );
         }
@@ -22,9 +23,7 @@ class WikiCard extends Component {
 
         const wiki = entity.wiki.split('/');
         const pageTitle = wiki[wiki.length - 1];
-
-        let lang = navigator.language || navigator.userLanguage;
-        lang = lang === 'fr' ? lang : 'en';
+        let lang = nextProps.currentLanguage;
 
         let query_url = 'https://' + lang + '.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro=&explaintext=&titles='
         let escapedTitle = pageTitle.indexOf('%') > -1 ? pageTitle : encodeURIComponent(pageTitle);
@@ -52,10 +51,23 @@ class WikiCard extends Component {
                         }
                     );
                 }
-            }, (error) => {
+            },
+            (error) => {
                 console.log('Get Wiki Error', error)
+                this.setState(
+                    {
+                        extract: ''
+                    }
+                );
             }
-        )
+        ).catch((error) => {
+            console.log('Get Wiki Javascript Caught Error', error)
+            this.setState(
+                {
+                    extract: ''
+                }
+            );
+        })
     }
 
     render() {

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import SearchIcon from 'material-ui-icons/Search';
-
+import Tooltip from 'material-ui/Tooltip';
 
 
 const styles = theme => ({
@@ -19,6 +19,9 @@ const styles = theme => ({
     icon: {
         height: '30px',
         width: '30px',
+    },
+    tooltip: {
+        textAlign: 'center'
     }
 });
 
@@ -33,10 +36,23 @@ class SearchButton extends React.Component {
     }
 
     render() {
+        const { classes } = this.props
         return (
-            <Button raised disabled={this.props.show.searchBar} fab aria-label="search" className={this.props.classes.button} onClick={this.handleClick}>
-                 <SearchIcon className={this.props.classes.icon}/>
-            </Button>
+            <Tooltip
+                id="tooltip-SearchButton"
+                title={
+                    this.props.show.searchBar ?
+                        this.props.translate('graph.sideButtons.searchTooltipDisabled')
+                        :
+                        this.props.translate('graph.sideButtons.searchTooltip')
+                }
+                placement="bottom"
+                className={classes.tooltip}
+            >
+                <Button raised disabled={this.props.show.searchBar} fab className={classes.button} onClick={this.handleClick}>
+                    <SearchIcon className={classes.icon} />
+                </Button>
+            </Tooltip>
         );
     }
 }

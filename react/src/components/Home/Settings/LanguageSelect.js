@@ -29,9 +29,7 @@ class LanguageSelect extends React.Component {
     
 
     handleChange = name => event => {
-        console.log(this.props.setActiveLanguage, event.target.value, this.props.currentLanguage);
         this.props.setActiveLanguage(event.target.value);
-        console.log(this.props.translate('home.settings.languageButton'));
     };
 
     render() {
