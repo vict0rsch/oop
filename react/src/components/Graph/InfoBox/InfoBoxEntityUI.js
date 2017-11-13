@@ -15,7 +15,7 @@ export default class InfoBoxEntityUI extends Component {
             },
             'chromeExtension': {
                 ...defaultStyle,
-                width: '730px'
+                width: '634px'
             },
             'mobile': {
                 ...defaultStyle
