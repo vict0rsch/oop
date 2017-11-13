@@ -6,14 +6,18 @@ class WikiCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            extract: <Waiting translate={this.props.translate} toTranslate='graph.wiki.loading' />
+            extract: <Waiting translate={this.props.translate} toTranslate='graph.wiki.loading' />,
+            count:0
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.infoBox.data === this.props.infoBox.data){
+        if (nextProps.infoBox.data === this.props.infoBox.data && this.state.count > 0) {
             return
         }
+        this.setState({
+            count: this.state.count + 1
+        });
         const entity = this.props.data.entities.ids[nextProps.infoBox.data];
         console.log(entity.name)
 
