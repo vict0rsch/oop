@@ -17,18 +17,11 @@ class HomePaper extends Component {
 
     render() {
 
-        let browserWidth;
-
-        try{
-            browserWidth = window.chrome.tabs !== undefined ? '' : '';
-            browserWidth = '-webkit-fill-available';
-        } catch (error){
-            //Not Chrome browser
-            browserWidth = '-moz-available';
-        }
+        let browserWidth = navigator.userAgent.toLocaleLowerCase().indexOf('firefox') > -1 ?
+            '-moz-available' : '-webkit-fill-available';
 
         const widths = {
-            'chromeExtension': '700px',
+            'chromeExtension': browserWidth,
             'mobile': '90%',
             'browser': browserWidth
         }
@@ -62,11 +55,11 @@ class HomePaper extends Component {
         const { classes } = this.props;
 
         return (
-                <Paper style={{ width: widths[this.props.clientType] }} className={classes.root} elevation={4}>
-                    <Typography type="body1" style={typoStyles[this.props.clientType]} component="div" >
-                        {this.props.content}
-                    </Typography>
-                </Paper>
+            <Paper style={{ width: widths[this.props.clientType] }} className={classes.root} elevation={4}>
+                <Typography type="body1" style={typoStyles[this.props.clientType]} component="div" >
+                    {this.props.content}
+                </Typography>
+            </Paper>
         );
 
     }
