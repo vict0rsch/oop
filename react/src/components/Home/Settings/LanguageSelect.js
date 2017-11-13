@@ -8,7 +8,7 @@ import Select from 'material-ui/Select';
 
 const styles = theme => ({
     container: {
-        display: 'flex',
+        display: 'inline-block',
         flexWrap: 'wrap',
     },
     formControl: {

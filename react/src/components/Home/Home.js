@@ -10,7 +10,8 @@ import LearnAbout from './LearnAbout/LearnAbout';
 import HomeSearchBar from './HomeSearchBar/HomeSearchBar';
 import Contact from './Contact/Contact';
 import Settings from './Settings/Settings';
-
+import Introduction from './Introduction/Introduction';
+import HomeContentTabs from './HomeContentTabs';
 
 class Home extends React.Component {
 
@@ -30,13 +31,28 @@ class Home extends React.Component {
             sessionStorage['default_' + entity.id] = 'true';
             component.props.updateEntityInfoBox(entity.id);
             component.props.displayEntity(entity.id)
-            component.props.closeALl()
+            component.props.closeAll()
             component.props.history.push('/graph/' + entity.id);
           }
         }
       });
     }
   }
+
+
+  componentDidMount() {
+    if (this.props.location.pathname === '/') {
+      this.props.closeAll();
+      this.props.toggleSearchBar();
+      localStorage['reduxPersist:show'] = JSON.stringify({
+        'intent': false,
+        'contact': false,
+        'settings': false,
+        'searchBar': true
+      });
+    }
+  }
+
 
 
   render() {
@@ -46,14 +62,21 @@ class Home extends React.Component {
           Open Ownership Project
         </h1>
         <br />
+        <Introduction {...this.props} />
         <div style={{
-          paddingLeft: this.props.clientType === 'browser' ? '50px' : '0px',
-          textAlign: this.props.clientType === 'mobile' ? 'center' : 'unset'
+          textAlign: this.props.clientType === 'mobile' ? 'center' : 'unset',
+          width: '70%',
+          margin: 'auto'
         }}>
+
+
+          <HomeContentTabs {...this.props} />
+
           <HomeSearchBar {...this.props} />
           <LearnAbout {...this.props} />
           <Contact {...this.props} />
           <Settings {...this.props} />
+
         </div>
       </div>
     );

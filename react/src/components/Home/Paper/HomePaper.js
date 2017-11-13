@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
-import ClearIcon from 'material-ui-icons/Clear';
-import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
@@ -19,16 +17,21 @@ class HomePaper extends Component {
 
     render() {
 
+        let browserWidth;
+
+        try{
+            browserWidth = window.chrome.tabs !== undefined ? '' : '';
+            browserWidth = '-webkit-fill-available';
+        } catch (error){
+            //Not Chrome browser
+            browserWidth = '-moz-available';
+        }
+
         const widths = {
             'chromeExtension': '700px',
             'mobile': '90%',
-            'browser': '60%'
+            'browser': browserWidth
         }
-
-        const clearStyle = {
-            height: '40px',
-            width: '40px'
-        };
 
         const typoStyle = {
             fontSize: '1.2em',
@@ -59,16 +62,11 @@ class HomePaper extends Component {
         const { classes } = this.props;
 
         return (
-            <div style={{ marginLeft: this.props.clientType === 'browser' ? '-50px' : '0' }}>
                 <Paper style={{ width: widths[this.props.clientType] }} className={classes.root} elevation={4}>
-                    <Button onClick={this.props.toggle}>
-                        <ClearIcon style={clearStyle} />
-                    </Button>
                     <Typography type="body1" style={typoStyles[this.props.clientType]} component="div" >
                         {this.props.content}
                     </Typography>
                 </Paper>
-            </div>
         );
 
     }

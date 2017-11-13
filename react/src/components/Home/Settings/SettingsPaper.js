@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LanguageSelect from './LanguageSelect';
+import ResetApp from './ResetApp';
 import HomePaper from '../Paper/HomePaper'
 
 class SettingsPaper extends Component {
@@ -11,7 +12,10 @@ class SettingsPaper extends Component {
                     {...this.props}
                     toggle={this.props.toggleSettings}
                     content={
-                        <LanguageSelect {...this.props} />
+                        <div style={{textAlign:'center'}}>
+                            <LanguageSelect {...this.props} />
+                            <ResetApp {...this.props} />
+                        </div>
                     } />
             </div>
         );
