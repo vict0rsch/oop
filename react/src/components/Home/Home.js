@@ -5,6 +5,7 @@ import { check_website } from '../../utils/backgroundUtils';
 import mapStateToProps from '../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 
+import Scroll from 'react-scroll';
 
 import LearnAbout from './LearnAbout/LearnAbout';
 import HomeSearchBar from './HomeSearchBar/HomeSearchBar';
@@ -37,10 +38,6 @@ class Home extends React.Component {
         }
       });
     }
-  }
-
-
-  componentDidMount() {
     if (this.props.location.pathname === '/') {
       this.props.closeAll();
       this.props.toggleSearchBar();
@@ -53,6 +50,18 @@ class Home extends React.Component {
     }
   }
 
+
+  componentWillUpdate(nextProps, nextState) {
+    // does not work
+    if (this.props.show.intent && !nextProps.show.intent) {
+      console.log('scrolling')
+      Scroll.animateScroll.scrollToTop({
+        duration: 15000,
+        delay: 1000,
+        smooth: true
+      });
+    }
+  }
 
 
   render() {
