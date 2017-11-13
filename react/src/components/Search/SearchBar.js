@@ -30,21 +30,17 @@ class SearchBar extends React.Component {
       borderWidth: '1px',
       borderRadius: '0px',
       zIndex: 999,
-      width: '630px',
       margin: 'auto',
       marginBottom: '15px'
     };
-    if (this.props.clientType === 'mobile') {
-      selectStyle.width = '250px';
-    }
 
     const searchBarDivStyle = {
       marginBottom: '15px',
       textAlign: 'center'
     };
 
-    if (this.props.location.pathname === '/' && this.props.clientType === 'browser') {
-      searchBarDivStyle.marginLeft = '-50px';
+    if (this.props.location.pathname === '/') {
+      searchBarDivStyle.marginTop = '24px';
     }
 
     const selectDivStyle = {
@@ -67,9 +63,10 @@ class SearchBar extends React.Component {
             arrowRenderer={() => null}
             autoBlur
             clearable={false}
+            autofocus
           />
         </div>
-        <HideSearchBar {...this.props} />
+        {!this.props.hideButton && <HideSearchBar {...this.props} />}
       </div>
     );
   }
