@@ -55,17 +55,17 @@ class Home extends React.Component {
   }
 
 
-  componentWillUpdate(nextProps, nextState) {
-    // does not work
-    if (this.props.show.intent && !nextProps.show.intent) {
-      console.log('scrolling')
-      Scroll.animateScroll.scrollToTop({
-        duration: 15000,
-        delay: 1000,
-        smooth: true
-      });
-    }
-  }
+  // componentWillUpdate(nextProps, nextState) {
+  //   // does not work
+  //   if (this.props.show.intent && !nextProps.show.intent) {
+  //     console.log('scrolling')
+  //     Scroll.animateScroll.scrollToTop({
+  //       duration: 15000,
+  //       delay: 1000,
+  //       smooth: true
+  //     });
+  //   }
+  // }
 
 
   render() {
