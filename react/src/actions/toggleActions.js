@@ -1,3 +1,9 @@
+export function toggle(value){
+    return {
+        type: 'TOGGLE_' + value.toUpperCase()
+    }
+}
+
 export function toggleSearchBar() {
     return {
         type: 'TOGGLE_SEARCH_BAR'
