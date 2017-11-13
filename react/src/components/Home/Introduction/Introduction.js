@@ -12,7 +12,8 @@ export default class Introduction extends Component {
         const introStyles = {
             'mobile':{
                 ...defaultIntroStyle,
-                margin: '5%'
+                margin: '5%',
+                fontWeight: 400
             },
             'browser':{
                 ...defaultIntroStyle
