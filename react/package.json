@@ -29,6 +29,7 @@
         "react-router-dom": "^4.2.2",
         "react-router-redux": "^5.0.0-alpha.8",
         "react-scripts": "1.0.14",
+        "react-scroll": "^1.6.4",
         "react-select": "^1.0.0-rc.10",
         "react-spinner": "^0.2.7",
         "redux": "^3.7.2",
