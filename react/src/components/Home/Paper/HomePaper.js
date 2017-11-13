@@ -31,8 +31,16 @@ class HomePaper extends Component {
             textAlign: 'justify',
             textJustify: 'auto',
             fontWeight: 200,
-            padding: '20px 50px'
+            padding: '25px 50px'
         };
+
+        if (this.props.clientType === 'browser') {
+            typoStyle.padding = '50px 100px'
+        }
+
+        if (this.props.clientType === 'mobile') {
+            typoStyle.fontWeight = 400
+        }
 
         const typoStyles = {
             'browser': {
