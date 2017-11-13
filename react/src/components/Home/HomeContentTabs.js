@@ -33,6 +33,8 @@ class HomeContentTabs extends React.Component {
           indicatorColor="primary"
           textColor="primary"
           centered
+          scrollable
+          scrollButtons="auto"
         >
           {["search_bar", "intent", "contact", "settings"].map(
             (v, k) => {
