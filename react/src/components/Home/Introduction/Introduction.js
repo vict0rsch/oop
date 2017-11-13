@@ -3,10 +3,25 @@ import Tooltip from 'material-ui/Tooltip'
 
 export default class Introduction extends Component {
     render() {
-        const introStyle = {
+        const defaultIntroStyle = {
             margin: '5% 15%',
             textAlign: 'justify',
             lineHeight: '1.6em'
+        }
+
+        const introStyles = {
+            'mobile':{
+                ...defaultIntroStyle,
+                margin: '5%'
+            },
+            'browser':{
+                ...defaultIntroStyle
+            },
+            'chromeExtension':{
+                ...defaultIntroStyle,
+                margin: '5% 10%',
+                fontSize: '1.15em'
+            }
         }
         
         const tooltipTitle = (
@@ -24,7 +39,7 @@ export default class Introduction extends Component {
         );
 
         return (
-            <div style={introStyle}>
+            <div style={introStyles[this.props.clientType]}>
                 {this.props.translate('home.intro.a')} 
                 <br/><br/>
                 {this.props.translate('home.intro.b')} 
