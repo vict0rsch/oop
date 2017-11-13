@@ -21,6 +21,10 @@ class Home extends React.Component {
     const component = this;
     if (this.props.clientType === 'chromeExtension') {
       window.chrome.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
+        if (tabs.length === 0) {
+          console.log('tabs.length is 0')
+          return;
+        }
         var url = tabs[0].url;
         if (component.props.dataIsAvailable) {
           const entity = check_website(component.props.data, url);
@@ -31,8 +35,8 @@ class Home extends React.Component {
             // during the session they intend to access the whole Extension)
             sessionStorage['default_' + entity.id] = 'true';
             component.props.updateEntityInfoBox(entity.id);
-            component.props.displayEntity(entity.id)
-            component.props.closeAll()
+            component.props.displayEntity(entity.id);
+            component.props.closeAll();
             component.props.history.push('/graph/' + entity.id);
           }
         }
@@ -74,7 +78,7 @@ class Home extends React.Component {
         <Introduction {...this.props} />
         <div style={{
           textAlign: this.props.clientType === 'mobile' ? 'center' : 'unset',
-          width: '70%',
+          width: this.props.clientType === 'browser' ? '70%' : '80%',
           margin: 'auto'
         }}>
 
