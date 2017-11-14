@@ -5,7 +5,7 @@ import { check_website } from '../../utils/backgroundUtils';
 import mapStateToProps from '../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 
-import Scroll from 'react-scroll';
+// import Scroll from 'react-scroll';
 
 import LearnAbout from './LearnAbout/LearnAbout';
 import HomeSearchBar from './HomeSearchBar/HomeSearchBar';
@@ -13,6 +13,7 @@ import Contact from './Contact/Contact';
 import Settings from './Settings/Settings';
 import Introduction from './Introduction/Introduction';
 import HomeContentTabs from './HomeContentTabs';
+import Extension from './Extension/Extension';
 
 class Home extends React.Component {
 
@@ -49,6 +50,7 @@ class Home extends React.Component {
         'intent': false,
         'contact': false,
         'settings': false,
+        'extension': false,
         'searchBar': true
       });
     }
@@ -89,6 +91,7 @@ class Home extends React.Component {
           <LearnAbout {...this.props} />
           <Contact {...this.props} />
           <Settings {...this.props} />
+          <Extension {...this.props} />
 
         </div>
       </div>

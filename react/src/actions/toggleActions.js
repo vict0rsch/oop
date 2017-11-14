@@ -28,6 +28,12 @@ export function toggleSettings() {
     };
 }
 
+export function toggleExtension() {
+    return {
+        type: 'TOGGLE_EXTENSION'
+    };
+}
+
 export function closeAll(){
     return {
         type: 'CLOSE_ALL'
