@@ -48,6 +48,10 @@ if __name__ == '__main__':
             'names': ['intent/intentEn.md', 'intent/intentFr.md'],
             'locale_keys': ['home', 'intentPaperMd']
         },
+        {
+            'names': ['extension/extensionEn.md', 'extension/extensionFr.md'],
+            'locale_keys': ['home', 'extensionPaperMd']
+        },
     ]
 
     update_locale(file_sets)
