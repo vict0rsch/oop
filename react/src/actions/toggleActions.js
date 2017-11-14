@@ -12,7 +12,7 @@ export function toggleSearchBar() {
 
 export function toggleIntent() {
     return {
-        type: 'TOGGLE_INTENT'
+        type: 'TOGGLE_ABOUT'
     };
 }
 

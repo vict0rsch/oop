@@ -53,6 +53,17 @@ class Home extends React.Component {
         'extension': false,
         'searchBar': true
       });
+    } else {
+      const location = this.props.location.pathname.split('/')[1];
+      if (location) {
+        this.props.closeAll();
+        this.props.toggle(location);
+        localStorage['reduxPersist:show'] = JSON.stringify({
+          ...this.props.show,
+          location: true
+        })
+
+      };
     }
   }
 
