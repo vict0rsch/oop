@@ -6,7 +6,7 @@ export function toggle(value){
 
 export function toggleSearchBar() {
     return {
-        type: 'TOGGLE_SEARCH_BAR'
+        type: 'TOGGLE_SEARCH'
     };
 }
 

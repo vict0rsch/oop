@@ -5,7 +5,7 @@ function show(state = false, action) {
                 ...state,
                 intent: !state.intent
             };
-        case 'TOGGLE_SEARCH_BAR':
+        case 'TOGGLE_SEARCH':
             return {
                 ...state,
                 searchBar: !state.searchBar
