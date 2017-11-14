@@ -20,6 +20,11 @@ function show(state = false, action) {
                 ...state,
                 settings: !state.settings
             };
+        case 'TOGGLE_EXTENSION':
+        return {
+            ...state,
+            extension: !state.extension
+        }
         case 'CLOSE_ALL':
             let newState = {
                 ...state
