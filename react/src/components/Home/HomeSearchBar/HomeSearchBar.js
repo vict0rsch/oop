@@ -8,11 +8,13 @@ class HomeSearchBar extends Component {
             ?
             this.props.show.searchBar
                 ?
-                <SearchBar {...this.props} hideButton/>
+                (<div style={{marginTop: '24px'}}>
+                    <SearchBar {...this.props} hideButton />
+                </div>)
                 :
                 ''
             :
-            <Waiting translate={this.props.translate} toTranslate='home.loadingData'/>
+            <Waiting translate={this.props.translate} toTranslate='home.loadingData' />
     }
 }
 

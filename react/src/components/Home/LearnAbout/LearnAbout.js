@@ -4,7 +4,7 @@ import Intent from './Intent';
 class LearnAbout extends Component {
     render() {
 
-        return this.props.show.intent
+        return this.props.show.about
             ?
             <Intent {...this.props} />
             :
