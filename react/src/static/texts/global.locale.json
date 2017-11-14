@@ -27,9 +27,9 @@
             "f": ["At any moment you can search the graph for a different entity and explore its \"Complete Graph\", meaning all the companies it owns and all the companies which own it. Be aware however that only major players are displayed (as you can imagine, displaying all shareholders of a Public company would be nonesense).", "\u00c0 tout moment vous pouvez rechercher une entit\u00e9 dans le Graphe et explorer son \"Graphe Complet\", c'est \u00e0 dire voir toutes les entreprises que cette entit\u00e9 poss\u00e8de, ainsi que celles qui la contr\u00f4lent. Attention cependant, seules les acteurs principaux sont pr\u00e9sents dans le Graphe (vous pouvez imaginer la complexit\u00e9 absurde d'afficher tous les actionnaires d'une entreprise cot\u00e9e)."]
         },
         "tabs": {
-            "intent": ["About", "\u00c0 propos"],
+            "about": ["About", "\u00c0 propos"],
             "settings": ["Settings", "Param\u00e8tres"],
-            "search_bar": ["Search", "Rechercher"],
+            "search": ["Search", "Rechercher"],
             "contact": ["Contact", "Contact"],
             "extension": ["Extension", "Extension"]
         },
