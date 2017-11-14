@@ -13,8 +13,8 @@ class SearchBar extends React.Component {
     if (val && val.id) {
       if (this.props.data.idSet.indexOf(parseInt(val.id, 10)) > -1) {
         if (this.props.location.pathname !== '/graph/' + val.id) {
-          if (this.props.show.intent) {
-            this.props.toggleIntent();
+          if (this.props.show.about) {
+            this.props.toggleAbout();
           }
           this.props.show.searchBar && this.props.location.pathname === '/' && this.props.closeAll();
           this.props.updateEntityInfoBox(val.id);

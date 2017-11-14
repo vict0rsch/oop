@@ -10,7 +10,7 @@ export function toggleSearchBar() {
     };
 }
 
-export function toggleIntent() {
+export function toggleAbout() {
     return {
         type: 'TOGGLE_ABOUT'
     };

@@ -3,7 +3,7 @@ function show(state = false, action) {
         case 'TOGGLE_ABOUT':
             return {
                 ...state,
-                intent: !state.intent
+                about: !state.about
             };
         case 'TOGGLE_SEARCH':
             return {
