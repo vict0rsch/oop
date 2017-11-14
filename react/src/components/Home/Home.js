@@ -70,7 +70,7 @@ class Home extends React.Component {
 
   // componentWillUpdate(nextProps, nextState) {
   //   // does not work
-  //   if (this.props.show.intent && !nextProps.show.intent) {
+  //   if (this.props.show.about && !nextprops.show.about) {
   //     console.log('scrolling')
   //     Scroll.animateScroll.scrollToTop({
   //       duration: 15000,
