@@ -22,18 +22,32 @@ const styles = theme => ({
 
 class HomeContentTabs extends React.Component {
   state = {
-    value: 'search_bar',
+    value: 'search',
+    update: 0
   };
 
   handleChange = (event, value) => {
     this.setState({ value });
     this.props.closeAll();
     this.props.toggle(value);
+    this.props.history.push('/' + value)
   };
+
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.update === 0) {
+      const location = this.props.location.pathname.split('/')[1];
+      this.setState({
+        value: location,
+        update: this.state.update + 1
+      });
+    }
+  }
+
 
   render() {
 
-    let tabs = ["search_bar", "intent", "contact", "settings"];
+    let tabs = ["search", "about", "contact", "settings"];
     if (this.props.clientType !== "chromeExtension") {
       tabs = [
         ...tabs.slice(0, 2),
@@ -48,8 +62,8 @@ class HomeContentTabs extends React.Component {
       height: "25px"
     };
     const icons = {
-      'search_bar': <SearchIcon style={iconStyle} />,
-      'intent': <AboutIcon style={iconStyle} />,
+      'search': <SearchIcon style={iconStyle} />,
+      'about': <AboutIcon style={iconStyle} />,
       'contact': <ContactIcon style={iconStyle} />,
       'settings': <SettingsIcon style={iconStyle} />,
       'extension': <ExtensionIcon style={iconStyle} />

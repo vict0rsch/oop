@@ -1,6 +1,6 @@
 function show(state = false, action) {
     switch (action.type) {
-        case 'TOGGLE_INTENT':
+        case 'TOGGLE_ABOUT':
             return {
                 ...state,
                 intent: !state.intent
