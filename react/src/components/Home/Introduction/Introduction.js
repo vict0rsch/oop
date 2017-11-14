@@ -10,21 +10,21 @@ export default class Introduction extends Component {
         }
 
         const introStyles = {
-            'mobile':{
+            'mobile': {
                 ...defaultIntroStyle,
                 margin: '5%',
                 fontWeight: 400
             },
-            'browser':{
+            'browser': {
                 ...defaultIntroStyle
             },
-            'chromeExtension':{
+            'chromeExtension': {
                 ...defaultIntroStyle,
                 margin: '5% 10%',
                 fontSize: '1.15em'
             }
         }
-        
+
         const tooltipTitle = (
             <div style={{
                 fontSize: '1.3em',
@@ -39,16 +39,35 @@ export default class Introduction extends Component {
             </div>
         );
 
-        return (
-            <div style={introStyles[this.props.clientType]}>
-                {this.props.translate('home.intro.a')} 
-                <br/><br/>
-                {this.props.translate('home.intro.b')} 
-                <Tooltip placement="bottom" title={tooltipTitle}><span> <span style={{ borderBottom: '1px dashed #999' }}>{this.props.translate('home.intro.c')}</span> </span></Tooltip>
-                {this.props.translate('home.intro.d')}
-                <br/><br/>
-                {this.props.translate('home.intro.f')}
-            </div>
-        )
+        let content;
+        if (this.props.clientType === "chromeExtension") {
+            content = (
+                <div style={introStyles[this.props.clientType]}>
+                    {this.props.translate('home.intro.a')}
+                    <br /><br />
+                    {this.props.translate('home.intro.b')}
+                    <Tooltip placement="bottom" title={tooltipTitle}>
+                        <span> <span style={{ borderBottom: '1px dashed #999' }}>
+                            {this.props.translate('home.intro.c')}
+                        </span> </span>
+                    </Tooltip>
+                    {this.props.translate('home.intro.d')}
+                    <br /><br />
+                    {this.props.translate('home.intro.f')}
+                </div>
+            );
+        } else {
+            content = (
+                <div style={introStyles[this.props.clientType]}>
+                    {this.props.clientType === "mobile" && this.props.translate('home.intro.am')}
+                    {this.props.clientType === "browser" && this.props.translate('home.intro.aw')}
+                    <br /><br />
+                    {this.props.translate('home.intro.f')}
+                </div>
+            );
+
+        }
+
+        return content;
     }
 }
