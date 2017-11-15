@@ -29,7 +29,9 @@ class LanguageSelect extends React.Component {
     
 
     handleChange = name => event => {
-        this.props.setActiveLanguage(event.target.value);
+        const languageCode = event.target.value;
+        this.props.setActiveLanguage(languageCode);
+        localStorage.setItem('activeLanguage', languageCode);
     };
 
     render() {
