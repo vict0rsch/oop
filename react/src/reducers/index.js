@@ -12,7 +12,14 @@ import dataIsAvailable from './dataIsAvailable';
 
 
 const rootReducer = combineReducers({
-    clientType, locale, show, dataIsAvailable, data, currentDisplay, infoBox, router: routerReducer
+    clientType,
+    currentDisplay,
+    data,
+    dataIsAvailable,
+    infoBox,
+    locale,
+    router: routerReducer,
+    show,
 });
 
 export default rootReducer;
