@@ -97,7 +97,6 @@ class HomeContentTabs extends React.Component {
           centered
           scrollable={window.innerWidth < 630}
           scrollButtons="auto"
-          
         >
           {tabs.map(
           (v, k) => {
@@ -114,7 +113,7 @@ class HomeContentTabs extends React.Component {
           }
         )}
         </Tabs>
-      </Paper >
+      </Paper>
     );
   }
 }
