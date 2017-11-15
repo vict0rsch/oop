@@ -28,8 +28,12 @@ const enhancers = compose(autoRehydrate(), applyMiddleware(middleware),
 const store = createStore(combinedReducer, defaultState, enhancers);
 
 // Multi-language support
-let languageToUse = navigator.language || navigator.userLanguage;
-languageToUse = languageToUse === 'fr' ? languageToUse : 'en';
+
+let languageToUse = localStorage.getItem('activeLanguage');
+if (!languageToUse){
+    languageToUse = navigator.language || navigator.userLanguage;
+    languageToUse = languageToUse === 'fr' ? languageToUse : 'en';
+}
 const languages = ['en', 'fr'];
 store.dispatch(initialize(languages));//, { defaultLanguage: 'fr' }));
 const json = require('../static/texts/global.locale.json');
