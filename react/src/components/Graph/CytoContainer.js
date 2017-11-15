@@ -78,13 +78,17 @@ class CytoContainer extends React.Component {
   }
 
   render() {
-    const defaultStyle = {
+    let defaultStyle = {
       margin: 'auto',
       width: '70%',
       height: parseInt(window.screen.availHeight / 2, 10) + 'px',
     };
     
-    const styles = {
+    if (!this.props.show.searchBar) {
+      defaultStyle.marginTop = '20px'
+    }
+
+    const cyStyles = {
       'browser': {
         ...defaultStyle,
       },
@@ -99,11 +103,12 @@ class CytoContainer extends React.Component {
         minHeight: '300px'
       }
     }
-  
+
+
     return (
       <div>
         {this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar {...this.props} />}
-        <div id="cy" style={styles[this.props.clientType]} onContextMenu={this.handleContextMenu} />
+        <div id="cy" style={cyStyles[this.props.clientType]} onContextMenu={this.handleContextMenu} />
         <SideButtons {...this.props} />
         <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki} />
       </div>
