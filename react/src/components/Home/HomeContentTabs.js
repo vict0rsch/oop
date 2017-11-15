@@ -15,9 +15,6 @@ const styles = theme => ({
     flexGrow: 1,
     marginTop: theme.spacing.unit * 3,
   },
-  labelContainer: {
-    fontSize: '0.1em',
-  }
 });
 
 class HomeContentTabs extends React.Component {
@@ -61,8 +58,8 @@ class HomeContentTabs extends React.Component {
 
     const { classes } = this.props;
     const iconStyle = {
-      width: "25px",
-      height: "25px"
+      width: "20px",
+      height: "20px"
     };
     const icons = {
       'search': <SearchIcon style={iconStyle} />,
@@ -87,7 +84,7 @@ class HomeContentTabs extends React.Component {
       }
       :
       {
-        fontSize: '1em'
+        fontSize: '0.7em'
       };
 
     return (
@@ -100,23 +97,24 @@ class HomeContentTabs extends React.Component {
           centered
           scrollable={window.innerWidth < 630}
           scrollButtons="auto"
+          
         >
           {tabs.map(
-            (v, k) => {
-              return <Tab
-                className={classes.labelContainer}
-                key={'tab' + k}
-                label={
-                  <span style={labelStyle}>{this.props.translate("home.tabs." + v)}</span>
-                }
-                icon={icons[v]}
-                value={v}
-                style={tabStyle}
-              />;
-            }
-          )}
+          (v, k) => {
+            return <Tab
+              className={classes.labelContainer}
+              key={'tab' + k}
+              label={
+                <span style={labelStyle}>{this.props.translate("home.tabs." + v)}</span>
+              }
+              icon={icons[v]}
+              value={v}
+              style={tabStyle}
+            />;
+          }
+        )}
         </Tabs>
-      </Paper>
+      </Paper >
     );
   }
 }
