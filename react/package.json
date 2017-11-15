@@ -35,8 +35,7 @@
         "react-spinner": "^0.2.7",
         "redux": "^3.7.2",
         "redux-persist": "4.10.2",
-        "typeface-roboto": "^0.0.43",
-        "url-parse": "^1.1.9"
+        "typeface-roboto": "^0.0.43"
     },
     "version": "0.1.0",
     "devDependencies": {
