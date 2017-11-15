@@ -5,10 +5,16 @@ import HomeButton from './HomeButton';
 class SideButtons extends Component {
     render() {
 
-        const sideButtonDivStyle = {
+        let sideButtonDivStyle = {
             position: 'fixed',
             top: '80px',
             left: '5%'
+        }
+
+        if (this.props.clientType === 'mobile'){
+            sideButtonDivStyle.top = '30px';
+            sideButtonDivStyle.width = '70px';
+            sideButtonDivStyle.left= '2%'
         }
 
         return (
