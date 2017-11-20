@@ -5,7 +5,7 @@ import { check_website } from '../../utils/backgroundUtils';
 import mapStateToProps from '../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 
-// import Scroll from 'react-scroll';
+import Scroll from 'react-scroll';
 
 import LearnAbout from './Content/LearnAbout/LearnAbout';
 import HomeSearchBar from './Content/HomeSearchBar/HomeSearchBar';
@@ -68,18 +68,18 @@ class Home extends React.Component {
     }
   }
 
-
-  // componentWillUpdate(nextProps, nextState) {
-  //   // does not work
-  //   if (this.props.show.about && !nextprops.show.about) {
-  //     console.log('scrolling')
-  //     Scroll.animateScroll.scrollToTop({
-  //       duration: 15000,
-  //       delay: 1000,
-  //       smooth: true
-  //     });
-  //   }
-  // }
+  
+  componentWillUpdate(nextProps, nextState) {
+    // does not work
+    if (this.props.show.about && !nextProps.show.about) {
+      console.log('scrolling')
+      Scroll.animateScroll.scrollToTop({
+        duration: 1500,
+        delay: 1000,
+        smooth: true
+      });
+    }
+  }
 
 
   render() {
