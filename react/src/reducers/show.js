@@ -21,15 +21,20 @@ function show(state = false, action) {
                 settings: !state.settings
             };
         case 'TOGGLE_EXTENSION':
-        return {
-            ...state,
-            extension: !state.extension
-        }
+            return {
+                ...state,
+                extension: !state.extension
+            }
+        case 'TOGGLE_HOWITWORKS':
+            return {
+                ...state,
+                howItWorks: !state.howItWorks
+            }
         case 'CLOSE_ALL':
             let newState = {
                 ...state
             }
-            for (var i in state){
+            for (var i in state) {
                 newState[i] = false
             }
             return newState;
