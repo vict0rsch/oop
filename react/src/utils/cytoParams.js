@@ -50,14 +50,21 @@ const dagreLayout = {
     stop: function () { } // on layoutstop
 };
 
-export function cytoParamsFromContainer(containerElement, cytoData) {
+const colors = {
+    m: '#3f51b5',
+    c: 'rgb(187, 45, 45)',
+    s: 'rgb(100, 100, 100)',
+    i: 'rgb(1, 41, 71)'
+}
+
+export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
     var layout;
     if (cytoData.edges.length < 10) {
-        const spacing = 1.8 * Math.pow(cytoData.edges.length, 0.08);
+        const spacing = 0.8 * Math.pow(cytoData.edges.length, 0.08);
         layout = dagreLayout;
         layout.spacingFactor = spacing;
     } else {
-        const spacing = 0.35 * Math.pow(cytoData.edges.length, 0.08);
+        const spacing = 0.55 * Math.pow(cytoData.edges.length, 0.08);
         layout = breadthFirstLayout;
         layout.spacingFactor = spacing;
     }
@@ -94,23 +101,30 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
         return {
             data: {
                 ...v.data,
-                name: addOneLineBreak(v.data.name),
-                widthPx: v.data.width + 60 + 'px'
+                name: v.data.name.length > 15 ? addOneLineBreak(v.data.name) : v.data.name,
+                height: v.data.name.length > 15 ? '40px' : '30px',
+                widthPx: v.data.category === 's' ? '80px' : v.data.width + 100 + 'px',
+                selectedColor: v.data.id === sourceId ? colors[v.data.category] : 'green',
+                fontWeight: v.data.id === sourceId ? 'bolder' : 'normal',
+                fontSize: v.data.id === sourceId ? '3em' : '2.5em',
+                color: colors[v.data.category]
             }
         }
     });
 
-    const baseNodeStyle = {
+    const nodeBaseStyle = {
         'background-opacity': 0,
         'label': 'data(name)',
         'shape': 'bottomroundrectangle',
-        'font-weight': 'bold',
+        'font-weight': 'data(fontWeight)',
         'width': 'data(widthPx)',
         'text-valign': "center",
-        'font-size': '3em',
         'compound-sizing-wrt-labels': 'include',
         'source-text-margin-y': '30px',
-        'target-text-margin-y': '30px'
+        'target-text-margin-y': '30px',
+        'height': 'data(height)',
+        'text-wrap': 'wrap',
+        'color': 'data(color)'
     };
 
     return {
@@ -122,64 +136,30 @@ export function cytoParamsFromContainer(containerElement, cytoData) {
 
         style: [ // the stylesheet for the graph
             {
-                selector: 'node[category = "c"]',
+                selector: 'node',
                 style: {
-                    ...baseNodeStyle,
-                    'color': 'rgb(107,36,50)',
+                    ...nodeBaseStyle,
                 }
             },
-
-            {
-                selector: 'node[category = "m"]',
-                style: {
-                    ...baseNodeStyle,
-                    'color': 'rgb(13,60,73)',
-                    'font-weight': 'bolder',
-                    'height': '30px',
-                }
-            },
-
-            {
-                selector: 'node[category = "i"]',
-                style: {
-                    ...baseNodeStyle,
-                    'height': '30px',
-                    'font-weight': 'bolder',
-                }
-            },
-
-            {
-                selector: 'node[category = "s"]',
-                style: {
-                    ...baseNodeStyle,
-                    'color': 'rgb(100, 100, 100)',
-                    'width': '80px',
-                }
-            },
-
-            {
-                selector: 'node[width > 250]',
-                style: {
-                    ...baseNodeStyle,
-                    'height': '100px',
-                    'text-valign': 'center',
-                    'text-wrap': 'wrap',
-                }
-            },
-
             {
                 selector: 'edge',
                 style: {
-                    'width': 10,
+                    'width': 4,
                     'target-arrow-shape': 'triangle',
                     'line-color': 'rgb(225, 225, 225)',
                     'target-arrow-color': 'rgb(190, 190, 190)',
                     'curve-style': 'bezier', // haystack bezier segments unbundled-bezier
                     'label': 'data(label)',
-                    'font-size': '2em',
+                    'font-size': '0.8em',
                     'color': 'rgb(140, 140, 140)',
                     'text-rotation': cytoData.edges.length > 10 ? 'autorotate' : 'none',
-                    'arrow-scale': 1.5
+                    'arrow-scale': 0.9
+                }
+            },
+            {
+                selector: 'node:selected',
+                style: {
+                    color: 'data(selectedColor)'
                 }
             }
         ],
