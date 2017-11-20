@@ -1,6 +1,14 @@
 import axios from 'axios';
 
 export default async function (component, entity) {
+    let localExtract = localStorage.getItem('wiki_' + entity.id + '_' + component.props.currentLanguage);
+    if (localExtract !== null) {
+        component.setState({
+            extract: localExtract
+        })
+        return
+    }
+
     const wiki = entity.wiki.split('/');
     const pageTitle = wiki[wiki.length - 1];
 
@@ -39,7 +47,7 @@ export default async function (component, entity) {
                 if (langLink) {
                     let query_url = 'https://' + lang + '.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro=&explaintext=&titles=';
                     query_url += langLink.title;
-                    getExtract(component, query_url)
+                    getExtract(component, query_url, entity.id)
                 } else {
                     noArticle(component);
                     return;
@@ -61,13 +69,14 @@ export default async function (component, entity) {
 
 };
 
-function getExtract(component, queryUrl) {
+function getExtract(component, queryUrl, entityId) {
     axios.get(queryUrl).then(
         (response) => {
             if (response.data.query) {
                 const pages = response.data.query.pages;
                 const wiki_id = Object.keys(pages)[0];
                 if (wiki_id) {
+                    localStorage.setItem('wiki_' + entityId + '_' + component.props.currentLanguage, pages[wiki_id].extract);
                     component.setState(
                         {
                             extract: pages[wiki_id].extract
@@ -97,7 +106,7 @@ function getExtract(component, queryUrl) {
     })
 };
 
-function noArticle(component){
+function noArticle(component) {
     console.log('Article not available')
     component.setState(
         {
