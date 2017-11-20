@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LanguageSelect from './LanguageSelect';
 import ResetApp from './ResetApp';
-import HomePaper from '../Paper/HomePaper'
+import HomePaper from '../../Paper/HomePaper'
 
 class SettingsPaper extends Component {
 

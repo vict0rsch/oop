@@ -7,10 +7,10 @@ import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 
 // import Scroll from 'react-scroll';
 
-import LearnAbout from './LearnAbout/LearnAbout';
-import HomeSearchBar from './HomeSearchBar/HomeSearchBar';
-import Contact from './Contact/Contact';
-import Settings from './Settings/Settings';
+import LearnAbout from './Content/LearnAbout/LearnAbout';
+import HomeSearchBar from './Content/HomeSearchBar/HomeSearchBar';
+import Contact from './Content/Contact/Contact';
+import Settings from './Content/Settings/Settings';
 import Introduction from './Introduction/Introduction';
 import HomeContentTabs from './HomeContentTabs';
 import Extension from './Extension/Extension';

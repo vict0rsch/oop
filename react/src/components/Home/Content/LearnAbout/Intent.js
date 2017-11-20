@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import MarkdownPaper from '../Paper/MarkdownPaper';
+import MarkdownPaper from '../../Paper/MarkdownPaper';
 
 class Intent extends Component {
     render() {
