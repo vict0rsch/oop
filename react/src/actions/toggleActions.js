@@ -10,6 +10,12 @@ export function toggleSearchBar() {
     };
 }
 
+export function toggleHowItWorks() {
+    return {
+        type: 'TOGGLE_HOWITWORKS'
+    };
+}
+
 export function toggleAbout() {
     return {
         type: 'TOGGLE_ABOUT'
