@@ -1,4 +1,4 @@
-const WIDTH_FACTOR = 20;
+const WIDTH_FACTOR = 3;
 
 export default function getCytoData(data, entity) {
     if (localStorage['cytoData_' + entity.id]) {
