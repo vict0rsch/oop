@@ -6,7 +6,7 @@ export default class Header extends Component {
     render() {
         const style = {
             ...this.props.style,
-            height: '90px'
+            height: '100px'
         };
         return (
             <div style={style}>
