@@ -1,7 +1,9 @@
 const defaultState = {
     data: {},
     dataIsAvailable: false,
-    show: {},
+    show: {
+        howItWorks: true
+    },
     currentDisplay: -1,
     infoBox: {
         type: '',
