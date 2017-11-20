@@ -13,7 +13,7 @@ import Contact from './Content/Contact/Contact';
 import Settings from './Content/Settings/Settings';
 import Introduction from './Introduction/Introduction';
 import HomeContentTabs from './HomeContentTabs';
-import Extension from './Extension/Extension';
+import Extension from './Content/Extension/Extension';
 import Header from './Header/Header';
 
 class Home extends React.Component {
