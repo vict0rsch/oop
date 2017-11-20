@@ -14,6 +14,7 @@ import Settings from './Settings/Settings';
 import Introduction from './Introduction/Introduction';
 import HomeContentTabs from './HomeContentTabs';
 import Extension from './Extension/Extension';
+import Header from './Header/Header';
 
 class Home extends React.Component {
 
@@ -82,19 +83,17 @@ class Home extends React.Component {
 
 
   render() {
+    const homeContentDivStyle = {
+      textAlign: this.props.clientType === 'mobile' ? 'center' : 'unset',
+      width: this.props.clientType === 'browser' ? '70%' : '80%',
+      margin: 'auto'
+    };
     return (
       <div>
-        <h1 style={{ textAlign: 'center' }}>
-          Open Ownership Project
-        </h1>
+        <Header {...this.props} style={homeContentDivStyle}/>
         <br />
         <Introduction {...this.props} />
-        <div style={{
-          textAlign: this.props.clientType === 'mobile' ? 'center' : 'unset',
-          width: this.props.clientType === 'browser' ? '70%' : '80%',
-          margin: 'auto'
-        }}>
-
+        <div style={homeContentDivStyle}>
 
           <HomeContentTabs {...this.props} />
 
