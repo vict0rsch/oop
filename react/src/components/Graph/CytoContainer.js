@@ -36,7 +36,7 @@ class CytoContainer extends React.Component {
       console.timeEnd('      Data Cyto');
       console.time('      Render Cyto');
     }
-    const cy = cytoscape(cytoParamsFromContainer(document.getElementById('cy'), cytoData));
+    const cy = cytoscape(cytoParamsFromContainer(document.getElementById('cy'), cytoData, entity.id));
     cy.ready(() => {
       cy.elements('node[category != "s"]').on(
         'tap',
