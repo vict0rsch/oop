@@ -26,7 +26,6 @@ class WikiCard extends Component {
             extract: <Waiting translate={this.props.translate} toTranslate='graph.wiki.loading' />,
         });
         const entity = this.props.data.entities.ids[nextProps.infoBox.data];
-        console.log(entity.name)
 
         getWikiData(this, entity);
     }
