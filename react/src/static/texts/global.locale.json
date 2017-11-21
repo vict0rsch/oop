@@ -45,7 +45,10 @@
         "sideButtons": {
             "homeTooltip": ["Go home", "Retour \u00e0 l'Accueil"],
             "searchTooltip": ["Search the Graph", "Rechercher dans le Graphe"],
-            "searchTooltipDisabled": ["Use the Search Bar at the top!", "Utilisez la Barre de Recherche en haut!"]
+            "searchTooltipDisabled": ["Use the Search Bar at the top!", "Utilisez la Barre de Recherche en haut!"],
+            "resetTooltip": ["Reset Graph", "Rafraîchir"],
+            "previousTooltip": ["Previous Graph", "Graphe précédent"],
+            "nextTooltip": ["Next Graph", "Graphe suivant"]
         },
         "wiki": {
             "loading": ["Looking for a Wikipedia Summary...", "En attente d'un r\u00e9sum\u00e9 de Wikipedia..."],
