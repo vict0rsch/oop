@@ -48,7 +48,7 @@ class EntityCard extends Component {
         const { classes } = this.props;
 
         const style = {
-            marginTop: '40px'
+            marginTop: this.props.clientType === 'mobile' ? '0px' : '40px'
         };
 
         return (

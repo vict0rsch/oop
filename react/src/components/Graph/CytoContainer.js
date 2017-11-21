@@ -108,11 +108,13 @@ class CytoContainer extends React.Component {
       'chromeExtension': {
         ...defaultStyle,
         height: '400px',
-        width: '770px',
-        padding: '0px'
+        width: '700px',
+        padding: '0px',
+        float: 'right'
       },
       'mobile': {
         ...defaultStyle,
+        width: '90%',
         minHeight: '300px'
       }
     }
