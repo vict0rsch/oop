@@ -7,33 +7,28 @@ class WikiCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            extract: <Waiting translate={this.props.translate} toTranslate='graph.wiki.loading' />,
-            count: 0
+            extract: <Waiting translate={this.props.translate} toTranslate='graph.wiki.loading' />
         }
     }
 
+    
+    componentDidMount() {
+        const entity = this.props.data.entities.ids[this.props.infoBox.data];
+        getWikiData(this, entity);
+    }
+    
+
     componentWillReceiveProps(nextProps) {
-
-        // entity.wiki = {
-        //     lang: 'language en fr etc.',
-        //     title: 'wikipedia page title',
-        //     pageid: 'int, pageid'
-        // }
-        // change 'frwiki' to wiki.lang + 'wiki'
-
-        if (nextProps.infoBox.data === this.props.infoBox.data && this.state.count > 0) {
+        if (nextProps.infoBox.data === this.props.infoBox.data) {
             return
         }
         this.setState({
             extract: <Waiting translate={this.props.translate} toTranslate='graph.wiki.loading' />,
-            count: this.state.count + 1
         });
         const entity = this.props.data.entities.ids[nextProps.infoBox.data];
         console.log(entity.name)
 
         getWikiData(this, entity);
-
-
     }
 
     render() {
