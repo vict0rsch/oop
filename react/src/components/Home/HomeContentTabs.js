@@ -15,6 +15,9 @@ const styles = theme => ({
     flexGrow: 1,
     marginTop: theme.spacing.unit * 3,
   },
+  indicator:{
+    width: '100px'
+  }
 });
 
 class HomeContentTabs extends React.Component {
@@ -73,11 +76,11 @@ class HomeContentTabs extends React.Component {
 
     const tabStyle = this.props.clientType !== 'chromeExtension' ?
       {
-        width: '100px'
+        minWidth: '100px'
       }
       :
       {
-        width: '140px'
+        minWidth: '140px'
       };
 
     const labelStyle = this.props.clientType !== 'chromeExtension' ?
@@ -99,6 +102,7 @@ class HomeContentTabs extends React.Component {
           centered
           scrollable={window.innerWidth < 630}
           scrollButtons="auto"
+          indicatorClassName={classes.indicator}
         >
           {tabs.map(
           (v, k) => {
@@ -106,7 +110,7 @@ class HomeContentTabs extends React.Component {
               className={classes.labelContainer}
               key={'tab' + k}
               label={
-                <span style={labelStyle}>{this.props.translate("home.tabs." + v)}</span>
+                <span style={{...labelStyle, ...tabStyle}}>{this.props.translate("home.tabs." + v)}</span>
               }
               icon={icons[v]}
               value={v}
