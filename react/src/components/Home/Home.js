@@ -39,12 +39,7 @@ class Home extends React.Component {
             component.props.updateEntityInfoBox(entity.id);
             component.props.displayEntity(entity.id);
             component.props.closeAll();
-            component.props.history.push({
-              pathname: `/graph/${entity.id}`,
-              state: {
-                from: this.props.location.pathname
-              }
-            });
+            component.props.history.push('/graph/' + entity.id);
           }
         }
       });
