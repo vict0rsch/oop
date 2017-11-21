@@ -3,6 +3,17 @@ import Icon from 'material-ui-icons/Clear';
 import Button from 'material-ui/Button';
 
 class HideSearchBar extends Component {
+    constructor(props) {
+        super(props)
+        this.handleCLick = this.handleCLick.bind(this)
+        
+    }
+    
+    handleCLick(){
+        this.props.toggleSearchBar();
+        this.props.toggleFocusSearchBar();
+    }
+
     render() {
         const iconStyle = {
             height: '30px',
@@ -10,7 +21,7 @@ class HideSearchBar extends Component {
         };
         return (
             <div style={{display:'inline-block', verticalAlign:'top'}}>
-                <Button onClick={this.props.toggleSearchBar} style={{ verticalAlign: 'middle', height:'30px', 'padding': 0}}><Icon style={iconStyle}/></Button>
+                <Button onClick={this.handleCLick} style={{ verticalAlign: 'middle', height:'30px', 'padding': 0}}><Icon style={iconStyle}/></Button>
             </div>
         );
     }

@@ -12,12 +12,20 @@ class CytoContainer extends React.Component {
     super(props);
     this.renderCytoscapeElement = this.renderCytoscapeElement.bind(this);
     this.props.updateEntityInfoBox(this.props.match.params.entityId);
+    this.focusSearchBar = this.focusSearchBar.bind(this)
+
     this.state = {
       update: false,
-      changeWiki: false
+      changeWiki: false,
+      focus: 0
     };
   }
 
+  focusSearchBar() {
+    this.setState({
+      focus: this.state.focus + 1
+    })
+  }
 
   renderCytoscapeElement() {
     console.log('rendering.')
@@ -83,7 +91,7 @@ class CytoContainer extends React.Component {
       width: '70%',
       height: parseInt(window.screen.availHeight / 2, 10) + 'px',
     };
-    
+
     if (!this.props.show.searchBar) {
       defaultStyle.marginTop = '20px'
     }
@@ -107,9 +115,9 @@ class CytoContainer extends React.Component {
 
     return (
       <div>
-        {this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar {...this.props} />}
+        {this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar {...this.props} focus={this.state.focus} />}
         <div id="cy" style={cyStyles[this.props.clientType]} onContextMenu={this.handleContextMenu} />
-        <SideButtons {...this.props} />
+        <SideButtons {...this.props} focusSearchBar={this.focusSearchBar} />
         <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki} />
       </div>
     );
