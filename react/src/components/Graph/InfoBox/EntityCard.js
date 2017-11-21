@@ -29,9 +29,23 @@ const styles = theme => ({
 
 class EntityCard extends Component {
 
+
+    componentWillMount() {
+        const location = parseInt(this.props.match.params.entityId, 10);
+        const persistedInfoBox = JSON.parse(localStorage.getItem('reduxPersist:infoBox'))
+
+        if (persistedInfoBox && persistedInfoBox.data !== location) {
+            console.log('update')
+            localStorage.setItem('reduxPersist:infoBox', JSON.stringify({
+                ...persistedInfoBox,
+                data: location
+            }))
+        }
+    }
+
     render() {
 
-        const {classes} = this.props;
+        const { classes } = this.props;
 
         const style = {
             marginTop: '40px'
@@ -49,13 +63,13 @@ class EntityCard extends Component {
                     </Typography>
                 </div>
 
-                <WikiButton {...this.props}/>
-                <WebsiteButton {...this.props}/>
+                <WikiButton {...this.props} />
+                <WebsiteButton {...this.props} />
                 {this.props.graphButton}
 
                 <div style={{ textAlign: 'justify', textJustify: 'auto' }}>
                     <Typography type="body1" className={classes.title} component='div'>
-                        <WikiCard {...this.props}/>
+                        <WikiCard {...this.props} />
                     </Typography>
                 </div>
 
