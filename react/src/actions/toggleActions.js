@@ -40,6 +40,12 @@ export function toggleExtension() {
     };
 }
 
+export function toggleFocusSearchBar() {
+    return {
+        type: 'TOGGLE_FOCUSSEARCHBAR'
+    };
+}
+
 export function closeAll(){
     return {
         type: 'CLOSE_ALL'
