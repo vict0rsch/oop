@@ -8,16 +8,27 @@ import NextButton from './NextButton';
 class SideButtons extends Component {
     render() {
 
+        // let sideButtonDivStyle = {
+        //     position: 'fixed',
+        //     top: '80px',
+        //     left: '5%'
+        // }
+
         let sideButtonDivStyle = {
-            position: 'fixed',
-            top: '80px',
-            left: '5%'
+            position: 'unset'
         }
 
-        if (this.props.clientType === 'mobile'){
+        if (this.props.clientType === 'mobile') {
             sideButtonDivStyle.top = '30px';
             sideButtonDivStyle.width = '70px';
-            sideButtonDivStyle.left= '2%'
+            sideButtonDivStyle.left = '2%';
+            sideButtonDivStyle.position = 'fixed'
+        }
+        if (this.props.clientType === 'browser') {
+            const left = 0.15 * window.innerWidth - 20 + 8;
+            sideButtonDivStyle.top = '80px';
+            sideButtonDivStyle.left = left + 'px';
+            sideButtonDivStyle.position = 'absolute'
         }
 
         return (
