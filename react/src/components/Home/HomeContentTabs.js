@@ -31,7 +31,13 @@ class HomeContentTabs extends React.Component {
       this.setState({ value });
       this.props.closeAll();
       this.props.toggle(value);
-      this.props.history.push('/' + value)
+
+      this.props.history.push({
+        pathname: '/' + value,
+        state: {
+          from: this.props.location.pathname
+        }
+      });
     }
   };
 
