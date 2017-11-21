@@ -27,8 +27,10 @@ class CytoContainer extends React.Component {
     })
   }
 
+
   renderCytoscapeElement() {
     console.log('rendering.')
+
     const time = false;
     if (time) {
       console.time('Full Cyto');
@@ -37,9 +39,19 @@ class CytoContainer extends React.Component {
     const container = this;
     const data = this.props.data;
     const id = this.props.match.params.entityId;
-
     const entity = data.entities.ids[id];
     let cytoData = getCytoData(data, entity);
+
+    const graphHistory = sessionStorage.getItem('graphHistory');
+    if (!graphHistory) {
+      sessionStorage.setItem('graphHistory', JSON.stringify(
+        [id]
+      ));
+      sessionStorage.setItem('location', JSON.stringify(
+        0
+      ));
+    }
+
     if (time) {
       console.timeEnd('      Data Cyto');
       console.time('      Render Cyto');
@@ -59,14 +71,6 @@ class CytoContainer extends React.Component {
         console.timeEnd('      Render Cyto');
         console.timeEnd('Full Cyto');
       }
-      // cy.elements('edge').on(
-      //   'click',
-      //   (event) => {
-      //     if (parseInt(event.target.data().target, 10) >= 0 && parseInt(event.target.data().source, 10) >= 0) {
-      //       container.props.updateShareInfoBox(event.target.data());
-      //     }
-      //   },
-      // );
     });
     this.cy = cy;
   }
@@ -112,12 +116,11 @@ class CytoContainer extends React.Component {
       }
     }
 
-
     return (
       <div>
         {this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar {...this.props} focus={this.state.focus} />}
         <div id="cy" style={cyStyles[this.props.clientType]} onContextMenu={this.handleContextMenu} />
-        <SideButtons {...this.props} focusSearchBar={this.focusSearchBar} />
+        <SideButtons {...this.props} focusSearchBar={this.focusSearchBar} reRenderGraph={this.renderCytoscapeElement}/>
         <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki} />
       </div>
     );
