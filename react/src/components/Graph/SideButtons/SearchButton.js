@@ -6,6 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import SearchIcon from 'material-ui-icons/Search';
 import Tooltip from 'material-ui/Tooltip';
+import Scroll from 'react-scroll';
 
 
 const styles = theme => ({
@@ -32,7 +33,16 @@ class SearchButton extends React.Component {
     }
 
     handleClick() {
-        this.props.toggleSearchBar()
+        if (!this.props.show.searchBar) {
+            this.props.toggleSearchBar()
+        } else {
+            Scroll.animateScroll.scrollToTop({
+                duration: 300,
+                delay: 0,
+                smooth: true
+            });
+            setTimeout(this.props.focusSearchBar, 200)
+        }
     }
 
     render() {
@@ -49,7 +59,7 @@ class SearchButton extends React.Component {
                 placement="bottom"
                 className={classes.tooltip}
             >
-                <Button raised disabled={this.props.show.searchBar} fab className={classes.button} onClick={this.handleClick}>
+                <Button raised fab className={classes.button} onClick={this.handleClick}>
                     <SearchIcon className={classes.icon} />
                 </Button>
             </Tooltip>

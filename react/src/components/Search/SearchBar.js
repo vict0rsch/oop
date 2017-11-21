@@ -24,6 +24,16 @@ class SearchBar extends React.Component {
     }
   }
 
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log(nextProps.focus);
+    if (nextProps.focus !== this.props.focus) {
+      console.log('focus');
+      this.select.focus()
+    }
+  }
+
+
   render() {
 
     let selectStyle = {
@@ -64,6 +74,7 @@ class SearchBar extends React.Component {
             autoBlur
             clearable={false}
             autofocus
+            ref={(select) => { this.select = select; }}
           />
         </div>
         {!this.props.hideButton && <HideSearchBar {...this.props} />}
