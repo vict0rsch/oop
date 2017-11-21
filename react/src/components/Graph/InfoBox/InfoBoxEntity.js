@@ -12,7 +12,12 @@ class InfoBoxEntity extends React.Component {
       this.props.idToDisplay
     ];
 
-    this.props.history.push(`/graph/${entity.id}`);
+    this.props.history.push({
+      pathname: `/graph/${entity.id}`,
+      state: {
+        from: this.props.location.pathname
+      }
+    });
   };
 
   render() {
@@ -29,16 +34,12 @@ class InfoBoxEntity extends React.Component {
     }
 
     return (
-      
-        <EntityCard
-          entity={entity}
-          graphButton={graphButton}
-          changeWiki={this.props.changeWiki}
-          translate={this.props.translate}
-          currentLanguage={this.props.currentLanguage}
-          infoBox={this.props.infoBox}
-          data={this.props.data}
-        />
+
+      <EntityCard
+        entity={entity}
+        graphButton={graphButton}
+        {...this.props}
+      />
     );
   }
 }
