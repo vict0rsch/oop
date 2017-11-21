@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'material-ui/Button';
 import EntityCard from './EntityCard';
 import Timeline from 'material-ui-icons/Timeline';
+import logGraph from '../../../utils/logGraph';
 
 
 class InfoBoxEntity extends React.Component {
@@ -11,7 +12,8 @@ class InfoBoxEntity extends React.Component {
     const entity = this.props.data.entities.ids[
       this.props.idToDisplay
     ];
-
+    
+    logGraph(entity.id);
     this.props.history.push(`/graph/${entity.id}`);
   };
 

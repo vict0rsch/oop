@@ -2,6 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import HideSearchBar from './HideSearchBar';
+import logGraph from '../../utils/logGraph';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -18,6 +19,8 @@ class SearchBar extends React.Component {
           }
           this.props.show.searchBar && ['/', '/search'].indexOf(this.props.location.pathname) > -1 && this.props.closeAll();
           this.props.updateEntityInfoBox(val.id);
+
+          logGraph(val.id);
           this.props.history.push(`/graph/${val.id}`);
         }
       }
@@ -26,7 +29,6 @@ class SearchBar extends React.Component {
 
 
   componentWillUpdate(nextProps, nextState) {
-    console.log(nextProps.focus);
     if (nextProps.focus !== this.props.focus) {
       console.log('focus');
       this.select.focus()
