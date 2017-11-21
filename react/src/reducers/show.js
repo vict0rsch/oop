@@ -30,6 +30,11 @@ function show(state = false, action) {
                 ...state,
                 howItWorks: !state.howItWorks
             }
+        case 'TOGGLE_FOCUSSEARCHBAR':
+            return {
+                ...state,
+                focusSearchBar: !state.focusSearchBar
+            }
         case 'CLOSE_ALL':
             let newState = {
                 ...state
