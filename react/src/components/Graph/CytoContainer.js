@@ -85,6 +85,7 @@ class CytoContainer extends React.Component {
     const location = parseInt(this.props.match.params.entityId, 10);
     if (location !== this.props.currentDisplay) {
       this.props.displayEntity(location);
+      this.props.updateEntityInfoBox(location);
       this.renderCytoscapeElement();
     }
   }
