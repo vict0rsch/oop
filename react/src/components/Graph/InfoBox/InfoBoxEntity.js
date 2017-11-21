@@ -12,12 +12,7 @@ class InfoBoxEntity extends React.Component {
       this.props.idToDisplay
     ];
 
-    this.props.history.push({
-      pathname: `/graph/${entity.id}`,
-      state: {
-        from: this.props.location.pathname
-      }
-    });
+    this.props.history.push(`/graph/${entity.id}`);
   };
 
   render() {
