@@ -86,18 +86,15 @@ class Home extends React.Component {
     return (
       <div>
         <Header {...this.props} style={homeContentDivStyle}/>
-        <br />
+
         <Introduction {...this.props} />
         <div style={homeContentDivStyle}>
-
           <HomeContentTabs {...this.props} />
-
           <HomeSearchBar {...this.props} />
           <LearnAbout {...this.props} />
           <Contact {...this.props} />
           <Settings {...this.props} />
           <Extension {...this.props} />
-
         </div>
       </div>
     );
