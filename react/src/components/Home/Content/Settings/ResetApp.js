@@ -27,6 +27,12 @@ class AlertDialog extends React.Component {
                 return ''
             }
         );
+        Object.keys(sessionStorage).map(
+            (v, k) => {
+                localStorage.removeItem(v);
+                return ''
+            }
+        );
         this.setState({ open: false });
         window.location.reload();
     };
