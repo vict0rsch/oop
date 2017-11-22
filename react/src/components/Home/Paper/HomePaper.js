@@ -20,12 +20,6 @@ class HomePaper extends Component {
         let browserWidth = navigator.userAgent.toLocaleLowerCase().indexOf('firefox') > -1 ?
             '-moz-available' : '-webkit-fill-available';
 
-        const widths = {
-            'chromeExtension': browserWidth,
-            'mobile': '90%',
-            'browser': browserWidth
-        }
-
         const typoStyle = {
             fontSize: '1.2em',
             textAlign: 'justify',
@@ -63,7 +57,7 @@ class HomePaper extends Component {
         const { classes } = this.props;
 
         return (
-            <Paper style={{ width: widths[this.props.clientType] }} className={classes.root} elevation={4}>
+            <Paper style={{ width: browserWidth }} className={classes.root} elevation={4}>
                 <Typography type="body1" style={typoStyles[this.props.clientType]} component="div" >
                     {this.props.content}
                 </Typography>
