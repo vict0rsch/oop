@@ -42,7 +42,7 @@ export default class Introduction extends Component {
         );
 
         let content;
-        if (this.props.clientType === "chromeExtension" || 1) {
+        if (this.props.clientType === "chromeExtension") {
             if (this.props.show.howItWorks) {
                 content = (
                     <div style={introStyles[this.props.clientType]}>
@@ -56,7 +56,9 @@ export default class Introduction extends Component {
                         </Tooltip>
                         {this.props.translate('home.intro.d')}
                         <br /><br />
-                        {this.props.translate('home.intro.f')}<br />
+                        {this.props.translate('home.intro.f')}
+                        <br /><br />
+                        {this.props.translate('home.intro.g')}
                         <div style={{ textAlign: 'right' }}>
                             <Button color='primary' onClick={this.props.toggleHowItWorks} style={{ minHeight: '1em' }}>
                                 {this.props.translate('home.intro.button')}
@@ -69,12 +71,22 @@ export default class Introduction extends Component {
             }
 
         } else {
+            if (!this.props.show.howItWorks) {
+                return ''
+            }
             content = (
                 <div style={introStyles[this.props.clientType]}>
                     {this.props.clientType === "mobile" && this.props.translate('home.intro.am')}
                     {this.props.clientType === "browser" && this.props.translate('home.intro.aw')}
                     <br /><br />
                     {this.props.translate('home.intro.f')}
+                    <br /><br />
+                    {this.props.translate('home.intro.g')}
+                    <div style={{ textAlign: 'right' }}>
+                        <Button color='primary' onClick={this.props.toggleHowItWorks} style={{ minHeight: '1em' }}>
+                            {this.props.translate('home.intro.button')}
+                        </Button>
+                    </div>
                 </div>
             );
 
