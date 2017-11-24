@@ -8,7 +8,7 @@ See install quick guide at the end of this Readme, check out the Wiki for more t
 
 # Open Ownership Project - OOP
 
-### Why 
+### Why
 **Who owns the media we're reading?** Most of the time we don't know. Not that the information is secret, we just don't necessarily think about it.
 
 **Does it make any difference on the content?** Maybe. Sometimes. Often. Always. Depends, really. On the media, the owner, the piece of news, the time, location and country. Knowing who owns the media we're reading is a valuable information in itself. Not that it's a good or bad thing that they're owned, we just ought to think critically about it and sometimes link this with the potential groups' other activities, in other industries.
@@ -35,8 +35,8 @@ As of now, only the French Media are supported and the information is based on [
 
 1. Click the green "Clone or download" button then "Download ZIP"
 2. Extract the ZIP file wherever you like
-3. In Chrome, go to Extensions : chrome://extensions/
-4. Allow the "Developper Mode" by clicking on the checkbox
+3. In Chrome, go to Extensions : `chrome://extensions/` (you can type this in the address bar)
+4. Allow the "Developper Mode" by clicking on the checkbox (top right)
 5. Click on "Load unpacked extension" and, within the folder where you unzipped the file in 2. select the `Chrome Extension` folder.
 **DONE!**
 At Chrome start up it may ask you whether or not to load this extension. Say yes if you do ;) 
@@ -47,4 +47,4 @@ At Chrome start up it may ask you whether or not to load this extension. Say yes
 2. Go to `react/`: `cd ./oop/react/`
 3. run `npm install` (or `yarn`)
 4. run `npm start` (or `yarn`) to start the dev server and hot-reloading of React Components
-5. That's it! The server runs on port `7777` so go to `http://localhost:7777/`
+5. That's it! The server runs on port `3000` so go to `http://localhost:3000/`
