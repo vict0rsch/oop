@@ -9,22 +9,22 @@ export default class Header extends Component {
             height: this.props.clientType === 'mobile' ? '150px' : '100px',
         };
         const titleStyle = {
-            display: 'inline-block', 
-            height: '100%', 
+            display: 'inline-block',
+            height: '100%',
             float: 'left'
         };
 
-        if (this.props.clientType === 'chromeExtension'){
+        if (this.props.clientType === 'chromeExtension') {
             titleStyle.linetHeight = '200%';
         }
 
         let buttonStyle = {
-            display: 'inline-block', 
-            height: '100%', 
+            display: 'inline-block',
+            height: '100%',
             float: 'left'
         };
 
-        if (this.props.clientType === 'mobile'){
+        if (this.props.clientType === 'mobile') {
             buttonStyle = {
                 position: 'absolute',
                 right: '0px'
@@ -36,9 +36,7 @@ export default class Header extends Component {
                 <div style={titleStyle}>
                     <h1>Open Ownership Project</h1>
                 </div>
-                <div style={buttonStyle}>
-                    {!this.props.show.howItWorks && <HowItWorks {...this.props} />}
-                </div>
+                <HowItWorks {...this.props} />
             </div>
         )
     }

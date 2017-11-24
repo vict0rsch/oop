@@ -6,11 +6,12 @@ class ContactPaper extends Component {
     
 
     render() {
+        const extra = this.props.clientType === 'chromeExtension' ? this.props.translate('home.contactNewLink') : '';
         return (
             <div style={{textAlign:'center'}}>
                 <MarkdownPaper
                     {...this.props}
-                    source={this.props.translate('home.contactPaperMd')}
+                    source={this.props.translate('home.contactPaperMd') + extra}
                     toggle={this.props.toggleContact}
                 />
             </div>

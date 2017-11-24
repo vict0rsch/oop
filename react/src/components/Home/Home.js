@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { check_website } from '../../utils/backgroundUtils';
 import mapStateToProps from '../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
+import { check_website } from '../../utils/backgroundUtils';
 
 // import Scroll from 'react-scroll';
 
@@ -11,8 +11,7 @@ import LearnAbout from './Content/LearnAbout/LearnAbout';
 import HomeSearchBar from './Content/HomeSearchBar/HomeSearchBar';
 import Contact from './Content/Contact/Contact';
 import Settings from './Content/Settings/Settings';
-import Introduction from './Introduction/Introduction';
-import HomeContentTabs from './HomeContentTabs';
+import HomeContentTabs from './Content/Tabs';
 import Extension from './Content/Extension/Extension';
 import Header from './Header/Header';
 
@@ -68,9 +67,9 @@ class Home extends React.Component {
     }
   }
 
-  
+
   componentWillUpdate(nextProps, nextState) {
-    if (sessionStorage.graphHistory && sessionStorage.graphHistory.length > 2){
+    if (sessionStorage.graphHistory && sessionStorage.graphHistory.length > 2) {
       sessionStorage.graphHistory = "[]";
       sessionStorage.location = "-1";
     }
@@ -85,9 +84,7 @@ class Home extends React.Component {
     };
     return (
       <div>
-        <Header {...this.props} style={homeContentDivStyle}/>
-
-        <Introduction {...this.props} />
+        <Header {...this.props} style={homeContentDivStyle} />
         <div style={homeContentDivStyle}>
           <HomeContentTabs {...this.props} />
           <HomeSearchBar {...this.props} />
