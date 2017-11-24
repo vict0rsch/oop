@@ -45,7 +45,7 @@ function count_tabs() {
     });
 }
 
-function log_tab(onglet) { //moved
+function log_tab(onglet) {
     localStorage['currentTabUrl'] = onglet.url;
     localStorage['currentTabTitle'] = onglet.title;
     localStorage['currentTabDomain'] = parse_url(onglet.url);
@@ -55,7 +55,7 @@ function log_tab(onglet) { //moved
 }
 
 
-function notification(entity) { //moved
+function notification(entity) {
     var content = "";
     content = content + entity.name;
     var notification = new Notification(
@@ -71,7 +71,7 @@ function notification(entity) { //moved
 }
 
 
-function notifyMe() { //moved
+function notifyMe() {
 
     if (Notification.permission !== "granted") {
         Notification.requestPermission();
@@ -115,7 +115,7 @@ function notifyMe() { //moved
 }
 
 
-function parse_url(url) { //moved
+function parse_url(url) {
     var parser = document.createElement('a');
     parser.href = url;
     var new_url = parser.hostname;
