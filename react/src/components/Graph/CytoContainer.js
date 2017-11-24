@@ -79,6 +79,7 @@ class CytoContainer extends React.Component {
     this.setState({
       update: true
     });
+    this.renderCytoscapeElement()
   }
 
   componentDidUpdate() {
@@ -110,7 +111,7 @@ class CytoContainer extends React.Component {
         height: '400px',
         width: '700px',
         padding: '0px',
-        float: 'right'
+        // float: 'right'
       },
       'mobile': {
         ...defaultStyle,
