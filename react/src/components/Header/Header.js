@@ -15,16 +15,27 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    const element = this;
-    fetchData(element);
+    const component = this;
+    fetchData(component);
   }
+
+
+  componentWillMount() {
+    const pathname = this.props.history.location.pathname;
+    const locations = ['/extension', '/settings', '/about', '/search', '/contact', '/'];
+    if (pathname && (locations.indexOf(pathname) === -1 && pathname.indexOf('graph') === -1)) {
+      this.props.history.push('/');
+    }
+  }
+
+
   redirect(val) {
-    this.props.history.push(`/graph/${val.id}`)
+    this.props.history.push(`/graph/${val.id}`);
   }
   render() {
     return (
       <div>
-        
+
       </div>
     );
   }
