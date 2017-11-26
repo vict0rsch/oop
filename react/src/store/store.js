@@ -10,7 +10,7 @@ import defaultState from './defaultState';
 
 const browserHistory = createBrowserHistory();
 const hashHistory = createHashHistory();
-const USE_BROWSER_HISTORY = false;
+const USE_BROWSER_HISTORY = true;
 let _history;
 if (USE_BROWSER_HISTORY) {
     _history = browserHistory;
