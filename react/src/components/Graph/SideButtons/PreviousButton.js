@@ -31,14 +31,20 @@ class PreviousButton extends React.Component {
 
     handleClick() {
         const history = JSON.parse(sessionStorage.graphHistory);
-        const location = JSON.parse(sessionStorage.location);
+        let location = JSON.parse(sessionStorage.location);
+        if (location === -1){
+            location = 0;
+        }
         sessionStorage.location = location - 1;
-        this.props.history.push('/graph/' + history[location - 1])
-
+        if (this.props.data.idSet.indexOf(parseInt(history[location - 1], 10)) > -1){
+            this.props.history.push('/graph/' + history[location - 1]);
+        } else {
+            console.log('Unknown : ', history[location - 1])
+        }
     }
 
     render() {
-        const disabled = sessionStorage.graphHistory && JSON.parse(sessionStorage.location) === 0;
+        const disabled = JSON.parse(sessionStorage.location) <= 0;
         return (
             <Tooltip
                 id="tooltip-ResetButton"
