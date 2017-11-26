@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Tooltip from 'material-ui/Tooltip'
-import Button from 'material-ui/Button';
 
 
 export default class HowItWorksText extends Component {

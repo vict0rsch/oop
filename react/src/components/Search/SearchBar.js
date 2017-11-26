@@ -29,7 +29,7 @@ class SearchBar extends React.Component {
 
 
   componentWillUpdate(nextProps, nextState) {
-    if (nextProps.focus !== this.props.focus) {
+    if (nextProps.focus !== this.props.focus && this.props.history.location.pathname.indexOf('graph') > -1 ) {
       console.log('focus');
       this.select.focus()
     }
@@ -75,7 +75,7 @@ class SearchBar extends React.Component {
             arrowRenderer={() => null}
             autoBlur
             clearable={false}
-            autofocus
+            autofocus={!this.props.preventAutofocus}
             ref={(select) => { this.select = select; }}
           />
         </div>
