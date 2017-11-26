@@ -33,13 +33,16 @@ class PreviousButton extends React.Component {
         const history = JSON.parse(sessionStorage.getItem('graphHistory'));
         const location = JSON.parse(sessionStorage.getItem('location'));
         sessionStorage.location = location + 1;
-        this.props.history.push('/graph/' + history[location + 1])
-
+        if (this.props.data.idSet.indexOf(parseInt(history[location + 1], 10)) > -1) {
+            this.props.history.push('/graph/' + history[location + 1]);
+        } else {
+            console.log('Unknown : ', history[location - 1])
+        }
     }
 
     render() {
 
-        const disabled = sessionStorage.graphHistory && JSON.parse(sessionStorage.graphHistory).length - 1 === JSON.parse(sessionStorage.location);
+        const disabled = JSON.parse(sessionStorage.graphHistory).length - 1 === JSON.parse(sessionStorage.location);
 
         return (
             <Tooltip

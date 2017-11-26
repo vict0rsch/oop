@@ -1,6 +1,7 @@
 {
     "test": ["test_en", "text_fr"],
     "home": {
+        "example":["A few (almost) randomly picked Graphs:", "Quelques Graphes (presque) au hasard:"],
         "searchBar": ["Search The Graph", "Rechercher dans le Graphe"],
         "learnAbout": ["About the Open Ownership Project", "\u00c0 propos de Open Ownership Project"],
         "contactButton": ["Contact", "Contact"],
