@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import HowItWorks from "./HowItWorks";
 
+
 export default class Header extends Component {
 
     render() {
@@ -10,25 +11,12 @@ export default class Header extends Component {
         };
         const titleStyle = {
             display: 'inline-block',
-            height: '100%',
+            height: 'fit-content',
             float: 'left'
         };
 
         if (this.props.clientType === 'chromeExtension') {
             titleStyle.linetHeight = '200%';
-        }
-
-        let buttonStyle = {
-            display: 'inline-block',
-            height: '100%',
-            float: 'left'
-        };
-
-        if (this.props.clientType === 'mobile') {
-            buttonStyle = {
-                position: 'absolute',
-                right: '0px'
-            };
         }
 
         return (

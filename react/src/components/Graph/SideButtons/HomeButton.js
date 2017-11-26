@@ -31,6 +31,8 @@ class HomeButton extends React.Component {
 
     handleClick() {
         this.props.show.searchBar && this.props.toggleSearchBar();
+        sessionStorage.graphHistory = '[]';
+        sessionStorage.location = '-1';
         this.props.history.push('/');
     }
 
