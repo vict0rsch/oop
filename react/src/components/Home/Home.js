@@ -14,6 +14,7 @@ import Settings from './Content/Settings/Settings';
 import HomeContentTabs from './Content/Tabs';
 import Extension from './Content/Extension/Extension';
 import Header from './Header/Header';
+import Example from './Content/Example/Example';
 
 class Home extends React.Component {
 
@@ -86,6 +87,7 @@ class Home extends React.Component {
       <div>
         <Header {...this.props} style={homeContentDivStyle} />
         <div style={homeContentDivStyle}>
+          <Example {...this.props} />
           <HomeContentTabs {...this.props} />
           <HomeSearchBar {...this.props} />
           <LearnAbout {...this.props} />
