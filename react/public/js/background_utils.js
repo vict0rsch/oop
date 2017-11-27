@@ -9,10 +9,10 @@ function sleep(milliseconds) {
 
 function get_data(next) {
     var data;
-    while(!data){
+    while (!data) {
         data = JSON.parse(localStorage.getItem('data'));
-        if (!data){
-            sleep(1000);
+        if (!data) {
+            sleep(500);
         }
     }
     next(data);
@@ -54,64 +54,117 @@ function log_tab(onglet) {
     notifyMe()
 }
 
-
-function notification(entity) {
-    var content = "";
-    content = content + entity.name;
-    var notification = new Notification(
-        'Notification title', {
-            icon: 'http://www.monde-diplomatique.fr/IMG/png/ppa-1-4.png',
-            body: content,
-            //console.log(notification)
-            // notification.onclick = function () {
-            //   window.open("http://stackoverflow.com/a/13328397/1269037");      
-            // };
+function setParents(data, entity, parents) {
+    if (
+        Object
+            .keys(data.shares.children)
+            .indexOf(
+            parseInt(entity.id, 10)
+            ) !== -1
+    ) {
+        for (let share of data.shares.children[parseInt(entity.id, 10)]) {
+            setParents(data, data.entities.ids[share.parent_id], parents)
         }
+    } else if (
+        Object
+            .keys(data.shares.children)
+            .indexOf(
+            entity.id + ''
+            ) !== -1
+    ) {
+        for (let share of data.shares.children[parseInt(entity.id, 10)]) {
+            setParents(data, data.entities.ids[share.parent_id], parents)
+        }
+    } else {
+        parents.push(entity)
+    }
+}
+
+function getOwners(data, entity) {
+    let owners = [];
+    setParents(data, entity, owners);
+    return owners.map(function (v, k) { return v.name });
+}
+
+
+function notification(data, entity) {
+    let lang;
+    const localLang = localStorage.getItem('activeLanguage');
+    if (localLang) {
+        lang = localLang;
+    } else {
+        const locale = JSON.parse(localStorage.getItem('reduxPersist:locale'));
+        if (locale && locale.languages && locale.languages.length > 0) {
+            for (let l of locale.languages) {
+                if (l.active) {
+                    lang = l.code;
+                    break;
+                }
+            }
+        } else {
+            lang = navigator.language || navigator.userLanguage;
+            lang = lang === 'fr' ? lang : 'en';
+        }
+        localStorage.setItem('activeLanguage', lang);
+    }
+
+    let body;
+    if (lang === 'en') {
+        body = ' belongs to '
+    } else {
+        body = ' appartient à ';
+    }
+    body = entity.name + body + getOwners(data, entity).join(', ');
+    let config = {
+        iconUrl: '/icon.png',
+        message: body,
+        title: entity.name,
+        type: 'basic',
+    };
+
+    var notification = chrome.notifications.create(
+        '' + Math.random(), config, function(notifId){console.log(notifId)}
     );
 }
 
 
 function notifyMe() {
 
-    if (Notification.permission !== "granted") {
-        Notification.requestPermission();
-    } else {
-        // browser allows notifications
-        get_data(function (data) {
 
-            var entity = check_website(data, localStorage['currentTabUrl']);
+    // browser allows notifications
+    get_data(function (data) {
 
-            var current_name = 'current_' + entity.name;
-            var current_session = sessionStorage[current_name];
-            var current_local = localStorage[current_name];
+        var entity = check_website(data, localStorage['currentTabUrl']);
 
+        var current_name = 'current_' + entity.name;
+        var current_session = sessionStorage[current_name];
+        var current_local = localStorage[current_name];
 
-            if (entity) {
-                // the website is known
-
-                if (current_session && current_local) {
-                    sessionStorage[current_name] = parseInt(current_session) + 1;
-                    localStorage[current_name] = parseInt(current_local) + 1
-                }
-                else if (current_session && !current_local) {
-                    sessionStorage[current_name] = parseInt(current_session) + 1;
-                    localStorage[current_name] = sessionStorage[current_name]
-                }
-                else if (!current_session && current_local) {
-                    sessionStorage[current_name] = 1;
-                    localStorage[current_name] = parseInt(current_local) + 1;
-                    notification(entity)
-                }
-                else if (!current_session && !current_local) {
-                    sessionStorage['current_' + entity.name] = 1;
-                    localStorage['current_' + entity.name] = 1;
-                    notification(entity)
-                }
+        if (entity) {
+            // the website is known
+            if (current_session && current_local) {
+                sessionStorage[current_name] = parseInt(current_session) + 1;
+                localStorage[current_name] = parseInt(current_local) + 1
             }
+            else if (current_session && !current_local) {
+                sessionStorage[current_name] = parseInt(current_session) + 1;
+                localStorage[current_name] = sessionStorage[current_name]
+            }
+            else if (!current_session && current_local) {
+                sessionStorage[current_name] = 1;
+                localStorage[current_name] = parseInt(current_local) + 1;
+                notification(entity)
+            }
+            else if (!current_session && !current_local) {
+                sessionStorage['current_' + entity.name] = 1;
+                localStorage['current_' + entity.name] = 1;
+                notification(data, entity)
+            }
+        }
 
 
-        })
-    }
+    })
+
 }
 
 

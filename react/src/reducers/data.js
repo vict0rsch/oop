@@ -22,7 +22,8 @@ function data(state = [], action) {
         idSet: getIdSet(action.data),
         optionsData: dataToOptions(action.data),
       };
-
+      case 'SET_ACTIVE_LANGUAGE':
+        localStorage.setItem('activeLanguage', action.payload.languageCode);
     default:
       return state;
   }
