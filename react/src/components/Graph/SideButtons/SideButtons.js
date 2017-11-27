@@ -4,15 +4,16 @@ import HomeButton from './HomeButton';
 import RefreshButton from './RefreshButton';
 import PreviousButton from './PreviousButton';
 import NextButton from './NextButton';
+import HideMobileButton from './HideMobileButton';
 
 class SideButtons extends Component {
     render() {
 
-        // let sideButtonDivStyle = {
-        //     position: 'fixed',
-        //     top: '80px',
-        //     left: '5%'
-        // }
+        if (!sessionStorage.graphHistory || !sessionStorage.location) {
+            const location = this.props.match.params.entityId
+            sessionStorage.graphHistory = '["' + location + '"]';
+            sessionStorage.location = '0';
+        }
 
         let sideButtonDivStyle = {
             position: 'unset'
@@ -21,12 +22,13 @@ class SideButtons extends Component {
         if (this.props.clientType === 'mobile') {
             sideButtonDivStyle.top = '30px';
             sideButtonDivStyle.width = '70px';
-            sideButtonDivStyle.left = '2%';
-            sideButtonDivStyle.position = 'fixed'
+            sideButtonDivStyle.right = '8px';
+            sideButtonDivStyle.top = '290px';
+            sideButtonDivStyle.position = 'fixed';
         }
         else {
-            
-            const left = this.props.clientType === 'browser' ? 0.15 * window.innerWidth - 20 + 8 + 'px': '6%';
+
+            const left = this.props.clientType === 'browser' ? 0.15 * window.innerWidth - 20 + 8 + 'px' : '6%';
             sideButtonDivStyle.top = '80px';
             sideButtonDivStyle.left = left
             sideButtonDivStyle.position = 'absolute'
@@ -34,8 +36,9 @@ class SideButtons extends Component {
 
         return (
             <div style={sideButtonDivStyle}>
-                <HomeButton {...this.props} />
-                <SearchButton {...this.props} />
+                {this.props.clientType === 'mobile' && <HideMobileButton {...this.props} />}
+                {(this.props.clientType !== 'mobile' || this.props.show.sideMobile) && <HomeButton {...this.props} />}
+                {(this.props.clientType !== 'mobile' || this.props.show.sideMobile) && <SearchButton {...this.props} />}
                 {this.props.clientType !== 'mobile' && <RefreshButton {...this.props} />}
                 {this.props.clientType !== 'mobile' && <PreviousButton {...this.props} />}
                 {this.props.clientType !== 'mobile' && <NextButton {...this.props} />}
