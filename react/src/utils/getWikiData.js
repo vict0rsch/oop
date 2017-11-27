@@ -8,6 +8,7 @@ export default async function (component, entity) {
         })
         return
     }
+    console.log(entity);
     const wiki = entity.wiki_link.split('/');
     const pageTitle = wiki[wiki.length - 1];
 
