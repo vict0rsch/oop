@@ -40,6 +40,12 @@ export function toggleExtension() {
     };
 }
 
+export function toggleSideMobile() {
+    return {
+        type: 'TOGGLE_SIDEMOBILE'
+    };
+}
+
 export function toggleFocusSearchBar() {
     return {
         type: 'TOGGLE_FOCUSSEARCHBAR'

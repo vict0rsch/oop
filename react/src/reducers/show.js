@@ -35,6 +35,11 @@ function show(state = false, action) {
                 ...state,
                 focusSearchBar: !state.focusSearchBar
             }
+        case 'TOGGLE_SIDEMOBILE':
+            return {
+                ...state,
+                sideMobile: !state.sideMobile
+            }
         case 'CLOSE_ALL':
             let newState = {
                 ...state
