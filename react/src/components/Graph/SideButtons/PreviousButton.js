@@ -24,12 +24,9 @@ const styles = theme => ({
 });
 
 class PreviousButton extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
 
-    handleClick() {
+
+    handleClick = () => {
         const history = JSON.parse(sessionStorage.graphHistory);
         let location = JSON.parse(sessionStorage.location);
         if (location === -1){

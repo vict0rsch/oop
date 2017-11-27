@@ -116,10 +116,6 @@ const styles = theme => ({
 });
 
 class IntegrationAutosuggest extends React.Component {
-    constructor(props) {
-        super(props);
-        this.logChange = this.logChange.bind(this);
-    }
 
     state = {
         value: '',
@@ -145,7 +141,7 @@ class IntegrationAutosuggest extends React.Component {
         });
     };
 
-    logChange(event, val) {
+    logChange = (event, val) => {
         const newValue = val.suggestion;
         console.log(newValue);
         if (newValue && newValue.id) {

@@ -5,15 +5,12 @@ import getCytoData from '../../utils/getCytoData';
 import InfoBoxEntityUI from './InfoBox/InfoBoxEntityUI';
 import SideButtons from './SideButtons/SideButtons';
 import SearchBar from '../Search/SearchBar';
-import MenuIcon from 'material-ui-icons/Menu';
 
 
 class CytoContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.renderCytoscapeElement = this.renderCytoscapeElement.bind(this);
     this.props.updateEntityInfoBox(this.props.match.params.entityId);
-    this.focusSearchBar = this.focusSearchBar.bind(this)
 
     if (this.props.clientType === 'mobile' && this.props.show.sideMobile) {
       this.props.toggle('sideMobile');
@@ -26,14 +23,14 @@ class CytoContainer extends React.Component {
     };
   }
 
-  focusSearchBar() {
+  focusSearchBar = () => {
     this.setState({
       focus: this.state.focus + 1
     })
   }
 
 
-  renderCytoscapeElement() {
+  renderCytoscapeElement = () => {
     console.log('rendering.')
 
     const time = false;

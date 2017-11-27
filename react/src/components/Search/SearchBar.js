@@ -5,12 +5,8 @@ import HideSearchBar from './HideSearchBar';
 import logGraph from '../../utils/logGraph';
 
 class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.logChange = this.logChange.bind(this);
-  }
 
-  logChange(val) {
+  logChange = (val) => {
     if (val && val.id) {
       if (this.props.data.idSet.indexOf(parseInt(val.id, 10)) > -1) {
         if (this.props.location.pathname !== '/graph/' + val.id) {
