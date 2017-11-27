@@ -1,6 +1,9 @@
 fetchData();
 updateData();
-
+if(_gaq){
+    _gaq.push(['_trackPageview']);
+    console.log('Background Analytics')
+}
 $(function(){
     localStorage["newProfile"]=false;
     console.log('Running Background JS');
