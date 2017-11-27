@@ -5,6 +5,7 @@ import getCytoData from '../../utils/getCytoData';
 import InfoBoxEntityUI from './InfoBox/InfoBoxEntityUI';
 import SideButtons from './SideButtons/SideButtons';
 import SearchBar from '../Search/SearchBar';
+import MenuIcon from 'material-ui-icons/Menu';
 
 
 class CytoContainer extends React.Component {
@@ -14,10 +15,14 @@ class CytoContainer extends React.Component {
     this.props.updateEntityInfoBox(this.props.match.params.entityId);
     this.focusSearchBar = this.focusSearchBar.bind(this)
 
+    if (this.props.clientType === 'mobile' && this.props.show.sideMobile) {
+      this.props.toggle('sideMobile');
+    }
+
     this.state = {
       update: false,
       changeWiki: false,
-      focus: 0
+      focus: 0,
     };
   }
 
@@ -124,7 +129,11 @@ class CytoContainer extends React.Component {
       <div>
         {this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar {...this.props} focus={this.state.focus} />}
         <div id="cy" style={cyStyles[this.props.clientType]} onContextMenu={this.handleContextMenu} />
-        <SideButtons {...this.props} focusSearchBar={this.focusSearchBar} reRenderGraph={this.renderCytoscapeElement}/>
+        <SideButtons
+          {...this.props}
+          focusSearchBar={this.focusSearchBar}
+          reRenderGraph={this.renderCytoscapeElement}
+        />
         <InfoBoxEntityUI {...this.props} changeWiki={this.state.changeWiki} />
       </div>
     );
