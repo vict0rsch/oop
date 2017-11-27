@@ -22,12 +22,6 @@ const styles = theme => ({
 
 class LanguageSelect extends React.Component {
 
-    constructor(props) {
-        super(props)
-        this.handleChange = this.handleChange.bind(this);
-    }
-    
-
     handleChange = name => event => {
         const languageCode = event.target.value;
         this.props.setActiveLanguage(languageCode);

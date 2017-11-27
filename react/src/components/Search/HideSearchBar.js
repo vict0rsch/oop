@@ -3,13 +3,9 @@ import Icon from 'material-ui-icons/Clear';
 import Button from 'material-ui/Button';
 
 class HideSearchBar extends Component {
-    constructor(props) {
-        super(props)
-        this.handleCLick = this.handleCLick.bind(this)
-        
-    }
+
     
-    handleCLick(){
+    handleCLick = () => {
         this.props.toggleSearchBar();
         this.props.toggleFocusSearchBar();
     }

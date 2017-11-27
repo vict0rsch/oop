@@ -9,10 +9,6 @@ import fetchData from '../../utils/fetchData';
 
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.redirect = this.redirect.bind(this);
-  }
 
   componentDidMount() {
     const component = this;
@@ -29,7 +25,7 @@ class Header extends React.Component {
   }
 
 
-  redirect(val) {
+  redirect = (val) => {
     this.props.history.push(`/graph/${val.id}`);
   }
   render() {

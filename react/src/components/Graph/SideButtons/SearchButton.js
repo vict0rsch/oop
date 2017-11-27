@@ -27,12 +27,9 @@ const styles = theme => ({
 });
 
 class SearchButton extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
 
-    handleClick() {
+
+    handleClick = () => {
         if (!this.props.show.searchBar) {
             this.props.toggleSearchBar()
         } else {
