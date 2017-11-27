@@ -8,8 +8,7 @@ export default async function (component, entity) {
         })
         return
     }
-
-    const wiki = entity.wiki.split('/');
+    const wiki = entity.wiki_link.split('/');
     const pageTitle = wiki[wiki.length - 1];
 
     let escapedTitle = pageTitle.indexOf('%') > -1 ? pageTitle : encodeURIComponent(pageTitle);
