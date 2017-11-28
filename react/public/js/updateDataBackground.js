@@ -7,7 +7,7 @@ function updateData() {
     }
     if ((!localStorage.dataTimestamp || ts2 - ts > checkEvery) && localStorage.fetchingData !== 'true') {
         console.log('Looking for DB Update...');
-        axios.get('http://oop-pro.herokuapp.com/db_meta_data').then(
+        axios.get('https://oop-pro.herokuapp.com/db_meta_data').then(
             (response) => {
                 console.log('Success (getting metadata data)');
                 const dbMetaData = response.data;

@@ -22,7 +22,7 @@ function fetchData(force) {
 
     if (fetch || force) {
         console.log('Getting data (Axios)...');
-        axios.get('http://oop-pro.herokuapp.com/data/').then(
+        axios.get('https://oop-pro.herokuapp.com/data/').then(
             (response) => {
                 console.log('Success (getting data)');
                 data = formatData(response.data);
