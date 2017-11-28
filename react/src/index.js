@@ -23,7 +23,7 @@ const styles = {
     'browser': {
         ...defaultStyle
     },
-    'chromeExtension': {
+    'extension': {
         ...defaultStyle,
         height: '600px',
         width: '754px',
@@ -56,8 +56,8 @@ const router = (
 
 ReactDOM.render(router, document.getElementById('root'));
 
-const isChromeExtension = window.chrome.tabs !== undefined;
-if (!isChromeExtension) {
+const isextension = window.chrome.tabs !== undefined;
+if (!isextension) {
     console.log('Registering Service Worker');
     registerServiceWorker();
 } else {

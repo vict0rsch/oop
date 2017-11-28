@@ -1,4 +1,4 @@
-function clientType(state = 'chromeExtension', action) {
+function clientType(state = 'extension', action) {
     if (action.type === 'SET_CLIENT_TYPE') {
       return action.clientType;
     }
