@@ -53,7 +53,7 @@ class HomeContentTabs extends React.Component {
   render() {
 
     let tabs = ["search", "about", "contact", "settings"];
-    if (this.props.clientType !== "chromeExtension") {
+    if (this.props.clientType !== "extension") {
       tabs = [
         ...tabs.slice(0, 2),
         "extension",
@@ -74,7 +74,7 @@ class HomeContentTabs extends React.Component {
       'extension': <ExtensionIcon style={iconStyle} />
     };
 
-    const tabStyle = this.props.clientType !== 'chromeExtension' ?
+    const tabStyle = this.props.clientType !== 'extension' ?
       {
         minWidth: '100px'
       }
@@ -83,7 +83,7 @@ class HomeContentTabs extends React.Component {
         minWidth: '140px'
       };
 
-    const labelStyle = this.props.clientType !== 'chromeExtension' ?
+    const labelStyle = this.props.clientType !== 'extension' ?
       {
         fontSize: '0.7em'
       }
