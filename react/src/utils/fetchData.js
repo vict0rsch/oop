@@ -1,12 +1,11 @@
 import Axios from 'axios';
-import {formatData} from './formatData';
+import formatData from './formatData';
 
 // Use local json data or fetch from server
 var USE_LOCAL_ONLY = true;
 
 function fetchData(component) {
-    // console.log('Fetching data...');
-    // element is the react component
+    // When updating this function, be sure to update its background counterpart
 
     // whether or not to go fetch the data
     let fetch = false;
@@ -36,6 +35,7 @@ function fetchData(component) {
                 component.props.setData(data);
                 component.props.makeDataAvailable();
                 localStorage.data = JSON.stringify(data);
+                localStorage.dataTime = Math.round((new Date()).getTime() / 1000) + ''
             },
             (error) => {
                 console.log('Server Error  (getting data)');
