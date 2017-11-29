@@ -63,7 +63,7 @@ function fud(data, updateData) {
     };
 
     for (let ind of localIndexesToDelete){
-        delete localStorage['cytoData_' + ind];
+        localStorage.removeItem('cytoData_' + ind);
     }
 
     return reFormattedData;
