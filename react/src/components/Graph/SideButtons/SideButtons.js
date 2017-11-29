@@ -4,7 +4,7 @@ import HomeButton from './HomeButton';
 import RefreshButton from './RefreshButton';
 import PreviousButton from './PreviousButton';
 import NextButton from './NextButton';
-import HideMobileButton from './HideMobileButton';
+import HideSideButton from './HideSideButton';
 
 class SideButtons extends Component {
     render() {
@@ -36,7 +36,7 @@ class SideButtons extends Component {
 
         return (
             <div style={sideButtonDivStyle}>
-                <HideMobileButton {...this.props} />
+                <HideSideButton {...this.props} />
                 {this.props.show.sideButtons && <HomeButton {...this.props} />}
                 {this.props.show.sideButtons && <SearchButton {...this.props} />}
                 {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <RefreshButton {...this.props} />}
