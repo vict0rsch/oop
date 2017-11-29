@@ -52,7 +52,9 @@
             "searchTooltipDisabled": ["Use the Search Bar at the top!", "Utilisez la Barre de Recherche en haut!"],
             "resetTooltip": ["Reset Graph", "Rafraîchir"],
             "previousTooltip": ["Previous Graph", "Graphe précédent"],
-            "nextTooltip": ["Next Graph", "Graphe suivant"]
+            "nextTooltip": ["Next Graph", "Graphe suivant"],
+            "hideTooltip": ["Hide Menu", "Fermer le menu"],
+            "menuTooltip": ["Menu", "Menu"]
         },
         "wiki": {
             "loading": ["Looking for a Wikipedia Summary...", "En attente d'un r\u00e9sum\u00e9 de Wikipedia..."],

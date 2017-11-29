@@ -33,11 +33,11 @@ class HideMobileButton extends React.Component {
     }
 
     render() {
-
+        const title = this.props.show.sideButtons ? this.props.translate('graph.sideButtons.hideTooltip') : this.props.translate('graph.sideButtons.menuTooltip');
         return (
             <Tooltip
                 id="tooltip-ResetButton"
-                title={this.props.translate('graph.sideButtons.resetTooltip')}
+                title={title}
                 placement="bottom"
                 style={{ textAlign: 'center' }}
             >
