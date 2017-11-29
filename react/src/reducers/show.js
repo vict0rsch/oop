@@ -35,10 +35,10 @@ function show(state = false, action) {
                 ...state,
                 focusSearchBar: !state.focusSearchBar
             }
-        case 'TOGGLE_SIDEMOBILE':
+        case 'TOGGLE_SIDEBUTTONS':
             return {
                 ...state,
-                sideMobile: !state.sideMobile
+                sideButtons: !state.sideButtons
             }
         case 'CLOSE_ALL':
             let newState = {
