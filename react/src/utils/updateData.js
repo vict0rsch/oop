@@ -12,8 +12,7 @@ function updateData(component) {
         ts = parseInt(localStorage.dataTime, 10);
         var checkEvery = 20;//3600 * 24; // 1 day
     } else {
-        ts = 1511996122;
-        localStorage.dataTime = '1511996122'
+        ts = 0;
     }
     // 1511996122
     if ((!localStorage.dataTime || ts2 - ts > checkEvery) && localStorage.fetchingData !== 'true') {
