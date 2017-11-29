@@ -10,6 +10,7 @@ function fetchData(force) {
         localStorage.data = JSON.stringify(backgroundData());
         localStorage.fetchingData = 'false';
         localStorage.dataTime = Math.round((new Date()).getTime() / 1000);
+        console.log('fetched data from file')
         return;
     }
 
