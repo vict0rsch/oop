@@ -80,6 +80,10 @@ class Home extends React.Component {
 
   
   componentDidUpdate(prevProps, prevState) {
+    console.log('');
+    console.log(prevProps.dataIsAvailable);
+    console.log(this.props.dataIsAvailable);
+    console.log('');
     if (this.props.dataIsAvailable !== prevProps.dataIsAvailable){
       if (this.props.dataIsAvailable){
         updateData(this);
