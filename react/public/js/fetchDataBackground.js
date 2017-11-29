@@ -6,12 +6,16 @@ function fetchData(force) {
 
     let data;
 
-    if (backgroundData && !localStorage.data) {
-        localStorage.data = JSON.stringify(backgroundData());
-        localStorage.fetchingData = 'false';
-        localStorage.dataTime = Math.round((new Date()).getTime() / 1000);
-        console.log('fetched data from file')
-        return;
+    if (backgroundData) {
+        if (!localStorage.data) {
+            localStorage.data = JSON.stringify(backgroundData());
+            localStorage.fetchingData = 'false';
+            localStorage.dataTime = Math.round((new Date()).getTime() / 1000);
+            console.log('fetched data from file')
+            return;
+        }
+    } else {
+        console.log('no backgroundData file')
     }
 
     if (localStorage.data) {
