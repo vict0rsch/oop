@@ -20,7 +20,7 @@ function updateData(component) {
         //     localStorage.dataTime = Math.round((new Date()).getTime() / 1000) + '';
         //     localStorage.updateFromLocal = 'false';
         // } else {
-        Axios.get('https://oop-pro.herokuapp.com/update/' + 1511890466).then(
+        Axios.get('https://oop-pro.herokuapp.com/update/' + ts2).then(
             (response) => {
                 console.log('Success (updating data app)');
                 const updatedServerData = formatUpdateData(component.props.data, response.data);
