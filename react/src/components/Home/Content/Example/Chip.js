@@ -12,7 +12,6 @@ const chipStyle = {
 export default class MyChip extends Component {
 
     handleClick = () => {
-        console.log(this.props)
         this.props.handleChipClick(this.props.entity)
     }
 
