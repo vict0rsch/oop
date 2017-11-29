@@ -34,7 +34,11 @@ class AlertDialog extends React.Component {
             }
         );
         this.setState({ open: false });
-        window.location.reload();
+        if (this.props.clientType === 'extension') {
+            window.chrome.runtime.reload()
+        } else {
+            window.location.reload();
+        }
     };
 
     render() {
