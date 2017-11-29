@@ -6,7 +6,7 @@ class Intent extends Component {
     render() {
         const link = <a href="https://www.monde-diplomatique.fr/cartes/ppa" rel="noopener noreferrer" target="_blank">*Le Monde Diplomatique</a>;
         return (
-            <div style={{textAlign:'center'}}>
+            <div>
                 <MarkdownPaper
                     {...this.props}
                     source={this.props.translate('home.intentPaperMd')}
