@@ -29,6 +29,15 @@ class CytoContainer extends React.Component {
     })
   }
 
+  
+  componentWillMount() {
+    const location = parseInt(this.props.match.params.entityId, 10);
+    if (location !== this.props.currentDisplay) {
+      this.props.displayEntity(location);
+      this.props.updateEntityInfoBox(location);
+    }
+  }
+  
 
   renderCytoscapeElement = () => {
     console.log('rendering.')
@@ -83,8 +92,8 @@ class CytoContainer extends React.Component {
     });
     this.renderCytoscapeElement()
   }
-
-  componentDidUpdate() {
+  
+  componentDidUpdate(prevProps, prevState) {
     const location = parseInt(this.props.match.params.entityId, 10);
     if (location !== this.props.currentDisplay) {
       this.props.displayEntity(location);
