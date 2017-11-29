@@ -6,11 +6,20 @@ function fetchData(force) {
 
     let data;
 
+    if (backgroundData && !localStorage.data) {
+        localStorage.data = JSON.stringify(backgroundData());
+        localStorage.fetchingData = 'false';
+        localStorage.dataTime = Math.round((new Date()).getTime() / 1000);
+        console.log('fetched data from file')
+        return;
+    }
+
     if (localStorage.data) {
         try {
             // console.log('Loading localStorage data');
             data = JSON.parse(localStorage.data);
             localStorage.fetchingData = 'false';
+            return;
         } catch (e) {
             console.log('Error loading localStorage data (background); getting new version...');
             fetch = true;
