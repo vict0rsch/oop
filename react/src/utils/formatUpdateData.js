@@ -62,9 +62,10 @@ function fud(data, updateData) {
         })
     };
 
-    console.log('localIndexesToDelete', localIndexesToDelete)
-    for (let ind of localIndexesToDelete){
-        localStorage.removeItem('cytoData_' + ind);
+    for (let k of Object.keys(localStorage)){
+        if (k.indexOf('cytoData_') > -1){
+            localStorage.removeItem(k);
+        }
     }
 
     return reFormattedData;
