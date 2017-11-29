@@ -1,6 +1,5 @@
 function formatData(serverData) {
-    let shareId = -100;
-    let data = {
+    var data = {
         entities: {
             names: {},
             ids: {}
@@ -14,31 +13,33 @@ function formatData(serverData) {
     serverData.entities.map((v, i) => {
         data.entities.names[v.name] = v;
         data.entities.ids[v.id] = v;
-        return undefined;
+        return null;
     });
 
-    serverData.shares.map((v, i) => {
+    var ID = -100;
+    for (let serverShare of serverData.shares) {
         const newShare = {
-            child_id: v.child_id,
-            parent_id: v.parent_id,
-            special: v.special,
-            share: v.value,
-            id: shareId
+            child_id: serverShare.child_id,
+            parent_id: serverShare.parent_id,
+            special: serverShare.special,
+            value: serverShare.value,
+            shareId: serverShare.parent_id + '-' + serverShare.child_id,
+            id: ID
         };
-        shareId -= 1;
-        if (_.has(data.shares.children, newShare.child_id)) {
+
+        if (data.shares.children[newShare.child_id]) {
             data.shares.children[newShare.child_id].push(newShare);
         } else {
             data.shares.children[newShare.child_id] = [newShare];
         }
 
-        if (_.has(data.shares.parents, newShare.parent_id)) {
+        if (data.shares.parents[newShare.parent_id]) {
             data.shares.parents[newShare.parent_id].push(newShare);
         } else {
             data.shares.parents[newShare.parent_id] = [newShare];
         }
-        return undefined;
-    });
+        ID -= 1;
+    }
     return data;
 
 };
