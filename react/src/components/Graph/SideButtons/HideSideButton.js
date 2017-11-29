@@ -29,7 +29,7 @@ class HideMobileButton extends React.Component {
 
 
     handleClick = () => {
-        this.props.toggleSideMobile();
+        this.props.toggleSideButtons();
     }
 
     render() {
@@ -42,8 +42,8 @@ class HideMobileButton extends React.Component {
                 style={{ textAlign: 'center' }}
             >
                 <Button raised fab className={this.props.classes.button} onClick={this.handleClick}>
-                    {!this.props.show.sideMobile && <MenuIcon className={this.props.classes.icon} />}
-                    {this.props.show.sideMobile && <ClearIcon className={this.props.classes.icon} />}
+                    {!this.props.show.sideButtons && <MenuIcon className={this.props.classes.icon} />}
+                    {this.props.show.sideButtons && <ClearIcon className={this.props.classes.icon} />}
                 </Button>
             </Tooltip>
         );
