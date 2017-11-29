@@ -66,10 +66,10 @@ export default function getCytoData(data, entity) {
 
     for (s of children) {
         var label;
-        if (s.share === -1) {
+        if (s.value === -1) {
             label = s.special;
         } else {
-            label = s.share + '%';
+            label = s.value + '%';
         }
         var temp_data = {};
         temp_data.id = s.id;
@@ -83,10 +83,10 @@ export default function getCytoData(data, entity) {
     }
 
     for (s of parents) {
-        if (s.share === -1) {
+        if (s.value === -1) {
             label = s.special;
         } else {
-            label = s.share + '%';
+            label = s.value + '%';
         }
         temp_data = {};
         temp_data.id = s.id;
@@ -130,25 +130,6 @@ export default function getCytoData(data, entity) {
 
     result = { nodes: nodes.concat(other_parents.nodes), edges: shares.concat(other_parents.shares) };
 
-    // let newResult = {
-    //     nodes: [],
-    //     edges: []
-    // };
-    // newResult.edges = result.edges.map((v, k) => {
-    //     let newV = { data: {...v.data} };
-    //     const src = newV.data.source;
-    //     const trgt = newV.data.target;
-    //     const srcName = src > 0 ? data.entities.ids[src].name : 'special';
-    //     const trgtName = trgt > 0 ? data.entities.ids[trgt].name : 'special';
-    //     console.log(src, srcName, '--->', trgtName, trgt, newV);
-    //     return newV;
-    // });
-
-    // newResult.nodes = result.nodes.map((v, k) => {
-    //     let newV = { data: {...v.data} };
-    //     return newV;
-    // });
-
     localStorage['cytoData_' + entity.id] = JSON.stringify(result);
     return result;
 }
@@ -157,7 +138,7 @@ function find_other_special(data, entity) {
     var targets = [];
     for (var s in data.shares.parents[entity.id]) {
         s = data.shares.parents[entity.id][s];
-        if (s.share === -1 && s.special.length > 10) {
+        if (s.value === -1 && s.special.length > 10) {
             targets.push(s);
         }
     }
@@ -185,6 +166,7 @@ function find_other_special(data, entity) {
             result.nodes.push({ data: temp_node });
         }
     }
+    console.log('special shares ->', result.shares)
     return result;
 }
 
