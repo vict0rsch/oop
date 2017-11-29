@@ -118,7 +118,7 @@ function notification(data, entity) {
     let config = {
         iconUrl: '/icon.png',
         message: body,
-        title: entity.name,
+        title: 'Open Ownership Project',
         type: 'basic',
     };
 
