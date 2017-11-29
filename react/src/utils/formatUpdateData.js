@@ -2,6 +2,8 @@ function fud(data, updateData) {
     let newEntities = data.entities.ids;
     let newShares = {};
 
+    var localIndexesToDelete = [];
+
     let children = data.shares.children;
     let parents = data.shares.parents;
     for (let shares of Object.values(children)) {
@@ -22,11 +24,14 @@ function fud(data, updateData) {
     updateData.entities.map((v, k) => {
         if (v.blacklist) {
             // If entity is blacklisted, delete it from array of entities
-            delete newEntities[v.id]
+            delete newEntities[v.id];
+            delete localStorage['wiki_1_fr'];
+            delete localStorage['wiki_1_en'];
         } else {
-            delete v.blacklist
+            delete v.blacklist;
             newEntities[v.id] = v;
         }
+        localIndexesToDelete.push(v.id);
         //end of map()
         return null;
     });
@@ -41,6 +46,9 @@ function fud(data, updateData) {
             newShares[v.id] = v;
         }
         //end of map()
+        localIndexesToDelete.push(v.parent_id);
+        localIndexesToDelete.push(v.child_id);
+        
         return null;
     });
 
@@ -48,12 +56,17 @@ function fud(data, updateData) {
         entities: Object.values(newEntities),
         shares: Object.values(newShares).map((v, k) => {
             if (!v.value) {
-                v.value = v.share
+                v.value = v.share;
             }
             return v
         })
     };
-    return reFormattedData
+
+    for (let ind of localIndexesToDelete){
+        delete localStorage['cytoData_' + ind];
+    }
+
+    return reFormattedData;
 }
 
 export default fud;
