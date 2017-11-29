@@ -15,7 +15,7 @@ const styles = theme => ({
         height: '50px',
         width: '50px',
         display: 'block',
-        margin: '20px',
+        margin: '15px 20px',
         verticalAlign: 'middle'
     },
     icon: {

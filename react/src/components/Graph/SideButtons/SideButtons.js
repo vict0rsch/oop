@@ -27,9 +27,8 @@ class SideButtons extends Component {
             sideButtonDivStyle.position = 'fixed';
         }
         else {
-
             const left = this.props.clientType === 'browser' ? 0.15 * window.innerWidth - 20 + 8 + 'px' : '6%';
-            sideButtonDivStyle.top = '80px';
+            sideButtonDivStyle.top = '40px';
             sideButtonDivStyle.left = left
             sideButtonDivStyle.position = 'absolute'
         }
