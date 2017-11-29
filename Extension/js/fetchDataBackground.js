@@ -7,8 +7,8 @@ function fetchData(force) {
     let data;
 
     if (backgroundData) {
-        if (!localStorage.data) {
-            localStorage.data = JSON.stringify(backgroundData());
+        if (!localStorage.serverData) {
+            localStorage.serverData = JSON.stringify(backgroundData());
             localStorage.fetchingData = 'false';
             localStorage.dataTime = Math.round((new Date()).getTime() / 1000);
             console.log('fetched data from file')
