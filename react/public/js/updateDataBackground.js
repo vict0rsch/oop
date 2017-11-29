@@ -1,23 +1,28 @@
 function updateData() {
-    if (localStorage.dataTimestamp) {
-        var ts = parseInt(localStorage.dataTimestamp, 10);
-        var ts2 = Math.round((new Date()).getTime() / 1000);
+    // When updating this function, be sure to update its react counterpart
+    if (!localStorage.data){
+        fetchData(true);
+        return
+    }
+    var ts2 = Math.round((new Date()).getTime() / 1000);
+    if (localStorage.dataTime) {
+        var ts = parseInt(localStorage.dataTime, 10);
 
         var checkEvery = 20;//3600 * 24; // 1 day
     }
-    if ((!localStorage.dataTimestamp || ts2 - ts > checkEvery) && localStorage.fetchingData !== 'true') {
-        console.log('Looking for DB Update...');
-        axios.get('https://oop-pro.herokuapp.com/db_meta_data').then(
+    if ((!localStorage.dataTime || ts2 - ts > checkEvery) && localStorage.fetchingData !== 'true') {
+        console.log('Looking for DB Update... (Background)');
+        axios.get('https://oop-pro.herokuapp.com/update/' + ts2).then(
             (response) => {
-                console.log('Success (getting metadata data)');
-                const dbMetaData = response.data;
-                const oldMetaData = localStorage.dbMetaData ? JSON.parse(localStorage.dbMetaData) : undefined;
-                if (oldMetaData === undefined || oldMetaData.version < dbMetaData.version) {
+                console.log('Success (getting metadata data, Background)');
+                const dataToUpdate = response.data;
+                if (dataToUpdate.entities.length > 0 || dataToUpdate.edges.length >0) {
                     console.log('Updating data')
-                    fetchData(true);
-                    localStorage.dbMetaData = JSON.stringify(dbMetaData);
+                    data = formatUpdateDataBackground(JSON.parse(localStorage.data), dataToUpdate);
+                    localStorage.data = JSON.stringify(data);
+                    localStorage.updateFromLocal = 'true';
                 }
-                localStorage.dataTimestamp = Math.round((new Date()).getTime() / 1000);
+                localStorage.dataTime = Math.round((new Date()).getTime() / 1000);
             },
             (error) => {
                 console.log('Server Error  (getting metadata data)');
