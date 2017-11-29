@@ -16,6 +16,8 @@ import Extension from './Content/Extension/Extension';
 import Header from './Header/Header';
 import Example from './Content/Example/Example';
 
+import updateData from '../../utils/updateData';
+
 class Home extends React.Component {
 
 
@@ -75,6 +77,16 @@ class Home extends React.Component {
       sessionStorage.location = "-1";
     }
   }
+
+  
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.dataIsAvailable !== prevProps.dataIsAvailable){
+      if (this.props.dataIsAvailable){
+        updateData(this);
+      }
+    }
+  }
+  
 
 
   render() {
