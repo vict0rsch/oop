@@ -11,14 +11,22 @@ function fetchData(component) {
     let fetch = false;
 
     let data;
+    if (localStorage.serverData) {
+        const serverData = JSON.parse(localStorage.serverData);
+        console.log('using local severData:', serverData);
+        data = formatData(serverData);
+        component.props.setData(data);
+        component.props.makeDataAvailable();
+        localStorage.data = JSON.stringify(data);
 
-    if (localStorage.data) {
+    } else if (localStorage.data) {
         try {
             // console.log('Loading localStorage data');
             data = JSON.parse(localStorage.data);
             component.props.setData(data);
             component.props.makeDataAvailable();
         } catch (e) {
+            console.log(e)
             console.log('Error loading localStorage data; getting new version...');
             fetch = true;
         }
