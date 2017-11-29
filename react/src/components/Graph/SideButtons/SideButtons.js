@@ -36,12 +36,12 @@ class SideButtons extends Component {
 
         return (
             <div style={sideButtonDivStyle}>
-                {this.props.clientType === 'mobile' && <HideMobileButton {...this.props} />}
-                {(this.props.clientType !== 'mobile' || this.props.show.sideMobile) && <HomeButton {...this.props} />}
-                {(this.props.clientType !== 'mobile' || this.props.show.sideMobile) && <SearchButton {...this.props} />}
-                {this.props.clientType !== 'mobile' && <RefreshButton {...this.props} />}
-                {this.props.clientType !== 'mobile' && <PreviousButton {...this.props} />}
-                {this.props.clientType !== 'mobile' && <NextButton {...this.props} />}
+                <HideMobileButton {...this.props} />
+                {this.props.show.sideButtons && <HomeButton {...this.props} />}
+                {this.props.show.sideButtons && <SearchButton {...this.props} />}
+                {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <RefreshButton {...this.props} />}
+                {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <PreviousButton {...this.props} />}
+                {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <NextButton {...this.props} />}
             </div>
         );
     }

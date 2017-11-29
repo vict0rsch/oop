@@ -40,9 +40,9 @@ export function toggleExtension() {
     };
 }
 
-export function toggleSideMobile() {
+export function toggleSideButtons() {
     return {
-        type: 'TOGGLE_SIDEMOBILE'
+        type: 'TOGGLE_SIDEBUTTONS'
     };
 }
 
