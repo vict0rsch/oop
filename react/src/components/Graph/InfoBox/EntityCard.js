@@ -4,6 +4,7 @@ import Typography from 'material-ui/Typography';
 import WikiCard from './WikiCard';
 import WikiButton from "./WikiButton";
 import WebsiteButton from "./WebsiteButton";
+import Issue from './Issue'
 
 const styles = theme => ({
     card: {
@@ -53,6 +54,7 @@ class EntityCard extends Component {
 
         return (
             <div style={style}>
+                <Issue {...this.props}/>
 
                 <div>
                     <Typography type="headline" style={{ display: 'inline-block' }}>
