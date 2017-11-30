@@ -66,7 +66,7 @@
             "dialogTitle": ["Issue with a Graph", "Problème dans le Graphe"],
             "dialogContentText": ["Whether you notice something which is plain wrong or just a typo, report it to us! Make sure you include the name of the Graph you are currently looking at (the entity's name will be in bold font).", "Que vous remarquiez quelque chose de complètement faux ou juste une petite erreur, dites-le nous! Précisez bien le nom du Graphe où il y a une erreur: c'est le nom de l'entité écrite en gras."],
             "form":["https://goo.gl/forms/Lf9fIFDyV1tGtmmr2", "https://goo.gl/forms/t3xmZGEiuYiPPjKj1"],
-            "dialogContentText2": ["Thaks for your help!", "Merci de votre aide!"],
+            "dialogContentText2": ["Thaks for your help! <br/><br/>(If you know what that means, you can also raise an Issue on our Github, see the Home's Contact section)", "Merci de votre aide!<br/><br/>(Vous pouvez aussi soumettre une Issue sur notre Github, voir la section Contact de l'Accueil)"],
             "closeButton": ["OK", "OK"]
         }
     }
