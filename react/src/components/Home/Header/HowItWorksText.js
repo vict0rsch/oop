@@ -17,7 +17,7 @@ export default class HowItWorksText extends Component {
             'browser': {
                 ...defaultIntroStyle
             },
-            'chromeExtension': {
+            'extension': {
                 ...defaultIntroStyle,
                 fontSize: '1.15em'
             }
@@ -38,7 +38,7 @@ export default class HowItWorksText extends Component {
         );
 
         let content;
-        if (this.props.clientType === "chromeExtension") {
+        if (this.props.clientType === "extension") {
 
             content = (
                 <span style={introStyles[this.props.clientType]}>
