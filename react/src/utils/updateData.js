@@ -17,6 +17,7 @@ function updateData(component) {
     // 1511996122
     if ((!localStorage.dataTime || ts2 - ts > checkEvery) && localStorage.fetchingData !== 'true') {
         console.log('Looking for DB Update...');
+        localStorage.dataTime = Math.round((new Date()).getTime() / 1000);
         // if (localStorage.updateFromLocal && localStorage.updateFromLocal === 'true') {
         //     const data = formatData(JSON.parse(localStorage.data));
         //     component.props.setData(data);
@@ -36,7 +37,6 @@ function updateData(component) {
                 } else {
                     console.log('No DB Update.');
                 }
-                localStorage.dataTime = Math.round((new Date()).getTime() / 1000);
             },
             (error) => {
                 console.log('Server Error (updating data)');
