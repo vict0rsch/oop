@@ -28,7 +28,7 @@ class ResponsiveDialog extends React.Component {
 
   render() {
     let { fullScreen } = this.props;
-    if (this.props.clientType === 'chromeExtension' || window.innerWidth > 650 ){
+    if (this.props.clientType === 'extension' || window.innerWidth > 650 ){
       fullScreen = false;
     }
 

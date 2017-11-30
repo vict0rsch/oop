@@ -6,7 +6,7 @@ class ContactPaper extends Component {
     
 
     render() {
-        const extra = this.props.clientType === 'chromeExtension' ? this.props.translate('home.contactNewLink') : '';
+        const extra = this.props.clientType === 'extension' ? this.props.translate('home.contactNewLink') : '';
         return (
             <div>
                 <MarkdownPaper
