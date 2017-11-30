@@ -126,7 +126,7 @@ class CytoContainer extends React.Component {
       },
       'mobile': {
         ...defaultStyle,
-        width: '90%',
+        width: '98%',
         minHeight: '300px'
       }
     }

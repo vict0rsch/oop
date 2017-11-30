@@ -22,8 +22,8 @@ class SideButtons extends Component {
         if (this.props.clientType === 'mobile') {
             sideButtonDivStyle.top = '30px';
             sideButtonDivStyle.width = '70px';
-            sideButtonDivStyle.right = '8px';
-            sideButtonDivStyle.top = '290px';
+            sideButtonDivStyle.left = '3px';
+            sideButtonDivStyle.top = '40px';
             sideButtonDivStyle.position = 'fixed';
         }
         else {
