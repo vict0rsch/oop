@@ -19,7 +19,7 @@ const buttonPosition = {
     },
     'extension': {
         position: 'absolute',
-        right: '33px',
+        right: '70px',
     },
     'mobile': {
         position: 'absolute',
