@@ -15,10 +15,41 @@ const styles = theme => ({
     flexGrow: 1,
     marginTop: theme.spacing.unit * 3,
   },
-  indicator:{
+  indicator: {
     width: '100px'
   }
 });
+
+const iconStyle = {
+  width: "20px",
+  height: "20px"
+};
+
+const tabStyle = {
+  "browser": {
+    minWidth: '100px'
+  },
+  "mobile": {
+    minWidth: '100px'
+  },
+  "extension": {
+    minWidth: '140px'
+  }
+};
+
+const labelStyle = {
+  "browser": {
+    fontSize: '0.7em'
+  },
+  "mobile": {
+    fontSize: '0.7em'
+  },
+  "extension": {
+    fontSize: '0.7em'
+  }
+};
+
+const scrollableTabsMinWidth = 630;
 
 class HomeContentTabs extends React.Component {
   state = {
@@ -27,7 +58,7 @@ class HomeContentTabs extends React.Component {
   };
 
   handleChange = (event, value) => {
-    if (this.props.location.pathname.split('/')[1] !== value){
+    if (this.props.location.pathname.split('/')[1] !== value) {
       this.setState({ value });
       this.props.closeAll();
       this.props.toggle(value);
@@ -62,10 +93,7 @@ class HomeContentTabs extends React.Component {
     }
 
     const { classes } = this.props;
-    const iconStyle = {
-      width: "20px",
-      height: "20px"
-    };
+
     const icons = {
       'search': <SearchIcon style={iconStyle} />,
       'about': <AboutIcon style={iconStyle} />,
@@ -73,24 +101,6 @@ class HomeContentTabs extends React.Component {
       'settings': <SettingsIcon style={iconStyle} />,
       'extension': <ExtensionIcon style={iconStyle} />
     };
-
-    const tabStyle = this.props.clientType !== 'extension' ?
-      {
-        minWidth: '100px'
-      }
-      :
-      {
-        minWidth: '140px'
-      };
-
-    const labelStyle = this.props.clientType !== 'extension' ?
-      {
-        fontSize: '0.7em'
-      }
-      :
-      {
-        fontSize: '0.7em'
-      };
 
     return (
       <Paper className={classes.root}>
@@ -100,24 +110,24 @@ class HomeContentTabs extends React.Component {
           indicatorColor="primary"
           textColor="primary"
           centered
-          scrollable={window.innerWidth < 630}
+          scrollable={window.innerWidth < scrollableTabsMinWidth}
           scrollButtons="auto"
           indicatorClassName={classes.indicator}
         >
           {tabs.map(
-          (v, k) => {
-            return <Tab
-              className={classes.labelContainer}
-              key={'tab' + k}
-              label={
-                <span style={{...labelStyle, ...tabStyle}}>{this.props.translate("home.tabs." + v)}</span>
-              }
-              icon={icons[v]}
-              value={v}
-              style={tabStyle}
-            />;
-          }
-        )}
+            (v, k) => {
+              return <Tab
+                className={classes.labelContainer}
+                key={'tab' + k}
+                label={
+                  <span style={{ ...labelStyle[this.props.clientType], ...tabStyle[this.props.clientType] }}>{this.props.translate("home.tabs." + v)}</span>
+                }
+                icon={icons[v]}
+                value={v}
+                style={tabStyle}
+              />;
+            }
+          )}
         </Tabs>
       </Paper>
     );
