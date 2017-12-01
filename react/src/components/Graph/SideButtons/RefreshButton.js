@@ -6,22 +6,9 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import ResetIcon from 'material-ui-icons/Autorenew';
 import Tooltip from 'material-ui/Tooltip';
+import sideButtonStyle from './sideButtonStyle';
 
-
-
-const styles = theme => ({
-    button: {
-        height: '50px',
-        width: '50px',
-        display: 'block',
-        margin: '15px 20px',
-        verticalAlign: 'middle'
-    },
-    icon: {
-        height: '30px',
-        width: '30px',
-    }
-});
+const styles = theme => (sideButtonStyle);
 
 class HomeButton extends React.Component {
 

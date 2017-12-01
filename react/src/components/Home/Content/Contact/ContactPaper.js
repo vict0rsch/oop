@@ -3,8 +3,6 @@ import MarkdownPaper from '../../Paper/MarkdownPaper';
 
 class ContactPaper extends Component {
 
-    
-
     render() {
         const extra = this.props.clientType === 'extension' ? this.props.translate('home.contactNewLink') : '';
         return (

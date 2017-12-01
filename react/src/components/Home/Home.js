@@ -18,8 +18,26 @@ import Example from './Content/Example/Example';
 
 import updateData from '../../utils/updateData';
 
-class Home extends React.Component {
+const homeContentDivStyle = {
+  "mobile": {
+    textAlign: 'center',
+    width: '80%',
+    margin: 'auto'
+  },
+  "browser": {
+    textAlign: 'unset',
+    width: '70%',
+    margin: 'auto'
+  },
+  "extension": {
+    textAlign: 'unset',
+    width: '80%',
+    margin: 'auto'
+  }
+};
 
+class Home extends React.Component {
+  
 
   componentWillMount() {
     const component = this;
@@ -78,23 +96,18 @@ class Home extends React.Component {
     }
   }
 
-  
+
   componentDidUpdate(prevProps, prevState) {
-      updateData(this);
+    updateData(this);
   }
-  
+
 
 
   render() {
-    const homeContentDivStyle = {
-      textAlign: this.props.clientType === 'mobile' ? 'center' : 'unset',
-      width: this.props.clientType === 'browser' ? '70%' : '80%',
-      margin: 'auto'
-    };
     return (
       <div>
-        <Header {...this.props} style={homeContentDivStyle} />
-        <div style={homeContentDivStyle}>
+        <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />
+        <div style={homeContentDivStyle[this.props.clientType]}>
           <Example {...this.props} />
           <HomeContentTabs {...this.props} />
           <HomeSearchBar {...this.props} />

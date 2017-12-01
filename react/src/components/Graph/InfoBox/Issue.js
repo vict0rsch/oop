@@ -27,6 +27,11 @@ const buttonPosition = {
     }
 }
 
+const issueButtonStyle = {
+    width: '10px',
+    minWidth: '10px'
+};
+
 class ResponsiveDialog extends React.Component {
     state = {
         open: false,
@@ -48,7 +53,7 @@ class ResponsiveDialog extends React.Component {
 
         return (
             <div style={buttonPosition[this.props.clientType]}>
-                <Button style={{ width: '10px', minWidth: '10px' }} onClick={this.handleClickOpen}><Icon style={{color: '#e68931'}}/></Button>
+                <Button style={issueButtonStyle} onClick={this.handleClickOpen}><Icon style={{ color: '#e68931' }} /></Button>
                 <Dialog
                     fullScreen={fullScreen}
                     open={this.state.open}
