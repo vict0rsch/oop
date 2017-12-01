@@ -13,6 +13,17 @@ import Dialog, {
 import HowItWorksText from './HowItWorksText'
 import Icon from 'material-ui-icons/HelpOutline';
 
+const fullScreenMinWidth = 650;
+
+const buttonDivPositionStyle = {
+  position: 'absolute',
+  right: '24px'
+};
+const buttonStyle = {
+  width: '10px',
+  minWidth: '10px'
+};
+
 class ResponsiveDialog extends React.Component {
   state = {
     open: false,
@@ -28,13 +39,13 @@ class ResponsiveDialog extends React.Component {
 
   render() {
     let { fullScreen } = this.props;
-    if (this.props.clientType === 'extension' || window.innerWidth > 650 ){
+    if (this.props.clientType === 'extension' || window.innerWidth > fullScreenMinWidth) {
       fullScreen = false;
     }
 
     return (
-      <div style={{position:'absolute', right:'24px'}}>
-        <Button style={{width:'10px', minWidth:'10px'}} onClick={this.handleClickOpen}><Icon/></Button>
+      <div style={buttonDivPositionStyle}>
+        <Button style={buttonStyle} onClick={this.handleClickOpen}><Icon /></Button>
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}

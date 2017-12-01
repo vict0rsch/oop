@@ -17,7 +17,6 @@ export default class Example extends Component {
         this.props.history.push('/graph/' + entity.id)
     }
 
-
     componentWillUpdate(nextProps, nextState) {
         if (!nextProps.dataIsAvailable || nextState.content.length > 0) {
             return;
@@ -25,47 +24,40 @@ export default class Example extends Component {
         this.showChips(nextProps);
     }
 
+    getRandomEntities = (props, nb, indexes) => {
+        let index, id;
+        let entities = [];
+        for (let i = 0; i < nb; i++) {
+            index = Math.floor(Math.random() * props.data.idSet.length);
+            id = props.data.idSet[index];
+            while (indexes.indexOf(id) > -1) {
+                index = Math.floor(Math.random() * props.data.idSet.length);
+                id = props.data.idSet[index];
+            }
+            indexes.push(id);
+            entities.push(props.data.entities.ids[props.data.idSet[index]]);
+        }
+        return entities
+    }
 
     showChips = (props) => {
-        let indexes = [1, 2]
+        let indexes = [1, 149]
         const leMonde = props.data.entities.ids[1];
         const patrickDrahi = props.data.entities.ids[149]
-
-        let index1 = Math.floor(Math.random() * props.data.idSet.length);
-        let id1 = props.data.idSet[index1];
-        while (indexes.indexOf(id1) > -1) {
-            index1 = Math.floor(Math.random() * props.data.idSet.length);
-            id1 = props.data.idSet[index1];
-        }
-        indexes.push(id1)
-        const entity1 = props.data.entities.ids[id1];
-
-        let index2 = Math.floor(Math.random() * props.data.idSet.length);
-        let id2 = props.data.idSet[index2];
-        while (indexes.indexOf(id2) > -1) {
-            index2 = Math.floor(Math.random() * props.data.idSet.length);
-            id2 = props.data.idSet[index2];
-        }
-        const entity2 = props.data.entities.ids[id2];
+        const entities = [leMonde, patrickDrahi].concat(this.getRandomEntities(
+            props, 2, indexes
+        ));
+        const component = this;
 
         const content = (
             <div style={{ textAlign: 'center' }}>
-                <Chip
-                    handleChipClick={this.handleChipClick}
-                    entity={leMonde}
-                />
-                <Chip
-                    handleChipClick={this.handleChipClick}
-                    entity={patrickDrahi}
-                />
-                <Chip
-                    handleChipClick={this.handleChipClick}
-                    entity={entity1}
-                />
-                <Chip
-                    handleChipClick={this.handleChipClick}
-                    entity={entity2}
-                />
+                {entities.map((v, k) => {
+                    return <Chip
+                        key={k}
+                        handleChipClick={component.handleChipClick}
+                        entity={v}
+                    />
+                })}
             </div>
         );
         if (this.state.content.length === 0) {

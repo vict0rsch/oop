@@ -6,6 +6,29 @@ import InfoBoxEntityUI from './InfoBox/InfoBoxEntityUI';
 import SideButtons from './SideButtons/SideButtons';
 import SearchBar from '../Search/SearchBar';
 
+let defaultStyle = {
+  margin: 'auto',
+  width: '70%',
+  height: parseInt(window.screen.availHeight / 2, 10) + 'px',
+};
+
+const cyStyles = {
+  'browser': {
+    ...defaultStyle,
+  },
+  'extension': {
+    ...defaultStyle,
+    height: '400px',
+    width: '700px',
+    padding: '0px',
+    // float: 'right'
+  },
+  'mobile': {
+    ...defaultStyle,
+    width: '98%',
+    minHeight: '300px'
+  }
+};
 
 class CytoContainer extends React.Component {
   constructor(props) {
@@ -103,32 +126,9 @@ class CytoContainer extends React.Component {
   }
 
   render() {
-    let defaultStyle = {
-      margin: 'auto',
-      width: '70%',
-      height: parseInt(window.screen.availHeight / 2, 10) + 'px',
-    };
 
     if (!this.props.show.searchBar) {
       defaultStyle.marginTop = '20px'
-    }
-
-    const cyStyles = {
-      'browser': {
-        ...defaultStyle,
-      },
-      'extension': {
-        ...defaultStyle,
-        height: '400px',
-        width: '700px',
-        padding: '0px',
-        // float: 'right'
-      },
-      'mobile': {
-        ...defaultStyle,
-        width: '98%',
-        minHeight: '300px'
-      }
     }
 
     return (

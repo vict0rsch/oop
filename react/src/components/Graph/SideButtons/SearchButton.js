@@ -7,24 +7,9 @@ import Button from 'material-ui/Button';
 import SearchIcon from 'material-ui-icons/Search';
 import Tooltip from 'material-ui/Tooltip';
 import Scroll from 'react-scroll';
+import sideButtonStyle from './sideButtonStyle';
 
-
-const styles = theme => ({
-    button: {
-        height: '50px',
-        width: '50px',
-        display: 'block',
-        margin: '15px 20px',
-        verticalAlign: 'middle'
-    },
-    icon: {
-        height: '30px',
-        width: '30px',
-    },
-    tooltip: {
-        textAlign: 'center'
-    }
-});
+const styles = theme => (sideButtonStyle);
 
 class SearchButton extends React.Component {
 

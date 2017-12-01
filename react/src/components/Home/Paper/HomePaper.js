@@ -3,6 +3,29 @@ import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
+let typoStyle = {
+    fontSize: '1.2em',
+    textAlign: 'justify',
+    textJustify: 'auto',
+    fontWeight: 200,
+    padding: '25px 50px'
+};
+
+const typoStyles = {
+    'browser': {
+        ...typoStyle,
+        fontSize: '1em',
+    },
+    'extension': {
+        ...typoStyle
+    },
+    'mobile': {
+        ...typoStyle,
+        fontSize: '0.8em',
+        padding: '20px'
+    }
+}
+
 const styles = theme => ({
     root: theme.mixins.gutters({
         padding: 30,
@@ -20,39 +43,13 @@ class HomePaper extends Component {
         let browserWidth = navigator.userAgent.toLocaleLowerCase().indexOf('firefox') > -1 ?
             '-moz-available' : '-webkit-fill-available';
 
-        const typoStyle = {
-            fontSize: '1.2em',
-            textAlign: 'justify',
-            textJustify: 'auto',
-            fontWeight: 200,
-            padding: '25px 50px'
-        };
-
         if (this.props.clientType === 'browser') {
-            typoStyle.padding = '50px 100px'
+            typoStyle.padding = '50px 100px';
         }
 
         if (this.props.clientType === 'mobile') {
-            typoStyle.fontWeight = 400
+            typoStyle.fontWeight = 400;
         }
-
-        const typoStyles = {
-            'browser': {
-                ...typoStyle,
-                fontSize: '1em',
-            },
-            'chromeExtension': {
-                ...typoStyle
-            },
-            'mobile': {
-                ...typoStyle,
-                fontSize: '0.8em',
-                padding: '20px'
-            }
-        }
-
-
-
 
         const { classes } = this.props;
 

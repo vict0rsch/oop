@@ -7,23 +7,11 @@ import Button from 'material-ui/Button';
 import MenuIcon from 'material-ui-icons/Menu';
 import ClearIcon from 'material-ui-icons/Clear';
 import Tooltip from 'material-ui/Tooltip';
+import sideButtonStyle from './sideButtonStyle';
 
 
 
-const styles = theme => ({
-    button: {
-        height: '50px',
-        width: '50px',
-        display: 'block',
-        margin: '15px 20px',
-        verticalAlign: 'middle'
-    },
-    icon: {
-        height: '30px',
-        width: '30px',
-        verticalAlign: 'middle'
-    }
-});
+const styles = theme => (sideButtonStyle);
 
 class HideMobileButton extends React.Component {
 

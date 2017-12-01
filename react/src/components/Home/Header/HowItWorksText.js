@@ -1,39 +1,43 @@
 import React, { Component } from 'react'
 import Tooltip from 'material-ui/Tooltip'
 
+const defaultIntroStyle = {
+    textAlign: 'justify',
+    lineHeight: '1.6em'
+}
+
+const introStyles = {
+    'mobile': {
+        ...defaultIntroStyle,
+        fontWeight: 400
+    },
+    'browser': {
+        ...defaultIntroStyle
+    },
+    'extension': {
+        ...defaultIntroStyle,
+        fontSize: '1.15em'
+    }
+}
+
+const tooltipDivStyle = {
+    fontSize: '1.3em',
+    textAlign: 'center',
+    padding: '5px',
+};
+
+const tooltipImageStyle = {
+    height: '20px',
+    width: '20px'
+};
 
 export default class HowItWorksText extends Component {
     render() {
-        const defaultIntroStyle = {
-            textAlign: 'justify',
-            lineHeight: '1.6em'
-        }
-
-        const introStyles = {
-            'mobile': {
-                ...defaultIntroStyle,
-                fontWeight: 400
-            },
-            'browser': {
-                ...defaultIntroStyle
-            },
-            'extension': {
-                ...defaultIntroStyle,
-                fontSize: '1.15em'
-            }
-        }
 
         const tooltipTitle = (
-            <div style={{
-                fontSize: '1.3em',
-                textAlign: 'center',
-                padding: '5px',
-            }}>
+            <div style={tooltipDivStyle}>
                 {this.props.translate('home.intro.e')}<br />
-                <img alt='Extension Icon' src='/icon.png' style={{
-                    height: '20px',
-                    width: '20px'
-                }} />
+                <img alt='Extension Icon' src='/icon.png' style={tooltipImageStyle} />
             </div>
         );
 
@@ -46,6 +50,7 @@ export default class HowItWorksText extends Component {
                     <br /><br />
                     {this.props.translate('home.intro.b')}
                     <Tooltip placement="bottom" title={tooltipTitle}>
+                    {/* Double span necessary for spaces not to be underlined */}
                         <span> <span style={{ borderBottom: '1px dashed #999' }}>
                             {this.props.translate('home.intro.c')}
                         </span> </span>
