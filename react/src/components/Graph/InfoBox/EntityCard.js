@@ -36,7 +36,6 @@ class EntityCard extends Component {
         const persistedInfoBox = JSON.parse(localStorage.getItem('reduxPersist:infoBox'))
 
         if (persistedInfoBox && persistedInfoBox.data !== location) {
-            console.log('update')
             localStorage.setItem('reduxPersist:infoBox', JSON.stringify({
                 ...persistedInfoBox,
                 data: location

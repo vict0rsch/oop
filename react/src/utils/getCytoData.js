@@ -166,7 +166,6 @@ function find_other_special(data, entity) {
             result.nodes.push({ data: temp_node });
         }
     }
-    console.log('special shares ->', result.shares)
     return result;
 }
 
