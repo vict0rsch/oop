@@ -1,7 +1,7 @@
 {
   "name" :"Open Ownership Graph",
   "manifest_version": 2,
-  "version" :"1.0",
+  "version" :"1.0.1",
   "description" :"À qui appartiennent les médias? Explorez le Graph pour en savoir plus!",
   "browser_action": {
       "default_icon": "icon.png",
