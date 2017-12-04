@@ -107,6 +107,7 @@ class Home extends React.Component {
     return (
       <div>
         <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />
+        <button onClick={()=>{this.props.history.push('/login')}}>LOGIN</button>
         <div style={homeContentDivStyle[this.props.clientType]}>
           <Example {...this.props} />
           <HomeContentTabs {...this.props} />
