@@ -26,10 +26,21 @@ const styles = theme => ({
     },
 });
 
+const wikiCardDivStyle = {
+    textAlign: 'justify',
+    textJustify: 'auto'
+};
 
+const entityNameTypoStyle = {
+    display: 'inline-block'
+};
+
+const entityLongNameTypoStyle = {
+    display: 'inline-block',
+    marginLeft: '20px'
+};
 
 class EntityCard extends Component {
-
 
     componentWillMount() {
         const location = parseInt(this.props.match.params.entityId, 10);
@@ -53,13 +64,13 @@ class EntityCard extends Component {
 
         return (
             <div style={style}>
-                <Issue {...this.props}/>
+                <Issue {...this.props} />
 
                 <div>
-                    <Typography type="headline" style={{ display: 'inline-block' }}>
+                    <Typography type="headline" style={entityNameTypoStyle}>
                         {this.props.entity.name}
                     </Typography>
-                    <Typography type="body2" className={classes.title} style={{ display: 'inline-block', marginLeft: '20px' }}>
+                    <Typography type="body2" className={classes.title} style={entityLongNameTypoStyle}>
                         {this.props.entity.long_name}
                     </Typography>
                 </div>
@@ -68,7 +79,7 @@ class EntityCard extends Component {
                 <WebsiteButton {...this.props} />
                 {this.props.graphButton}
 
-                <div style={{ textAlign: 'justify', textJustify: 'auto' }}>
+                <div style={wikiCardDivStyle}>
                     <Typography type="body1" className={classes.title} component='div'>
                         <WikiCard {...this.props} />
                     </Typography>
