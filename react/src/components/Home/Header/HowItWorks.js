@@ -8,7 +8,7 @@ import Dialog, {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  withResponsiveFullScreen,
+  withMobileDialog,
 } from 'material-ui/Dialog';
 import HowItWorksText from './HowItWorksText'
 import Icon from 'material-ui-icons/HelpOutline';
@@ -72,4 +72,4 @@ ResponsiveDialog.propTypes = {
   fullScreen: PropTypes.bool.isRequired,
 };
 
-export default withResponsiveFullScreen()(ResponsiveDialog);
+export default withMobileDialog()(ResponsiveDialog);
