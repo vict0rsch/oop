@@ -1,9 +1,9 @@
 import React from 'react';
 import { Control, Form, actions, Field } from 'react-redux-form';
 import validator from 'validator';
+import Axios from 'axios';
 
 const isEmail = (val) => {
-    console.log('isEmail', val && validator.isEmail(val));
     return val && validator.isEmail(val);
 }
 
@@ -17,28 +17,60 @@ class UserForm extends React.Component {
         }
     }
 
-    
-    componentDidMount() {
-        setTimeout(
-            () => {
-                const usnms = ['Serge', 'Michel', 'FAP', 'PROUT', 'Cool'];
-                const index = parseInt(Math.random() * 5, 10);
-                this.props.rrfChange('userSignupForm.user.username', usnms[index]);
-            },
-            2000
-        )
-    }
-    
 
-    asyncCheckUsername(username) {
+    componentDidMount() {
+        if (localStorage.getItem('reduxPersist:userSignupForm')) {
+            const form = JSON.parse(localStorage.getItem('reduxPersist:userSignupForm'))
+            if (form.user.username) {
+                return
+            }
+        }
+        console.log('res');
+        Axios.get(
+            'http://localhost:5000/random_username').then(
+            (res) => {
+                if (res.data) {
+                    this.props.rrfChange('userSignupForm.user.username', res.data.username);
+                }
+            },
+            (err) => {
+                console.log(err)
+            }
+            ).catch((e) => {
+                console.log(e)
+            });
+
+        // setTimeout(
+        //     () => {
+        //         const usnms = ['Serge', 'Michel', 'FAP', 'PROUT', 'Cool'];
+        //         const index = parseInt(Math.random() * 5, 10);
+        //         this.props.rrfChange('userSignupForm.user.username', usnms[index]);
+        //     },
+        //     2000
+        // )
+    }
+
+
+    asyncCheckUsername = (username) => {
         return new Promise((resolve, reject) => {
-            setTimeout(()=>{
-                resolve({usernameIsAvailable: parseInt(Math.random()*10,10) > 7});
+            setTimeout(() => {
+                resolve({ usernameIsAvailable: parseInt(Math.random() * 10, 10) > 7 });
             }, 1000)
         })
     }
 
-    handleSubmit(user) {
+    usernameAsyncValidator = (val, done) => this.asyncCheckUsername(val)
+        .then(res => {
+            console.log('Username available: ', res.usernameIsAvailable);
+            if (this.state.usernameIsAvailable !== res.usernameIsAvailable) {
+                this.setState({
+                    usernameIsAvailable: res.usernameIsAvailable
+                })
+            }
+            done(res.usernameIsAvailable);
+        })
+
+    handleSubmit = (user) => {
         // Do whatever you like in here.
         // If you connect the UserForm to the Redux store,
         // you can dispatch actions such as:
@@ -54,7 +86,7 @@ class UserForm extends React.Component {
     render() {
 
         const passStyle = { color: this.state.passwordsMatch ? 'inherit' : 'red' }
-        const usernameStyle = { color: this.state.usernameIsAvailable ? 'inherit': 'red'}
+        const usernameStyle = { color: this.state.usernameIsAvailable ? 'inherit' : 'red' }
 
         return (
             <Form
@@ -80,20 +112,11 @@ class UserForm extends React.Component {
             >
 
                 <label style={usernameStyle} htmlFor=".username">Username:</label>
-                <Control.text 
-                    model=".username" 
+                <Control.text
+                    model=".username"
                     id=".username"
                     asyncValidators={{
-                        available: (val, done) =>this.asyncCheckUsername(val)
-                            .then(res => {
-                                console.log('Username available: ', res.usernameIsAvailable);
-                                if (this.state.usernameIsAvailable !== res.usernameIsAvailable){
-                                    this.setState({
-                                        usernameIsAvailable: res.usernameIsAvailable
-                                    })
-                                }
-                                done(res.usernameIsAvailable);
-                            })
+                        available: this.usernameAsyncValidator
                     }}
                     asyncValidateOn="blur"
                 /><br /><br />
