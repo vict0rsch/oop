@@ -6,13 +6,11 @@ import { connect } from 'react-redux';
 import mapStateToProps from '../../store/defaultMapStateToProps';
 import mapDispatchToProps from '../../store/defaultMapDispatchToProps';
 import Dialog, {
-  DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';
-import Login from './Login'
+import Register from './Register'
 import Icon from 'material-ui-icons/HelpOutline';
 import Button from 'material-ui/Button';
 
@@ -57,7 +55,7 @@ class Auth extends React.Component {
         >
           <DialogTitle>{this.props.translate('home.intro.dialogButton')}</DialogTitle>
           <DialogContent component={'div'}>
-              <Login {...this.props} close={this.handleRequestClose}/>
+              <Register {...this.props} close={this.handleRequestClose}/>
           </DialogContent>
         </Dialog>
       </div>
