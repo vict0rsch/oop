@@ -12,7 +12,7 @@ import store, { history } from './store/store';
 import Home from './components/Home/Home';
 import Graph from './components/Graph/Graph';
 import Header from './components/Header/Header';
-import Login from './components/Auth/Login';
+import Auth from './components/Auth/Auth';
 
 
 import './style/index.css';
@@ -49,7 +49,7 @@ const router = (
                         <Route exact path='/search' component={Home}></Route>
                         <Route exact path='/contact' component={Home}></Route>
                         <Route path='/graph/:entityId' component={Graph}></Route>
-                        <Route path='/login' component={Login}></Route>
+                        <Route path='/login' component={Auth}></Route>
                     </Switch>
                 </div>
             </MuiThemeProvider>
