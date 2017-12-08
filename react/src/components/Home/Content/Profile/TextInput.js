@@ -18,6 +18,7 @@ class TextFields extends React.Component {
         super(props)
         this.state = {
             value: this.props.model[this.props.id] || '',
+            visited: false
         };
     }
 
@@ -28,15 +29,21 @@ class TextFields extends React.Component {
         });
     };
 
-    
+    setVisited = () => {
+        this.setState({
+            visited: true
+        })
+    }
+
+
     componentWillReceiveProps(nextProps) {
-        if (nextProps.model[this.props.id] !== this.state.value){
+        if (nextProps.model[this.props.id] !== this.state.value) {
             this.setState({
                 value: nextProps.model[this.props.id]
             })
         }
     }
-    
+
 
     render() {
         const { classes } = this.props;
@@ -49,10 +56,11 @@ class TextFields extends React.Component {
                 className={classes.textField}
                 value={this.state.value || ''}
                 onChange={this.handleChange('value')}
+                onFocus={this.setVisited}
                 onBlur={this.props.onBlur}
                 margin="normal"
                 type={this.props.type || "input"}
-                error={this.props.valid === undefined ? false : !this.props.valid}
+                error={(this.props.valid === undefined ? false : !this.props.valid) && this.state.visited}
             />
         );
     }
