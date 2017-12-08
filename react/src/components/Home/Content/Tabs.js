@@ -82,7 +82,7 @@ class HomeContentTabs extends React.Component {
 
   render() {
 
-    let tabs = ["search", "profile", "about", "contact", "settings"];
+    let tabs = ["search", "about", "contact", "settings"];
     if (this.props.clientType !== "extension") {
       tabs = [
         ...tabs.slice(0, 2),
