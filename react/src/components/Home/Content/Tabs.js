@@ -9,7 +9,6 @@ import ContactIcon from 'react-icons/lib/go/mail';
 import AboutIcon from 'react-icons/lib/go/organization';
 import ExtensionIcon from 'react-icons/lib/go/package';
 
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -83,7 +82,7 @@ class HomeContentTabs extends React.Component {
 
   render() {
 
-    let tabs = ["search", "about", "contact", "settings"];
+    let tabs = ["search", "profile", "about", "contact", "settings"];
     if (this.props.clientType !== "extension") {
       tabs = [
         ...tabs.slice(0, 2),
@@ -99,7 +98,7 @@ class HomeContentTabs extends React.Component {
       'about': <AboutIcon style={iconStyle} />,
       'contact': <ContactIcon style={iconStyle} />,
       'settings': <SettingsIcon style={iconStyle} />,
-      'extension': <ExtensionIcon style={iconStyle} />
+      'extension': <ExtensionIcon style={iconStyle} />,
     };
 
     return (

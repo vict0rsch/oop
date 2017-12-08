@@ -11,6 +11,7 @@ import LearnAbout from './Content/LearnAbout/LearnAbout';
 import HomeSearchBar from './Content/HomeSearchBar/HomeSearchBar';
 import Contact from './Content/Contact/Contact';
 import Settings from './Content/Settings/Settings';
+import Profile from './Content/Profile/Profile';
 import HomeContentTabs from './Content/Tabs';
 import Extension from './Content/Extension/Extension';
 import Header from './Header/Header';
@@ -107,7 +108,6 @@ class Home extends React.Component {
     return (
       <div>
         <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />
-        <button onClick={()=>{this.props.history.push('/login')}}>LOGIN</button>
         <div style={homeContentDivStyle[this.props.clientType]}>
           <Example {...this.props} />
           <HomeContentTabs {...this.props} />

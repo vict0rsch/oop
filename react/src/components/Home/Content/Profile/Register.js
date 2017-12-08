@@ -20,14 +20,14 @@ export default class Register extends Component {
                     if (resp.data.status === 'success' && resp.data.auth_token) {
                         localStorage.setItem('_jwt', resp.data.auth_token);
                         this.setState(
-                            { submitError: ''}
+                            { submitError: '' }
                         );
                         this.props.close();
-                    } 
+                    }
                 }
             },
             (err) => {
-                if (err.response.status === 401){
+                if (err.response.status === 401) {
                     this.setState(
                         { submitError: err.response.data.message }
                     );
@@ -38,7 +38,11 @@ export default class Register extends Component {
     render() {
         return (
             <div>
-                <RegisterForm {...this.props} onSubmit={this.showResults} submitError={this.state.submitError} />
+                <RegisterForm
+                    {...this.props}
+                    onSubmit={this.showResults}
+                    submitError={this.state.submitError}
+                    setRandomUsername={this.props.setRandomUsername} />
             </div>
         )
     }
