@@ -40,7 +40,11 @@ function show(state = false, action) {
                 ...state,
                 sideButtons: !state.sideButtons
             }
-        
+        case 'TOGGLE_PROFILE':
+            return {
+                ...state,
+                profile: !state.profile
+            }
         case 'CLOSE_ALL':
             let newState = {
                 ...state

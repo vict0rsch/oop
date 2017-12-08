@@ -47,6 +47,7 @@ const router = (
                         <Route exact path='/about' component={Home}></Route>
                         <Route exact path='/search' component={Home}></Route>
                         <Route exact path='/contact' component={Home}></Route>
+                        <Route exact path='/profile' component={Home}></Route>
                         <Route path='/graph/:entityId' component={Graph}></Route>
                     </Switch>
                 </div>

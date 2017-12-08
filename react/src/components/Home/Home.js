@@ -110,8 +110,11 @@ class Home extends React.Component {
         <Header {...this.props} style={homeContentDivStyle[this.props.clientType]} />
         <div style={homeContentDivStyle[this.props.clientType]}>
           <Example {...this.props} />
+
           <HomeContentTabs {...this.props} />
+          
           <HomeSearchBar {...this.props} />
+          <Profile {...this.props} />
           <LearnAbout {...this.props} />
           <Contact {...this.props} />
           <Settings {...this.props} />

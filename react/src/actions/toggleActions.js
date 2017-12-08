@@ -22,6 +22,12 @@ export function toggleAbout() {
     };
 }
 
+export function toggleProfile() {
+    return {
+        type: 'TOGGLE_PROFILE'
+    };
+}
+
 export function toggleContact() {
     return {
         type: 'TOGGLE_CONTACT'
