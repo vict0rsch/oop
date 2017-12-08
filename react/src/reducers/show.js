@@ -40,6 +40,7 @@ function show(state = false, action) {
                 ...state,
                 sideButtons: !state.sideButtons
             }
+        
         case 'CLOSE_ALL':
             let newState = {
                 ...state
