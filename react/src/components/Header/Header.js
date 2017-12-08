@@ -18,7 +18,7 @@ class Header extends React.Component {
 
   componentWillMount() {
     const pathname = this.props.history.location.pathname;
-    const locations = ['/extension', '/settings', '/about', '/search', '/contact', '/', '/callback', '/login'];
+    const locations = ['/extension', '/settings', '/about', '/search', '/contact', '/', '/profile'];
     if (pathname && (locations.indexOf(pathname) === -1 && pathname.indexOf('graph') === -1)) {
       this.props.history.push('/');
     }

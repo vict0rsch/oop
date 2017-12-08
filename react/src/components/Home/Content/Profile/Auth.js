@@ -11,12 +11,23 @@ import Dialog, {
     withMobileDialog,
 } from 'material-ui/Dialog';
 import Register from './Register'
-import Icon from 'material-ui-icons/HelpOutline';
+import Icon from 'react-icons/lib/fa/refresh';
 import Button from 'material-ui/Button';
 import Axios from 'axios';
+import Typography from 'material-ui/Typography';
 
 
 const fullScreenMinWidth = 650;
+
+const refreshUsernameButtonStyle = {
+    minWidth: '15px',
+    minHeight: '15px',
+    padding: '8px'
+};
+
+const dialogContentStyle = {
+    textAlign: 'center'
+};
 
 const buttonDivPositionStyle = {
     position: 'absolute',
@@ -72,7 +83,12 @@ class Auth extends React.Component {
                     onRequestClose={this.handleRequestClose}
                 >
                     <DialogTitle>{this.props.translate('home.profile.registerTitle')}</DialogTitle>
-                    <DialogContent component={'div'}>
+                    <DialogContent component={'div'} style={dialogContentStyle}>
+                        <Typography type="body1">
+                            {this.props.translate('home.profile.registerContent')}
+                            <Button onClick={this.setRandomUsername} color="primary" style={refreshUsernameButtonStyle}><Icon /></Button>
+                        </Typography>
+                        <br/><br/>
                         <Register {...this.props} close={this.handleRequestClose} setRandomUsername={this.setRandomUsername} />
                     </DialogContent>
                 </Dialog>

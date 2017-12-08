@@ -73,6 +73,7 @@ class Home extends React.Component {
         'contact': false,
         'settings': false,
         'extension': false,
+        'profile': false,
         'searchBar': true
       });
     } else {
