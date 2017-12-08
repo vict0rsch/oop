@@ -8,6 +8,11 @@ const defaultState = {
     infoBox: {
         type: '',
         data: []
+    },
+    user: {
+        isLoggedIn: false,
+        isConfirmed: false,
+        isValid: false
     }
 };
 

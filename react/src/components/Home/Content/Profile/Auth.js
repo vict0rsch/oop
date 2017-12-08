@@ -65,13 +65,13 @@ class Auth extends React.Component {
 
         return (
             <div>
-                <Button onClick={this.handleClickOpen}><Icon /></Button>
+                <Button onClick={this.handleClickOpen} color="primary">{this.props.translate('home.profile.register')}</Button>
                 <Dialog
                     fullScreen={fullScreen}
                     open={this.state.open}
                     onRequestClose={this.handleRequestClose}
                 >
-                    <DialogTitle>{this.props.translate('home.intro.dialogButton')}</DialogTitle>
+                    <DialogTitle>{this.props.translate('home.profile.registerTitle')}</DialogTitle>
                     <DialogContent component={'div'}>
                         <Register {...this.props} close={this.handleRequestClose} setRandomUsername={this.setRandomUsername} />
                     </DialogContent>

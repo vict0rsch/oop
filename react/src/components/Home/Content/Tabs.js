@@ -8,6 +8,7 @@ import SettingsIcon from 'react-icons/lib/go/settings';
 import ContactIcon from 'react-icons/lib/go/mail';
 import AboutIcon from 'react-icons/lib/go/organization';
 import ExtensionIcon from 'react-icons/lib/go/package';
+import ProfileIcon from 'react-icons/lib/fa/space-shuttle';
 
 const styles = theme => ({
   root: {
@@ -99,6 +100,7 @@ class HomeContentTabs extends React.Component {
       'contact': <ContactIcon style={iconStyle} />,
       'settings': <SettingsIcon style={iconStyle} />,
       'extension': <ExtensionIcon style={iconStyle} />,
+      'profile': <ProfileIcon style={iconStyle} />,
     };
 
     return (
@@ -115,11 +117,13 @@ class HomeContentTabs extends React.Component {
         >
           {tabs.map(
             (v, k) => {
+              const translate = v === 'profile' && !this.props.user.isLoggedIn ? 'login' : v;
+  
               return <Tab
                 className={classes.labelContainer}
                 key={'tab' + k}
                 label={
-                  <span style={{ ...labelStyle[this.props.clientType], ...tabStyle[this.props.clientType] }}>{this.props.translate("home.tabs." + v)}</span>
+                  <span style={{ ...labelStyle[this.props.clientType], ...tabStyle[this.props.clientType] }}>{this.props.translate("home.tabs." + translate)}</span>
                 }
                 icon={icons[v]}
                 value={v}

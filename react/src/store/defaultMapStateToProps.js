@@ -10,7 +10,8 @@ function mapStateToProps(state) {
       translate: getTranslate(state.locale),
       currentLanguage: getActiveLanguage(state.locale).code,
       clientType: state.clientType,
-      userSignupForm: state.userSignupForm
+      userSignupForm: state.userSignupForm,
+      user: state.user
     };
   }
 
