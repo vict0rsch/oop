@@ -134,29 +134,6 @@ class RegisterForm extends React.Component {
                 /><br /><br />
 
 
-                {/* <Control.text
-                    model=".firstName"
-                    component={TextInput}
-                    controlProps={{
-                        model: this.props.userSignupForm.user,
-                        label: this.props.translate('login.firstName.label'),
-                        id: 'firstName'
-                    }}
-                /><br /><br />
-
-
-                <label htmlFor=".lastName"></label>
-                <Control.text
-                    model=".lastName"
-                    component={TextInput}
-                    controlProps={{
-                        model: this.props.userSignupForm.user,
-                        label: this.props.translate('login.lastName.label'),
-                        id: 'lastName'
-                    }}
-                /><br /><br /> */}
-
-
                 <Control.text
                     model=".email"
                     validators={{

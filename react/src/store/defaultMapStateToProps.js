@@ -11,6 +11,7 @@ function mapStateToProps(state) {
       currentLanguage: getActiveLanguage(state.locale).code,
       clientType: state.clientType,
       userSignupForm: state.userSignupForm,
+      userLoginForm: state.userLoginForm,
       user: state.user
     };
   }

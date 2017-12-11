@@ -1,28 +1,22 @@
 import React, { Component } from 'react'
-import RegisterForm from './RegisterForm';
+import LoginForm from './LoginForm';
 import Axios from 'axios';
 import Dialog, {
     DialogContent,
     DialogTitle,
     withMobileDialog,
 } from 'material-ui/Dialog';
-import Icon from 'react-icons/lib/fa/refresh';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
 const fullScreenMinWidth = 650;
 
-const refreshUsernameButtonStyle = {
-    minWidth: '15px',
-    minHeight: '15px',
-    padding: '8px'
-};
 
 const dialogContentStyle = {
     textAlign: 'center'
 };
 
-class Register extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,26 +25,10 @@ class Register extends Component {
         }
     }
 
-    setRandomUsername = () => {
-        Axios.get(
-            'http://localhost:5000/random_username').then(
-            (res) => {
-                if (res.data) {
-                    console.log('Dispatching change to ', res.data.username)
-                    this.props.rrfChange('userSignupForm.user.username', res.data.username);
-                }
-            },
-            (err) => {
-                console.log(err)
-            }
-            ).catch((e) => {
-                console.log(e)
-            });
-    }
-
     showResults = values => {
         const escaped = JSON.parse(JSON.stringify(values));
-        Axios.post("http://localhost:5000/auth/register", escaped).then(
+        console.log('submitted')
+        Axios.post("http://localhost:5000/auth/login", escaped).then(
             (resp) => {
                 console.log(resp);
                 if (resp.data) {
@@ -61,12 +39,14 @@ class Register extends Component {
                         );
                         this.handleRequestClose();
                         this.props.setUserIsLoggedIn(true);
+                        this.props.setUserIsConfirmed(resp.data.user.confirmed);
                         this.props.setUserData(resp.data.user);
                         this.props.setUserTimestamp();
                     }
                 }
             },
             (err) => {
+                console.log(err, err.response)
                 if (err.response.status === 401) {
                     this.setState(
                         { submitError: err.response.data.message }
@@ -90,26 +70,29 @@ class Register extends Component {
         if (this.props.clientType === 'extension' || window.innerWidth > fullScreenMinWidth) {
             fullScreen = false;
         }
+
         return (
             <div>
-                <Button onClick={this.handleClickOpen} color="primary">{this.props.translate('home.profile.register')}</Button>
+                <Button onClick={this.handleClickOpen} color="primary">
+                    {/* {this.props.translate('home.profile.register')} */}
+                    Log In
+                </Button>
                 <Dialog
                     fullScreen={fullScreen}
                     open={this.state.open}
                     onRequestClose={this.handleRequestClose}
                 >
-                    <DialogTitle>{this.props.translate('home.profile.registerTitle')}</DialogTitle>
+                    <DialogTitle>Log In</DialogTitle>
                     <DialogContent component={'div'} style={dialogContentStyle}>
                         <Typography type="body1">
-                            {this.props.translate('home.profile.registerContent')}
-                            <Button onClick={this.setRandomUsername} color="primary" style={refreshUsernameButtonStyle}><Icon /></Button>
+                            Welcome Back!
                         </Typography>
                         <br /><br />
-                        <RegisterForm
+                        <LoginForm
                             {...this.props}
                             onSubmit={this.showResults}
                             submitError={this.state.submitError}
-                            setRandomUsername={this.setRandomUsername} />
+                        />
                     </DialogContent>
                 </Dialog>
             </div>
@@ -118,4 +101,4 @@ class Register extends Component {
 }
 
 
-export default withMobileDialog()(Register);
+export default withMobileDialog()(Login);

@@ -12,7 +12,8 @@ const defaultState = {
     user: {
         isLoggedIn: false,
         isConfirmed: false,
-        isValid: false
+        isValid: false,
+        data: {}
     }
 };
 

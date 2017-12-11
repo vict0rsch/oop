@@ -12,7 +12,7 @@ class ProfilePaper extends Component {
                     toggle={this.props.toggleProfile}
                     content={
                         <div style={{textAlign:'center'}}>
-                            {!this.props.user.isLoggedIn && <Auth {...this.props}/>}
+                            <Auth {...this.props}/>
                         </div>
                     } />
             </div>

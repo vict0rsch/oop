@@ -53,11 +53,11 @@
             "errors":{},
             "tooltip": []
         },
-        "firstName":{
+        "first_name":{
             "label":["Fristname ", "Prénom "],
             "errors":{}
         },
-        "lastName":{
+        "last_name":{
             "label":["Lastname ", "Nom "],
             "errors":{}
         },
