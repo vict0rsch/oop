@@ -16,11 +16,11 @@ class PreviousButton extends React.Component {
     handleClick = () => {
         const history = JSON.parse(sessionStorage.graphHistory);
         let location = JSON.parse(sessionStorage.location);
-        if (location === -1){
+        if (location === -1) {
             location = 0;
         }
         sessionStorage.location = location - 1;
-        if (this.props.data.idSet.indexOf(parseInt(history[location - 1], 10)) > -1){
+        if (this.props.data.idSet.indexOf(parseInt(history[location - 1], 10)) > -1) {
             this.props.history.push('/graph/' + history[location - 1]);
         } else {
             console.log('Unknown : ', history[location - 1])
@@ -36,9 +36,11 @@ class PreviousButton extends React.Component {
                 placement="bottom"
                 style={{ textAlign: 'center' }}
             >
-                <Button raised fab disabled={disabled} className={this.props.classes.button} onClick={this.handleClick}>
-                    <UndoIcon className={this.props.classes.icon} />
-                </Button>
+                <div>
+                    <Button raised fab disabled={disabled} className={this.props.classes.button} onClick={this.handleClick}>
+                        <UndoIcon className={this.props.classes.icon} />
+                    </Button>
+                </div>
             </Tooltip>
         );
     }

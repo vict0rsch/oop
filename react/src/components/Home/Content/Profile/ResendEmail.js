@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Icon from 'react-icons/lib/fa/fighter-jet';
 import Button from 'material-ui/Button';
-import Axios from 'axios';
 
 const buttonStyle = {
     width: '50px',
@@ -12,35 +11,16 @@ const buttonStyle = {
 export default class ResendEmail extends Component {
 
     handleClick = (event) => {
-        Axios.post(
-            "http://localhost:5000/auth/resend_email",
-            { resend: true },
-            {
-                headers: {
-                    Authorization: "Bearer " + localStorage['_jwt']
-                }
-            }
-        ).then(
-            (resp) => {
-                console.log(resp);
-                if (resp.data) {
-                    if (resp.data.status === 'success') {
-                        console.log('ok');
-                    }
-                }
-            },
-            (err) => {
-                console.log(err)
-            }
-            )
+        this.props.resendEmail()
     }
 
     render() {
         return (
             <div>
-                Confirm you account by clicking on the link in the email we sent you.
+                {this.props.translate('home.profile.resend.confirm')}
                 <br /><br />
-                Email not received? Check your spams! Otherwise, resend a confirmation email here
+                {this.props.translate('home.profile.resend.notReceived')}
+                
                 <Button onClick={this.handleClick} style={buttonStyle}>
                     <Icon />
                 </Button>

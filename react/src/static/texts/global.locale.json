@@ -44,7 +44,16 @@
         "profile": {
             "register": ["Register", "S'inscrire"],
             "registerTitle": ["Register on OOP", "Créer un compte OOP"],
-            "registerContent": ["You may chose to use this randomly assigned username.<br/> Or change it. Or try a new random one: ", "On vous a choisi un nom d'utilisateur au hasard. <br/> Mais vous pouvez le changer. Ou en essayer un autre: "]
+            "registerContent": ["You may chose to use this randomly assigned username.<br/> Or change it. Or try a new random one: ", "On vous a choisi un nom d'utilisateur au hasard. <br/> Mais vous pouvez le changer. Ou en essayer un autre: "],
+            "resend":{
+                "confirm":["Confirm you account by clicking on the link in the email we sent you.", "Confirmez votre compte en cliquant sur le lien dans le mail que nous vous avons envoyé."],
+                "notReceived": ["Email not received? Check your spams! Otherwise, resend a confirmation email here", "Vous n'avez pas reçu notre email? Vérifiez vos spams. Sinon, cliquez là "]
+            },
+            "logout": ["Logout", "Déconnexion"],
+            "login": {
+                "button": ["Log in", "Connexion"],
+                "dialogContent": ["Welcome Back!", "Bienvenue!"]
+            }
         }
     },
     "login": {

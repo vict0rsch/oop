@@ -30,13 +30,12 @@ class RegisterForm extends React.Component {
     }
 
     handleChange = (model) => {
-        console.log('Form is valid:', this.props.userLoginForm.forms.$form.valid)
+        
     }
 
     render() {
 
         const form = this.props.userLoginForm.forms;
-        console.log('Hello Form')
         return (
             <Form
                 model="userLoginForm.user"

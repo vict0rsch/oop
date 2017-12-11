@@ -50,30 +50,7 @@ class Register extends Component {
 
     showResults = values => {
         const escaped = JSON.parse(JSON.stringify(values));
-        Axios.post("http://localhost:5000/auth/register", escaped).then(
-            (resp) => {
-                console.log(resp);
-                if (resp.data) {
-                    if (resp.data.status === 'success' && resp.data.auth_token) {
-                        localStorage.setItem('_jwt', resp.data.auth_token);
-                        this.setState(
-                            { submitError: '' }
-                        );
-                        this.handleRequestClose();
-                        this.props.setUserIsLoggedIn(true);
-                        this.props.setUserData(resp.data.user);
-                        this.props.setUserTimestamp();
-                    }
-                }
-            },
-            (err) => {
-                if (err.response.status === 401) {
-                    this.setState(
-                        { submitError: err.response.data.message }
-                    );
-                }
-            }
-        )
+        this.props.registerUser(this, escaped);
     }
 
     handleClickOpen = () => {

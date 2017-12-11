@@ -35,6 +35,17 @@ const parentDivstyle = {
 
 export default class Header extends Component {
 
+
+    componentDidMount() {
+        if (localStorage.getItem('_jwt')) {
+            if (this.props.user.timestamp && Math.round(new Date().getTime() / 1000) - this.props.user.timestamp > 15) {
+                console.log('Fetching status...')
+                this.props.setUserStatus(this);
+            }
+        }
+    }
+
+
     render() {
 
         return (

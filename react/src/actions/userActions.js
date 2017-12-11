@@ -12,7 +12,7 @@ export function setUserIsConfirmed(value) {
     }
 }
 
-export function logOut() {
+export function userLogOut() {
     return {
         type: 'LOGOUT'
     }
@@ -28,5 +28,34 @@ export function setUserData(userData) {
 export function setUserTimestamp() {
     return {
         type: 'SET_USER_TIMESTAMP'
+    }
+}
+
+export function setUserStatus(component){
+    return {
+        type: 'SET_USER_STATUS',
+        component
+    }
+}
+
+export function registerUser(component, values){
+    return {
+        type: 'REGISTER',
+        component,
+        values
+    }
+}
+
+export function resendEmail(){
+    return {
+        type: 'RESEND_EMAIL'
+    }
+}
+
+export function userLogin(component, values){
+    return {
+        type: 'USER_LOGIN',
+        component,
+        values
     }
 }

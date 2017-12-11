@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import LoginForm from './LoginForm';
-import Axios from 'axios';
 import Dialog, {
     DialogContent,
     DialogTitle,
@@ -28,32 +27,7 @@ class Login extends Component {
     showResults = values => {
         const escaped = JSON.parse(JSON.stringify(values));
         console.log('submitted')
-        Axios.post("http://localhost:5000/auth/login", escaped).then(
-            (resp) => {
-                console.log(resp);
-                if (resp.data) {
-                    if (resp.data.status === 'success' && resp.data.auth_token) {
-                        localStorage.setItem('_jwt', resp.data.auth_token);
-                        this.setState(
-                            { submitError: '' }
-                        );
-                        this.handleRequestClose();
-                        this.props.setUserIsLoggedIn(true);
-                        this.props.setUserIsConfirmed(resp.data.user.confirmed);
-                        this.props.setUserData(resp.data.user);
-                        this.props.setUserTimestamp();
-                    }
-                }
-            },
-            (err) => {
-                console.log(err, err.response)
-                if (err.response.status === 401) {
-                    this.setState(
-                        { submitError: err.response.data.message }
-                    );
-                }
-            }
-        )
+        this.props.userLogin(this, escaped)
     }
 
     handleClickOpen = () => {
@@ -75,17 +49,17 @@ class Login extends Component {
             <div>
                 <Button onClick={this.handleClickOpen} color="primary">
                     {/* {this.props.translate('home.profile.register')} */}
-                    Log In
+                    {this.props.translate('home.profile.login.button')}
                 </Button>
                 <Dialog
                     fullScreen={fullScreen}
                     open={this.state.open}
                     onRequestClose={this.handleRequestClose}
                 >
-                    <DialogTitle>Log In</DialogTitle>
+                    <DialogTitle>{this.props.translate('home.profile.login.button')}</DialogTitle>
                     <DialogContent component={'div'} style={dialogContentStyle}>
                         <Typography type="body1">
-                            Welcome Back!
+                            {this.props.translate('home.profile.login.dialogContent')}
                         </Typography>
                         <br /><br />
                         <LoginForm

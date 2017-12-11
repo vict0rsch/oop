@@ -34,9 +34,11 @@ class PreviousButton extends React.Component {
                 placement="bottom"
                 style={{ textAlign: 'center' }}
             >
-                <Button raised fab disabled={disabled} className={this.props.classes.button} onClick={this.handleClick}>
-                    <RedoIcon className={this.props.classes.icon} />
-                </Button>
+                <div>
+                    <Button raised fab disabled={disabled} className={this.props.classes.button} onClick={this.handleClick}>
+                        <RedoIcon className={this.props.classes.icon} />
+                    </Button>
+                </div>
             </Tooltip>
         );
     }
