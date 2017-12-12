@@ -36,6 +36,7 @@ function user(state = {}, action) {
                     let closed = false;
                     if (resp.data) {
                         if (resp.data.status === 'success' && resp.data.auth_token) {
+                            closed = true;
                             console.log("User successfully registered");
                             localStorage.setItem('_jwt', resp.data.auth_token);
                             component.setState(
@@ -45,7 +46,6 @@ function user(state = {}, action) {
                             component.props.setUserData(resp.data.user);
                             component.props.setUserTimestamp();
                             component.handleRequestClose();
-                            closed = true;
 
                         }
                     }

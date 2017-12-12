@@ -4,7 +4,7 @@ export default class EditProfile extends Component {
     render() {
         return (
             <div>
-                Hello
+                EditProfile
             </div>
         )
     }

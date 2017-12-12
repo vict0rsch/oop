@@ -14,7 +14,7 @@ class ProfilePaper extends Component {
                     content={
                         <div style={{ textAlign: 'center' }}>
                             <Auth {...this.props} />
-                            <EditProfile {...this.props} />
+                            {this.props.user.isValid && <EditProfile {...this.props} />}
                         </div>
                     } />
             </div>
