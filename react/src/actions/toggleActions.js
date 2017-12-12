@@ -28,12 +28,6 @@ export function toggleProfile() {
     };
 }
 
-export function toggleContact() {
-    return {
-        type: 'TOGGLE_CONTACT'
-    };
-}
-
 export function toggleSettings() {
     return {
         type: 'TOGGLE_SETTINGS'

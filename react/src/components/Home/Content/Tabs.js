@@ -5,7 +5,6 @@ import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import SearchIcon from 'material-ui-icons/Search';
 import SettingsIcon from 'react-icons/lib/go/settings';
-import ContactIcon from 'react-icons/lib/go/mail';
 import AboutIcon from 'react-icons/lib/go/organization';
 import ExtensionIcon from 'react-icons/lib/go/package';
 import ProfileIcon from 'react-icons/lib/fa/space-shuttle';
@@ -85,7 +84,7 @@ class HomeContentTabs extends React.Component {
 
   render() {
 
-    let tabs = ["search", "profile", "about", "contact", "settings"];
+    let tabs = ["search", "profile", "about", "settings"];
     if (this.props.user.isValid){
       tabs = [
         ...tabs.slice(0, 2),
@@ -106,7 +105,6 @@ class HomeContentTabs extends React.Component {
     const icons = {
       'search': <SearchIcon style={iconStyle} />,
       'about': <AboutIcon style={iconStyle} />,
-      'contact': <ContactIcon style={iconStyle} />,
       'settings': <SettingsIcon style={iconStyle} />,
       'extension': <ExtensionIcon style={iconStyle} />,
       'profile': this.props.user.isLoggedIn ? <ProfileIcon style={iconStyle} /> : <LoginIcon style={iconStyle}/>,
