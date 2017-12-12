@@ -20,11 +20,16 @@ const buttonDivPositionStyle = {
   right: '24px'
 };
 const buttonStyle = {
-  width: '10px',
-  minWidth: '10px'
+  width: '40px',
+  minWidth: '40px'
 };
 
-class ResponsiveDialog extends React.Component {
+const iconStyle = {
+  width: '30px',
+  height: '30px'
+}
+
+class HowItWorksDialog extends React.Component {
   state = {
     open: false,
   };
@@ -45,7 +50,7 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div style={buttonDivPositionStyle}>
-        <Button style={buttonStyle} onClick={this.handleClickOpen}><Icon /></Button>
+        <Button style={buttonStyle} onClick={this.handleClickOpen}><Icon style={iconStyle} /></Button>
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}
@@ -68,8 +73,8 @@ class ResponsiveDialog extends React.Component {
   }
 }
 
-ResponsiveDialog.propTypes = {
+HowItWorksDialog.propTypes = {
   fullScreen: PropTypes.bool.isRequired,
 };
 
-export default withMobileDialog()(ResponsiveDialog);
+export default withMobileDialog()(HowItWorksDialog);

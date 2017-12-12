@@ -29,20 +29,23 @@ class PreviousButton extends React.Component {
 
     render() {
         const disabled = JSON.parse(sessionStorage.location) <= 0;
-        return (
-            <Tooltip
-                id="tooltip-ResetButton"
-                title={this.props.translate('graph.sideButtons.previousTooltip')}
-                placement="bottom"
-                style={{ textAlign: 'center' }}
-            >
-                <div>
+        return disabled ?
+            (<Button raised fab disabled={disabled} className={this.props.classes.button} onClick={this.handleClick}>
+                <UndoIcon className={this.props.classes.icon} />
+            </Button>)
+            :
+            (
+                <Tooltip
+                    id="tooltip-ResetButton"
+                    title={this.props.translate('graph.sideButtons.previousTooltip')}
+                    placement="bottom"
+                    style={{ textAlign: 'center' }}
+                >
                     <Button raised fab disabled={disabled} className={this.props.classes.button} onClick={this.handleClick}>
                         <UndoIcon className={this.props.classes.icon} />
                     </Button>
-                </div>
-            </Tooltip>
-        );
+                </Tooltip>
+            );
     }
 }
 
