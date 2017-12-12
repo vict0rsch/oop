@@ -5,7 +5,7 @@ import Axios from 'axios';
 import TextInput from './TextInput';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
-import {InputAdornment } from 'material-ui/Input';
+import { InputAdornment } from 'material-ui/Input';
 import Shuffle from 'react-icons/lib/ti/arrow-shuffle';
 
 const isEmail = (val) => {
@@ -21,14 +21,42 @@ const buttonDivStyle = {
     textAlign: 'right'
 }
 
+
+
+
 class RegisterForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             passwordsMatch: true,
             usernameIsAvailable: true,
-            emailIsAvailable: true
+            emailIsAvailable: true,
         }
+    }
+
+    formErrors = form => {
+        if (!this.state.usernameIsAvailable) {
+            return this.props.translate('home.profile.registerErrors.submit.usernameExists');
+        }
+        if (!isEmail(form.user.email.value) && form.user.email.value.length !== 0) {
+            return this.props.translate('home.profile.registerErrors.form.invalidEmail');
+        }
+        if (!this.state.emailIsAvailable) {
+            return this.props.translate('home.profile.registerErrors.submit.emailExists');
+        }
+        if (!checkPass(form.user.password.value) && form.user.password.value.length !== 0) {
+            return this.props.translate('home.profile.registerErrors.form.passwordTooShort');
+        }
+        if (!this.state.passwordsMatch) {
+            return this.props.translate('home.profile.registerErrors.form.passwordsDontMatch');
+        }
+        return ''
+
+    }
+
+    handleClick = () => {
+        this.props.makePending();
+        this.props.rrfSubmit('userSignupForm.user')
     }
 
     componentDidMount() {
@@ -51,7 +79,6 @@ class RegisterForm extends React.Component {
 
     usernameAsyncValidator = (val, done) => this.asyncCheckUsername(val)
         .then(res => {
-            console.log('Username exists: ', res.data.exists);
             const usernameIsAvailable = !res.data.exists;
             if (this.state.usernameIsAvailable !== usernameIsAvailable) {
                 this.setState({
@@ -67,7 +94,6 @@ class RegisterForm extends React.Component {
 
     emailAsyncValidator = (val, done) => this.asyncCheckEmail(val)
         .then(res => {
-            console.log('Email exists: ', res.data.exists);
             const emailIsAvailable = !res.data.exists;
             if (this.state.emailIsAvailable !== emailIsAvailable) {
                 this.setState({
@@ -86,9 +112,12 @@ class RegisterForm extends React.Component {
         this.props.onSubmit(user)
     }
 
+
     handleChange = (model) => {
-        console.log('Form is valid:', this.props.userSignupForm.forms.$form.valid)
+        this.props.makeNotPending()
+        // console.log('Form is valid:', this.props.userSignupForm.forms.$form.valid)
     }
+    
 
     render() {
 
@@ -98,7 +127,6 @@ class RegisterForm extends React.Component {
             <Form
                 model="userSignupForm.user"
                 onSubmit={(user) => {
-                    console.log(user);
                     this.handleSubmit(user)
                 }}
                 onChange={this.handleChange}
@@ -191,12 +219,17 @@ class RegisterForm extends React.Component {
                 /><br /><br />
 
                 <div style={buttonDivStyle}>
-                    <Button type="submit" color="primary" disabled={!form.$form.valid}>
+                    <Button type="submit" color="primary" disabled={!form.$form.valid || this.props.pending} onClick={this.handleClick}>
                         {this.props.translate('login.form.submit')}
                     </Button><br /><br />
                 </div>
 
-                {this.props.submitError}
+
+                <div style={{ width: '300px', color: 'red', margin: 'auto' }}>
+                    {this.formErrors(form)}
+                    {/* {this.props.submitError && this.props.translate('home.profile.registerErrors.submit.' + this.props.submitError)} */}
+                </div>
+
             </Form>
         );
     }

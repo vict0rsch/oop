@@ -29,8 +29,15 @@ class RegisterForm extends React.Component {
         this.props.onSubmit(user)
     }
 
+    handleClick = (event) => {
+        this.props.makePending();
+        this.props.rrfSubmit('userLoginForm.user')
+    }
+
     handleChange = (model) => {
-        
+        if (this.props.pending) {
+            this.props.makeNotPending();
+        }
     }
 
     render() {
@@ -79,12 +86,12 @@ class RegisterForm extends React.Component {
                 /><br /><br />
 
                 <div style={buttonDivStyle}>
-                    <Button type="submit" color="primary" disabled={!form.$form.valid}>
+                    <Button type="submit" color="primary" disabled={!form.$form.valid || this.props.pending} onClick={this.handleClick}>
                         {this.props.translate('login.form.submit')}
                     </Button><br /><br />
                 </div>
 
-                {this.props.submitError}
+                {this.props.submitError && this.props.translate('home.profile.loginErrors.' + this.props.submitError)}
             </Form>
         );
     }

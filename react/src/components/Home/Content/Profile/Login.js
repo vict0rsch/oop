@@ -3,10 +3,12 @@ import LoginForm from './LoginForm';
 import Dialog, {
     DialogContent,
     DialogTitle,
+    DialogActions,
     withMobileDialog,
 } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
+import ClearIcon from 'material-ui-icons/Clear';
 
 const fullScreenMinWidth = 650;
 
@@ -20,7 +22,8 @@ class Login extends Component {
         super(props);
         this.state = {
             submitError: '',
-            open: false
+            open: false,
+            pending: false
         }
     }
 
@@ -36,8 +39,20 @@ class Login extends Component {
 
     handleRequestClose = () => {
         this.setState({ open: false });
+        this.props.rrfReset('userLoginForm.user.password');
     };
 
+    makePending = () => {
+        this.setState({
+            pending: true
+        })
+    }
+
+    makeNotPending = () => {
+        this.setState({
+            pending: false
+        })
+    }
 
     render() {
         let { fullScreen } = this.props;
@@ -66,8 +81,16 @@ class Login extends Component {
                             {...this.props}
                             onSubmit={this.showResults}
                             submitError={this.state.submitError}
+                            pending={this.state.pending}
+                            makePending={this.makePending}
+                            makeNotPending={this.makeNotPending}
                         />
                     </DialogContent>
+                    <DialogActions >
+                        <Button onClick={this.handleRequestClose}>
+                            <ClearIcon />
+                        </Button>
+                    </DialogActions>
                 </Dialog>
             </div>
         )

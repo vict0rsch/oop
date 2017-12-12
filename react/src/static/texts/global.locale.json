@@ -1,7 +1,7 @@
 {
     "test": ["test_en", "text_fr"],
     "home": {
-        "example":["A few (almost) randomly picked Graphs:", "Quelques Graphes (presque) au hasard:"],
+        "example": ["A few (almost) randomly picked Graphs:", "Quelques Graphes (presque) au hasard:"],
         "searchBar": ["Search The Graph", "Rechercher dans le Graphe"],
         "learnAbout": ["About the Open Ownership Project", "\u00c0 propos de Open Ownership Project"],
         "contactButton": ["Contact", "Contact"],
@@ -45,8 +45,24 @@
             "register": ["Register", "S'inscrire"],
             "registerTitle": ["Register on OOP", "Créer un compte OOP"],
             "registerContent": ["You may chose to use this randomly assigned username.<br/> Or change it. Or try a new random one: ", "On vous a choisi un nom d'utilisateur au hasard. <br/> Mais vous pouvez le changer. Ou en essayer un autre: "],
-            "resend":{
-                "confirm":["Confirm you account by clicking on the link in the email we sent you.", "Confirmez votre compte en cliquant sur le lien dans le mail que nous vous avons envoyé."],
+            "registerErrors": {
+                "submit": {
+                    "invalidForm": ["The form is not valid.", "Formulaire d'inscription invalide."],
+                    "emailExists": ["This email address is already associated with an account.", "Cette adresse mail est déjà utilisée."],
+                    "usernameExists": ["This username is taken.", "Ce nom d'utilisateur est déjà pris."],
+                    "error": ["Server-side error. Sorry, we're fixing this. Retry soon!", "Erreur interne. Veuillez nous excuser! Réessayez dans quelques instants."]
+                },
+                "form": {
+                    "invalidEmail": ["Invalid email address", "Adresse mail invalide"],
+                    "passwordTooShort": ["The password is too short. Use at least 6 characters", "Le mot de passe est trop court. Utilisez au moins 6 caractères"],
+                    "passwordsDontMatch": ["The passwords don't match", "Les mots de passe ne correspondent pas"]
+                }
+            },
+            "loginErrors":{
+                "invalidUser": ["Invalid Email address or password", "Adresse mail ou mot de passe invalide"]
+            },
+            "resend": {
+                "confirm": ["Confirm you account by clicking on the link in the email we sent you.", "Confirmez votre compte en cliquant sur le lien dans le mail que nous vous avons envoyé."],
                 "notReceived": ["Email not received? Check your spams! Otherwise, resend a confirmation email here", "Vous n'avez pas reçu notre email? Vérifiez vos spams. Sinon, cliquez là "]
             },
             "logout": ["Logout", "Déconnexion"],
@@ -57,34 +73,34 @@
         }
     },
     "login": {
-        "username":{
-            "label":["Username * ", "Nom d'utilisateur * "],
-            "errors":{},
+        "username": {
+            "label": ["Username * ", "Nom d'utilisateur * "],
+            "errors": {},
             "tooltip": []
         },
-        "first_name":{
-            "label":["Fristname ", "Prénom "],
-            "errors":{}
+        "first_name": {
+            "label": ["Fristname ", "Prénom "],
+            "errors": {}
         },
-        "last_name":{
-            "label":["Lastname ", "Nom "],
-            "errors":{}
+        "last_name": {
+            "label": ["Lastname ", "Nom "],
+            "errors": {}
         },
-        "email":{
-            "label":["Email address * ", "Adresse mail * "],
-            "errors":{}
+        "email": {
+            "label": ["Email address * ", "Adresse mail * "],
+            "errors": {}
         },
-        "password":{
-            "label":["Password * ", "Mot de passe * "],
-            "errors":{}
+        "password": {
+            "label": ["Password * ", "Mot de passe * "],
+            "errors": {}
         },
-        "confirmPassword":{
-            "label":["Confirm password * ", "Confirmez le mot de passe * "],
-            "errors":{}
+        "confirmPassword": {
+            "label": ["Confirm password * ", "Confirmez le mot de passe * "],
+            "errors": {}
         },
-        "form":{
-            "label":["Login ", "Inscription "],
-            "errors":{},
+        "form": {
+            "label": ["Login ", "Inscription "],
+            "errors": {},
             "submit": ["Submit ", "Go! "]
         }
     },
@@ -110,10 +126,10 @@
             "cannotConnect": ["Could not connect to Wikipedia", "Connexion \u00e0 Wikipedia impossible"],
             "jsError": ["Internal error. Sorry :(", "Erreur interne. D\u00e9sol\u00e9 :("]
         },
-        "issue":{
+        "issue": {
             "dialogTitle": ["Issue with a Graph", "Problème dans le Graphe"],
             "dialogContentText": ["Whether you notice something which is plain wrong or just a typo, report it to us! Make sure you include the name of the Graph you are currently looking at (the entity's name will be in bold font).", "Que vous remarquiez quelque chose de complètement faux ou juste une petite erreur, dites-le nous! Précisez bien le nom du Graphe où il y a une erreur: c'est le nom de l'entité écrite en gras."],
-            "form":["https://goo.gl/forms/Lf9fIFDyV1tGtmmr2", "https://goo.gl/forms/t3xmZGEiuYiPPjKj1"],
+            "form": ["https://goo.gl/forms/Lf9fIFDyV1tGtmmr2", "https://goo.gl/forms/t3xmZGEiuYiPPjKj1"],
             "dialogContentText2": ["Thaks for your help! <br/><br/>(If you know what that means, you can also raise an Issue on our Github, see the Home's Contact section)", "Merci de votre aide!<br/><br/>(Vous pouvez aussi soumettre une Issue sur notre Github, voir la section Contact de l'Accueil)"],
             "closeButton": ["OK", "OK"]
         }

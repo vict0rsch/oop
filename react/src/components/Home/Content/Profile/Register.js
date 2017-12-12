@@ -4,10 +4,12 @@ import Axios from 'axios';
 import Dialog, {
     DialogContent,
     DialogTitle,
+    DialogActions,
     withMobileDialog,
 } from 'material-ui/Dialog';
 import Icon from 'react-icons/lib/fa/refresh';
 import Button from 'material-ui/Button';
+import ClearIcon from 'material-ui-icons/Clear';
 import Typography from 'material-ui/Typography';
 
 const fullScreenMinWidth = 650;
@@ -27,7 +29,8 @@ class Register extends Component {
         super(props);
         this.state = {
             submitError: '',
-            open: false
+            open: false,
+            pending: false
         }
     }
 
@@ -36,7 +39,6 @@ class Register extends Component {
             'http://localhost:5000/random_username').then(
             (res) => {
                 if (res.data) {
-                    console.log('Dispatching change to ', res.data.username)
                     this.props.rrfChange('userSignupForm.user.username', res.data.username);
                 }
             },
@@ -48,7 +50,7 @@ class Register extends Component {
             });
     }
 
-    showResults = values => {
+    submitRegisterForm = values => {
         const escaped = JSON.parse(JSON.stringify(values));
         this.props.registerUser(this, escaped);
     }
@@ -59,7 +61,20 @@ class Register extends Component {
 
     handleRequestClose = () => {
         this.setState({ open: false });
+        this.props.rrfReset('userSignupForm.user');
     };
+
+    makePending = () => {
+        this.setState({
+            pending: true
+        })
+    }
+
+    makeNotPending = () => {
+        this.setState({
+            pending: false
+        })
+    }
 
 
     render() {
@@ -84,10 +99,19 @@ class Register extends Component {
                         <br /><br />
                         <RegisterForm
                             {...this.props}
-                            onSubmit={this.showResults}
+                            onSubmit={this.submitRegisterForm}
                             submitError={this.state.submitError}
-                            setRandomUsername={this.setRandomUsername} />
+                            setRandomUsername={this.setRandomUsername} 
+                            pending={this.state.pending}
+                            makePending={this.makePending}
+                            makeNotPending={this.makeNotPending}
+                            />
                     </DialogContent>
+                    <DialogActions >
+                        <Button onClick={this.handleRequestClose}>
+                            <ClearIcon />
+                        </Button>
+                    </DialogActions>
                 </Dialog>
             </div>
         )

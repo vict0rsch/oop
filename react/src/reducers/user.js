@@ -33,18 +33,24 @@ function user(state = {}, action) {
             let { component, values } = action;
             Axios.post("http://localhost:5000/auth/register", values).then(
                 (resp) => {
-                    console.log(resp);
+                    let closed = false;
                     if (resp.data) {
                         if (resp.data.status === 'success' && resp.data.auth_token) {
+                            console.log("User successfully registered");
                             localStorage.setItem('_jwt', resp.data.auth_token);
                             component.setState(
                                 { submitError: '' }
                             );
-                            component.handleRequestClose();
                             component.props.setUserIsLoggedIn(true);
                             component.props.setUserData(resp.data.user);
                             component.props.setUserTimestamp();
+                            component.handleRequestClose();
+                            closed = true;
+
                         }
+                    }
+                    if (!closed) {
+                        component.makeNotPending();
                     }
                 },
                 (err) => {
@@ -53,6 +59,7 @@ function user(state = {}, action) {
                             { submitError: err.response.data.message }
                         );
                     }
+                    component.makeNotPending();
                 }
             )
             return {
@@ -158,6 +165,7 @@ function user(state = {}, action) {
             values = action.values;
             Axios.post("http://localhost:5000/auth/login", values).then(
                 (resp) => {
+                    let closed = false;
                     if (resp.data) {
                         if (resp.data.status === 'success' && resp.data.auth_token) {
                             localStorage.setItem('_jwt', resp.data.auth_token);
@@ -169,16 +177,22 @@ function user(state = {}, action) {
                             component.props.setUserIsConfirmed(resp.data.user.confirmed);
                             component.props.setUserData(resp.data.user);
                             component.props.setUserTimestamp();
+                            closed = true;
                         }
+                    }
+                    if (!closed) {
+                        component.makeNotPending();
                     }
                 },
                 (err) => {
                     console.log('USER_LOGIN', err.response.data.message);
-                    if (err.response.status === 401) {
+                    console.log(err.response)
+                    if (err.response.data.message) {
                         component.setState(
                             { submitError: err.response.data.message }
                         );
                     }
+                    component.makeNotPending()
                 }
             );
             return {
