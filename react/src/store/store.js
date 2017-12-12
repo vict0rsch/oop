@@ -1,23 +1,14 @@
 import { routerMiddleware } from 'react-router-redux';
 import { autoRehydrate, persistStore } from 'redux-persist';
 import { createStore, compose, applyMiddleware } from 'redux';
-import { createBrowserHistory, createHashHistory } from 'history';
+import { createBrowserHistory } from 'history';
 import { initialize, addTranslation, setActiveLanguage } from 'react-localize-redux';
 
 // import the root reducer
 import combinedReducer from '../reducers/index';
 import defaultState from './defaultState';
 
-const browserHistory = createBrowserHistory();
-const hashHistory = createHashHistory();
-const USE_BROWSER_HISTORY = true;
-let _history;
-if (USE_BROWSER_HISTORY) {
-    _history = browserHistory;
-} else {
-    _history = hashHistory;
-}
-export const history = _history;
+export const history = createBrowserHistory();
 
 const middleware = routerMiddleware(history);
 
