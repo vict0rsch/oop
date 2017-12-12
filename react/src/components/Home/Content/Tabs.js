@@ -67,7 +67,7 @@ class HomeContentTabs extends React.Component {
 
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.update === 0) {
+    if (this.state.update !== -1) {
       let location = this.props.location.pathname.split('/')[1];
       if (location === "") {
         location = 'search'
