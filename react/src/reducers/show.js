@@ -10,6 +10,11 @@ function show(state = false, action) {
                 ...state,
                 searchBar: !state.searchBar
             };
+        case 'TOGGLE_CONTRIB':
+            return {
+                ...state,
+                contrib: !state.contrib
+            };
         case 'TOGGLE_SETTINGS':
             return {
                 ...state,

@@ -9,6 +9,7 @@ import { check_website } from '../../utils/backgroundUtils';
 
 import LearnAbout from './Content/LearnAbout/LearnAbout';
 import HomeSearchBar from './Content/HomeSearchBar/HomeSearchBar';
+import Contrib from './Content/Contrib/Contrib';
 import Settings from './Content/Settings/Settings';
 import Profile from './Content/Profile/Profile';
 import HomeContentTabs from './Content/Tabs';
@@ -69,6 +70,7 @@ class Home extends React.Component {
       this.props.toggleSearchBar();
       localStorage['reduxPersist:show'] = JSON.stringify({
         'intent': false,
+        'contrib': false,
         'settings': false,
         'extension': false,
         'profile': false,
@@ -115,6 +117,7 @@ class Home extends React.Component {
           <HomeSearchBar {...this.props} />
           <Profile {...this.props} />
           <LearnAbout {...this.props} />
+          <Contrib {...this.props} />
           <Settings {...this.props} />
           <Extension {...this.props} />
         </div>
