@@ -27,8 +27,12 @@ class PreviousButton extends React.Component {
 
         const disabled = JSON.parse(sessionStorage.graphHistory).length - 1 === JSON.parse(sessionStorage.location);
 
-        return (
-            <Tooltip
+        return disabled ?
+            (<Button raised fab disabled={disabled} className={this.props.classes.button} onClick={this.handleClick}>
+                <RedoIcon className={this.props.classes.icon} />
+            </Button>)
+            :
+            (<Tooltip
                 id="tooltip-ResetButton"
                 title={this.props.translate('graph.sideButtons.previousTooltip')}
                 placement="bottom"
@@ -37,8 +41,8 @@ class PreviousButton extends React.Component {
                 <Button raised fab disabled={disabled} className={this.props.classes.button} onClick={this.handleClick}>
                     <RedoIcon className={this.props.classes.icon} />
                 </Button>
-            </Tooltip>
-        );
+            </Tooltip>)
+        
     }
 }
 

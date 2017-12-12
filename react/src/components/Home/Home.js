@@ -11,7 +11,6 @@ import LearnAbout from './Content/LearnAbout/LearnAbout';
 import HomeSearchBar from './Content/HomeSearchBar/HomeSearchBar';
 import Contact from './Content/Contact/Contact';
 import Settings from './Content/Settings/Settings';
-import Profile from './Content/Profile/Profile';
 import HomeContentTabs from './Content/Tabs';
 import Extension from './Content/Extension/Extension';
 import Header from './Header/Header';
