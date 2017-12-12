@@ -38,7 +38,7 @@ const homeContentDivStyle = {
 };
 
 class Home extends React.Component {
-  
+
 
   componentWillMount() {
     const component = this;
@@ -86,6 +86,16 @@ class Home extends React.Component {
         })
 
       };
+    }
+  }
+
+
+  componentWillReceiveProps(nextProps) {
+    const newLocation = nextProps.location.pathname.split('/')[1] || 'search';
+    const location = this.props.location.pathname.split('/')[1] || 'search';
+    if (location !== newLocation) {
+      this.props.closeAll();
+      this.props.toggle(newLocation);
     }
   }
 
