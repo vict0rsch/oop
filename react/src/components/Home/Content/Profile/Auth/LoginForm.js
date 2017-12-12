@@ -1,7 +1,7 @@
 import React from 'react';
 import { Control, Form } from 'react-redux-form';
 import validator from 'validator';
-import TextInput from './TextInput';
+import TextInput from '../TextInput';
 import Button from 'material-ui/Button';
 
 

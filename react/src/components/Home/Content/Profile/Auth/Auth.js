@@ -1,15 +1,12 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
-import { connect } from 'react-redux';
-import mapStateToProps from '../../../../store/defaultMapStateToProps';
-import mapDispatchToProps from '../../../../store/defaultMapDispatchToProps';
 import Register from './Register'
 import ResendEmail from './ResendEmail';
 import Logout from './Logout';
 import Login from './Login';
 
-class Auth extends React.Component {
+export default class Auth extends React.Component {
 
     render() {
         return (
@@ -22,5 +19,3 @@ class Auth extends React.Component {
         );
     }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);

@@ -119,4 +119,4 @@ class Register extends Component {
 }
 
 
-export default withMobileDialog()(Register);
+ export default withMobileDialog()(Register);

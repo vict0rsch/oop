@@ -9,6 +9,8 @@ import ContactIcon from 'react-icons/lib/go/mail';
 import AboutIcon from 'react-icons/lib/go/organization';
 import ExtensionIcon from 'react-icons/lib/go/package';
 import ProfileIcon from 'react-icons/lib/fa/space-shuttle';
+import LoginIcon from 'react-icons/lib/md/flight-land';
+import ContribIcon from 'react-icons/lib/md/fitness-center';
 
 const styles = theme => ({
   root: {
@@ -84,11 +86,18 @@ class HomeContentTabs extends React.Component {
   render() {
 
     let tabs = ["search", "profile", "about", "contact", "settings"];
-    if (this.props.clientType !== "extension") {
+    if (this.props.user.isValid){
       tabs = [
         ...tabs.slice(0, 2),
-        "extension",
+        "contrib",
         ...tabs.slice(2)
+      ];
+    }
+    if (this.props.clientType !== "extension") {
+      tabs = [
+        ...tabs.slice(0, 3),
+        "extension",
+        ...tabs.slice(3)
       ];
     }
 
@@ -100,7 +109,8 @@ class HomeContentTabs extends React.Component {
       'contact': <ContactIcon style={iconStyle} />,
       'settings': <SettingsIcon style={iconStyle} />,
       'extension': <ExtensionIcon style={iconStyle} />,
-      'profile': <ProfileIcon style={iconStyle} />,
+      'profile': this.props.user.isLoggedIn ? <ProfileIcon style={iconStyle} /> : <LoginIcon style={iconStyle}/>,
+      'contrib': <ContribIcon style={iconStyle} />
     };
 
     return (
