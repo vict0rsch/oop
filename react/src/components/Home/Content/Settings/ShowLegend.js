@@ -3,7 +3,8 @@ import Switch from 'material-ui/Switch';
 
 const labelStyle = {
     float: 'left',
-    textAlign: 'left'
+    textAlign: 'left',
+    paddingRight: '10px'
 }
 
 const switchStyle = {
@@ -44,12 +45,12 @@ export default class ShowLegend extends Component {
     render() {
         return (
             <div style={divStyle} >
-                <table style={{ margin: 'auto', maxWidth: '300px' }}>
+                <table style={{ margin: 'auto', maxWidth: '250px' }}>
                     <tbody>
                         <tr>
                             <td>
                                 <div style={labelStyle}>
-                                    Show legend in graph menu
+                                    {this.props.translate('home.settings.showLegend')}
                                     </div>
                             </td>
                             <td>
