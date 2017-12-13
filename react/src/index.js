@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux'
 import registerServiceWorker from './registerServiceWorker';
@@ -40,7 +40,7 @@ const router = (
             <MuiThemeProvider theme={createMuiTheme()}>
                 <div id='index' style={styles[store.getState().clientType]}>
                     <Header history={history} />
-                    <div>
+                    <Switch>
                         <Route exact path='/' component={Home}></Route>
                         <Route exact path='/extension' component={Home}></Route>
                         <Route exact path='/settings' component={Home}></Route>
@@ -49,7 +49,7 @@ const router = (
                         <Route exact path='/contrib' component={Home}></Route>
                         <Route exact path='/profile' component={Home}></Route>
                         <Route path='/graph/:entityId' component={Graph}></Route>
-                    </div>
+                    </Switch>
                 </div>
             </MuiThemeProvider>
         </ConnectedRouter>
