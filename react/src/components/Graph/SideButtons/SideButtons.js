@@ -5,6 +5,9 @@ import RefreshButton from './RefreshButton';
 import PreviousButton from './PreviousButton';
 import NextButton from './NextButton';
 import HideSideButton from './HideSideButton';
+import Legend from './Legend';
+
+
 
 class SideButtons extends Component {
     render() {
@@ -33,14 +36,23 @@ class SideButtons extends Component {
             sideButtonDivStyle.position = 'absolute'
         }
 
+        let legendDivStyle = { ...sideButtonDivStyle };
+        legendDivStyle.right = legendDivStyle.left;
+        delete legendDivStyle.left;
+
         return (
-            <div style={sideButtonDivStyle}>
-                <HideSideButton {...this.props} />
-                {this.props.show.sideButtons && <HomeButton {...this.props} />}
-                {this.props.show.sideButtons && <SearchButton {...this.props} />}
-                {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <RefreshButton {...this.props} />}
-                {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <PreviousButton {...this.props} />}
-                {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <NextButton {...this.props} />}
+            <div>
+                <div style={sideButtonDivStyle}>
+                    <HideSideButton {...this.props} />
+                    {this.props.show.sideButtons && <HomeButton {...this.props} />}
+                    {this.props.show.sideButtons && <SearchButton {...this.props} />}
+                    {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <RefreshButton {...this.props} />}
+                    {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <PreviousButton {...this.props} />}
+                    {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <NextButton {...this.props} />}
+                </div>
+                <div style={legendDivStyle}>
+                    {this.props.show.sideButtons && <Legend {...this.props} />}
+                </div>
             </div>
         );
     }

@@ -57,6 +57,54 @@ const colors = {
     i: 'rgb(1, 41, 71)'
 }
 
+const nodeBaseStyle = {
+    'background-opacity': 0,
+    'label': 'data(name)',
+    'shape': 'roundrectangle',
+    'font-weight': 'data(fontWeight)',
+    'width': 'data(widthPx)',
+    'text-valign': "center",
+    'compound-sizing-wrt-labels': 'include',
+    'source-text-margin-y': '30px',
+    'target-text-margin-y': '30px',
+    'height': 'data(height)',
+    'text-wrap': 'wrap',
+    'color': 'data(color)',
+    'border-style': 'dashed',
+    'border-opacity': 'data(borderOpacity)',
+    'border-color': 'data(color)',
+    'border-width': '2px'
+
+};
+
+function addOneLineBreak(string) {
+    const index = parseInt(string.length / 2, 10);
+    let s1 = string.slice(0, index);
+    let s2 = string.slice(index);
+    let reverseS1 = s1.split("").reverse().join("");
+
+    const space1 = reverseS1.indexOf(' ');
+    const space2 = s2.indexOf(' ');
+
+    if (space1 > -1 && space2 > -1) {
+        if (space1 > space2) {
+            s2 = s2.slice(0, space2) + '\n' + s2.slice(space2 + 1);
+            return reverseS1.split("").reverse().join("") + s2
+        } else {
+            reverseS1 = reverseS1.slice(0, space1) + '\n' + reverseS1.slice(space1 + 1);
+            return reverseS1.split("").reverse().join("") + s2
+        }
+    } else if (space2 > -1) {
+        s2 = s2.slice(0, space2) + '\n' + s2.slice(space2 + 1);
+        return reverseS1.split("").reverse().join("") + s2
+    } else if (space1 > -1) {
+        reverseS1 = reverseS1.slice(0, space1) + '\n' + reverseS1.slice(space1 + 1);
+        return reverseS1.split("").reverse().join("") + s2
+    } else {
+        return string
+    }
+}
+
 export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
     var layout;
     if (cytoData.edges.length < 10) {
@@ -69,33 +117,7 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
         layout.spacingFactor = spacing;
     }
 
-    function addOneLineBreak(string) {
-        const index = parseInt(string.length / 2, 10);
-        let s1 = string.slice(0, index);
-        let s2 = string.slice(index);
-        let reverseS1 = s1.split("").reverse().join("");
-
-        const space1 = reverseS1.indexOf(' ');
-        const space2 = s2.indexOf(' ');
-
-        if (space1 > -1 && space2 > -1) {
-            if (space1 > space2) {
-                s2 = s2.slice(0, space2) + '\n' + s2.slice(space2 + 1);
-                return reverseS1.split("").reverse().join("") + s2
-            } else {
-                reverseS1 = reverseS1.slice(0, space1) + '\n' + reverseS1.slice(space1 + 1);
-                return reverseS1.split("").reverse().join("") + s2
-            }
-        } else if (space2 > -1) {
-            s2 = s2.slice(0, space2) + '\n' + s2.slice(space2 + 1);
-            return reverseS1.split("").reverse().join("") + s2
-        } else if (space1 > -1) {
-            reverseS1 = reverseS1.slice(0, space1) + '\n' + reverseS1.slice(space1 + 1);
-            return reverseS1.split("").reverse().join("") + s2
-        } else {
-            return string
-        }
-    }
+    layout.padding = Math.floor(150 * Math.exp(-cytoData.edges.length / 5))
 
     const nodes = cytoData.nodes.map((v, k) => {
         return {
@@ -107,25 +129,12 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
                 selectedColor: v.data.id === sourceId ? colors[v.data.category] : 'green',
                 fontWeight: v.data.id === sourceId ? 'bolder' : 'normal',
                 fontSize: v.data.id === sourceId ? '3em' : '2.5em',
-                color: colors[v.data.category]
+                color: colors[v.data.category],
+                borderOpacity: v.data.id === sourceId ? 1 : 0
             }
         }
     });
 
-    const nodeBaseStyle = {
-        'background-opacity': 0,
-        'label': 'data(name)',
-        'shape': 'bottomroundrectangle',
-        'font-weight': 'data(fontWeight)',
-        'width': 'data(widthPx)',
-        'text-valign': "center",
-        'compound-sizing-wrt-labels': 'include',
-        'source-text-margin-y': '30px',
-        'target-text-margin-y': '30px',
-        'height': 'data(height)',
-        'text-wrap': 'wrap',
-        'color': 'data(color)'
-    };
 
     return {
         container: containerElement,
