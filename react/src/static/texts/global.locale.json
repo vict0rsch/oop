@@ -96,7 +96,7 @@
                 "c": ["Company", "Entreprise"],
                 "cg": ["Complete Graph available", "Graphe Complet disponible"],
                 "boldLabel": ["bold", "en gras"],
-                "boldText": ["Current Graph", "Graph courrant"]
+                "boldText": ["Current Graph", "Graphe courrant"]
             }
         },
         "wiki": {
