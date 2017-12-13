@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LanguageSelect from './LanguageSelect';
 import ResetApp from './ResetApp';
+import ShowLegend from './ShowLegend';
 import HomePaper from '../../Paper/HomePaper'
 
 class SettingsPaper extends Component {
@@ -14,6 +15,7 @@ class SettingsPaper extends Component {
                     content={
                         <div style={{textAlign:'center'}}>
                             <LanguageSelect {...this.props} />
+                            <ShowLegend {...this.props} />
                             <ResetApp {...this.props} />
                         </div>
                     } />

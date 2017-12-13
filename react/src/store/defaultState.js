@@ -2,7 +2,8 @@ const defaultState = {
     data: {},
     dataIsAvailable: false,
     show: {
-        howItWorks: true
+        howItWorks: true,
+        legend: true
     },
     currentDisplay: -1,
     infoBox: {
