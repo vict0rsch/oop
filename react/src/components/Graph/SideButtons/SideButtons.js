@@ -38,6 +38,8 @@ class SideButtons extends Component {
 
         let legendDivStyle = { ...sideButtonDivStyle };
         legendDivStyle.right = legendDivStyle.left;
+        legendDivStyle.width = this.props.clientType === 'mobile' ? '125px' : sideButtonDivStyle.width;
+
         delete legendDivStyle.left;
 
         return (
@@ -51,7 +53,7 @@ class SideButtons extends Component {
                     {this.props.clientType !== 'mobile' && this.props.show.sideButtons && <NextButton {...this.props} />}
                 </div>
                 <div style={legendDivStyle}>
-                    {this.props.show.sideButtons && <Legend {...this.props} />}
+                    {this.props.show.sideButtons && this.props.show.legend && <Legend {...this.props} />}
                 </div>
             </div>
         );

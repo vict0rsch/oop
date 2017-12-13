@@ -17,7 +17,8 @@ const fullScreenMinWidth = 650;
 
 const buttonDivPositionStyle = {
   position: 'absolute',
-  right: '24px'
+  right: '24px',
+  top: '10px'
 };
 const buttonStyle = {
   width: '40px',
@@ -29,7 +30,7 @@ const iconStyle = {
   height: '30px'
 }
 
-class HowItWorksDialog extends React.Component {
+class ResponsiveDialog extends React.Component {
   state = {
     open: false,
   };
@@ -73,8 +74,8 @@ class HowItWorksDialog extends React.Component {
   }
 }
 
-HowItWorksDialog.propTypes = {
+ResponsiveDialog.propTypes = {
   fullScreen: PropTypes.bool.isRequired,
 };
 
-export default withMobileDialog()(HowItWorksDialog);
+export default withMobileDialog()(ResponsiveDialog);

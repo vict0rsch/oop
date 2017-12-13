@@ -22,15 +22,9 @@ export function toggleAbout() {
     };
 }
 
-export function toggleProfile() {
+export function toggleContact() {
     return {
-        type: 'TOGGLE_PROFILE'
-    };
-}
-
-export function toggleContrib() {
-    return {
-        type: 'TOGGLE_CONTRIB'
+        type: 'TOGGLE_CONTACT'
     };
 }
 
@@ -49,6 +43,12 @@ export function toggleExtension() {
 export function toggleSideButtons() {
     return {
         type: 'TOGGLE_SIDEBUTTONS'
+    };
+}
+
+export function toggleLegend() {
+    return {
+        type: 'TOGGLE_LEGEND'
     };
 }
 
