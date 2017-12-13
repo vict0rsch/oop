@@ -38,7 +38,7 @@ const homeContentDivStyle = {
 };
 
 class Home extends React.Component {
-  
+
 
   componentWillMount() {
     const component = this;
@@ -90,6 +90,14 @@ class Home extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const newLocation = nextProps.location.pathname.split('/')[1] || 'search';
+    const location = this.props.location.pathname.split('/')[1] || 'search';
+    if (location !== newLocation) {
+      this.props.closeAll();
+      this.props.toggle(newLocation);
+    }
+  }
 
   componentWillUpdate(nextProps, nextState) {
     if (sessionStorage.graphHistory && sessionStorage.graphHistory.length > 2) {
@@ -103,8 +111,7 @@ class Home extends React.Component {
     updateData(this);
   }
 
-
-
+  
   render() {
     return (
       <div>
@@ -113,7 +120,7 @@ class Home extends React.Component {
           <Example {...this.props} />
 
           <HomeContentTabs {...this.props} />
-          
+
           <HomeSearchBar {...this.props} />
           <Profile {...this.props} />
           <LearnAbout {...this.props} />
