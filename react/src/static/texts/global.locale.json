@@ -16,7 +16,7 @@
             "resetDialogTitle": ["Are you sure you want to reset the Extension?", "\u00cates-vous s\u00fbr\u2022e de vouloir remettre l'Extension \u00e0 z\u00e9ro?"],
             "resetDialogButtonYes": ["Yes", "Oui"],
             "resetDialogButtonCancel": ["Cancel", "Annuler"],
-            "resetDialogButton": ["Reset Extension", "Remise \u00e0 Z\u00e9ro"],
+            "resetDialogButton": ["Reset", "Remise \u00e0 Z\u00e9ro"],
             "showLegend": ["Show legend in the Graph menu", "L\u00e9gende dans le menu des Graphes"]
         },
         "loadingData": ["Getting Data...", "Chargement des donn\u00e9es..."],
