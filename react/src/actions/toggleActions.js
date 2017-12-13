@@ -46,6 +46,12 @@ export function toggleSideButtons() {
     };
 }
 
+export function toggleLegend() {
+    return {
+        type: 'TOGGLE_LEGEND'
+    };
+}
+
 export function toggleFocusSearchBar() {
     return {
         type: 'TOGGLE_FOCUSSEARCHBAR'
