@@ -4,6 +4,14 @@ import 'react-select/dist/react-select.css';
 import HideSearchBar from './HideSearchBar';
 import logGraph from '../../utils/logGraph';
 
+const selectStyle = {
+  borderWidth: '1px',
+  borderRadius: '0px',
+  zIndex: 999,
+  margin: 'auto',
+  marginBottom: '15px'
+};
+
 class SearchBar extends React.Component {
 
   logChange = (val) => {
@@ -25,7 +33,7 @@ class SearchBar extends React.Component {
 
 
   componentWillUpdate(nextProps, nextState) {
-    if (nextProps.focus !== this.props.focus && this.props.history.location.pathname.indexOf('graph') > -1 ) {
+    if (nextProps.focus !== this.props.focus && this.props.history.location.pathname.indexOf('graph') > -1) {
       console.log('focus');
       this.select.focus()
     }
@@ -33,22 +41,17 @@ class SearchBar extends React.Component {
 
 
   render() {
-
-    let selectStyle = {
-      borderWidth: '1px',
-      borderRadius: '0px',
-      zIndex: 999,
-      margin: 'auto',
-      marginBottom: '15px'
-    };
-
-    const searchBarDivStyle = {
+    let searchBarDivStyle = {
       marginBottom: '15px',
-      textAlign: 'center'
+      textAlign: 'center',
     };
 
     if (this.props.location.pathname === '/') {
       searchBarDivStyle.marginTop = '24px';
+    } else {
+      searchBarDivStyle.width = this.props.width;
+      searchBarDivStyle.margin = 'auto';
+
     }
 
     const selectDivStyle = {
