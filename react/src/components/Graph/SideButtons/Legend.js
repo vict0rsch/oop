@@ -12,7 +12,7 @@ const colors = {
 export default class Legend extends Component {
     render() {
         return (
-            <div style={{ paddingTop: '10px', fontSize: '0.7em' }}>
+            <div style={{ paddingTop: '10px', fontSize: this.props.clientType === 'extension' ? '0.8em' : '0.7em' }}>
                 <table style={{ width: "150px" }}>
                     <tbody>
                         <tr>
