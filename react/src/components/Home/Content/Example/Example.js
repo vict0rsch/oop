@@ -67,9 +67,13 @@ export default class Example extends Component {
         }
     }
 
+    
+    componentWillMount() {
+        console.log('CWM')
+    }
+    
 
-    render() {
-        console.log('render')        
+    render() {       
         return (
             <div>
                 {this.props.translate('home.example')} <br />
