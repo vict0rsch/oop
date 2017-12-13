@@ -12,11 +12,12 @@ const divStyle = {
     mobile: {
         background: "linear-gradient(to left, rgba(236, 233, 230, 0.7), rgba(255, 255, 255, 0.7))",
         zIndex: "1000",
-        position: "absolute",
+        position: "fixed",
         width: "100%",
         left: "0",
         top: "0px",
         height: "100%",
+        touchAction: 'none'
     },
     extension: {}
 }
