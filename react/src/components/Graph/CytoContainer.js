@@ -133,7 +133,12 @@ class CytoContainer extends React.Component {
 
     return (
       <div>
-        {this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar {...this.props} focus={this.state.focus} />}
+        {
+          this.props.show.searchBar && this.props.dataIsAvailable && <SearchBar
+            {...this.props}
+            focus={this.state.focus}
+            width={cyStyles[this.props.clientType].width} />
+        }
         <div id="cy" style={cyStyles[this.props.clientType]} onContextMenu={this.handleContextMenu} />
         <SideButtons
           {...this.props}
