@@ -159,7 +159,7 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
                     'target-arrow-color': 'rgb(190, 190, 190)',
                     'curve-style': 'bezier', // haystack bezier segments unbundled-bezier
                     'label': 'data(label)',
-                    'font-size': '0.8em',
+                    'font-size': '1em',
                     'color': 'rgb(140, 140, 140)',
                     'text-rotation': cytoData.edges.length > 10 ? 'autorotate' : 'none',
                     'arrow-scale': 0.9
