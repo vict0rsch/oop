@@ -2,7 +2,7 @@
     "test": ["test_en", "text_fr"],
     "home": {
         "subtitle": ["The Open MetaData Project: gathering metadata about our world.", "The Open MetaData Project: rassembler les m\u00e9ta-donn\u00e9es de notre monde."],
-        "example": ["Let's start with the media. Pick one you want to learn about:", "Commen\u00e7ons par les m\u00e9dias. Choisissez \u00e0 propos de qui vous voulez en savir plus:"],
+        "example": ["Let's start with the media. Pick one you want to learn about:", "Commen\u00e7ons par les m\u00e9dias. Choisissez \u00e0 propos de qui vous voulez en savoir plus:"],
         "searchBar": ["Search The Graph", "Rechercher dans le Graphe"],
         "learnAbout": ["About the Open Ownership Project", "\u00c0 propos de Open Ownership Project"],
         "contactButton": ["Contact", "Contact"],
