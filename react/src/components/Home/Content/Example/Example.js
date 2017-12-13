@@ -69,6 +69,7 @@ export default class Example extends Component {
 
 
     render() {
+        console.log('render')        
         return (
             <div>
                 {this.props.translate('home.example')} <br />
