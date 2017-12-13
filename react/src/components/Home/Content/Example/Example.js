@@ -67,11 +67,6 @@ export default class Example extends Component {
         }
     }
 
-    
-    componentWillMount() {
-        console.log('CWM')
-    }
-    
 
     render() {       
         return (
