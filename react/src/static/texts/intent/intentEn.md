@@ -1,15 +1,21 @@
+### Metada
+
+We lack information about the very information we read. Be it about the ownership of a media, of a regular website or simply about the person who wrote the article. The Open MetaData Project aims at gradually filling that hole, the Open Source way.
+
+We chose to start with the Media but we have a lot more ideas, get in touch and contribute!
+
 #### Who owns the media?
 
-Most of the time we don't know. Not that this information is secret, we just don't necessarily think about it. 
+Most of the time we don't know. Not that this information is secret, we just don't necessarily think about it.
 
 #### Does it make any difference on the content?
 
-No! Maybe. Sometimes. Often. Always? It depends, really: on the media, the owner, the piece of news, the time and location etc. Knowing who owns the media we read is a valuable information in itself. It's neither a good nor bad thing that the media may be (privately) owned. But we ought to think critically about this and keep in mind a media's owners' interests. This is why we started the **Open Ownership Project**: to provide citizens with an easy way to access this kind of information. 
+No! Maybe. Sometimes. Often. Always? It depends, really: on the media, the owner, the piece of news, the time and location etc. Knowing who owns the media we read is a valuable information in itself. It's neither a good nor bad thing that the media may be (privately) owned. But we ought to think critically about this and keep in mind a media's owners' interests. This is why we started **Metada**: to provide citizens with an easy way to access this kind of information. 
 
 
 #### A Chrome Extension?
 
-For OOP to be impactful, it should be clear and easy to use. It should be visual, open, thought-through together as a community. We believe the most efficient way to change our approach to the News is by fitting in our existing habits, not by trying to change them drastically. It should therefore be a browser plugin: simply a mouse-click away, enabling us to find out whether the information we are reading could be biased in an instant, without even leaving the current webpage.
+For Metada to be impactful, it should be clear and easy to use. It should be visual, open, thought-through together as a community. We believe the most efficient way to change our approach to the News is by fitting in our existing habits, not by trying to change them drastically. It should therefore be a browser plugin: simply a mouse-click away, enabling us to find out whether the information we are reading could be biased in an instant, without even leaving the current webpage.
 
 
 #### Where does the graph come from ?
