@@ -59,7 +59,7 @@
                     "passwordsDontMatch": ["The passwords don't match", "Les mots de passe ne correspondent pas"]
                 }
             },
-            "loginErrors":{
+            "loginErrors": {
                 "invalidUser": ["Invalid Email address or password", "Adresse mail ou mot de passe invalide"]
             },
             "resend": {
@@ -119,7 +119,15 @@
             "previousTooltip": ["Previous Graph", "Graphe précédent"],
             "nextTooltip": ["Next Graph", "Graphe suivant"],
             "hideTooltip": ["Hide Menu", "Fermer le menu"],
-            "menuTooltip": ["Menu", "Menu"]
+            "menuTooltip": ["Menu", "Menu"],
+            "legend": {
+                "m": ["Media", "Média"],
+                "i": ["End Owner", "Propriétaire"],
+                "c": ["Company", "Entreprise"],
+                "cg": ["Complete Graph available", "Graphe Complet disponible"],
+                "boldLabel": ["bold", "en gras"],
+                "boldText": ["Current Graph", "Graph courrant"]
+            }
         },
         "wiki": {
             "loading": ["Looking for a Wikipedia Summary...", "En attente d'un r\u00e9sum\u00e9 de Wikipedia..."],
