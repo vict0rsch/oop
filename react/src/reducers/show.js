@@ -40,13 +40,19 @@ function show(state = false, action) {
                 ...state,
                 sideButtons: !state.sideButtons
             }
-        
+        case 'TOGGLE_LEGEND':
+            return {
+                ...state,
+                legend: !state.legend
+            }
         case 'CLOSE_ALL':
             let newState = {
                 ...state
             }
             for (var i in state) {
-                newState[i] = false
+                if (i !== 'legend'){
+                    newState[i] = false;
+                }
             }
             return newState;
 

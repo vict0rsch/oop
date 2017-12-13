@@ -17,7 +17,8 @@ const fullScreenMinWidth = 650;
 
 const buttonDivPositionStyle = {
   position: 'absolute',
-  right: '24px'
+  right: '24px',
+  top: '10px'
 };
 const buttonStyle = {
   width: '40px',
