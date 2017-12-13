@@ -17,7 +17,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
   indicator: {
-    width: '100px'
+    width: '80px'
   }
 });
 
@@ -135,7 +135,7 @@ class HomeContentTabs extends React.Component {
                 }
                 icon={icons[v]}
                 value={v}
-                style={tabStyle}
+                style={tabStyle[this.props.clientType]}
               />;
             }
           )}
