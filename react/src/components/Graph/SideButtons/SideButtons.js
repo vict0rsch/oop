@@ -7,6 +7,19 @@ import NextButton from './NextButton';
 import HideSideButton from './HideSideButton';
 import Legend from './Legend';
 
+const divStyle = {
+    browser: {},
+    mobile: {
+        background: "linear-gradient(to left, rgba(236, 233, 230, 0.7), rgba(255, 255, 255, 0.7))",
+        zIndex: "1000",
+        position: "absolute",
+        width: "100%",
+        left: "0",
+        top: "0px",
+        height: "100%",
+    },
+    extension: {}
+}
 
 
 class SideButtons extends Component {
@@ -43,7 +56,7 @@ class SideButtons extends Component {
         delete legendDivStyle.left;
 
         return (
-            <div>
+            <div style={this.props.show.sideButtons && this.props.show.legend ? divStyle[this.props.clientType] : {}}>
                 <div style={sideButtonDivStyle}>
                     <HideSideButton {...this.props} />
                     {this.props.show.sideButtons && <HomeButton {...this.props} />}
