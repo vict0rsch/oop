@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Icon from 'react-icons/lib/fa/fighter-jet';
+import Icon from 'react-icons/lib/go/gift';
 import Button from 'material-ui/Button';
 
 const buttonStyle = {

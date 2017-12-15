@@ -74,7 +74,7 @@ class RegisterForm extends React.Component {
 
 
     asyncCheckUsername = (username) => {
-        return Axios.get('http://localhost:5000/user_exists/' + username)
+        return Axios.get('http://localhost:5000/public/exists/username?username=' + username)
     }
 
     usernameAsyncValidator = (val, done) => this.asyncCheckUsername(val)
@@ -89,7 +89,7 @@ class RegisterForm extends React.Component {
         })
 
     asyncCheckEmail = (email) => {
-        return Axios.get('http://localhost:5000/email_exists/' + email)
+        return Axios.get('http://localhost:5000/public/exists/email?email=' + email)
     }
 
     emailAsyncValidator = (val, done) => this.asyncCheckEmail(val)

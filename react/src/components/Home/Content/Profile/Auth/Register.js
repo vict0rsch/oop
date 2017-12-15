@@ -36,7 +36,7 @@ class Register extends Component {
 
     setRandomUsername = () => {
         Axios.get(
-            'http://localhost:5000/random_username').then(
+            'http://localhost:5000/public/random_username').then(
             (res) => {
                 if (res.data) {
                     this.props.rrfChange('userSignupForm.user.username', res.data.username);

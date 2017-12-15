@@ -29,7 +29,6 @@ class Login extends Component {
 
     showResults = values => {
         const escaped = JSON.parse(JSON.stringify(values));
-        console.log('submitted')
         this.props.userLogin(this, escaped)
     }
 

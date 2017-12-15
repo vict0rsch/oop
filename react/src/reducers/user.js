@@ -1,6 +1,8 @@
 import Axios from 'axios';
+import { setTimeout } from 'core-js/library/web/timers';
 
 function user(state = {}, action) {
+    let now, component, values;
     switch (action.type) {
 
         case 'SET_USER_DATA':
@@ -10,9 +12,11 @@ function user(state = {}, action) {
             }
 
         case 'SET_USER_TIMESTAMP':
+            now = Math.round((new Date()).getTime() / 1000);
+            localStorage['userTimestamp'] = Math.round((new Date()).getTime() / 1000)
             return {
                 ...state,
-                timestamp: Math.round((new Date()).getTime() / 1000)
+                timestamp: now
             }
 
         case 'SET_USER_IS_LOGGED_IN':
@@ -30,26 +34,28 @@ function user(state = {}, action) {
             }
 
         case 'REGISTER':
-            let { component, values } = action;
+            component = action.component;
+            values = action.values;
+
             Axios.post("http://localhost:5000/auth/register", values).then(
                 (resp) => {
                     let closed = false;
                     if (resp.data) {
                         if (resp.data.status === 'success' && resp.data.auth_token) {
-                            closed = true;
-                            console.log("User successfully registered");
+
+                            component.handleRequestClose();
                             localStorage.setItem('_jwt', resp.data.auth_token);
-                            component.setState(
-                                { submitError: '' }
-                            );
                             component.props.setUserIsLoggedIn(true);
+                            component.props.setUserIsConfirmed(false);
                             component.props.setUserData(resp.data.user);
                             component.props.setUserTimestamp();
-                            component.handleRequestClose();
+                            closed = true;
+                            console.log('User Logged In')
 
                         }
                     }
                     if (!closed) {
+                        console.log('makeNotPending')
                         component.makeNotPending();
                     }
                 },
@@ -67,27 +73,33 @@ function user(state = {}, action) {
             }
 
         case 'LOGOUT':
-            Axios.post(
-                "http://localhost:5000/auth/logout",
-                { logout: true },
-                {
-                    headers: {
-                        Authorization: "Bearer " + localStorage['_jwt']
-                    }
-                }
-            ).then(
-                (resp) => {
-                    if (resp.data) {
-                        if (resp.data.status === 'success') {
-                            console.log('Remote Logged Out');
+            if (localStorage['_jwt']) {
+                Axios.post(
+                    "http://localhost:5000/auth/logout",
+                    { logout: true },
+                    {
+                        headers: {
+                            Authorization: "Bearer " + localStorage['_jwt']
                         }
                     }
-                },
-                (err) => {
-                    console.log('LOGOUT error', err.response.data.message);
-                }
-                )
-            localStorage.removeItem('_jwt');
+                ).then(
+                    (resp) => {
+                        if (resp.data) {
+                            if (resp.data.status === 'success') {
+                                console.log('Remote Logged Out');
+                            }
+                        }
+                    },
+                    (err) => {
+                        console.log('LOGOUT error', err.response.data.message);
+                    }
+                    )
+                localStorage.removeItem('_jwt');
+            } else {
+                console.log('Local Logged Out');
+            }
+            now = Math.round(new Date().getTime() / 1000);
+            localStorage['reduxPersist:user'] = '{timestamp:' + now + '}';
             return {
                 ...state,
                 isLoggedIn: false,
@@ -98,15 +110,28 @@ function user(state = {}, action) {
 
 
         case 'SET_USER_STATUS':
+
             component = action.component;
             const checkTimeout = 15;
-            const ts = component.props.user.timestamp;
+            const ts = component.props.user.timestamp || parseInt(localStorage['userTimestamp'], 10);
 
-            if (ts && Math.round(new Date().getTime() / 1000) - ts < checkTimeout) {
+            if (!localStorage['_jwt']) {
+                if (ts) {
+                    return { ...state }
+                }
+                setTimeout(component.props.userLogOut, 1);
+                setTimeout(component.props.setUserTimestamp, 1);
+                return { ...state }
+            }
+
+            now = Math.round(new Date().getTime() / 1000);
+            
+            if (ts && now - ts < checkTimeout) {
                 return {
                     ...state
                 }
             }
+
             Axios.post(
                 "http://localhost:5000/auth/status",
                 { status: true },
@@ -120,6 +145,7 @@ function user(state = {}, action) {
                     console.log(resp);
                     if (resp.data) {
                         if (resp.data.status === 'success' && resp.data.auth_token) {
+                            console.log('User Updated');
                             localStorage.setItem('_jwt', resp.data.auth_token);
                             component.props.setUserIsLoggedIn(true);
                             component.props.setUserIsConfirmed(resp.data.userData.confirmed);
@@ -178,6 +204,7 @@ function user(state = {}, action) {
                             component.props.setUserData(resp.data.user);
                             component.props.setUserTimestamp();
                             closed = true;
+                            console.log('User Logged In')
                         }
                     }
                     if (!closed) {
