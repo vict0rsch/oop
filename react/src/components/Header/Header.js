@@ -12,7 +12,6 @@ class Header extends React.Component {
   componentDidMount() {
     const component = this;
     fetchData(component);
-    setTimeout(()=>{this.props.setUserStatus(this)}, 500);
   }
 
 

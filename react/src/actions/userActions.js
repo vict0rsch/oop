@@ -31,10 +31,11 @@ export function setUserTimestamp() {
     }
 }
 
-export function setUserStatus(component){
+export function setUserStatus(component, force){
     return {
         type: 'SET_USER_STATUS',
-        component
+        component,
+        force
     }
 }
 

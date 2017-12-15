@@ -125,8 +125,8 @@ function user(state = {}, action) {
             }
 
             now = Math.round(new Date().getTime() / 1000);
-            
-            if (ts && now - ts < checkTimeout) {
+
+            if (ts && now - ts < checkTimeout && !action.force) {
                 return {
                     ...state
                 }
@@ -142,7 +142,6 @@ function user(state = {}, action) {
                 }
             ).then(
                 resp => {
-                    console.log(resp);
                     if (resp.data) {
                         if (resp.data.status === 'success' && resp.data.auth_token) {
                             console.log('User Updated');
@@ -177,6 +176,8 @@ function user(state = {}, action) {
                     if (resp.data) {
                         if (resp.data.status === 'success') {
                             console.log('Email Resent');
+                        } else {
+                            console.log(resp.data.message)
                         }
                     }
                 },
