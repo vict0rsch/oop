@@ -44,13 +44,13 @@ export default class ShowLegend extends Component {
     render() {
         return (
             <div style={divStyle} >
-                <table style={{ margin: 'auto', maxWidth: '300px' }}>
+                <table style={{ margin: 'auto' }}>
                     <tbody>
                         <tr>
                             <td>
                                 <div style={labelStyle}>
                                     {this.props.translate('home.settings.showLegend')}
-                                    </div>
+                                </div>
                             </td>
                             <td>
                                 <div style={switchStyle}>
