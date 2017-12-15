@@ -18,7 +18,7 @@ function updateData(component) {
     if ((!localStorage.dataTime || ts2 - ts > checkEvery) && localStorage.fetchingData !== 'true') {
         console.log('Looking for DB Update...');
         localStorage.dataTime = Math.round((new Date()).getTime() / 1000);
-        Axios.get('https://oop-pro.herokuapp.com/update/' + ts).then(
+        Axios.get('https://oop-pro.herokuapp.com/update?timestamp=' + ts).then(
             (response) => {
                 if (response.data && (response.data.entities.length > 0 || response.data.shares.length >0)){
                     const updatedServerData = formatUpdateData(component.props.data, response.data);
