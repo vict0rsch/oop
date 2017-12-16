@@ -72,6 +72,9 @@
             "login": {
                 "button": ["Log in", "Connexion"],
                 "dialogContent": ["Welcome Back!", "Bienvenue!"]
+            },
+            "edit": {
+                "button": ["Edit Profile", "Éditer le profil"]
             }
         }
     },

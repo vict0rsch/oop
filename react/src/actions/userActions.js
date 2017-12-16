@@ -47,6 +47,14 @@ export function registerUser(component, values){
     }
 }
 
+export function editUser(component, values){
+    return {
+        type: 'EDIT_USER',
+        component,
+        values
+    }
+}
+
 export function resendEmail(){
     return {
         type: 'RESEND_EMAIL'

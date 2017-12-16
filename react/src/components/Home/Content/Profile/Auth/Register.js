@@ -39,7 +39,7 @@ class Register extends Component {
             'http://localhost:5000/public/random_username').then(
             (res) => {
                 if (res.data) {
-                    this.props.rrfChange('userSignupForm.user.username', res.data.username);
+                    this.props.rrfChange('signupForm.user.username', res.data.username);
                 }
             },
             (err) => {
@@ -61,7 +61,7 @@ class Register extends Component {
 
     handleRequestClose = () => {
         this.setState({ open: false });
-        this.props.rrfReset('userSignupForm.user');
+        this.props.rrfReset('signupForm.user');
     };
 
     makePending = () => {

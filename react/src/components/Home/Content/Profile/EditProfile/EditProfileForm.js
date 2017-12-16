@@ -4,16 +4,15 @@ import validator from 'validator';
 import Axios from 'axios';
 import TextInput from '../TextInput';
 import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import { InputAdornment } from 'material-ui/Input';
-import Shuffle from 'react-icons/lib/ti/arrow-shuffle';
+
 
 const isEmail = (val) => {
     return val && validator.isEmail(val);
 }
 
 const checkPass = val => {
-    return val && val.length > 5;
+    console.log((val && val.length > 5) || !val);
+    return (val && val.length > 5) || !val;
 }
 
 
@@ -22,9 +21,7 @@ const buttonDivStyle = {
 }
 
 
-
-
-class RegisterForm extends React.Component {
+class EditProfileForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,6 +30,16 @@ class RegisterForm extends React.Component {
             emailIsAvailable: true,
         }
     }
+
+
+    componentWillMount() {
+        this.props.rrfChange('editProfileForm.user.email', this.props.user.data.email);
+        this.props.rrfChange('editProfileForm.user.first_name', this.props.user.data.first_name || '');
+        this.props.rrfChange('editProfileForm.user.last_name', this.props.user.data.last_name || '');
+        this.props.rrfChange('editProfileForm.user.username', this.props.user.data.username);
+
+    }
+
 
     formErrors = form => {
         if (!this.state.usernameIsAvailable) {
@@ -56,51 +63,86 @@ class RegisterForm extends React.Component {
 
     handleClick = () => {
         this.props.makePending();
-    }
-
-    componentDidMount() {
-        this.props.setRandomUsername();
+        this.props.rrfSubmit('editProfileForm.user')
     }
 
     passwordsMatch = (vals) => {
+
         if (this.state.passwordsMatch !== (vals.password === vals.confirmPassword)) {
             this.setState(
                 { passwordsMatch: vals.password === vals.confirmPassword }
             );
         }
-        return vals.password === vals.confirmPassword && vals.password.length && vals.confirmPassword.length
+        const exist = vals.password && vals.confirmPassword;
+        if (!exist) {
+            return true;
+        }
+        const empty = vals.password.length && vals.confirmPassword.length
+        if (empty) {
+            return true;
+        }
+        const same = vals.password === vals.confirmPassword;
+
+        return same
     }
 
 
     asyncCheckUsername = (username) => {
-        return Axios.get('http://localhost:5000/public/exists/username?username=' + username)
+        return Axios.get('http://localhost:5000/auth/new_username?username=' + username, {
+            headers: {
+                Authorization: 'Bearer: ' + localStorage['_jwt']
+            }
+        })
     }
 
     usernameAsyncValidator = (val, done) => this.asyncCheckUsername(val)
         .then(res => {
-            const usernameIsAvailable = !res.data.exists;
-            if (this.state.usernameIsAvailable !== usernameIsAvailable) {
+            console.log(res.data)
+            if (!this.state.usernameIsAvailable) {
                 this.setState({
-                    usernameIsAvailable
+                    usernameIsAvailable: true
                 })
             }
-            done(usernameIsAvailable);
+            done(true);
+        },
+        err => {
+            if (this.state.usernameIsAvailable) {
+                this.setState({
+                    usernameIsAvailable: false
+                })
+            }
+            console.log('Username Error: ', err.response.data.message)
+            done(false);
         })
 
     asyncCheckEmail = (email) => {
-        return Axios.get('http://localhost:5000/public/exists/email?email=' + email)
+        return Axios.get('http://localhost:5000/auth/new_email?email=' + email, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage['_jwt']
+            }
+        })
     }
 
-    emailAsyncValidator = (val, done) => this.asyncCheckEmail(val)
-        .then(res => {
-            const emailIsAvailable = !res.data.exists;
-            if (this.state.emailIsAvailable !== emailIsAvailable) {
-                this.setState({
-                    emailIsAvailable
-                })
-            }
-            done(emailIsAvailable);
-        })
+    emailAsyncValidator = (val, done) => {
+        this.asyncCheckEmail(val)
+            .then(res => {
+                if (!this.state.emailIsAvailable) {
+                    this.setState({
+                        emailIsAvailable: true
+                    })
+                }
+                done(true);
+            },
+            err => {
+                if (this.state.emailIsAvailable) {
+                    this.setState({
+                        emailIsAvailable: false
+                    })
+                }
+                console.log('Email Error: ', err.response.data.message)
+                done(false);
+            })
+    }
 
     handleSubmit = (user) => {
         // Do whatever you like in here.
@@ -114,17 +156,17 @@ class RegisterForm extends React.Component {
 
     handleChange = (model) => {
         this.props.makeNotPending()
-        // console.log('Form is valid:', this.props.signupForm.forms.$form.valid)
+        // console.log('Form is valid:', this.props.editProfileForm.forms.$form.valid)
     }
-    
+
 
     render() {
 
-        const form = this.props.signupForm.forms;
+        const form = this.props.editProfileForm.forms;
 
         return (
             <Form
-                model="signupForm.user"
+                model="editProfileForm.user"
                 onSubmit={(user) => {
                     this.handleSubmit(user)
                 }}
@@ -145,20 +187,33 @@ class RegisterForm extends React.Component {
                     asyncValidateOn="blur"
                     component={TextInput}
                     controlProps={{
-                        model: this.props.signupForm.user,
+                        model: this.props.editProfileForm.user,
                         label: this.props.translate('login.username.label'),
                         id: 'username',
-                        valid: this.state.usernameIsAvailable,
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <IconButton
-                                    onClick={this.setRandomUsername}
-                                >
-                                    <Shuffle />}
-                                </IconButton>
-                            </InputAdornment>)
+                        valid: this.state.usernameIsAvailable
                     }}
-                /><br /><br />
+                /><br />
+
+                <Control.text
+                    model=".first_name"
+                    component={TextInput}
+                    controlProps={{
+                        model: this.props.editProfileForm.user,
+                        label: this.props.translate('login.first_name.label'),
+                        id: 'first_name'
+                    }}
+                /><br />
+
+
+                <Control.text
+                    model=".last_name"
+                    component={TextInput}
+                    controlProps={{
+                        model: this.props.editProfileForm.user,
+                        label: this.props.translate('login.last_name.label'),
+                        id: 'last_name',
+                    }}
+                /><br />
 
 
                 <Control.text
@@ -174,16 +229,32 @@ class RegisterForm extends React.Component {
                     asyncValidateOn="blur"
                     component={TextInput}
                     controlProps={{
-                        model: this.props.signupForm.user,
+                        model: this.props.editProfileForm.user,
                         label: this.props.translate('login.email.label'),
                         id: 'email',
-                        valid: this.state.emailIsAvailable  && form.user.email.valid
+                        valid: this.state.emailIsAvailable && form.user.email.valid
                     }}
-                /><br /><br />
+                /><br />
 
                 <Control.text
                     validators={{
                         required: (val) => val && val.length,
+                    }}
+                    validateOn='change'
+                    type="password"
+                    model=".oldPassword"
+                    component={TextInput}
+                    controlProps={{
+                        model: this.props.editProfileForm.user,
+                        label: this.props.translate('login.password.label'),
+                        id: 'oldPassword',
+                        type: "password",
+                        valid: form.user.oldPassword && form.user.oldPassword.valid
+                    }}
+                /><br />
+
+                <Control.text
+                    validators={{
                         checkPass
                     }}
                     validateOn='change'
@@ -191,17 +262,16 @@ class RegisterForm extends React.Component {
                     model=".password"
                     component={TextInput}
                     controlProps={{
-                        model: this.props.signupForm.user,
+                        model: this.props.editProfileForm.user,
                         label: this.props.translate('login.password.label'),
                         id: 'password',
                         type: "password",
                         valid: this.state.passwordsMatch && form.user.password.valid
                     }}
-                /><br /><br />
+                /><br />
 
                 <Control.text
                     validators={{
-                        required: (val) => val && val.length,
                         checkPass
                     }}
                     validateOn='change'
@@ -209,24 +279,28 @@ class RegisterForm extends React.Component {
                     model=".confirmPassword"
                     component={TextInput}
                     controlProps={{
-                        model: this.props.signupForm.user,
+                        model: this.props.editProfileForm.user,
                         label: this.props.translate('login.confirmPassword.label'),
                         id: 'confirmPassword',
                         type: "password",
                         valid: this.state.passwordsMatch && form.user.password.valid
                     }}
-                /><br /><br />
+                /><br />
 
                 <div style={buttonDivStyle}>
-                    <Button type="submit" color="primary" disabled={!form.$form.valid || this.props.pending} onClick={this.handleClick}>
+                    <Button
+                        type="submit"
+                        color="primary"
+                        disabled={!form.$form.valid || this.props.pending || !this.state.passwordsMatch}
+                        onClick={this.handleClick}>
                         {this.props.translate('login.form.submit')}
-                    </Button><br /><br />
+                    </Button><br />
                 </div>
 
 
                 <div style={{ width: '300px', color: 'red', margin: 'auto' }}>
-                    {this.formErrors(form)}
-                    {/* {this.props.submitError && this.props.translate('home.profile.registerErrors.submit.' + this.props.submitError)} */}
+                    {/* {this.formErrors(form)} */}
+                    {this.props.submitError}
                 </div>
 
             </Form>
@@ -234,4 +308,4 @@ class RegisterForm extends React.Component {
     }
 }
 
-export default RegisterForm;
+export default EditProfileForm;

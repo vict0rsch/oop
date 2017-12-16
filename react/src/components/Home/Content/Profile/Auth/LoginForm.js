@@ -31,7 +31,7 @@ class RegisterForm extends React.Component {
 
     handleClick = (event) => {
         this.props.makePending();
-        this.props.rrfSubmit('userLoginForm.user')
+        this.props.rrfSubmit('loginForm.user')
     }
 
     handleChange = (model) => {
@@ -42,10 +42,10 @@ class RegisterForm extends React.Component {
 
     render() {
 
-        const form = this.props.userLoginForm.forms;
+        const form = this.props.loginForm.forms;
         return (
             <Form
-                model="userLoginForm.user"
+                model="loginForm.user"
                 onSubmit={(user) => {
                     console.log(user);
                     this.handleSubmit(user)
@@ -62,7 +62,7 @@ class RegisterForm extends React.Component {
                     validateOn="change"
                     component={TextInput}
                     controlProps={{
-                        model: this.props.userLoginForm.user,
+                        model: this.props.loginForm.user,
                         label: this.props.translate('login.email.label'),
                         id: 'email',
                     }}
@@ -78,7 +78,7 @@ class RegisterForm extends React.Component {
                     model=".password"
                     component={TextInput}
                     controlProps={{
-                        model: this.props.userLoginForm.user,
+                        model: this.props.loginForm.user,
                         label: this.props.translate('login.password.label'),
                         id: 'password',
                         type: "password",

@@ -33,9 +33,53 @@ function user(state = {}, action) {
                 isValid: action.value && state.isLoggedIn
             }
 
+        case 'EDIT_USER':
+            component = action.component;
+            values = action.values;
+            Axios.post("http://localhost:5000/auth/edit", values, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage['_jwt']
+                }
+            }).then(
+                resp => {
+                    console.log('EDIT SUCCESS RESPONSE', resp)
+                    let closed = false;
+                    if (resp.data) {
+                        if (resp.data.status === 'success' && resp.data.auth_token) {
+
+                            component.handleRequestClose();
+                            localStorage.setItem('_jwt', resp.data.auth_token);
+                            component.props.setUserIsLoggedIn(true);
+                            component.props.setUserIsConfirmed(resp.data.user.confirmed);
+                            component.props.setUserData(resp.data.user);
+                            component.props.setUserTimestamp();
+                            closed = true;
+                            console.log('User Logged In')
+                        }
+                    }
+                    if (!closed) {
+                        console.log('makeNotPending')
+                        component.makeNotPending();
+                    }
+                }, err => {
+                    console.log('EDIT FAIL RESPONSE', err.response)
+                    if (err.response.status === 401) {
+                        component.setState(
+                            { submitError: err.response.data.message }
+                        );
+                    }
+                    component.makeNotPending();
+                }
+                ).catch((err) => { console.log('Caught Error:', err) });
+
+            return {
+                ...state
+            }
+
         case 'REGISTER':
             component = action.component;
             values = action.values;
+
 
             Axios.post("http://localhost:5000/auth/register", values).then(
                 (resp) => {
@@ -67,7 +111,7 @@ function user(state = {}, action) {
                     }
                     component.makeNotPending();
                 }
-            )
+            ).catch((err) => { console.log('Caught Error:', err) });
             return {
                 ...state
             }
@@ -93,7 +137,7 @@ function user(state = {}, action) {
                     (err) => {
                         console.log('LOGOUT error', err.response.data.message);
                     }
-                    )
+                    ).catch((err) => { console.log('Caught Error:', err) });
                 localStorage.removeItem('_jwt');
             } else {
                 console.log('Local Logged Out');
@@ -157,7 +201,7 @@ function user(state = {}, action) {
                     console.log('SET_USER_STATUS', err.response.data.message);
                     component.props.userLogOut();
                 }
-                )
+                ).catch((err) => { console.log('Caught Error:', err) });
             return {
                 ...state
             }
@@ -183,10 +227,11 @@ function user(state = {}, action) {
                 },
                 (err) => {
                     console.log('RESEND_EMAIL', err.response.data.message);
-                })
+                }).catch((err) => { console.log('Caught Error:', err) });
             return {
                 ...state
             }
+
         case 'USER_LOGIN':
             component = action.component;
             values = action.values;
@@ -222,10 +267,11 @@ function user(state = {}, action) {
                     }
                     component.makeNotPending()
                 }
-            );
+            ).catch((err) => { console.log('Caught Error:', err) });
             return {
                 ...state
             }
+
         default:
             return state;
     }

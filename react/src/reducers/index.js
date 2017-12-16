@@ -34,12 +34,15 @@ const rootReducer = combineReducers({
   router: routerReducer,
   show,
   user,
-  userSignupForm: combineForms({
+  signupForm: combineForms({
     user: initialUserState,
-  }, 'userSignupForm'),
-  userLoginForm: combineForms({
+  }, 'signupForm'),
+  loginForm: combineForms({
     user: initialUserState,
-  }, 'userLoginForm')
+  }, 'loginForm'),
+  editProfileForm: combineForms({
+    user: initialUserState,
+  }, 'editProfileForm')
 });
 
 export default rootReducer;

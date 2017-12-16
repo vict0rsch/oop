@@ -38,7 +38,7 @@ class Login extends Component {
 
     handleRequestClose = () => {
         this.setState({ open: false });
-        this.props.rrfReset('userLoginForm.user.password');
+        this.props.rrfReset('loginForm.user.password');
     };
 
     makePending = () => {
