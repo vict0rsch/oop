@@ -68,11 +68,13 @@ export default class Example extends Component {
     }
 
     render() {    
-        return (
+        return this.props.show.chips ? (
             <div>
                 {this.props.translate('home.example')} <br />
                 {this.state.content}
             </div>
         )
+        :
+        ''
     }
 }

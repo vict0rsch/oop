@@ -50,12 +50,17 @@ function show(state = false, action) {
                 ...state,
                 legend: !state.legend
             }
+        case 'TOGGLE_CHIPS':
+            return {
+                ...state,
+                chips: !state.chips
+            }
         case 'CLOSE_ALL':
             let newState = {
                 ...state
             }
             for (var i in state) {
-                if (i !== 'legend'){
+                if (i !== 'legend' && i !== 'chips'){
                     newState[i] = false;
                 }
             }

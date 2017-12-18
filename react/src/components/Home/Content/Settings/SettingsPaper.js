@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import LanguageSelect from './LanguageSelect';
 import ResetApp from './ResetApp';
 import ShowLegend from './ShowLegend';
+import ShowChips from './ShowChips';
 import HomePaper from '../../Paper/HomePaper'
 
 const leftTdStyle = {
-    width: '50%'
+    width: '50%',
+    textAlign: 'left'
 }
 
 const rightTdStyle = {
@@ -23,8 +25,8 @@ class SettingsPaper extends Component {
                     toggle={this.props.toggleSettings}
                     content={
                         <table style={{
-                            columnCount: 2,
-                            columnGap: '20px'
+                            margin: 'auto',
+                            width: '80%'
                         }}>
                             <tbody>
                                 <tr>
@@ -40,6 +42,7 @@ class SettingsPaper extends Component {
                                         <ShowLegend {...this.props} />
                                     </td>
                                     <td style={rightTdStyle}>
+                                        <ShowChips {...this.props} />
                                     </td>
                                 </tr>
 

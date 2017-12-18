@@ -58,6 +58,12 @@ export function toggleLegend() {
     };
 }
 
+export function toggleChips() {
+    return {
+        type: 'TOGGLE_CHIPS'
+    };
+}
+
 export function toggleFocusSearchBar() {
     return {
         type: 'TOGGLE_FOCUSSEARCHBAR'

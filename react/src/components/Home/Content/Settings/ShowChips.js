@@ -7,8 +7,7 @@ const labelStyle = {
 }
 
 const switchStyle = {
-    float: 'right',
-    marginRight: '-14px'
+    float: 'right'
 }
 
 const divStyle = {
@@ -17,27 +16,27 @@ const divStyle = {
 }
 
 
-export default class ShowLegend extends Component {
+export default class ShowChips extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            checked: this.props.show.legend,
+            checked: this.props.show.chips,
         };
     }
 
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.show.legend !== this.props.show.legend) {
+        if (nextProps.show.chips !== this.props.show.chips) {
             this.setState({
-                checked: nextProps.show.legend
+                checked: nextProps.show.chips
             })
         }
     }
 
 
     handleChange = (event, checked) => {
-        if (this.props.show.legend !== checked) {
-            this.props.toggleLegend();
+        if (this.props.show.chips !== checked) {
+            this.props.toggleChips();
         }
         this.setState({ checked });
     };
@@ -45,12 +44,12 @@ export default class ShowLegend extends Component {
     render() {
         return (
             <div style={divStyle} >
-                <table style={{ margin: 'auto' }}>
+                <table>
                     <tbody>
                         <tr>
                             <td>
                                 <div style={labelStyle}>
-                                    {this.props.translate('home.settings.showLegend')}
+                                    {this.props.translate('home.settings.showChips')}
                                 </div>
                             </td>
                             <td>
