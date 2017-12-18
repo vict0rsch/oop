@@ -55,7 +55,8 @@ const scrollableTabsMinWidth = 630;
 class HomeContentTabs extends React.Component {
   state = {
     value: 'search',
-    update: 0
+    update: 0,
+    tabs: ["search", "profile", "about", "settings"]
   };
 
   handleChange = (event, value) => {
@@ -74,31 +75,41 @@ class HomeContentTabs extends React.Component {
       if (location === "") {
         location = 'search'
       }
+      if (this.state.tabs.indexOf(location) > -1){
+        this.setState({
+          value: location,
+          update: this.state.update + 1
+        });
+      }
+    }
+
+    let tabs = this.state.tabs;
+    if (this.props.clientType !== nextProps.clientType){
+      if (nextProps.clientType !== "extension") {
+        tabs = [
+          ...tabs.slice(0, 3),
+          "extension",
+          ...tabs.slice(3)
+        ];
+      }
+    }
+    if (this.props.user.isValid !== nextProps.user.isValid){
+      if (nextProps.user.isValid){
+        tabs = [
+          ...tabs.slice(0, 2),
+          "contrib",
+          ...tabs.slice(2)
+        ];
+      }
+    }
+    if (tabs.length !== this.state.tabs.length){
       this.setState({
-        value: location,
-        update: this.state.update + 1
+        tabs
       });
     }
   }
 
-
   render() {
-
-    let tabs = ["search", "profile", "about", "settings"];
-    if (this.props.user.isValid){
-      tabs = [
-        ...tabs.slice(0, 2),
-        "contrib",
-        ...tabs.slice(2)
-      ];
-    }
-    if (this.props.clientType !== "extension") {
-      tabs = [
-        ...tabs.slice(0, 3),
-        "extension",
-        ...tabs.slice(3)
-      ];
-    }
 
     const { classes } = this.props;
 
@@ -110,6 +121,8 @@ class HomeContentTabs extends React.Component {
       'profile': this.props.user.isLoggedIn ? <ProfileIcon style={iconStyle} /> : <LoginIcon style={iconStyle}/>,
       'contrib': <ContribIcon style={iconStyle} />
     };
+
+
 
     return (
       <Paper className={classes.root}>
@@ -123,7 +136,7 @@ class HomeContentTabs extends React.Component {
           scrollButtons="auto"
           indicatorClassName={classes.indicator}
         >
-          {tabs.map(
+          {this.state.tabs.map(
             (v, k) => {
               const translate = v === 'profile' && !this.props.user.isLoggedIn ? 'login' : v;
   
