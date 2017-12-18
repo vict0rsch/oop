@@ -49,6 +49,8 @@ class TextFields extends React.Component {
         const { classes } = this.props;
         const label = this.props.label;
         const id = this.props.id;
+        const multiline = this.props.multiline || false;
+        const rowsMax = this.props.rowsMax || 1;
         return (
             <TextField
                 id={id}
@@ -61,6 +63,9 @@ class TextFields extends React.Component {
                 margin="normal"
                 type={this.props.type || "input"}
                 error={(this.props.valid === undefined ? false : !this.props.valid) && this.state.visited}
+                multiline={multiline}
+                rowsMax={rowsMax}
+                style={this.props.style}
             />
         );
     }

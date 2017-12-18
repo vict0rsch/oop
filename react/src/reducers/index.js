@@ -12,6 +12,7 @@ import clientType from './clientType';
 import currentDisplay from './currentDisplay';
 import dataIsAvailable from './dataIsAvailable';
 import user from './user';
+import graph from './graph';
 
 
 const initialUserState = {
@@ -22,7 +23,8 @@ const initialUserState = {
   email: ''
 };
 
-
+const initialEdgeState = {};
+const initialEntityState = {};
 
 const rootReducer = combineReducers({
   clientType,
@@ -34,6 +36,7 @@ const rootReducer = combineReducers({
   router: routerReducer,
   show,
   user,
+  graph,
   signupForm: combineForms({
     user: initialUserState,
   }, 'signupForm'),
@@ -42,7 +45,13 @@ const rootReducer = combineReducers({
   }, 'loginForm'),
   editProfileForm: combineForms({
     user: initialUserState,
-  }, 'editProfileForm')
+  }, 'editProfileForm'),
+  editEdgeForm: combineForms({
+    edge: initialEdgeState,
+  }, 'editEdgeForm'),
+  editEntityForm: combineForms({
+    entity: initialEntityState,
+  }, 'editEntityForm'),
 });
 
 export default rootReducer;

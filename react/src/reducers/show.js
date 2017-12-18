@@ -55,12 +55,22 @@ function show(state = false, action) {
                 ...state,
                 chips: !state.chips
             }
+        case 'TOGGLE_CONTRIB':
+            return {
+                ...state,
+                contrib: !state.contrib
+            }
+        case 'TOGGLE_EDITGRAPH':
+            return {
+                ...state,
+                editGraph: !state.editGraph
+            }
         case 'CLOSE_ALL':
             let newState = {
                 ...state
             }
             for (var i in state) {
-                if (i !== 'legend' && i !== 'chips'){
+                if (i !== 'legend' && i !== 'chips') {
                     newState[i] = false;
                 }
             }

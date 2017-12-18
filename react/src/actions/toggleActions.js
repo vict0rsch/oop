@@ -64,6 +64,18 @@ export function toggleChips() {
     };
 }
 
+export function toggleContrib() {
+    return {
+        type: 'TOGGLE_CONTRIB'
+    };
+}
+
+export function toggleEditGraph() {
+    return {
+        type: 'TOGGLE_EDITGRAPH'
+    };
+}
+
 export function toggleFocusSearchBar() {
     return {
         type: 'TOGGLE_FOCUSSEARCHBAR'

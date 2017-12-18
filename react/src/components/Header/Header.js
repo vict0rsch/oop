@@ -23,10 +23,6 @@ class Header extends React.Component {
     }
   }
 
-
-  redirect = (val) => {
-    this.props.history.push(`/graph/${val.id}`);
-  }
   render() {
     return (
       <div id='headerDiv'>

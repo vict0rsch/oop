@@ -13,6 +13,8 @@ function mapStateToProps(state) {
       signupForm: state.signupForm,
       loginForm: state.loginForm,
       editProfileForm: state.editProfileForm,
+      editEdgeForm: state.editEdgeForm,
+      editEntityForm: state.editEntityForm,
       user: state.user
     };
   }

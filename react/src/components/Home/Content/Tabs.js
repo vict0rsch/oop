@@ -122,8 +122,6 @@ class HomeContentTabs extends React.Component {
       'contrib': <ContribIcon style={iconStyle} />
     };
 
-
-
     return (
       <Paper className={classes.root}>
         <Tabs

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import ContribPaper from './ContribPaper';
+import EditGraph from './EditGraph/EditGraph'
 
 class Contrib extends Component {
     render() {
 
         return this.props.show.contrib
             ?
-            <ContribPaper {...this.props} />
+            <EditGraph {...this.props} />
             :
             ''
 

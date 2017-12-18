@@ -2,7 +2,7 @@ import React from 'react';
 import { Control, Form } from 'react-redux-form';
 import validator from 'validator';
 import Axios from 'axios';
-import TextInput from '../TextInput';
+import TextInput from '../../../../Utils/TextInput';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import { InputAdornment } from 'material-ui/Input';
