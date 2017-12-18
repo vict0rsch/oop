@@ -2,7 +2,7 @@
     "test": ["test_en", "text_fr"],
     "home": {
         "subtitle": ["The Open MetaData Project: gathering metadata about our world.", "The Open MetaData Project: rassembler les m\u00e9ta-donn\u00e9es de notre monde."],
-        "example": ["Let's start with the media. Pick one you want to learn about:", "Commen\u00e7ons par les m\u00e9dias. Choisissez \u00e0 propos de qui vous voulez en savoir plus:"],
+        "example": ["Let's start with the media. Pick one you want to learn about:", "Commen\u00e7ons par les m\u00e9dias. Qui vous intéresse?"],
         "searchBar": ["Search The Graph", "Rechercher dans le Graphe"],
         "learnAbout": ["About the Open Ownership Project", "\u00c0 propos de Open Ownership Project"],
         "contactButton": ["Contact", "Contact"],
@@ -48,21 +48,28 @@
             "register": ["Register", "S'inscrire"],
             "registerTitle": ["Register on Metada", "Cr\u00e9er un compte Metada"],
             "registerContent": ["You may chose to use this randomly assigned username.<br/> Or change it. Or try a new random one: ", "On vous a choisi un nom d'utilisateur au hasard. <br/> Mais vous pouvez le changer. Ou en essayer un autre: "],
-            "registerErrors": {
-                "submit": {
-                    "invalidForm": ["The form is not valid.", "Formulaire d'inscription invalide."],
-                    "emailExists": ["This email address is already associated with an account.", "Cette adresse mail est d\u00e9j\u00e0 utilis\u00e9e."],
-                    "usernameExists": ["This username is taken.", "Ce nom d'utilisateur est d\u00e9j\u00e0 pris."],
-                    "error": ["Server-side error. Sorry, we're fixing this. Retry soon!", "Erreur interne. Veuillez nous excuser! R\u00e9essayez dans quelques instants."]
-                },
-                "form": {
-                    "invalidEmail": ["Invalid email address", "Adresse mail invalide"],
-                    "passwordTooShort": ["The password is too short. Use at least 6 characters", "Le mot de passe est trop court. Utilisez au moins 6 caract\u00e8res"],
-                    "passwordsDontMatch": ["The passwords don't match", "Les mots de passe ne correspondent pas"]
-                }
+            "errors": {
+                "emailExists": ["This email address is already associated with an account.", "Cette adresse mail est d\u00e9j\u00e0 utilis\u00e9e."],
+                "error": ["Server-side error. Sorry, we're fixing this. Retry soon!", "Erreur interne. Veuillez nous excuser! R\u00e9essayez dans quelques instants."],
+                "invalidEmail": ["Invalid email address", "Adresse mail invalide"],
+                "invalidForm": ["The form is not valid.", "Formulaire d'inscription invalide."],
+                "invalidUsername": ["Invalid Username", "Nom d'utilisateur invalide"],
+                "invalidPassword": ["Invalid password", "Mot de passe incorrect"],
+                "invalidUser": ["Invalid Email address or password", "Adresse mail ou mot de passe invalide"],
+                "noUser": ["No User found with your credentials", "Aucun utilisateur n'est associé à vos identifiants. Veuillez vous reconnecter"],
+                "noUserForEmail": ["Incorrect email address and/or password", "Mot de passe et/ou adresse mail incorrect•e•s)"],
+                "passwordsDontMatch": ["The passwords don't match", "Les mots de passe ne correspondent pas"],
+                "passwordTooShort": ["The password is too short. Use at least 6 characters", "Le mot de passe est trop court. Utilisez au moins 6 caract\u00e8res"],
+                "usernameExists": ["This username is taken.", "Ce nom d'utilisateur est d\u00e9j\u00e0 pris."],
+                "wrongPassword": ["Incorrect password", "Mot de passe incorrect"]
             },
-            "loginErrors": {
-                "invalidUser": ["Invalid Email address or password", "Adresse mail ou mot de passe invalide"]
+            "edit": {
+                "title": ["Edit your profile", "Mofifier le profil"],
+                "content": ["Please enter your password to allow for modifications", "Entrez votre mot de passe pour autoriser les modifications"],
+                "oldPassword": ["Current password", "Mot de passe actuel"],
+                "password": ["New password", "Nouveau mot de passe"],
+                "confirmPassword": ["Confirm new password", "Confirmez le ouveau mot de passe"],
+                "button": ["Edit Profile", "Éditer le profil"]
             },
             "resend": {
                 "confirm": ["Confirm you account by clicking on the link in the email we sent you.", "Confirmez votre compte en cliquant sur le lien dans le mail que nous vous avons envoy\u00e9."],
@@ -72,9 +79,6 @@
             "login": {
                 "button": ["Log in", "Connexion"],
                 "dialogContent": ["Welcome Back!", "Bienvenue!"]
-            },
-            "edit": {
-                "button": ["Edit Profile", "Éditer le profil"]
             }
         }
     },
@@ -131,7 +135,7 @@
                 "c": ["Company", "Entreprise"],
                 "cg": ["Complete Graph available", "Graphe Complet disponible"],
                 "boldLabel": ["bold", "en gras"],
-                "boldText": ["Current Graph", "Graph courrant"]
+                "boldText": ["Current Graph", "Graphe courrant"]
             }
         },
         "wiki": {

@@ -4,6 +4,8 @@ import validator from 'validator';
 import Axios from 'axios';
 import TextInput from '../TextInput';
 import Button from 'material-ui/Button';
+import Divider from 'material-ui/Divider';
+
 
 
 const isEmail = (val) => {
@@ -11,7 +13,6 @@ const isEmail = (val) => {
 }
 
 const checkPass = val => {
-    console.log((val && val.length > 5) || !val);
     return (val && val.length > 5) || !val;
 }
 
@@ -43,19 +44,19 @@ class EditProfileForm extends React.Component {
 
     formErrors = form => {
         if (!this.state.usernameIsAvailable) {
-            return this.props.translate('home.profile.registerErrors.submit.usernameExists');
+            return this.props.translate('home.profile.errors.usernameExists');
         }
         if (!isEmail(form.user.email.value) && form.user.email.value.length !== 0) {
-            return this.props.translate('home.profile.registerErrors.form.invalidEmail');
+            return this.props.translate('home.profile.errors.invalidEmail');
         }
         if (!this.state.emailIsAvailable) {
-            return this.props.translate('home.profile.registerErrors.submit.emailExists');
+            return this.props.translate('home.profile.errors.emailExists');
         }
         if (!checkPass(form.user.password.value) && form.user.password.value.length !== 0) {
-            return this.props.translate('home.profile.registerErrors.form.passwordTooShort');
+            return this.props.translate('home.profile.errors.passwordTooShort');
         }
         if (!this.state.passwordsMatch) {
-            return this.props.translate('home.profile.registerErrors.form.passwordsDontMatch');
+            return this.props.translate('home.profile.errors.passwordsDontMatch');
         }
         return ''
 
@@ -192,29 +193,7 @@ class EditProfileForm extends React.Component {
                         id: 'username',
                         valid: this.state.usernameIsAvailable
                     }}
-                /><br />
-
-                <Control.text
-                    model=".first_name"
-                    component={TextInput}
-                    controlProps={{
-                        model: this.props.editProfileForm.user,
-                        label: this.props.translate('login.first_name.label'),
-                        id: 'first_name'
-                    }}
-                /><br />
-
-
-                <Control.text
-                    model=".last_name"
-                    component={TextInput}
-                    controlProps={{
-                        model: this.props.editProfileForm.user,
-                        label: this.props.translate('login.last_name.label'),
-                        id: 'last_name',
-                    }}
-                /><br />
-
+                />
 
                 <Control.text
                     model=".email"
@@ -234,24 +213,28 @@ class EditProfileForm extends React.Component {
                         id: 'email',
                         valid: this.state.emailIsAvailable && form.user.email.valid
                     }}
-                /><br />
+                />
 
                 <Control.text
-                    validators={{
-                        required: (val) => val && val.length,
-                    }}
-                    validateOn='change'
-                    type="password"
-                    model=".oldPassword"
+                    model=".first_name"
                     component={TextInput}
                     controlProps={{
                         model: this.props.editProfileForm.user,
-                        label: this.props.translate('login.password.label'),
-                        id: 'oldPassword',
-                        type: "password",
-                        valid: form.user.oldPassword && form.user.oldPassword.valid
+                        label: this.props.translate('login.first_name.label'),
+                        id: 'first_name'
                     }}
-                /><br />
+                />
+
+
+                <Control.text
+                    model=".last_name"
+                    component={TextInput}
+                    controlProps={{
+                        model: this.props.editProfileForm.user,
+                        label: this.props.translate('login.last_name.label'),
+                        id: 'last_name',
+                    }}
+                />
 
                 <Control.text
                     validators={{
@@ -263,12 +246,12 @@ class EditProfileForm extends React.Component {
                     component={TextInput}
                     controlProps={{
                         model: this.props.editProfileForm.user,
-                        label: this.props.translate('login.password.label'),
+                        label: this.props.translate('home.profile.edit.password'),
                         id: 'password',
                         type: "password",
                         valid: this.state.passwordsMatch && form.user.password.valid
                     }}
-                /><br />
+                />
 
                 <Control.text
                     validators={{
@@ -280,12 +263,33 @@ class EditProfileForm extends React.Component {
                     component={TextInput}
                     controlProps={{
                         model: this.props.editProfileForm.user,
-                        label: this.props.translate('login.confirmPassword.label'),
+                        label: this.props.translate('home.profile.edit.confirmPassword'),
                         id: 'confirmPassword',
                         type: "password",
                         valid: this.state.passwordsMatch && form.user.password.valid
                     }}
-                /><br />
+                />
+
+                <br /><br /><br />
+
+                <Divider />
+
+                <Control.text
+                    validators={{
+                        required: (val) => val && val.length,
+                    }}
+                    validateOn='change'
+                    type="password"
+                    model=".oldPassword"
+                    component={TextInput}
+                    controlProps={{
+                        model: this.props.editProfileForm.user,
+                        label: this.props.translate('home.profile.edit.oldPassword'),
+                        id: 'oldPassword',
+                        type: "password",
+                        valid: form.user.oldPassword && form.user.oldPassword.valid
+                    }}
+                />
 
                 <div style={buttonDivStyle}>
                     <Button
@@ -294,7 +298,7 @@ class EditProfileForm extends React.Component {
                         disabled={!form.$form.valid || this.props.pending || !this.state.passwordsMatch}
                         onClick={this.handleClick}>
                         {this.props.translate('login.form.submit')}
-                    </Button><br />
+                    </Button>
                 </div>
 
 

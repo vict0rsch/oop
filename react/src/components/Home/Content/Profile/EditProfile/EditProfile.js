@@ -71,10 +71,10 @@ class EditProfile extends Component {
                     open={this.state.open}
                     onRequestClose={this.handleRequestClose}
                 >
-                    <DialogTitle>{this.props.translate('home.profile.registerTitle')}</DialogTitle>
+                    <DialogTitle>{this.props.translate('home.profile.edit.title')}</DialogTitle>
                     <DialogContent component={'div'} style={dialogContentStyle}>
                         <Typography type="body1">
-                            {this.props.translate('home.profile.registerContent')}
+                            {this.props.translate('home.profile.edit.content')}
                         </Typography>
                         <br /><br />
                         <EditProfileForm

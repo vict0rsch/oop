@@ -36,19 +36,19 @@ class RegisterForm extends React.Component {
 
     formErrors = form => {
         if (!this.state.usernameIsAvailable) {
-            return this.props.translate('home.profile.registerErrors.submit.usernameExists');
+            return this.props.translate('home.profile.errors.usernameExists');
         }
         if (!isEmail(form.user.email.value) && form.user.email.value.length !== 0) {
-            return this.props.translate('home.profile.registerErrors.form.invalidEmail');
+            return this.props.translate('home.profile.errors.invalidEmail');
         }
         if (!this.state.emailIsAvailable) {
-            return this.props.translate('home.profile.registerErrors.submit.emailExists');
+            return this.props.translate('home.profile.errors.emailExists');
         }
         if (!checkPass(form.user.password.value) && form.user.password.value.length !== 0) {
-            return this.props.translate('home.profile.registerErrors.form.passwordTooShort');
+            return this.props.translate('home.profile.errors.passwordTooShort');
         }
         if (!this.state.passwordsMatch) {
-            return this.props.translate('home.profile.registerErrors.form.passwordsDontMatch');
+            return this.props.translate('home.profile.errors.passwordsDontMatch');
         }
         return ''
 
