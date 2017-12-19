@@ -57,8 +57,15 @@ const router = (
 
 ReactDOM.render(router, document.getElementById('root'));
 
-const isextension = window.chrome.tabs !== undefined;
-if (!isextension) {
+let isExtension;
+try{
+    isExtension = window.chrome.tabs !== undefined;
+} catch (error){
+    //Not Chrome browser
+    isExtension = false;
+}
+
+if (!isExtension) {
     console.log('Registering Service Worker');
     registerServiceWorker();
 } else {
