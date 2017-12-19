@@ -1,26 +1,15 @@
 import React from 'react';
 import { Control, Form } from 'react-redux-form';
-import validator from 'validator';
 import Axios from 'axios';
 import TextInput from '../../../../Utils/TextInput';
 import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
-
-
-
-const isEmail = (val) => {
-    return val && validator.isEmail(val);
-}
-
-const checkPass = val => {
-    return (val && val.length > 5) || !val;
-}
-
+import { CircularProgress } from 'material-ui/Progress';
+import { isEmail, checkPass } from "../../../../../utils/formValidators";
 
 const buttonDivStyle = {
     textAlign: 'right'
 }
-
 
 class EditProfileForm extends React.Component {
     constructor(props) {
@@ -31,7 +20,6 @@ class EditProfileForm extends React.Component {
             emailIsAvailable: true,
         }
     }
-
 
     componentWillMount() {
         this.props.rrfChange('editProfileForm.user.email', this.props.user.data.email);
@@ -292,13 +280,18 @@ class EditProfileForm extends React.Component {
                 />
 
                 <div style={buttonDivStyle}>
-                    <Button
-                        type="submit"
-                        color="primary"
-                        disabled={!form.$form.valid || this.props.pending || !this.state.passwordsMatch}
-                        onClick={this.handleClick}>
-                        {this.props.translate('login.form.submit')}
-                    </Button>
+                {this.props.pending ?
+                        <CircularProgress />
+                        :
+                        (<Button
+                            type="submit"
+                            color="primary"
+                            disabled={!form.$form.valid || this.props.pending || !this.state.passwordsMatch}
+                            onClick={this.handleClick}>
+                            {this.props.translate('login.form.submit')}
+                        </Button>)
+                    }
+                    
                 </div>
 
 

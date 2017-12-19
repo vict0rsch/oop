@@ -75,7 +75,7 @@ class HomeContentTabs extends React.Component {
       if (location === "") {
         location = 'search'
       }
-      if (this.state.tabs.indexOf(location) > -1){
+      if (this.state.tabs.indexOf(location) > -1) {
         this.setState({
           value: location,
           update: this.state.update + 1
@@ -84,8 +84,8 @@ class HomeContentTabs extends React.Component {
     }
 
     let tabs = this.state.tabs;
-    if (this.props.clientType !== nextProps.clientType){
-      if (nextProps.clientType !== "extension") {
+    if (this.props.clientType !== nextProps.clientType) {
+      if (nextProps.clientType !== "extension" && tabs.indexOf("extension") === -1) {
         tabs = [
           ...tabs.slice(0, 3),
           "extension",
@@ -93,8 +93,8 @@ class HomeContentTabs extends React.Component {
         ];
       }
     }
-    if (this.props.user.isValid !== nextProps.user.isValid){
-      if (nextProps.user.isValid){
+    if (this.props.user.isValid !== nextProps.user.isValid) {
+      if (nextProps.user.isValid && tabs.indexOf("contrib") === -1) {
         tabs = [
           ...tabs.slice(0, 2),
           "contrib",
@@ -102,7 +102,7 @@ class HomeContentTabs extends React.Component {
         ];
       }
     }
-    if (tabs.length !== this.state.tabs.length){
+    if (tabs.length !== this.state.tabs.length) {
       this.setState({
         tabs
       });
@@ -118,7 +118,7 @@ class HomeContentTabs extends React.Component {
       'about': <AboutIcon style={iconStyle} />,
       'settings': <SettingsIcon style={iconStyle} />,
       'extension': <ExtensionIcon style={iconStyle} />,
-      'profile': this.props.user.isLoggedIn ? <ProfileIcon style={iconStyle} /> : <LoginIcon style={iconStyle}/>,
+      'profile': this.props.user.isLoggedIn ? <ProfileIcon style={iconStyle} /> : <LoginIcon style={iconStyle} />,
       'contrib': <ContribIcon style={iconStyle} />
     };
 
@@ -137,7 +137,7 @@ class HomeContentTabs extends React.Component {
           {this.state.tabs.map(
             (v, k) => {
               const translate = v === 'profile' && !this.props.user.isLoggedIn ? 'login' : v;
-  
+
               return <Tab
                 className={classes.labelContainer}
                 key={'tab' + k}

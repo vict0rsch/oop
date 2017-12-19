@@ -39,11 +39,11 @@ const homeContentDivStyle = {
 
 class Home extends React.Component {
 
-  
+
   componentDidMount() {
-    setTimeout(()=>{this.props.setUserStatus(this, false)}, 100);
+    setTimeout(() => { this.props.setUserStatus(this, false) }, 100);
   }
-  
+
 
   componentWillMount() {
     const component = this;
@@ -116,7 +116,7 @@ class Home extends React.Component {
     updateData(this);
   }
 
-  
+
   render() {
     return (
       <div>

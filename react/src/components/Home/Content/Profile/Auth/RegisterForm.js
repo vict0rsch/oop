@@ -1,28 +1,18 @@
 import React from 'react';
 import { Control, Form } from 'react-redux-form';
-import validator from 'validator';
 import Axios from 'axios';
 import TextInput from '../../../../Utils/TextInput';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import { InputAdornment } from 'material-ui/Input';
 import Shuffle from 'react-icons/lib/ti/arrow-shuffle';
-
-const isEmail = (val) => {
-    return val && validator.isEmail(val);
-}
-
-const checkPass = val => {
-    return val && val.length > 5;
-}
+import { CircularProgress } from 'material-ui/Progress';
+import { isEmail, checkPass } from '../../../../../utils/formValidators';
 
 
 const buttonDivStyle = {
     textAlign: 'right'
 }
-
-
-
 
 class RegisterForm extends React.Component {
     constructor(props) {
@@ -116,7 +106,7 @@ class RegisterForm extends React.Component {
         this.props.makeNotPending()
         // console.log('Form is valid:', this.props.signupForm.forms.$form.valid)
     }
-    
+
 
     render() {
 
@@ -177,7 +167,7 @@ class RegisterForm extends React.Component {
                         model: this.props.signupForm.user,
                         label: this.props.translate('login.email.label'),
                         id: 'email',
-                        valid: this.state.emailIsAvailable  && form.user.email.valid
+                        valid: this.state.emailIsAvailable && form.user.email.valid
                     }}
                 /><br /><br />
 
@@ -218,9 +208,13 @@ class RegisterForm extends React.Component {
                 /><br /><br />
 
                 <div style={buttonDivStyle}>
-                    <Button type="submit" color="primary" disabled={!form.$form.valid || this.props.pending} onClick={this.handleClick}>
-                        {this.props.translate('login.form.submit')}
-                    </Button><br /><br />
+                    {this.props.pending ?
+                        <CircularProgress />
+                        :
+                        (<Button type="submit" color="primary" disabled={!form.$form.valid} onClick={this.handleClick}>
+                            {this.props.translate('login.form.submit')}
+                        </Button>)
+                    }
                 </div>
 
 

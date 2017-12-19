@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form } from 'react-redux-form';
 import Button from 'material-ui/Button';
+import { CircularProgress } from 'material-ui/Progress';
 
 
 const buttonDivStyle = {
@@ -29,7 +30,7 @@ export default class EditEntityForm extends Component {
     handleClick = (event) => {
         this.makePending();
         // this.props.rrfSubmit(this.props.model)
-        if (this.props.form.$form.valid){
+        if (this.props.form.$form.valid) {
             this.props.onSubmit(this, this.props.form)
             event.preventDefault();
         }
@@ -58,14 +59,21 @@ export default class EditEntityForm extends Component {
 
                 <br /><br />
                 <div style={buttonDivStyle}>
-                    {this.props.reset}
-                    <Button type="submit" color="primary" disabled={!form.$form.valid || this.state.pending} onClick={this.handleClick}>
-                        {buttonText}
-                    </Button><br /><br />
+                    {this.state.pending ?
+                        <CircularProgress />
+                        :
+                        (<div>
+                            {this.props.reset}
+                            < Button type="submit" color="primary" disabled={!form.$form.valid} onClick={this.handleClick}>
+                                {buttonText}
+                            </Button>
+                        </div>)
+                    }
+                    <br /><br />
                 </div>
 
                 {this.state.submitError && this.props.translate(errorsLocation + '.' + this.state.submitError)}
-            </Form>
+            </Form >
         );
     }
 }

@@ -1,17 +1,9 @@
 import React from 'react';
 import { Control, Form } from 'react-redux-form';
-import validator from 'validator';
 import TextInput from '../../../../Utils/TextInput';
 import Button from 'material-ui/Button';
-
-
-const isEmail = (val) => {
-    return val && validator.isEmail(val);
-}
-
-const checkPass = val => {
-    return val && val.length > 5;
-}
+import { CircularProgress } from 'material-ui/Progress';
+import { isEmail, checkPass } from "../../../../../utils/formValidators";
 
 
 const buttonDivStyle = {
@@ -19,6 +11,23 @@ const buttonDivStyle = {
 }
 
 class RegisterForm extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            submitError: this.props.submitError || ''
+        }
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.submitError !== this.state.submitError) {
+            this.setState({
+                submitError: nextProps.submitError
+            })
+        }
+    }
+
 
     handleSubmit = (user) => {
         // Do whatever you like in here.
@@ -38,6 +47,9 @@ class RegisterForm extends React.Component {
         if (this.props.pending) {
             this.props.makeNotPending();
         }
+        this.setState({
+            submitError: ''
+        })
     }
 
     render() {
@@ -86,12 +98,17 @@ class RegisterForm extends React.Component {
                 /><br /><br />
 
                 <div style={buttonDivStyle}>
-                    <Button type="submit" color="primary" disabled={!form.$form.valid || this.props.pending} onClick={this.handleClick}>
-                        {this.props.translate('login.form.submit')}
-                    </Button><br /><br />
+                    {this.props.pending ?
+                        <CircularProgress />
+                        :
+                        (<Button type="submit" color="primary" disabled={!form.$form.valid} onClick={this.handleClick}>
+                            {this.props.translate('login.form.submit')}
+                        </Button>)
+                    }
+                    <br /><br />
                 </div>
 
-                {this.props.submitError && this.props.translate('home.profile.errors.' + this.props.submitError)}
+                {this.state.submitError && this.props.translate('home.profile.errors.' + this.state.submitError)}
             </Form>
         );
     }

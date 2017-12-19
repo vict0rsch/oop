@@ -65,7 +65,7 @@
                 "wrongPassword": ["Incorrect password", "Mot de passe incorrect"]
             },
             "edit": {
-                "title": ["Edit your profile", "Mofifier le profil"],
+                "title": ["Edit your profile", "Modifier le profil"],
                 "content": ["Please enter your password to allow for modifications", "Entrez votre mot de passe pour autoriser les modifications"],
                 "oldPassword": ["Current password", "Mot de passe actuel"],
                 "password": ["New password", "Nouveau mot de passe"],

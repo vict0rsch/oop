@@ -4,7 +4,7 @@ import TextInput from '../../../../Utils/TextInput'
 import EntitySelect from '../../../../Utils/EntitySelect'
 import { Control } from 'react-redux-form';
 import Button from 'material-ui/Button';
-
+import { isInRange, isPositiveNumber } from "../../../../../utils/formValidators";
 
 const leftTdStyle = {
     // width: '45%',
@@ -16,24 +16,6 @@ const rightTdStyle = {
     textAlign: 'right'
 }
 
-const isPositiveNumber = n => {
-    if (!n) {
-        return false;
-    }
-    n += '';
-    if (n.indexOf(',') > -1) {
-        n = n.replace(',', '.');
-    }
-    if (!isNaN(parseFloat(n)) && isFinite(n)) {
-        return true
-    }
-    return false;
-}
-
-const isInRange = n => {
-    const fn = parseFloat(n);
-    return (fn > 0 && fn <= 100) || fn === -1
-}
 
 export default class EditEdgeForm extends Component {
 
@@ -46,6 +28,8 @@ export default class EditEdgeForm extends Component {
         this.props.rrfReset('editEdgeForm.edge.parent')
         this.props.rrfReset('editEdgeForm.edge.child')
         this.props.rrfReset('editEdgeForm.edge.value')
+        this.props.rrfReset('editEdgeForm.edge.special')
+        this.props.rrfReset('editEdgeForm.edge.source')
         this.setState({
             clearParent: this.state.clearParent + 1,
             clearChild: this.state.clearChild + 1
@@ -58,13 +42,12 @@ export default class EditEdgeForm extends Component {
 
 
     handleSubmit = (component, form) => {
-        console.log('COMP+FORM', component, form);
         form && console.log('Edge submitted: ', form.edge);
-        component && component.makeNotPending()
+        setTimeout(() => { component && component.makeNotPending() }, 1000)
     }
 
     handleChange = (values) => {
-        console.log(values)
+        // console.log(values)
     }
 
     render() {
@@ -86,7 +69,6 @@ export default class EditEdgeForm extends Component {
                 style: { width: '95%', display: 'inline-block' },
                 initialValue: this.props.editEdgeForm.edge.parent ? this.props.editEdgeForm.edge.parent.id : ''
             }}
-            key='f0'
         />;
 
         c01 = "Child Entity"
@@ -105,7 +87,6 @@ export default class EditEdgeForm extends Component {
                 style: { width: '95%', display: 'inline-block' },
                 initialValue: this.props.editEdgeForm.edge.child ? this.props.editEdgeForm.edge.child.id : ''
             }}
-            key='f0'
         />;
 
         c20 = <Control.text
@@ -137,7 +118,7 @@ export default class EditEdgeForm extends Component {
 
         c30 = <br />
 
-        c40 = <Control.text
+        const source = <Control.text
             model=".source"
             validators={{
                 required: (val) => { return val && val.length },
@@ -153,21 +134,18 @@ export default class EditEdgeForm extends Component {
                 style: { width: '100%' }
             }} />;
 
-        const table = (
-            <table style={{ width: '100%' }}><tbody>
-                <tr><td style={leftTdStyle}>{c00 || ''}</td><td style={rightTdStyle}>{c01 || ''}</td></tr>
-                <tr><td style={leftTdStyle}>{c10 || ''}</td><td style={rightTdStyle}>{c11 || ''}</td></tr>
-                <tr><td style={leftTdStyle}>{c20 || ''}</td><td style={rightTdStyle}>{c21 || ''}</td></tr>
-                <tr><td style={leftTdStyle}>{c30 || ''}</td><td style={rightTdStyle}>{c31 || ''}</td></tr>
-            </tbody>
-            </table>
-        );
+        const table = (<table style={{ width: '100%' }}><tbody>
+            <tr><td style={leftTdStyle}>{c00 || ''}</td><td style={rightTdStyle}>{c01 || ''}</td></tr>
+            <tr><td style={leftTdStyle}>{c10 || ''}</td><td style={rightTdStyle}>{c11 || ''}</td></tr>
+            <tr><td style={leftTdStyle}>{c20 || ''}</td><td style={rightTdStyle}>{c21 || ''}</td></tr>
+            <tr><td style={leftTdStyle}>{c30 || ''}</td><td style={rightTdStyle}>{c31 || ''}</td></tr>
+        </tbody></table>);
 
         const content = (
             <div>
                 {table}
                 <br />
-                {c40}
+                {source}
             </div>
         );
 
