@@ -25,6 +25,29 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
         width: '95%'
+    },
+    primaryLabel: {
+        color: '#3f51b5',
+    },
+    primaryUnderline: {
+        '&:hover:not($disabled):before': {
+            backgroundColor: 'red',
+        },
+    },
+    primaryUnderlineError: {
+        '&:hover:not($disabled):before': {
+            backgroundColor: 'red',
+        },
+    },
+    primaryInkbar: {
+        '&:after': {
+            backgroundColor: '#3f51b5',
+        },
+    },
+    primaryInkbarError: {
+        '&:after': {
+            backgroundColor: 'red',
+        },
     }
 });
 
@@ -70,10 +93,10 @@ class CustomInput extends React.Component {
         const error = (this.props.valid === undefined ? false : !this.props.valid) && this.state.visited
         return (
             <FormControl className={classes.formControl} >
-                <InputLabel error={error}>{label}</InputLabel>
+                <InputLabel error={error} FormControlClasses={{ focused: classes.primaryLabel }}>{label} </InputLabel>
                 <Input
                     id={id}
-                    className={classes.textField}
+                    classes={{ inkbar: error ? classes.primaryInkbarError: classes.primaryInkbar, underline: error?  classes.primaryUnderline : classes.primaryUnderlineError }}
                     value={this.state.value || ''}
                     onChange={this.handleChange('value')}
                     onFocus={this.setVisited}
@@ -82,14 +105,14 @@ class CustomInput extends React.Component {
                     error={error}
                     multiline={multiline}
                     rowsMax={rowsMax}
-                    style={this.props.style}
+                    style={{ ...this.props.style }}
                     endAdornment={this.props.endAdornment ?
                         <InputAdornment position="end">
                             {this.props.endAdornment}
                         </InputAdornment> : ''
                     }
                 />
-            <FormHelperText>{this.props.helperText || ''}</FormHelperText>
+                <FormHelperText>{this.props.helperText || ''}</FormHelperText>
             </FormControl>
         );
     }

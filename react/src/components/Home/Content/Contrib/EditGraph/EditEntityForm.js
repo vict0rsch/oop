@@ -7,7 +7,7 @@ import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
 import Form from '../../../../Utils/Form'
 import TextInput from '../../../../Utils/TextInput'
-import EntitySelect from '../../../../Utils/EntitySelect'
+import EntitySelect from '../../../../Utils/EntitySelectMaterial'
 import Help from '../../../../Utils/HelpIcon';
 
 
@@ -115,7 +115,7 @@ class EditEntityForm extends Component {
         </div>)
 
         const selectEntity = this.state.radio === "modify" ?
-            <div style={{height:100}}><Control.text
+            <div style={{ height: 100 }}><Control.text
                 model=".selectedEntity"
                 validators={{
                     required: (val) => { return (val && val.label) || this.state.radio === "create" },
@@ -219,7 +219,7 @@ class EditEntityForm extends Component {
                 label: "Source",
                 id: 'source',
                 multiline: true,
-                rowsMax: 3,
+                rowsMax: 6,
                 style: { width: '95%' }
             }} />;
 
@@ -228,12 +228,13 @@ class EditEntityForm extends Component {
                 <Grid container spacing={16}>
                     <Grid item xs={12}> {choice} </Grid>
                     <Grid item xs={12}> {selectEntity} </Grid>
-                    <Grid item xs={12} sm={6} lg={4}> {name} </Grid>
-                    <Grid item xs={12} sm={6} lg={4}> {longName} </Grid>
-                    <Grid item xs={12} sm={6} lg={4}> {otherGroups} </Grid>
-                    <Grid item xs={12} sm={6} lg={4}> {website} </Grid>
-                    <Grid item xs={12} sm={6} lg={4}> {wikiLink} </Grid>
-                    <Grid item xs={12} sm={6} lg={4}> {source} </Grid>
+                    <Grid item xs={12} md={6} lg={4}> {name} </Grid>
+                    <Grid item xs={12} md={6} lg={4}> {longName} </Grid>
+                    <Grid item xs={12} md={6} lg={4}> {otherGroups} </Grid>
+                    <Grid item xs={12} md={6} lg={4}> {website} </Grid>
+                    <Grid item xs={12}> {wikiLink} </Grid>
+                    <br />
+                    <Grid item xs={12}> {source} </Grid>
                 </Grid>
             </div>
         )

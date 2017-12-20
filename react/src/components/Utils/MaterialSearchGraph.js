@@ -52,7 +52,14 @@ function renderSuggestion(params) {
 function renderSuggestionsContainer(options) {
     const { containerProps, children } = options;
     return (
-        <Paper {...containerProps} square>
+        <Paper {...containerProps} square style={{
+            zIndex: 999,
+            position: 'fixed',
+            backgroundColor: 'whitesmoke',
+            width: '62%',
+            height: '200px',
+            overflow: 'scroll'
+        }}>
             {children}
         </Paper>
     );
@@ -68,7 +75,7 @@ function getSuggestions(suggestions, defaults, inputValue) {
     return suggestions.filter(suggestion => {
         const keep =
             (!inputValue || suggestion.label.toLowerCase().includes(inputValue.toLowerCase())) &&
-            count < 5;
+            count < 3000;
 
         if (keep) {
             count += 1;
@@ -80,8 +87,7 @@ function getSuggestions(suggestions, defaults, inputValue) {
 
 const styles = {
     container: {
-        flexGrow: 1,
-        height: 200,
+        flexGrow: 1
     },
     textField: {
         width: '100%',
@@ -93,10 +99,10 @@ class IntegrationAutosuggest extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            defaults: _.sampleSize(this.propssuggestions, 5)
+            defaults: _.sampleSize(this.propssuggestions, 5),
         }
     }
-    
+
     shuffleDefaults = () => {
         this.setState({
             defaults: _.sampleSize(this.propssuggestions, 5)
@@ -104,47 +110,54 @@ class IntegrationAutosuggest extends React.Component {
     }
 
     render() {
-        const { classes, theme, onChange, placeholder, suggestions } = this.props;
+        const { classes, theme, onChange, onInputValueChange, placeholder, suggestions, propsValue } = this.props;
 
         return (
-            <Downshift
-                onChange={onChange}
-                render={
-                    ({
+            <div style={{ width: '100%' }}>
+                <Downshift
+                    onChange={onChange}
+                    onInputValueChange={onInputValueChange}
+                    itemToString={i => { console.log(i); return i == null ? '' : String(i) }}
+                    render={
+                        ({
                         getInputProps,
-                        getItemProps,
-                        isOpen,
-                        inputValue,
-                        selectedItem,
-                        highlightedIndex,
+                            getItemProps,
+                            isOpen,
+                            inputValue,
+                            selectedItem,
+                            highlightedIndex,
                     }) => {
-                        return (
-                            <div className={classes.container}>
-                                {renderInput(
-                                    getInputProps({
-                                        classes,
-                                        placeholder: placeholder,
-                                        id: 'integration-downshift',
-                                    }),
-                                )}
-                                {isOpen
-                                    ? renderSuggestionsContainer({
-                                        children: getSuggestions(suggestions, this.state.defaults, inputValue).map((suggestion, index) =>
-                                            renderSuggestion({
-                                                suggestion,
-                                                index,
-                                                theme,
-                                                itemProps: getItemProps({ item: suggestion.label }),
-                                                highlightedIndex,
-                                                selectedItem,
-                                            }),
-                                        ),
-                                    })
-                                    : null}
-                            </div>
-                        )
-                    }}
-            />
+                            return (
+                                <div className={classes.container}>
+                                    {renderInput({
+                                        ...getInputProps({
+                                            classes,
+                                            placeholder: placeholder,
+                                            id: 'integration-downshift',
+
+                                        }),
+                                        value: propsValue
+                                    }
+                                    )}
+                                    {isOpen
+                                        ? renderSuggestionsContainer({
+                                            children: getSuggestions(suggestions, this.state.defaults, inputValue).map((suggestion, index) =>
+                                                renderSuggestion({
+                                                    suggestion,
+                                                    index,
+                                                    theme,
+                                                    itemProps: getItemProps({ item: suggestion.label }),
+                                                    highlightedIndex,
+                                                    selectedItem,
+                                                }),
+                                            ),
+                                        })
+                                        : null}
+                                </div>
+                            )
+                        }}
+                />
+            </div>
         );
     }
 }
