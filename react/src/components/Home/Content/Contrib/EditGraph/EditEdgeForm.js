@@ -51,7 +51,7 @@ export default class EditEdgeForm extends Component {
     }
 
     render() {
-        let c00, c01, c10, c11, c20, c21, c30, c31, c40, c41;
+        let c00, c01, c10, c11, c20, c21, c30, c31;
 
         c00 = "Parent Entity"
         c10 = <Control.text

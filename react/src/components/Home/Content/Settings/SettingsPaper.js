@@ -18,6 +18,7 @@ const rightTdStyle = {
 class SettingsPaper extends Component {
 
     render() {
+        const mobile = this.props.clientType === 'mobile';
         return (
             <div style={{ textAlign: 'center' }}>
                 <HomePaper
@@ -33,23 +34,31 @@ class SettingsPaper extends Component {
                                     <td style={leftTdStyle}>
                                         <LanguageSelect {...this.props} />
                                     </td>
-                                    <td style={rightTdStyle}>
+                                    {!mobile && <td style={rightTdStyle}>
                                         <ResetApp {...this.props} />
-                                    </td>
+                                    </td>}
                                 </tr>
                                 <tr>
                                     <td style={leftTdStyle}>
                                         <ShowLegend {...this.props} />
                                     </td>
-                                    <td style={rightTdStyle}>
+                                    {!mobile && <td style={rightTdStyle}>
                                         <ShowChips {...this.props} />
-                                    </td>
+                                    </td>}
                                 </tr>
 
                                 <tr>
-                                    <td style={leftTdStyle}>
+                                    {mobile && <td style={leftTdStyle}>
+                                        <ShowChips {...this.props} />
+                                    </td>}
 
+                                    <td style={rightTdStyle}>
                                     </td>
+                                </tr>
+                                <tr>
+                                    {mobile && <td style={leftTdStyle}>
+                                        <ResetApp {...this.props} />
+                                    </td>}
 
                                     <td style={rightTdStyle}>
                                     </td>

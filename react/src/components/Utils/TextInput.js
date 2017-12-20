@@ -3,17 +3,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
+import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
+import { FormControl, FormHelperText } from 'material-ui/Form';
 
 const styles = theme => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    formControl: {
+        margin: theme.spacing.unit,
+        width: '100%',
+        // maxWidth: '260px',
+        display: 'inline-block',
+        textAlign: 'left'
+    },
+    withoutLabel: {
+        marginTop: theme.spacing.unit * 3,
+    },
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        width: 250,
-    },
+        width: '95%'
+    }
 });
 
-class TextFields extends React.Component {
+class CustomInput extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -44,6 +59,7 @@ class TextFields extends React.Component {
         }
     }
 
+    //////////////////////////////////////////////////////
 
     render() {
         const { classes } = this.props;
@@ -51,28 +67,36 @@ class TextFields extends React.Component {
         const id = this.props.id;
         const multiline = this.props.multiline || false;
         const rowsMax = this.props.rowsMax || 1;
+        const error = (this.props.valid === undefined ? false : !this.props.valid) && this.state.visited
         return (
-            <TextField
-                id={id}
-                label={label}
-                className={classes.textField}
-                value={this.state.value || ''}
-                onChange={this.handleChange('value')}
-                onFocus={this.setVisited}
-                onBlur={this.props.onBlur}
-                margin="normal"
-                type={this.props.type || "input"}
-                error={(this.props.valid === undefined ? false : !this.props.valid) && this.state.visited}
-                multiline={multiline}
-                rowsMax={rowsMax}
-                style={this.props.style}
-            />
+            <FormControl className={classes.formControl} >
+                <InputLabel error={error}>{label}</InputLabel>
+                <Input
+                    id={id}
+                    className={classes.textField}
+                    value={this.state.value || ''}
+                    onChange={this.handleChange('value')}
+                    onFocus={this.setVisited}
+                    onBlur={this.props.onBlur}
+                    type={this.props.type || "text"}
+                    error={error}
+                    multiline={multiline}
+                    rowsMax={rowsMax}
+                    style={this.props.style}
+                    endAdornment={this.props.endAdornment ?
+                        <InputAdornment position="end">
+                            {this.props.endAdornment}
+                        </InputAdornment> : ''
+                    }
+                />
+            <FormHelperText>{this.props.helperText || ''}</FormHelperText>
+            </FormControl>
         );
     }
 }
 
-TextFields.propTypes = {
+CustomInput.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TextFields);
+export default withStyles(styles)(CustomInput);

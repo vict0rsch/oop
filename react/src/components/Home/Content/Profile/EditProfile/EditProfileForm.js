@@ -11,6 +11,10 @@ const buttonDivStyle = {
     textAlign: 'right'
 }
 
+const newPassCheck = (val) => {
+    return val ? checkPass(val) : true
+}
+
 class EditProfileForm extends React.Component {
     constructor(props) {
         super(props);
@@ -226,7 +230,7 @@ class EditProfileForm extends React.Component {
 
                 <Control.text
                     validators={{
-                        checkPass
+                        newPassCheck
                     }}
                     validateOn='change'
                     type="password"
@@ -243,7 +247,7 @@ class EditProfileForm extends React.Component {
 
                 <Control.text
                     validators={{
-                        checkPass
+                        newPassCheck
                     }}
                     validateOn='change'
                     type="password"

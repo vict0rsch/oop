@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
+import Button from 'material-ui/Button';
+import Radio from 'material-ui/Radio';
+import { Control } from 'react-redux-form';
+import { isURL } from 'validator';
+import Grid from 'material-ui/Grid';
+import { withStyles } from 'material-ui/styles';
 import Form from '../../../../Utils/Form'
 import TextInput from '../../../../Utils/TextInput'
 import EntitySelect from '../../../../Utils/EntitySelect'
-import { Control } from 'react-redux-form';
-import Button from 'material-ui/Button';
-import { isInRange, isPositiveNumber } from "../../../../../utils/formValidators";
-import Radio from 'material-ui/Radio';
-import { isURL } from 'validator';
 import Help from '../../../../Utils/HelpIcon';
 
 
@@ -20,13 +21,27 @@ const rightTdStyle = {
     textAlign: 'right'
 }
 
-const switchStyle = {
-    float: 'right',
-    marginRight: '-14px'
-}
+const selectStyle = {
+    borderWidth: '1px',
+    borderRadius: '0px',
+    zIndex: 999,
+    margin: 'auto',
+    width: '95%',
+    textAlign: 'center'
+};
 
+const styles = theme => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        background: theme.palette.background.paper,
+        width: '100%'
+    }
+});
 
-export default class EditEntityForm extends Component {
+class EditEntityForm extends Component {
 
     state = {
         clearParent: 0,
@@ -62,6 +77,7 @@ export default class EditEntityForm extends Component {
             radio: event.target.value,
             showForm: this.props.editEntityForm.forms.entity.selectedEntity.value || event.target.value === "create" ? true : false
         })
+        event.target.value === 'create' && this.reset();
     }
 
     handleEntityChange = (values, form) => {
@@ -82,9 +98,9 @@ export default class EditEntityForm extends Component {
     }
 
     render() {
-        let c00, c01, c10, c11, c20, c21, c30, c31, c40, c41, c50, c51;
 
-        c00 = (<div>
+
+        const choice = (<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
             Modify an Entity
             <Radio
                 checked={this.state.radio === "modify"}
@@ -97,9 +113,9 @@ export default class EditEntityForm extends Component {
                 value="create"
             />Create an Entity
         </div>)
-        c10 = this.state.radio === "modify" ? "Entity" : '';
-        c20 = this.state.radio === "modify" ?
-            <Control.text
+
+        const selectEntity = this.state.radio === "modify" ?
+            <div style={{height:100}}><Control.text
                 model=".selectedEntity"
                 validators={{
                     required: (val) => { return (val && val.label) || this.state.radio === "create" },
@@ -107,17 +123,17 @@ export default class EditEntityForm extends Component {
                 validateOn="change"
                 component={EntitySelect}
                 controlProps={{
-                    placeholder: 'Entity Selector',
+                    placeholder: 'Select An Entity',
                     autofocus: true,
                     ...this.props,
                     clear: this.state.clearParent,
-                    style: { width: '95%', display: 'inline-block' },
+                    style: selectStyle,
                     initialValue: this.props.editEntityForm.entity.name || ''
                 }}
                 onChange={this.handleEntityChange}
-            /> : '';
+            /></div> : '';
 
-        c30 = this.state.showForm && <Control.text
+        const name = this.state.showForm && <Control.text
             model=".name"
             validators={{
                 required: (val) => { return val !== null && val !== undefined },
@@ -128,10 +144,11 @@ export default class EditEntityForm extends Component {
                 model: this.props.editEntityForm.entity,
                 label: "Name",
                 id: 'name',
-                style: { width: '95%' }
+                style: { width: '95%' },
+                endAdornment: <Help content="test" />
             }} />;
 
-        c31 = this.state.showForm && <Control.text
+        const longName = this.state.showForm && <Control.text
             model=".long_name"
             validateOn="change"
             component={TextInput}
@@ -139,10 +156,11 @@ export default class EditEntityForm extends Component {
                 model: this.props.editEntityForm.entity,
                 label: "Long Name",
                 id: 'long_name',
-                style: { width: '95%' }
+                style: { width: '95%' },
+                endAdornment: <Help content="test" />
             }} />;
 
-        c40 = this.state.showForm && <Control.text
+        const otherGroups = this.state.showForm && <Control.text
             model=".other_groups"
             validateOn="change"
             component={TextInput}
@@ -150,10 +168,11 @@ export default class EditEntityForm extends Component {
                 model: this.props.editEntityForm.entity,
                 label: "Other Groups",
                 id: 'other_groups',
-                style: { width: '95%' }
+                style: { width: '95%' },
+                endAdornment: <Help content="test" />
             }} />;
 
-        c41 = this.state.showForm && <Control.text
+        const website = this.state.showForm && <Control.text
             validators={{
                 emptyOrUrl: (val) => {
                     return val ? isURL(val) : true
@@ -166,10 +185,11 @@ export default class EditEntityForm extends Component {
                 model: this.props.editEntityForm.entity,
                 label: "Website",
                 id: 'website',
-                style: { width: '95%' }
+                style: { width: '95%' },
+                endAdornment: <Help content="test" />
             }} />;
 
-        c50 = this.state.showForm && <Control.text
+        const wikiLink = this.state.showForm && <Control.text
             validators={{
                 emptyOrUrl: (val) => {
                     return val ? isURL(val) && val.indexOf('wikipedia.org') > -1 : true
@@ -182,11 +202,12 @@ export default class EditEntityForm extends Component {
                 model: this.props.editEntityForm.entity,
                 label: "Wikipedia",
                 id: 'wiki_link',
-                style: { width: '95%' }
+                style: { width: '95%' },
+                endAdornment: <Help content="test" />
             }} />;
 
 
-        const source = this.state.showForm && <div><Control.text
+        const source = this.state.showForm && <Control.text
             model=".source"
             validators={{
                 required: (val) => { return val && val.length },
@@ -199,28 +220,23 @@ export default class EditEntityForm extends Component {
                 id: 'source',
                 multiline: true,
                 rowsMax: 3,
-                style: { width: '100%' }
-            }} />
-            <Help content="test" />
-        </div>;
+                style: { width: '95%' }
+            }} />;
 
-        const table = (<table style={{ width: '100%' }}><tbody>
-            <tr><td style={leftTdStyle}>{c00 || ''}</td><td style={rightTdStyle}>{c01 || ''}</td></tr>
-            <tr><td style={leftTdStyle}>{c10 || ''}</td><td style={rightTdStyle}>{c11 || ''}</td></tr>
-            <tr><td style={leftTdStyle}>{c20 || ''}</td><td style={rightTdStyle}>{c21 || ''}</td></tr>
-            <tr><td style={leftTdStyle}>{c30 || ''}</td><td style={rightTdStyle}>{c31 || ''}</td></tr>
-            <tr><td style={leftTdStyle}>{c40 || ''}</td><td style={rightTdStyle}>{c41 || ''}</td></tr>
-            <tr><td style={leftTdStyle}>{c50 || ''}</td><td style={rightTdStyle}>{c51 || ''}</td></tr>
-        </tbody></table>);
-
-        const content = (
-            <div>
-                {table}
-                <br />
-                {source}
+        const grid = (
+            <div className={this.props.classes.root}>
+                <Grid container spacing={16}>
+                    <Grid item xs={12}> {choice} </Grid>
+                    <Grid item xs={12}> {selectEntity} </Grid>
+                    <Grid item xs={12} sm={6} lg={4}> {name} </Grid>
+                    <Grid item xs={12} sm={6} lg={4}> {longName} </Grid>
+                    <Grid item xs={12} sm={6} lg={4}> {otherGroups} </Grid>
+                    <Grid item xs={12} sm={6} lg={4}> {website} </Grid>
+                    <Grid item xs={12} sm={6} lg={4}> {wikiLink} </Grid>
+                    <Grid item xs={12} sm={6} lg={4}> {source} </Grid>
+                </Grid>
             </div>
-        );
-
+        )
 
         return <Form
             {...this.props}
@@ -229,9 +245,11 @@ export default class EditEntityForm extends Component {
             model={'editEntityForm.entity'}
             errorsLocation={'graph.editEntity.errors'}
             onSubmit={this.handleSubmit}
-            fields={content}
+            fields={grid}
             reset={<Button onClick={this.reset}>Reset Form</Button>}
             onChange={this.handleChange}
         />;
     }
 }
+
+export default withStyles(styles)(EditEntityForm);

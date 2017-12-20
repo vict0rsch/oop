@@ -46,7 +46,8 @@ class SearchBar extends React.Component {
                 onBlur={onBlur}
                 ignoreCase
                 ignoreAccents
-                menuStyle={{ backgroundColor: 'rgba(204, 172, 149, 0.35)' }}
+                menuStyle={{ backgroundColor: 'rgba(204, 172, 149, 0.35)'}}
+                menuContainerStyle={{ width: this.props.style ? this.props.style.width || 'inherit' : '100%', margin: 'auto', zIndex:1000 }}
                 placeholder={placeholder}
                 arrowRenderer={() => null}
                 autoBlur

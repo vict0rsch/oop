@@ -7,18 +7,11 @@ import Dialog, {
     DialogActions,
     withMobileDialog,
 } from 'material-ui/Dialog';
-import Icon from 'react-icons/lib/fa/refresh';
 import Button from 'material-ui/Button';
 import ClearIcon from 'material-ui-icons/Clear';
 import Typography from 'material-ui/Typography';
 
 const fullScreenMinWidth = 650;
-
-const refreshUsernameButtonStyle = {
-    minWidth: '15px',
-    minHeight: '15px',
-    padding: '8px'
-};
 
 const dialogContentStyle = {
     textAlign: 'center'
@@ -94,7 +87,6 @@ class Register extends Component {
                     <DialogContent component={'div'} style={dialogContentStyle}>
                         <Typography type="body1">
                             {this.props.translate('home.profile.registerContent')}
-                            <Button onClick={this.setRandomUsername} color="primary" style={refreshUsernameButtonStyle}><Icon /></Button>
                         </Typography>
                         <br /><br />
                         <RegisterForm

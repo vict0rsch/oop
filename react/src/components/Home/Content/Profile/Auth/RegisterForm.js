@@ -142,9 +142,9 @@ class RegisterForm extends React.Component {
                         endAdornment: (
                             <InputAdornment position="end">
                                 <IconButton
-                                    onClick={this.setRandomUsername}
+                                    onClick={this.props.setRandomUsername}
                                 >
-                                    <Shuffle />}
+                                    <Shuffle />
                                 </IconButton>
                             </InputAdornment>)
                     }}
