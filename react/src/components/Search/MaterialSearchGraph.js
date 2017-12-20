@@ -1,18 +1,11 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Autosuggest from 'react-autosuggest';
+import Downshift from 'downshift';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import { MenuItem } from 'material-ui/Menu';
-import match from 'autosuggest-highlight/match';
-import parse from 'autosuggest-highlight/parse';
 import { withStyles } from 'material-ui/styles';
-
-const suggestions = [
-    { label: 'Afghanistan' },
-];
+import _ from 'lodash'
 
 function renderInput(inputProps) {
     const { classes, autoFocus, value, ref, ...other } = inputProps;
@@ -33,32 +26,31 @@ function renderInput(inputProps) {
     );
 }
 
-function renderSuggestion(suggestion, { query, isHighlighted }) {
-    const matches = match(suggestion.label, query);
-    const parts = parse(suggestion.label, matches);
+function renderSuggestion(params) {
+    const { suggestion, index, itemProps, theme, highlightedIndex, selectedItem } = params;
+    const isHighlighted = highlightedIndex === index;
+    const isSelected = selectedItem === suggestion.label;
 
     return (
-        <MenuItem selected={isHighlighted} component="div">
-            <div>
-                {parts.map((part, index) => {
-                    return part.highlight ? (
-                        <span key={index} style={{ fontWeight: 300 }}>
-                            {part.text}
-                        </span>
-                    ) : (
-                            <strong key={index} style={{ fontWeight: 500 }}>
-                                {part.text}
-                            </strong>
-                        );
-                })}
-            </div>
+        <MenuItem
+            {...itemProps}
+            key={suggestion.label}
+            selected={isHighlighted}
+            component="div"
+            style={{
+                fontWeight: isSelected
+                    ? theme.typography.fontWeightMedium
+                    : theme.typography.fontWeightRegular,
+                zIndex: 999
+            }}
+        >
+            {suggestion.label}
         </MenuItem>
     );
 }
 
 function renderSuggestionsContainer(options) {
     const { containerProps, children } = options;
-
     return (
         <Paper {...containerProps} square>
             {children}
@@ -66,125 +58,101 @@ function renderSuggestionsContainer(options) {
     );
 }
 
-function getSuggestionValue(suggestion) {
-    return suggestion.label;
-}
-
-function getSuggestions(value, suggestions) {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
+function getSuggestions(suggestions, defaults, inputValue) {
     let count = 0;
 
-    return inputLength === 0
-        ? []
-        : suggestions.filter(suggestion => {
-            const keep =
-                count < 5 && suggestion.label.toLowerCase().slice(0, inputLength) === inputValue;
+    if (!inputValue) {
+        return defaults
+    }
 
-            if (keep) {
-                count += 1;
-            }
+    return suggestions.filter(suggestion => {
+        const keep =
+            (!inputValue || suggestion.label.toLowerCase().includes(inputValue.toLowerCase())) &&
+            count < 5;
 
-            return keep;
-        });
+        if (keep) {
+            count += 1;
+        }
+
+        return keep;
+    });
 }
 
-const styles = theme => ({
+const styles = {
     container: {
         flexGrow: 1,
-        position: 'relative',
         height: 200,
-    },
-    suggestionsContainerOpen: {
-        position: 'absolute',
-        marginTop: theme.spacing.unit,
-        marginBottom: theme.spacing.unit * 3,
-        left: 0,
-        right: 0,
-    },
-    suggestion: {
-        display: 'block',
-    },
-    suggestionsList: {
-        margin: 0,
-        padding: 0,
-        listStyleType: 'none',
     },
     textField: {
         width: '100%',
     },
-});
+};
 
 class IntegrationAutosuggest extends React.Component {
 
-    state = {
-        value: '',
-        suggestions: [],
-    };
-
-    handleSuggestionsFetchRequested = ({ value }) => {
-
-        this.setState({
-            suggestions: getSuggestions(value, this.props.data.optionsData),
-        });
-    };
-
-    handleSuggestionsClearRequested = () => {
-        this.setState({
-            suggestions: [],
-        });
-    };
-
-    handleChange = (event, { newValue }) => {
-        this.setState({
-            value: newValue,
-        });
-    };
-
-    logChange = (event, val) => {
-        const newValue = val.suggestion;
-        console.log(newValue);
-        if (newValue && newValue.id) {
-            if (this.props.data.idSet.has(parseInt(newValue.id, 10))) {
-                console.log('LOGCHANGE', newValue);
-                this.props.redirect(newValue.id);
-            }
+    constructor(props) {
+        super(props)
+        this.state = {
+            defaults: _.sampleSize(this.propssuggestions, 5)
         }
+    }
+    
+    shuffleDefaults = () => {
+        this.setState({
+            defaults: _.sampleSize(this.propssuggestions, 5)
+        })
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, theme, onChange, placeholder, suggestions } = this.props;
 
         return (
-            <Autosuggest
-                theme={{
-                    container: classes.container,
-                    suggestionsContainerOpen: classes.suggestionsContainerOpen,
-                    suggestionsList: classes.suggestionsList,
-                    suggestion: classes.suggestion,
-                }}
-                renderInputComponent={renderInput}
-                suggestions={this.state.suggestions}
-                onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
-                onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
-                renderSuggestionsContainer={renderSuggestionsContainer}
-                getSuggestionValue={getSuggestionValue}
-                renderSuggestion={renderSuggestion}
-                inputProps={{
-                    autoFocus: true,
-                    classes,
-                    placeholder: 'Search a country (start with a)',
-                    value: this.state.value,
-                    onChange: this.handleChange,
-                }}
-                onSuggestionSelected={this.logChange}
+            <Downshift
+                onChange={onChange}
+                render={
+                    ({
+                        getInputProps,
+                        getItemProps,
+                        isOpen,
+                        inputValue,
+                        selectedItem,
+                        highlightedIndex,
+                    }) => {
+                        return (
+                            <div className={classes.container}>
+                                {renderInput(
+                                    getInputProps({
+                                        classes,
+                                        placeholder: placeholder,
+                                        id: 'integration-downshift',
+                                    }),
+                                )}
+                                {isOpen
+                                    ? renderSuggestionsContainer({
+                                        children: getSuggestions(suggestions, this.state.defaults, inputValue).map((suggestion, index) =>
+                                            renderSuggestion({
+                                                suggestion,
+                                                index,
+                                                theme,
+                                                itemProps: getItemProps({ item: suggestion.label }),
+                                                highlightedIndex,
+                                                selectedItem,
+                                            }),
+                                        ),
+                                    })
+                                    : null}
+                            </div>
+                        )
+                    }}
             />
         );
     }
 }
 
+
 IntegrationAutosuggest.propTypes = {
     classes: PropTypes.object.isRequired,
+    theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(IntegrationAutosuggest);
+export default withStyles(styles, { withTheme: true })(IntegrationAutosuggest);
