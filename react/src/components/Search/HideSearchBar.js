@@ -27,7 +27,7 @@ class HideSearchBar extends Component {
     render() {
 
         return (
-            <div style={divStyle}>
+            <div style={this.props.divStyle || divStyle}>
                 <Button onClick={this.handleCLick} style={buttonStyle}><Icon style={iconStyle} /></Button>
             </div>
         );
