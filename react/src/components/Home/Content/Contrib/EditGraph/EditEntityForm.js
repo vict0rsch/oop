@@ -50,12 +50,26 @@ class EditEntityForm extends Component {
         showForm: false
     }
 
-    reset = () => {
+    resetCreate = () => {
         this.props.rrfReset('editEntityForm.entity')
         this.setState({
             clearParent: this.state.clearParent + 1,
-            clearChild: this.state.clearChild + 1
+            clearChild: this.state.clearChild + 1,
+            showForm: true
         });
+    }
+
+    resetModify = () => {
+        this.props.rrfReset('editEntityForm.entity')
+        this.setState({
+            clearParent: this.state.clearParent + 1,
+            clearChild: this.state.clearChild + 1,
+            showForm: false
+        });
+    }
+
+    reset = () => {
+        this.state.radio === 'create' ? this.resetCreate() : this.resetModify()
     }
 
     componentWillUnmount() {
@@ -75,9 +89,9 @@ class EditEntityForm extends Component {
     handleRadioChange = (event) => {
         this.setState({
             radio: event.target.value,
-            showForm: this.props.editEntityForm.forms.entity.selectedEntity.value || event.target.value === "create" ? true : false
+            showForm: this.props.editEntityForm.forms.entity.selectedEntity.value || event.target.value === "create"
         })
-        event.target.value === 'create' && this.reset();
+        event.target.value === "create" && this.resetCreate();
     }
 
     handleEntityChange = (values, form) => {
