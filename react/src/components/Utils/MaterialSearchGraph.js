@@ -117,7 +117,7 @@ class IntegrationAutosuggest extends React.Component {
                 <Downshift
                     onChange={onChange}
                     onInputValueChange={onInputValueChange}
-                    itemToString={i => { console.log(i); return i == null ? '' : String(i) }}
+                    itemToString={i => { return i == null ? '' : String(i) }}
                     render={
                         ({
                         getInputProps,
