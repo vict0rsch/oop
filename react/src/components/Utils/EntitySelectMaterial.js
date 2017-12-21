@@ -49,6 +49,8 @@ class SearchBar extends React.Component {
                 onChange={this.logChange}
                 onInputValueChange={this.logInputChange}
                 propsValue={this.state.value}
+                autofocus={autofocus}
+                onBlur={onBlur}
             />
         );
     }

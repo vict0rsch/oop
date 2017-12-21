@@ -19,7 +19,6 @@ import Grid from 'material-ui/Grid';
 class SettingsPaper extends Component {
 
     render() {
-        const mobile = this.props.clientType === 'mobile';
         return (
             <div style={{ textAlign: 'center' }}>
                 <HomePaper

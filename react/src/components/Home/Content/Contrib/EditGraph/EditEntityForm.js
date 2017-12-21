@@ -11,16 +11,6 @@ import EntitySelect from '../../../../Utils/EntitySelectMaterial'
 import Help from '../../../../Utils/HelpIcon';
 
 
-const leftTdStyle = {
-    width: '45%',
-    textAlign: 'left'
-}
-
-const rightTdStyle = {
-    ...leftTdStyle,
-    textAlign: 'right'
-}
-
 const selectStyle = {
     borderWidth: '1px',
     borderRadius: '0px',
@@ -159,7 +149,7 @@ class EditEntityForm extends Component {
                 label: "Name",
                 id: 'name',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" />
+                endAdornment: <Help content="test" id="name"/>
             }} />;
 
         const longName = this.state.showForm && <Control.text
@@ -171,7 +161,7 @@ class EditEntityForm extends Component {
                 label: "Long Name",
                 id: 'long_name',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" />
+                endAdornment: <Help content="test" id="long_name" />
             }} />;
 
         const otherGroups = this.state.showForm && <Control.text
@@ -183,7 +173,7 @@ class EditEntityForm extends Component {
                 label: "Other Groups",
                 id: 'other_groups',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" />
+                endAdornment: <Help content="test" id="other_groups"/>
             }} />;
 
         const website = this.state.showForm && <Control.text
@@ -200,7 +190,7 @@ class EditEntityForm extends Component {
                 label: "Website",
                 id: 'website',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" />
+                endAdornment: <Help content="test" id="website"/>
             }} />;
 
         const wikiLink = this.state.showForm && <Control.text
@@ -217,7 +207,7 @@ class EditEntityForm extends Component {
                 label: "Wikipedia",
                 id: 'wiki_link',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" />
+                endAdornment: <Help content="test" id="wiki_link"/>
             }} />;
 
 

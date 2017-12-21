@@ -2,14 +2,6 @@ import React, { Component } from 'react'
 import Switch from 'material-ui/Switch';
 import Grid from 'material-ui/Grid';
 
-const labelStyle = {
-    float: 'left',
-    textAlign: 'left'
-}
-
-const switchStyle = {
-    float: 'right'
-}
 
 const divStyle = {
     margin: '10px 0px',
