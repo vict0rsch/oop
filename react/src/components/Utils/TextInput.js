@@ -26,7 +26,7 @@ const styles = theme => ({
     },
     primaryUnderline: {
         '&:hover:not($disabled):before': {
-            backgroundColor: 'red',
+            backgroundColor: '#3f51b5',
         },
     },
     primaryUnderlineError: {
@@ -49,6 +49,9 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
         width: '95%'
+    },
+    disabled: {
+        color: theme.palette.text.disabled,
     }
 });
 
@@ -103,7 +106,8 @@ class CustomInput extends React.Component {
                     id={id}
                     classes={{
                         inkbar: error ? classes.primaryInkbarError : classes.primaryInkbar,
-                        underline: error ? classes.primaryUnderline : classes.primaryUnderlineError,
+                        underline: error ? classes.primaryUnderlineError : classes.primaryUnderline,
+                        // disabled: classes.disabled
                     }}
                     value={this.state.value || ''}
                     onChange={this.handleChange('value')}
