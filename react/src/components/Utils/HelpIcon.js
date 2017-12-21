@@ -6,7 +6,8 @@ import Popover from 'material-ui/Popover';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import { withStyles } from 'material-ui/styles';
-
+import Tooltip from 'material-ui/Tooltip';
+import Button from 'material-ui/Button';
 
 const styles = theme => ({
     button: {
@@ -18,6 +19,11 @@ const styles = theme => ({
         backgroundColor: 'rgb(237, 234, 232)',
         width: '200px'
     },
+    icon: {
+        height: '30px',
+        width: '30px',
+        verticalAlign: 'middle'
+    }
 });
 
 class HelpIcon extends Component {
@@ -45,27 +51,14 @@ class HelpIcon extends Component {
 
     render() {
         return (
-            <div>
-                <IconButton ref={node => {
-                    this.button = node;
-                }}
-                    onClick={this.handleClickButton}
-                    style={this.props.iconStyle} >
-                    <Icon />
-                </IconButton>
-                <Popover
-                    open={this.state.open}
-                    anchorReference='anchorEl'
-                    anchorEl={this.state.anchorEl}
-                    onClose={this.handleClose}
-                >
-                    <Typography component='div' className={this.props.classes.typography}>{this.props.content}<br />
-                        <div style={{ width: '100%', textAlign: 'center' }}>
-                            <ClearIcon onClick={this.handleClose} />
-                        </div>
-                    </Typography>
-                </Popover>
-            </div>
+            <Tooltip
+                id="tooltip-HomeButton"
+                title={<div style={{ fontSize: '1.5em', padding: 4 }}>{this.props.content}</div>}
+                placement="left"
+                style={{ textAlign: 'center', fontSize: '1.2em', color: 'grey' }}
+            >
+                <Icon />
+            </Tooltip>
         )
     }
 }
