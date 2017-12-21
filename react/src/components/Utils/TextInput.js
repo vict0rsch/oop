@@ -107,7 +107,6 @@ class CustomInput extends React.Component {
                     classes={{
                         inkbar: error ? classes.primaryInkbarError : classes.primaryInkbar,
                         underline: error ? classes.primaryUnderlineError : classes.primaryUnderline,
-                        // disabled: classes.disabled
                     }}
                     value={this.state.value || ''}
                     onChange={this.handleChange('value')}
