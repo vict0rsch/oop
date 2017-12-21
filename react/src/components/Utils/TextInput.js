@@ -21,11 +21,6 @@ const styles = theme => ({
     withoutLabel: {
         marginTop: theme.spacing.unit * 3,
     },
-    textField: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
-        width: '95%'
-    },
     primaryLabel: {
         color: '#3f51b5',
     },
@@ -43,13 +38,21 @@ const styles = theme => ({
         '&:after': {
             backgroundColor: '#3f51b5',
         },
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: '95%'
     },
     primaryInkbarError: {
         '&:after': {
             backgroundColor: 'red',
         },
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: '95%'
     }
 });
+
+
 
 class CustomInput extends React.Component {
     constructor(props) {
@@ -93,10 +96,15 @@ class CustomInput extends React.Component {
         const error = (this.props.valid === undefined ? false : !this.props.valid) && this.state.visited
         return (
             <FormControl className={classes.formControl} >
-                <InputLabel error={error} FormControlClasses={{ focused: classes.primaryLabel }}>{label} </InputLabel>
+                <InputLabel error={error} FormControlClasses={{ focused: classes.primaryLabel }} htmlFor={id}>
+                    {label}
+                </InputLabel>
                 <Input
                     id={id}
-                    classes={{ inkbar: error ? classes.primaryInkbarError: classes.primaryInkbar, underline: error?  classes.primaryUnderline : classes.primaryUnderlineError }}
+                    classes={{
+                        inkbar: error ? classes.primaryInkbarError : classes.primaryInkbar,
+                        underline: error ? classes.primaryUnderline : classes.primaryUnderlineError,
+                    }}
                     value={this.state.value || ''}
                     onChange={this.handleChange('value')}
                     onFocus={this.setVisited}
@@ -105,7 +113,7 @@ class CustomInput extends React.Component {
                     error={error}
                     multiline={multiline}
                     rowsMax={rowsMax}
-                    style={{ ...this.props.style }}
+                    style={this.props.style}
                     endAdornment={this.props.endAdornment ?
                         <InputAdornment position="end">
                             {this.props.endAdornment}
