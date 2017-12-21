@@ -14,7 +14,9 @@ const fullScreenMinWidth = 650;
 
 
 const dialogContentStyle = {
-    textAlign: 'center'
+    textAlign: 'center',
+    minWidth: 400,
+    maxWidth: 800
 };
 
 class Login extends Component {

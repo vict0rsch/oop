@@ -6,6 +6,7 @@ import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 import { CircularProgress } from 'material-ui/Progress';
 import { isEmail, checkPass } from "../../../../../utils/formValidators";
+import Grid from 'material-ui/Grid';
 
 const buttonDivStyle = {
     textAlign: 'right'
@@ -171,139 +172,151 @@ class EditProfileForm extends React.Component {
                     },
                 }}
             >
-
-                <Control.text
-                    model=".username"
-                    asyncValidators={{
-                        available: this.usernameAsyncValidator
-                    }}
-                    asyncValidateOn="blur"
-                    component={TextInput}
-                    controlProps={{
-                        model: this.props.editProfileForm.user,
-                        label: this.props.translate('login.username.label'),
-                        id: 'username',
-                        valid: this.state.usernameIsAvailable
-                    }}
-                />
-
-                <Control.text
-                    model=".email"
-                    validators={{
-                        required: (val) => val && val.length,
-                        isEmail
-                    }}
-                    validateOn="change"
-                    asyncValidators={{
-                        available: this.emailAsyncValidator
-                    }}
-                    asyncValidateOn="blur"
-                    component={TextInput}
-                    controlProps={{
-                        model: this.props.editProfileForm.user,
-                        label: this.props.translate('login.email.label'),
-                        id: 'email',
-                        valid: this.state.emailIsAvailable && form.user.email.valid
-                    }}
-                />
-
-                <Control.text
-                    model=".first_name"
-                    component={TextInput}
-                    controlProps={{
-                        model: this.props.editProfileForm.user,
-                        label: this.props.translate('login.first_name.label'),
-                        id: 'first_name'
-                    }}
-                />
-
-
-                <Control.text
-                    model=".last_name"
-                    component={TextInput}
-                    controlProps={{
-                        model: this.props.editProfileForm.user,
-                        label: this.props.translate('login.last_name.label'),
-                        id: 'last_name',
-                    }}
-                />
-
-                <Control.text
-                    validators={{
-                        newPassCheck
-                    }}
-                    validateOn='change'
-                    type="password"
-                    model=".password"
-                    component={TextInput}
-                    controlProps={{
-                        model: this.props.editProfileForm.user,
-                        label: this.props.translate('home.profile.edit.password'),
-                        id: 'password',
-                        type: "password",
-                        valid: this.state.passwordsMatch && form.user.password.valid
-                    }}
-                />
-
-                <Control.text
-                    validators={{
-                        newPassCheck
-                    }}
-                    validateOn='change'
-                    type="password"
-                    model=".confirmPassword"
-                    component={TextInput}
-                    controlProps={{
-                        model: this.props.editProfileForm.user,
-                        label: this.props.translate('home.profile.edit.confirmPassword'),
-                        id: 'confirmPassword',
-                        type: "password",
-                        valid: this.state.passwordsMatch && form.user.password.valid
-                    }}
-                />
-
-                <br /><br /><br />
-
-                <Divider />
-
-                <Control.text
-                    validators={{
-                        required: (val) => val && val.length,
-                    }}
-                    validateOn='change'
-                    type="password"
-                    model=".oldPassword"
-                    component={TextInput}
-                    controlProps={{
-                        model: this.props.editProfileForm.user,
-                        label: this.props.translate('home.profile.edit.oldPassword'),
-                        id: 'oldPassword',
-                        type: "password",
-                        valid: form.user.oldPassword && form.user.oldPassword.valid
-                    }}
-                />
-
-                <div style={buttonDivStyle}>
-                {this.props.pending ?
-                        <CircularProgress />
-                        :
-                        (<Button
-                            type="submit"
-                            color="primary"
-                            disabled={!form.$form.valid || this.props.pending || !this.state.passwordsMatch}
-                            onClick={this.handleClick}>
-                            {this.props.translate('login.form.submit')}
-                        </Button>)
-                    }
+                <Grid container spacing={16}>
+                    <Grid item xs={12} md={6}>
+                        <Control.text
+                            model=".username"
+                            asyncValidators={{
+                                available: this.usernameAsyncValidator
+                            }}
+                            asyncValidateOn="blur"
+                            component={TextInput}
+                            controlProps={{
+                                model: this.props.editProfileForm.user,
+                                label: this.props.translate('login.username.label'),
+                                id: 'username',
+                                valid: this.state.usernameIsAvailable
+                            }}
+                        />
+                    </Grid>
                     
-                </div>
+                    <Grid item xs={12} md={6}>
+                        <Control.text
+                            model=".email"
+                            validators={{
+                                required: (val) => val && val.length,
+                                isEmail
+                            }}
+                            validateOn="change"
+                            asyncValidators={{
+                                available: this.emailAsyncValidator
+                            }}
+                            asyncValidateOn="blur"
+                            component={TextInput}
+                            controlProps={{
+                                model: this.props.editProfileForm.user,
+                                label: this.props.translate('login.email.label'),
+                                id: 'email',
+                                valid: this.state.emailIsAvailable && form.user.email.valid
+                            }}
+                        />
+                    </Grid>
 
+                    <Grid item xs={12} md={6}>
+                        <Control.text
+                            model=".first_name"
+                            component={TextInput}
+                            controlProps={{
+                                model: this.props.editProfileForm.user,
+                                label: this.props.translate('login.first_name.label'),
+                                id: 'first_name'
+                            }}
+                        />
+                    </Grid>
 
-                <div style={{ width: '300px', color: 'red', margin: 'auto' }}>
-                    {/* {this.formErrors(form)} */}
-                    {this.props.submitError}
-                </div>
+                    <Grid item xs={12} md={6}>
+                        <Control.text
+                            model=".last_name"
+                            component={TextInput}
+                            controlProps={{
+                                model: this.props.editProfileForm.user,
+                                label: this.props.translate('login.last_name.label'),
+                                id: 'last_name',
+                            }}
+                        />
+                    </Grid>
 
+                    <Grid item xs={12} md={6}>
+                        <Control.text
+                            validators={{
+                                newPassCheck
+                            }}
+                            validateOn='change'
+                            type="password"
+                            model=".password"
+                            component={TextInput}
+                            controlProps={{
+                                model: this.props.editProfileForm.user,
+                                label: this.props.translate('home.profile.edit.password'),
+                                id: 'password',
+                                type: "password",
+                                valid: this.state.passwordsMatch && form.user.password.valid
+                            }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+                        <Control.text
+                            validators={{
+                                newPassCheck
+                            }}
+                            validateOn='change'
+                            type="password"
+                            model=".confirmPassword"
+                            component={TextInput}
+                            controlProps={{
+                                model: this.props.editProfileForm.user,
+                                label: this.props.translate('home.profile.edit.confirmPassword'),
+                                id: 'confirmPassword',
+                                type: "password",
+                                valid: this.state.passwordsMatch && form.user.password.valid
+                            }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Divider />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Control.text
+                            validators={{
+                                required: (val) => val && val.length,
+                            }}
+                            validateOn='change'
+                            type="password"
+                            model=".oldPassword"
+                            component={TextInput}
+                            controlProps={{
+                                model: this.props.editProfileForm.user,
+                                label: this.props.translate('home.profile.edit.oldPassword'),
+                                id: 'oldPassword',
+                                type: "password",
+                                valid: form.user.oldPassword && form.user.oldPassword.valid
+                            }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <div style={buttonDivStyle}>
+                            {this.props.pending ?
+                                <CircularProgress />
+                                :
+                                (<Button
+                                    type="submit"
+                                    color="primary"
+                                    disabled={!form.$form.valid || this.props.pending || !this.state.passwordsMatch}
+                                    onClick={this.handleClick}>
+                                    {this.props.translate('login.form.submit')}
+                                </Button>)
+                            }
+                        </div>
+                        <div style={{ width: '300px', color: 'red', margin: 'auto' }}>
+                            {/* {this.formErrors(form)} */}
+                            {this.props.submitError}
+                        </div>
+                    </Grid>
+                </Grid>
             </Form>
         );
     }
