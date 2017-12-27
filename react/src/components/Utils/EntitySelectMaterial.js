@@ -12,7 +12,6 @@ class SearchBar extends React.Component {
 
 
     logChange = (val) => {
-        console.log('change -> ', val)
         let entity;
         if (val) {
             entity = this.props.data.entities.names[val]
@@ -40,7 +39,7 @@ class SearchBar extends React.Component {
 
     render() {
 
-        const { autofocus, placeholder, onBlur } = this.props
+        const { autofocus, placeholder, onBlur, sizes } = this.props
 
         return (
             <MaterialSearchGraph
@@ -51,6 +50,7 @@ class SearchBar extends React.Component {
                 propsValue={this.state.value}
                 autofocus={autofocus}
                 onBlur={onBlur}
+                sizes={sizes}
             />
         );
     }

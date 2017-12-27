@@ -6,6 +6,58 @@ import Paper from 'material-ui/Paper';
 import { MenuItem } from 'material-ui/Menu';
 import { withStyles } from 'material-ui/styles';
 import _ from 'lodash'
+import Grid from 'material-ui/Grid';
+
+const styles = theme => ({
+    container: {
+        flexGrow: 1
+    },
+    textField: {
+        width: '100%',
+    },
+    primaryLabel: {
+        color: '#3f51b5',
+    },
+    primaryUnderline: {
+        '&:hover:not($disabled):before': {
+            backgroundColor: '#3f51b5',
+        },
+    },
+    primaryUnderlineError: {
+        '&:hover:not($disabled):before': {
+            backgroundColor: 'red',
+        },
+    },
+    primaryInkbar: {
+        '&:after': {
+            backgroundColor: '#3f51b5',
+        },
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: '95%'
+    },
+    primaryInkbarError: {
+        '&:after': {
+            backgroundColor: 'red',
+        },
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: '95%'
+    },
+    disabled: {
+        color: theme.palette.text.disabled,
+    },
+    open: {
+        height: 200,
+        overflowX: 'hidden',
+        overflowY: 'scroll',
+        marginBottom: '8px'
+    },
+    closed: {
+        height: 0
+    }
+});
+
 
 function renderInput(inputProps) {
     const { classes, autoFocus, value, ref, ...other } = inputProps;
@@ -16,9 +68,14 @@ function renderInput(inputProps) {
             className={classes.textField}
             value={value}
             inputRef={ref}
+            InputLabelProps={{
+                FormControlClasses: { focused: classes.primaryLabel }
+            }}
             InputProps={{
                 classes: {
                     input: classes.input,
+                    inkbar: classes.primaryInkbar,
+                    underline: classes.primaryUnderline,
                 },
                 ...other,
             }}
@@ -32,42 +89,50 @@ function renderSuggestion(params) {
     const isSelected = selectedItem === suggestion.label;
 
     return (
-        <MenuItem
-            {...itemProps}
-            key={suggestion.label}
-            selected={isHighlighted}
-            component="div"
-            style={{
-                fontWeight: isSelected
-                    ? theme.typography.fontWeightMedium
-                    : theme.typography.fontWeightRegular,
-                zIndex: 999
-            }}
-        >
-            {suggestion.label}
-        </MenuItem>
+        <Grid item xs={12} key={suggestion.label}>
+            <MenuItem
+                {...itemProps}
+                selected={isHighlighted}
+                component="div"
+                style={{
+                    fontWeight: isSelected
+                        ? theme.typography.fontWeightMedium
+                        : theme.typography.fontWeightRegular,
+                    // zIndex: 999,
+                    // width: '100%'
+                }}
+            >
+                {suggestion.label}
+            </MenuItem>
+        </Grid>
     );
 }
 
 function renderSuggestionsContainer(options) {
-    const { containerProps, children } = options;
-    return (
-        <Paper {...containerProps} square style={{
-            zIndex: 999,
-            position: 'fixed',
-            backgroundColor: 'whitesmoke',
-            width: '62%',
-            height: '200px',
-            overflow: 'scroll'
-        }}>
+    const { containerProps, children, classes } = options;
+    const paper = (
+        <Paper
+            {...containerProps}
+            className={classes.open}
+            square
+        >
             {children}
-        </Paper>
+        </Paper>);
+
+
+
+    return (
+        <Grid container spacing={16}>
+            <Grid item xs={12}>
+                {paper}
+            </Grid>
+        </Grid>
     );
+
 }
 
 function getSuggestions(suggestions, defaults, inputValue) {
     let count = 0;
-
     if (!inputValue) {
         return defaults
     }
@@ -75,7 +140,7 @@ function getSuggestions(suggestions, defaults, inputValue) {
     return suggestions.filter(suggestion => {
         const keep =
             (!inputValue || suggestion.label.toLowerCase().includes(inputValue.toLowerCase())) &&
-            count < 3000;
+            count < 20;
 
         if (keep) {
             count += 1;
@@ -85,37 +150,47 @@ function getSuggestions(suggestions, defaults, inputValue) {
     });
 }
 
-const styles = {
-    container: {
-        flexGrow: 1
-    },
-    textField: {
-        width: '100%',
-    },
-};
 
 class IntegrationAutosuggest extends React.Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            defaults: _.sampleSize(this.propssuggestions, 5),
-        }
-    }
-
     shuffleDefaults = () => {
         this.setState({
-            defaults: _.sampleSize(this.propssuggestions, 5)
+            defaults: _.sampleSize(this.props.suggestions, 15),
+            open: false
         })
     }
 
+
+    componentWillMount() {
+        this.shuffleDefaults();
+    }
+
+
+    componentWillUpdate(nextProps, nextState) {
+        if (!(nextState && this.state)) {
+            return
+        }
+        if (nextState.open === false && this.state.open) {
+            this.shuffleDefaults();
+        }
+    }
+
+    handleStateChange = (state, v) => {
+        if (state.isOpen !== undefined) {
+            this.setState({
+                open: state.isOpen
+            })
+        }
+    }
+
+
     render() {
         const { classes, theme, onChange, onInputValueChange, placeholder, suggestions, propsValue } = this.props;
-
         return (
             <div style={{ width: '100%' }}>
                 <Downshift
                     onChange={onChange}
+                    onStateChange={this.handleStateChange}
                     onInputValueChange={onInputValueChange}
                     itemToString={i => { return i == null ? '' : String(i) }}
                     render={
@@ -148,9 +223,10 @@ class IntegrationAutosuggest extends React.Component {
                                                     theme,
                                                     itemProps: getItemProps({ item: suggestion.label }),
                                                     highlightedIndex,
-                                                    selectedItem,
+                                                    selectedItem
                                                 }),
                                             ),
+                                            classes
                                         })
                                         : null}
                                 </div>

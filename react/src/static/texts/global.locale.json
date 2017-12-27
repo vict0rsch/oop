@@ -152,5 +152,30 @@
             "dialogContentText2": ["Thaks for your help! <br/><br/>(If you know what that means, you can also raise an Issue on our Github, see the Home's Contact section)", "Merci de votre aide!<br/><br/>(Vous pouvez aussi soumettre une Issue sur notre Github, voir la section Contact de l'Accueil)"],
             "closeButton": ["OK", "OK"]
         }
+    },
+    "contribute": {
+        "editEntity": {
+            "label": {
+                "name": ["(Usual) Name", "Nom (usuel)"],
+                "long_name": ["Complete Name", "Nom complet"],
+                "other_groups": ["Other Companies", "Other Companies"],
+                "category": ["Category", "Catégorie"],
+                "webstite": ["Website", "Site Web"],
+                "wiki_link": ["Wikipedia", "Wikipedia"],
+                "source": ["Source", "Source"]
+            },
+            "help": {
+                "name": [],
+                "long_name": [],
+                "other_groups": [],
+                "category": [],
+                "webstite": [],
+                "wiki_link": [],
+                "source": []
+            },
+            "buttons":{
+
+            }
+        }
     }
 }

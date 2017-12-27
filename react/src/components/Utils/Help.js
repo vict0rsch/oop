@@ -5,6 +5,7 @@ import Popover from 'material-ui/Popover';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
+import Clear from 'material-ui-icons/Clear';
 
 
 const styles = theme => ({
@@ -32,6 +33,12 @@ class HelpIcon extends Component {
         });
     };
 
+    handleClickClear = () => {
+        this.setState({
+            open: false
+        })
+    }
+
     render() {
         return (
             <div>
@@ -40,12 +47,14 @@ class HelpIcon extends Component {
                         this.button = node;
                     }}
                     onClick={this.handleClickButton}
-                    style={this.props.iconStyle} />
+                    style={this.props.iconStyle}
+                    />
                 <Popover
                     open={this.state.open}
                     anchorEl={this.state.anchorEl}
                 >
                     <Typography className={this.props.classes.typography}>{this.props.content}</Typography>
+                    {this.props.forceOpen && <Clear onClick={this.handleClickClear}/>}
                 </Popover>
             </div>
         )

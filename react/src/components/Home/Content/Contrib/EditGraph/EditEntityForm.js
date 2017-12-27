@@ -7,6 +7,7 @@ import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
 import Form from '../../../../Utils/Form'
 import TextInput from '../../../../Utils/TextInput'
+import SelectInput from '../../../../Utils/SelectInput'
 import EntitySelect from '../../../../Utils/EntitySelectMaterial'
 import Help from '../../../../Utils/HelpIcon';
 
@@ -94,6 +95,7 @@ class EditEntityForm extends Component {
                 this.props.rrfChange('editEntityForm.entity.other_groups', entity.other_groups);
                 this.props.rrfChange('editEntityForm.entity.wiki_link', entity.wiki_link);
                 this.props.rrfChange('editEntityForm.entity.website', entity.website);
+                this.props.rrfChange('editEntityForm.entity.category', entity.category);
             }
             this.setState({
                 showForm: true
@@ -118,29 +120,28 @@ class EditEntityForm extends Component {
             />Create an Entity
         </div>)
 
-        const selectEntity = this.state.radio === "modify" ?
-            <div style={{ height: 100 }}><Control.text
-                model=".selectedEntity"
-                validators={{
-                    required: (val) => { return (val && val.label) || this.state.radio === "create" },
-                }}
-                validateOn="change"
-                component={EntitySelect}
-                controlProps={{
-                    placeholder: 'Select An Entity',
-                    autofocus: true,
-                    ...this.props,
-                    clear: this.state.clearParent,
-                    style: selectStyle,
-                    initialValue: this.props.editEntityForm.entity.name || ''
-                }}
-                onChange={this.handleEntityChange}
-            /></div> : '';
+        const selectEntity = <Control.text
+            model=".selectedEntity"
+            validators={{
+                required: (entity) => { return (entity && entity.name) || this.state.radio === "create" },
+            }}
+            validateOn="change"
+            component={EntitySelect}
+            controlProps={{
+                placeholder: 'Select An Entity',
+                autofocus: true,
+                ...this.props,
+                clear: this.state.clearParent,
+                style: selectStyle,
+                initialValue: this.props.editEntityForm.entity.name || '',
+            }}
+            onChange={this.handleEntityChange}
+        />
 
-        const name = this.state.showForm && <Control.text
+        const name = <Control.text
             model=".name"
             validators={{
-                required: (val) => { return val !== null && val !== undefined },
+                required: (val) => { return val && val.length },
             }}
             validateOn="change"
             component={TextInput}
@@ -149,10 +150,10 @@ class EditEntityForm extends Component {
                 label: "Name",
                 id: 'name',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" id="name"/>
+                endAdornment: <Help content="test" id="name" />
             }} />;
 
-        const longName = this.state.showForm && <Control.text
+        const longName = <Control.text
             model=".long_name"
             validateOn="change"
             component={TextInput}
@@ -164,7 +165,24 @@ class EditEntityForm extends Component {
                 endAdornment: <Help content="test" id="long_name" />
             }} />;
 
-        const otherGroups = this.state.showForm && <Control.text
+        const category = <Control.text
+            model=".category"
+            validateOn="change"
+            component={SelectInput}
+            controlProps={{
+                model: this.props.editEntityForm.entity,
+                label: "Entity Category",
+                id: 'category',
+                style: { width: '95%' },
+                options: { media: 'm', company: 'c', individual: 'i' },
+                endAdornment: <Help 
+                    tooltipStyle={{ marginBottom: '-2px' }} 
+                    iconProps={{ style: { verticalAlign: 'super' } }} 
+                    content="test" 
+                    id="category" />
+            }} />;
+
+        const otherGroups = <Control.text
             model=".other_groups"
             validateOn="change"
             component={TextInput}
@@ -173,10 +191,10 @@ class EditEntityForm extends Component {
                 label: "Other Groups",
                 id: 'other_groups',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" id="other_groups"/>
+                endAdornment: <Help content="test" id="other_groups" />
             }} />;
 
-        const website = this.state.showForm && <Control.text
+        const website = <Control.text
             validators={{
                 emptyOrUrl: (val) => {
                     return val ? isURL(val) : true
@@ -190,10 +208,10 @@ class EditEntityForm extends Component {
                 label: "Website",
                 id: 'website',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" id="website"/>
+                endAdornment: <Help content="test" id="website" />
             }} />;
 
-        const wikiLink = this.state.showForm && <Control.text
+        const wikiLink = <Control.text
             validators={{
                 emptyOrUrl: (val) => {
                     return val ? isURL(val) && val.indexOf('wikipedia.org') > -1 : true
@@ -207,14 +225,15 @@ class EditEntityForm extends Component {
                 label: "Wikipedia",
                 id: 'wiki_link',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" id="wiki_link"/>
+                endAdornment: <Help content="test" id="wiki_link" />
             }} />;
 
 
-        const source = this.state.showForm && <Control.text
+        const source = <Control.text
             model=".source"
             validators={{
                 required: (val) => { return val && val.length },
+                long: (val) => { return val && val.length && val.length > 50 }
             }}
             validateOn="change"
             component={TextInput}
@@ -224,23 +243,30 @@ class EditEntityForm extends Component {
                 id: 'source',
                 multiline: true,
                 rowsMax: 6,
-                style: { width: '95%' }
-            }} />;
+                style: { width: '95%' },
+                endAdornment: <Help content="test" id="source" />
+            }}
+        />;
 
         const grid = (
             <div className={this.props.classes.root}>
                 <Grid container spacing={16}>
                     <Grid item xs={12}> {choice} </Grid>
-                    <Grid item xs={12}> {selectEntity} </Grid>
-                    <Grid item xs={12} md={6} lg={4}> {name} </Grid>
-                    <Grid item xs={12} md={6} lg={4}> {longName} </Grid>
-                    <Grid item xs={12} md={6} lg={4}> {otherGroups} </Grid>
-                    <Grid item xs={12} md={6} lg={4}> {website} </Grid>
-                    <Grid item xs={12}> {wikiLink} </Grid>
+                    {this.state.radio === "modify" && <Grid container spacing={16}>
+                        <Grid item xs={0} sm={1} md={3} />
+                        <Grid item xs={12} sm={10} md={6} style={{ marginBottom: '8px' }}> {selectEntity} </Grid>
+                        <Grid item xs={0} sm={1} md={3} />
+                    </Grid>}
+                    {this.state.showForm && <Grid item xs={12} md={6} lg={4}> {name} </Grid>}
+                    {this.state.showForm && <Grid item xs={12} md={6} lg={4}> {category} </Grid>}
+                    {this.state.showForm && <Grid item xs={12} md={6} lg={4}> {longName} </Grid>}
+                    {this.state.showForm && <Grid item xs={12} md={6} lg={4}> {website} </Grid>}
+                    {this.state.showForm && <Grid item xs={12} md={6} lg={4}> {otherGroups} </Grid>}
+                    {this.state.showForm && <Grid item xs={12} lg={8}> {wikiLink} </Grid>}
                     <br />
-                    <Grid item xs={12}> {source} </Grid>
+                    {this.state.showForm && <Grid item xs={12}> {source} </Grid>}
                 </Grid>
-            </div>
+            </div >
         )
 
         return <Form
