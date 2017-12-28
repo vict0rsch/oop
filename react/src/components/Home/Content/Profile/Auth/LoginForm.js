@@ -37,12 +37,8 @@ class RegisterForm extends React.Component {
         // you can dispatch actions such as:
         // dispatch(actions.submit('user', somePromise));
         // etc.
-        this.props.onSubmit(user)
-    }
-
-    handleClick = (event) => {
         this.props.makePending();
-        this.props.rrfSubmit('loginForm.user')
+        this.props.onSubmit(user)
     }
 
     handleChange = (model) => {
@@ -107,7 +103,7 @@ class RegisterForm extends React.Component {
                             {this.props.pending ?
                                 <CircularProgress />
                                 :
-                                (<Button type="submit" color="primary" disabled={!form.$form.valid} onClick={this.handleClick}>
+                                (<Button type="submit" color="primary" disabled={!form.$form.valid}>
                                     {this.props.translate('login.form.submit')}
                                 </Button>)
                             }

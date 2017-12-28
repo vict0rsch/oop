@@ -44,10 +44,6 @@ class RegisterForm extends React.Component {
 
     }
 
-    handleClick = () => {
-        this.props.makePending();
-    }
-
     componentDidMount() {
         this.props.setRandomUsername();
     }
@@ -98,6 +94,7 @@ class RegisterForm extends React.Component {
         // you can dispatch actions such as:
         // dispatch(actions.submit('user', somePromise));
         // etc.
+        this.props.makePending()
         this.props.onSubmit(user)
     }
 
@@ -211,7 +208,7 @@ class RegisterForm extends React.Component {
                     {this.props.pending ?
                         <CircularProgress />
                         :
-                        (<Button type="submit" color="primary" disabled={!form.$form.valid} onClick={this.handleClick}>
+                        (<Button type="submit" color="primary" disabled={!form.$form.valid}>
                             {this.props.translate('login.form.submit')}
                         </Button>)
                     }

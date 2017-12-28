@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Icon from 'react-icons/lib/go/gift';
-import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
 import RefreshIcon from 'material-ui-icons/Refresh'
 
 const buttonStyle = {
@@ -37,22 +37,22 @@ export default class ResendEmail extends Component {
                 if (!JSON.parse(localStorage['reduxPersist:user']).isConfirmed) {
                     this.setState({ refreshStatusDisabled: false })
                 }
-            }, 3000)
+            }, 10000)
     }
 
     render() {
         return (
             <div>
                 {this.props.translate('home.profile.resend.confirm')}
-                <Button onClick={this.handleRefreshStatusClick} style={buttonStyle} disabled={this.state.refreshStatusDisabled}>
+                <IconButton onClick={this.handleRefreshStatusClick} style={buttonStyle} disabled={this.state.refreshStatusDisabled}>
                     <RefreshIcon />
-                </Button>
+                </IconButton>
                 <br /><br />
                 {this.props.translate('home.profile.resend.notReceived')}
 
-                <Button onClick={this.handleResendClick} style={buttonStyle} disabled={this.state.resendDisabled}>
+                <IconButton onClick={this.handleResendClick} style={buttonStyle} disabled={this.state.resendDisabled}>
                     <Icon />
-                </Button>
+                </IconButton>
             </div>
         )
     }
