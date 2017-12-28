@@ -25,7 +25,7 @@ function updateData(component) {
         //     localStorage.dataTime = Math.round((new Date()).getTime() / 1000) + '';
         //     localStorage.updateFromLocal = 'false';
         // } else {
-        Axios.get('https://oop-pro.herokuapp.com/update?timestamp=' + ts).then(
+        Axios.get('https://oop-pro.herokuapp.com/public/update?timestamp=' + ts).then(
             (response) => {
                 if (response.data && (response.data.entities.length > 0 || response.data.shares.length >0)){
                     const updatedServerData = formatUpdateData(component.props.data, response.data);
