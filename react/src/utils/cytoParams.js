@@ -147,8 +147,9 @@ export function cytoParamsFromContainer(containerElement, cytoData, sourceId) {
             {
                 selector: 'node',
                 style: {
-                    ...nodeBaseStyle,
-                }
+                    ...nodeBaseStyle
+                },
+                // boxSelectionEnabled: false
             },
             {
                 selector: 'edge',

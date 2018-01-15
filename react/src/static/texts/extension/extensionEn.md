@@ -1,6 +1,8 @@
 #### Hi!
 
-You are currently on the web version of the OOP Chrome Extension. We try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!). 
+You are currently on the web version of the Metada Chrome Extension. The Extension's goal is to remind you of the ownership challenges in the media, fitting in you habits by simply notfying you about the owners. You can install it right now from the official Chrome and Firefox stores! (see hereunder)
+
+We try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!). 
 
 #### About the Extension
 
@@ -12,7 +14,5 @@ If you are a developper or web designer and want to get involved (frontend or ba
 
 ##### Installation
 
-You can download and install the extension as described here: [bit.ly/oopInstall](https://bit.ly/oopInstall)
-
-For now it is only available as a *Chrome* extension, it will be extended to other browsers at some point. If you know someone with Firefox plugin skills, tell them about us!
+You can download and install the extension from there: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)
 

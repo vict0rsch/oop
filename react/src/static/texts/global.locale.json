@@ -10,7 +10,7 @@
         ],
         "example": [
             "Let's start with the media. Pick one you want to learn about:",
-            "Commen\u00e7ons par les m\u00e9dias. Qui vous intéresse?"
+            "Commen\u00e7ons par les m\u00e9dias. Choisissez \u00e0 propos de qui vous voulez en savoir plus:"
         ],
         "searchBar": [
             "Search The Graph",
@@ -29,8 +29,8 @@
             "Param\u00e8tres"
         ],
         "contactPaperMd": [
-            "**Get in touch**:\n [(Google Form)](https://goo.gl/forms/isjxQ9FfsIYhZIs52)\n\n**Suggest an edit to the Graph**:\n [(Google Form)](https://goo.gl/forms/Lf9fIFDyV1tGtmmr2)\n\n**Github**: [Frontend](https://github.com/vict0rsch/oop) | [Backend](https://github.com/vict0rsch/oop-back)",
-            "**Contactez-nous**:\n [(Google Form)](https://goo.gl/forms/p0sbtWP6ZPkQhcF52)\n\n**Sugg\u00e9rer une modification du Graphe**:\n [(Google Form)](https://goo.gl/forms/t3xmZGEiuYiPPjKj1)\n\n**Github**: [Frontend](https://github.com/vict0rsch/oop) | [Backend](https://github.com/vict0rsch/oop-back)"
+            "**Get in touch**:\n [contact@metada.org](mailto:contact@metada.org)\n\n**Suggest an edit to the Graph**:\n [(Google Form)](https://goo.gl/forms/Lf9fIFDyV1tGtmmr2)\n\n**Github**: [Frontend](https://github.com/vict0rsch/oop) | [Backend](https://github.com/vict0rsch/oop-back)",
+            "**Contactez-nous**:\n [contact@metada.org](mailto:contact@metada.org)\n\n**Sugg\u00e9rer une modification du Graphe**:\n [(Google Form)](https://goo.gl/forms/t3xmZGEiuYiPPjKj1)\n\n**Github**: [Frontend](https://github.com/vict0rsch/oop) | [Backend](https://github.com/vict0rsch/oop-back)"
         ],
         "contactNewLink": [
             " \n\n (Links must be openned in new tabs: right click > \"open in new tab\")",
@@ -431,6 +431,7 @@
             ]
         },
         "issue": {
+<<<<<<< HEAD
             "dialogTitle": [
                 "Issue with a Graph",
                 "Probl\u00e8me dans le Graphe"
@@ -455,7 +456,10 @@
     },
     "contribute": {
         "editEntity": {
-            "summaryHeading": ["Edit Entity", "Modifier une Entité"],
+            "summaryHeading": [
+                "Edit Entity",
+                "Modifier une Entité"
+            ],
             "label": {
                 "name": [
                     "(Usual) Name",
@@ -542,8 +546,37 @@
             },
             "buttons": {}
         },
-        "editEdge":{
-            "summaryHeading": ["Edit Edge", "Modifier une Relation"]
+        "editEdge": {
+            "summaryHeading": [
+                "Edit Edge",
+                "Modifier une Relation"
+            ]
+=======
+            "dialogTitle": [
+                "Issue with a Graph",
+                "Probl\u00e8me dans le Graphe"
+            ],
+            "dialogContentText": [
+                "Whether you notice something which is plain wrong or just a typo, report it to us! Make sure you include the name of the Graph you are currently looking at (the entity's name will be in bold font).",
+                "Que vous remarquiez quelque chose de compl\u00e8tement faux ou juste une petite erreur, dites-le nous! Pr\u00e9cisez bien le nom du Graphe o\u00f9 il y a une erreur: c'est le nom de l'entit\u00e9 \u00e9crite en gras."
+            ],
+            "form": [
+                "https://goo.gl/forms/Lf9fIFDyV1tGtmmr2",
+                "https://goo.gl/forms/t3xmZGEiuYiPPjKj1"
+            ],
+            "dialogContentText2": [
+                "Thaks for your help! <br/><br/>(If you know what that means, you can also raise an Issue on our Github, see the Home's Contact section)",
+                "Merci de votre aide!<br/><br/>(Vous pouvez aussi soumettre une Issue sur notre Github, voir la section Contact de l'Accueil)"
+            ],
+            "closeButton": [
+                "OK",
+                "OK"
+            ],
+            "object": [
+                "(Include [Issue] in the object of your email)",
+                "(Incluez [Issue] dans l'objet de votre email)"
+            ]
+>>>>>>> 4f0808de... change contact
         }
     }
 }

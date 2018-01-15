@@ -101,11 +101,20 @@ class CytoContainer extends React.Component {
           container.props.updateEntityInfoBox(event.target.id());
         },
       );
+      cy.elements('node').on(
+        'drag',
+        (event) => {
+          console.log('drag');
+          event.preventDefault();
+          return false
+        },
+      );
       if (time) {
         console.timeEnd('      Render Cyto');
         console.timeEnd('Full Cyto');
       }
     });
+
     this.cy = cy;
   }
 
