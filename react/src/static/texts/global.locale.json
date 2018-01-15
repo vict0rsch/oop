@@ -150,17 +150,13 @@
                 "Profil"
             ],
             "login": [
-                "Sign in",
-                "Se connecter"
-            ],
-            "contrib": [
-                "Contribute",
-                "Contribuer"
+                "Log in",
+                "S'inscrire"
             ]
         },
         "extensionPaperMd": [
-            "#### Hi!\n\nYou are currently on the web version of the Metada Chrome Extension. We try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!). \n\n#### About the Extension\n\nThe extension is currently under development. For the first version only the French media are available but with the possibility for users to suggest edits to the graph it should grow fast with the next version.\n\n\nIf you are a developper or web designer and want to get involved (frontend or backend) do get in touch (see \"Contact\")!\n\n\n##### Installation\n\nYou can download and install the extension as described here: [bit.ly/oopInstall](https://bit.ly/oopInstall)\n\nFor now it is only available as a *Chrome* extension, it will be extended to other browsers at some point. If you know someone with Firefox plugin skills, tell them about us!\n\n",
-            "#### Bonjour!\n\nVous \u00eates actuellement sur la version web de l'Extension Chrome de Metada. Nous essayons de rendre votre exp\u00e9rience aussi agr\u00e9able que possible mais quelques d\u00e9fauts de pr\u00e9sentation peuvent subsister (pour l'instant!). \n\n\n#### \u00c0 propos de l'Extension\n\nL'Extension est actuellement en cours de d\u00e9veloppement. Pour cette premi\u00e8re version, seuls les m\u00e9dias Fran\u00e7ais sont repr\u00e9sent\u00e9s dans le Graphe. Cela devrait changer rapidement avec la possibilit\u00e9 pour les utilisateurs de sugg\u00e9rer de nouveaux m\u00e9dias dans la prochaine version.\n\nSi vous \u00eates developpeur ou web designer et voulez participez, contactez nous! (voir \"Contact\").\n\n#### Installation\n\nSuivez les instruction d\u00e9crites l\u00e0 (en anglais): [bit.ly/oopInstall](https://bit.ly/oopInstall)\n\nPour l'instant, l'extension n'est compatible qu'avec *Chrome* mais sera \u00e9tendue \u00e0 d'autres navigateurs. Si vous connaissez quelqu'un qui sait cr\u00e9er une Extension Firefox ou Safari (ou autre), parlez-leur de nous!\n\n"
+            "#### Hi!\n\nYou are currently on the web version of the Metada Chrome Extension. The Extension's goal is to remind you of the ownership challenges in the media, fitting in you habits by simply notfying you about the owners. You can install it right now from the official Chrome and Firefox stores! (see hereunder)\n\nWe try to provide as many functionalities of the original project as we can. There may however be layout erros (for now!). \n\n#### About the Extension\n\nThe extension is currently under development. For the first version only the French media are available but with the possibility for users to suggest edits to the graph it should grow fast with the next version.\n\n\nIf you are a developper or web designer and want to get involved (frontend or backend) do get in touch (see \"Contact\")!\n\n\n##### Installation\n\nYou can download and install the extension from there: [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)\n\n",
+            "#### Bonjour!\n\nVous \u00eates actuellement sur la version web de l'Extension de Metada. Le but de cette extension est d'\u00eatre avec vous, discr\u00e8tement, et de vous rappeler que les sites web que vous consultez peuvent \u00eatre la propri\u00e9t\u00e9 de quelqu'un. Vous pouvez l'installer sur votre ordinateur d\u00e8s maintenant depuis les sites offciels de Chrome et Firefox! (voir plus bas)\n\nNous essayons de rendre votre exp\u00e9rience aussi agr\u00e9able que possible mais quelques d\u00e9fauts de pr\u00e9sentation peuvent subsister (pour l'instant!). \n\n\n#### \u00c0 propos de l'Extension\n\nL'Extension est actuellement en cours de d\u00e9veloppement. Pour cette premi\u00e8re version, seuls les m\u00e9dias Fran\u00e7ais sont repr\u00e9sent\u00e9s dans le Graphe. Cela devrait changer rapidement avec la possibilit\u00e9 pour les utilisateurs de sugg\u00e9rer de nouveaux m\u00e9dias dans la prochaine version.\n\nSi vous \u00eates developpeur ou web designer et voulez participez, contactez nous! (voir \"Contact\").\n\n#### Installation\n\nT\u00e9l\u00e9charger et installer l'Extension : [**Chrome**](https://bit.ly/metadaChrome) [**Firefox**](https://bit.ly/metadaFirefox)\n\n\n"
         ],
         "profile": {
             "register": [
@@ -175,84 +171,44 @@
                 "You may chose to use this randomly assigned username.<br/> Or change it. Or try a new random one: ",
                 "On vous a choisi un nom d'utilisateur au hasard. <br/> Mais vous pouvez le changer. Ou en essayer un autre: "
             ],
-            "errors": {
-                "emailExists": [
-                    "This email address is already associated with an account.",
-                    "Cette adresse mail est d\u00e9j\u00e0 utilis\u00e9e."
-                ],
-                "error": [
-                    "Server-side error. Sorry, we're fixing this. Retry soon!",
-                    "Erreur interne. Veuillez nous excuser! R\u00e9essayez dans quelques instants."
-                ],
-                "invalidEmail": [
-                    "Invalid email address",
-                    "Adresse mail invalide"
-                ],
-                "invalidForm": [
-                    "The form is not valid.",
-                    "Formulaire d'inscription invalide."
-                ],
-                "invalidUsername": [
-                    "Invalid Username",
-                    "Nom d'utilisateur invalide"
-                ],
-                "invalidPassword": [
-                    "Invalid password",
-                    "Mot de passe incorrect"
-                ],
+            "registerErrors": {
+                "submit": {
+                    "invalidForm": [
+                        "The form is not valid.",
+                        "Formulaire d'inscription invalide."
+                    ],
+                    "emailExists": [
+                        "This email address is already associated with an account.",
+                        "Cette adresse mail est d\u00e9j\u00e0 utilis\u00e9e."
+                    ],
+                    "usernameExists": [
+                        "This username is taken.",
+                        "Ce nom d'utilisateur est d\u00e9j\u00e0 pris."
+                    ],
+                    "error": [
+                        "Server-side error. Sorry, we're fixing this. Retry soon!",
+                        "Erreur interne. Veuillez nous excuser! R\u00e9essayez dans quelques instants."
+                    ]
+                },
+                "form": {
+                    "invalidEmail": [
+                        "Invalid email address",
+                        "Adresse mail invalide"
+                    ],
+                    "passwordTooShort": [
+                        "The password is too short. Use at least 6 characters",
+                        "Le mot de passe est trop court. Utilisez au moins 6 caract\u00e8res"
+                    ],
+                    "passwordsDontMatch": [
+                        "The passwords don't match",
+                        "Les mots de passe ne correspondent pas"
+                    ]
+                }
+            },
+            "loginErrors": {
                 "invalidUser": [
                     "Invalid Email address or password",
                     "Adresse mail ou mot de passe invalide"
-                ],
-                "noUser": [
-                    "No User found with your credentials",
-                    "Aucun utilisateur n'est associé à vos identifiants. Veuillez vous reconnecter"
-                ],
-                "noUserForEmail": [
-                    "Incorrect email address and/or password",
-                    "Mot de passe et/ou adresse mail incorrect•e•s)"
-                ],
-                "passwordsDontMatch": [
-                    "The passwords don't match",
-                    "Les mots de passe ne correspondent pas"
-                ],
-                "passwordTooShort": [
-                    "The password is too short. Use at least 6 characters",
-                    "Le mot de passe est trop court. Utilisez au moins 6 caract\u00e8res"
-                ],
-                "usernameExists": [
-                    "This username is taken.",
-                    "Ce nom d'utilisateur est d\u00e9j\u00e0 pris."
-                ],
-                "wrongPassword": [
-                    "Incorrect password",
-                    "Mot de passe incorrect"
-                ]
-            },
-            "edit": {
-                "title": [
-                    "Edit your profile",
-                    "Modifier le profil"
-                ],
-                "content": [
-                    "Please enter your password to allow for modifications",
-                    "Entrez votre mot de passe pour autoriser les modifications"
-                ],
-                "oldPassword": [
-                    "Current password",
-                    "Mot de passe actuel"
-                ],
-                "password": [
-                    "New password",
-                    "Nouveau mot de passe"
-                ],
-                "confirmPassword": [
-                    "Confirm new password",
-                    "Confirmez le ouveau mot de passe"
-                ],
-                "button": [
-                    "Edit Profile",
-                    "Éditer le profil"
                 ]
             },
             "resend": {
@@ -297,7 +253,7 @@
             ],
             "errors": {}
         },
-        "last_name": {
+        "lastName": {
             "label": [
                 "Lastname ",
                 "Nom "
@@ -431,7 +387,6 @@
             ]
         },
         "issue": {
-<<<<<<< HEAD
             "dialogTitle": [
                 "Issue with a Graph",
                 "Probl\u00e8me dans le Graphe"
@@ -550,8 +505,7 @@
             "summaryHeading": [
                 "Edit Edge",
                 "Modifier une Relation"
-            ]
-=======
+            ],
             "dialogTitle": [
                 "Issue with a Graph",
                 "Probl\u00e8me dans le Graphe"
@@ -576,7 +530,6 @@
                 "(Include [Issue] in the object of your email)",
                 "(Incluez [Issue] dans l'objet de votre email)"
             ]
->>>>>>> 4f0808de... change contact
         }
     }
 }
