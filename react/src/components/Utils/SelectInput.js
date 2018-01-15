@@ -41,18 +41,24 @@ const styles = theme => ({
 });
 
 class SimpleSelect extends React.Component {
-    state = {
-        value: this.props.model[this.props.id] || '',
-    };
 
-    componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps', nextProps.model);
-        if (nextProps.model[this.props.id] !== this.state.value) {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: this.props.model[this.props.id] || '',
+        };
+
+    }
+
+
+    componentWillUpdate(nextProps, nextState) {
+        if (this.state.value !== nextState.value) {
             this.setState({
-                value: nextProps.model[this.props.id]
+                value: nextProps.model[nextProps.id]
             })
         }
     }
+
 
     handleChange = event => {
         this.setState({ value: event.target.value });
@@ -61,7 +67,7 @@ class SimpleSelect extends React.Component {
 
     render() {
         const { classes, options, label, id } = this.props;
-        console.log(this.props.model, this.props.id, this.props.model[this.props.id]);
+
         return (
             <FormControl className={classes.formControl}>
                 <InputLabel FormControlClasses={{ focused: classes.primaryLabel }} htmlFor={id}>

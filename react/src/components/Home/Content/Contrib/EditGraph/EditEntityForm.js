@@ -104,10 +104,17 @@ class EditEntityForm extends Component {
     }
 
     render() {
-
+        const _tr = this.props.translate;
+        const m = _tr("contribute.editEntity.options.m");
+        const i = _tr("contribute.editEntity.options.i");
+        const c = _tr("contribute.editEntity.options.c");
+        let options = {};
+        options[m] = "m";
+        options[i] = "i";
+        options[c] = "c";
 
         const choice = (<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-            Modify an Entity
+            {_tr("contribute.editEntity.label.choice.select")}
             <Radio
                 checked={this.state.radio === "modify"}
                 onChange={this.handleRadioChange}
@@ -117,7 +124,7 @@ class EditEntityForm extends Component {
                 checked={this.state.radio === "create"}
                 onChange={this.handleRadioChange}
                 value="create"
-            />Create an Entity
+            />{_tr("contribute.editEntity.label.choice.create")}
         </div>)
 
         const selectEntity = <Control.text
@@ -128,12 +135,13 @@ class EditEntityForm extends Component {
             validateOn="change"
             component={EntitySelect}
             controlProps={{
-                placeholder: 'Select An Entity',
+                placeholder: _tr("contribute.editEntity.label.choice.select"),
                 autofocus: true,
                 ...this.props,
                 clear: this.state.clearParent,
                 style: selectStyle,
                 initialValue: this.props.editEntityForm.entity.name || '',
+                data: this.props.data
             }}
             onChange={this.handleEntityChange}
         />
@@ -147,10 +155,10 @@ class EditEntityForm extends Component {
             component={TextInput}
             controlProps={{
                 model: this.props.editEntityForm.entity,
-                label: "Name",
+                label: _tr("contribute.editEntity.label.name"),
                 id: 'name',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" id="name" />
+                endAdornment: <Help content={_tr('contribute.editEntity.help.name')} id="name" forceOpen />
             }} />;
 
         const longName = <Control.text
@@ -159,10 +167,10 @@ class EditEntityForm extends Component {
             component={TextInput}
             controlProps={{
                 model: this.props.editEntityForm.entity,
-                label: "Long Name",
+                label: _tr("contribute.editEntity.label.long_name"),
                 id: 'long_name',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" id="long_name" />
+                endAdornment: <Help content={_tr('contribute.editEntity.help.long_name')} id="long_name" forceOpen />
             }} />;
 
         const category = <Control.text
@@ -171,15 +179,17 @@ class EditEntityForm extends Component {
             component={SelectInput}
             controlProps={{
                 model: this.props.editEntityForm.entity,
-                label: "Entity Category",
+                label: _tr("contribute.editEntity.label.category"),
                 id: 'category',
                 style: { width: '95%' },
-                options: { media: 'm', company: 'c', individual: 'i' },
-                endAdornment: <Help 
-                    tooltipStyle={{ marginBottom: '-2px' }} 
-                    iconProps={{ style: { verticalAlign: 'super' } }} 
-                    content="test" 
-                    id="category" />
+                options: options,
+                endAdornment: <Help
+                    tooltipStyle={{ marginBottom: '-2px' }}
+                    iconProps={{ style: { verticalAlign: 'super' } }}
+                    content={_tr('contribute.editEntity.help.category')}
+                    id="category"
+                    forceOpen
+                />
             }} />;
 
         const otherGroups = <Control.text
@@ -188,10 +198,10 @@ class EditEntityForm extends Component {
             component={TextInput}
             controlProps={{
                 model: this.props.editEntityForm.entity,
-                label: "Other Groups",
+                label: _tr("contribute.editEntity.label.other_groups"),
                 id: 'other_groups',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" id="other_groups" />
+                endAdornment: <Help content={_tr('contribute.editEntity.help.other_groups')} id="other_groups" forceOpen />
             }} />;
 
         const website = <Control.text
@@ -205,10 +215,10 @@ class EditEntityForm extends Component {
             component={TextInput}
             controlProps={{
                 model: this.props.editEntityForm.entity,
-                label: "Website",
+                label: _tr("contribute.editEntity.label.website"),
                 id: 'website',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" id="website" />
+                endAdornment: <Help content={_tr('contribute.editEntity.help.website')} id="website" forceOpen />
             }} />;
 
         const wikiLink = <Control.text
@@ -222,10 +232,10 @@ class EditEntityForm extends Component {
             component={TextInput}
             controlProps={{
                 model: this.props.editEntityForm.entity,
-                label: "Wikipedia",
+                label: _tr("contribute.editEntity.label.wiki_link"),
                 id: 'wiki_link',
                 style: { width: '95%' },
-                endAdornment: <Help content="test" id="wiki_link" />
+                endAdornment: <Help content={_tr('contribute.editEntity.help.wiki_link')} id="wiki_link" forceOpen />
             }} />;
 
 
@@ -239,12 +249,12 @@ class EditEntityForm extends Component {
             component={TextInput}
             controlProps={{
                 model: this.props.editEntityForm.entity,
-                label: "Source",
+                label: _tr("contribute.editEntity.label.source"),
                 id: 'source',
                 multiline: true,
                 rowsMax: 6,
                 style: { width: '95%' },
-                endAdornment: <Help content="test" id="source" />
+                endAdornment: <Help content={_tr('contribute.editEntity.help.source')} id="source" forceOpen />
             }}
         />;
 

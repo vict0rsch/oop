@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import Grid from 'material-ui/Grid';
+import { Control } from 'react-redux-form';
+import { withStyles } from 'material-ui/styles';
+import Button from 'material-ui/Button';
 import Form from '../../../../Utils/Form'
 import TextInput from '../../../../Utils/TextInput'
-import EntitySelect from '../../../../Utils/EntitySelect'
-import { Control } from 'react-redux-form';
-import Button from 'material-ui/Button';
+import EntitySelect from '../../../../Utils/EntitySelectMaterial'
 import { isInRange, isPositiveNumber } from "../../../../../utils/formValidators";
+
 
 const leftTdStyle = {
     // width: '45%',
@@ -16,8 +19,19 @@ const rightTdStyle = {
     textAlign: 'right'
 }
 
+const styles = theme => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        background: theme.palette.background.paper,
+        width: '100%'
+    }
+});
 
-export default class EditEdgeForm extends Component {
+
+class EditEdgeForm extends Component {
 
     state = {
         clearParent: 0,
@@ -51,10 +65,10 @@ export default class EditEdgeForm extends Component {
     }
 
     render() {
-        let c00, c01, c10, c11, c20, c21, c30, c31;
 
-        c00 = "Parent Entity"
-        c10 = <Control.text
+        const _tr = this.props.translate;
+
+        const parentEntity = <Control.text
             model=".parent"
             validators={{
                 required: (val) => { return val && val.label },
@@ -62,17 +76,18 @@ export default class EditEdgeForm extends Component {
             validateOn="change"
             component={EntitySelect}
             controlProps={{
-                placeholder: 'Entity Selector',
+                placeholder: _tr("contribute.editEntity.label.choice.select"),
                 autofocus: true,
                 ...this.props,
                 clear: this.state.clearParent,
                 style: { width: '95%', display: 'inline-block' },
-                initialValue: this.props.editEdgeForm.edge.parent ? this.props.editEdgeForm.edge.parent.id : ''
+                initialValue: this.props.editEdgeForm.edge.parent ? this.props.editEdgeForm.edge.parent.id : '',
+                data: this.props.data
             }}
-        />;
+            onChange={this.handleEntityChange}
+        />
 
-        c01 = "Child Entity"
-        c11 = <Control.text
+        const childEntity = <Control.text
             model=".child"
             validators={{
                 required: (val) => { return val && val.label },
@@ -80,16 +95,19 @@ export default class EditEdgeForm extends Component {
             validateOn="change"
             component={EntitySelect}
             controlProps={{
-                placeholder: 'Entity Selector',
+                placeholder: _tr("contribute.editEntity.label.choice.select"),
                 autofocus: true,
                 ...this.props,
                 clear: this.state.clearChild,
                 style: { width: '95%', display: 'inline-block' },
-                initialValue: this.props.editEdgeForm.edge.child ? this.props.editEdgeForm.edge.child.id : ''
+                initialValue: this.props.editEdgeForm.edge.child ? this.props.editEdgeForm.edge.parent.id : '',
+                data: this.props.data
             }}
-        />;
+            onChange={this.handleEntityChange}
+        />
 
-        c20 = <Control.text
+
+        const value = <Control.text
             model=".value"
             validators={{
                 required: (val) => { return val !== null && val !== undefined },
@@ -105,7 +123,7 @@ export default class EditEdgeForm extends Component {
                 style: { width: '95%' }
             }} />;
 
-        c21 = <Control.text
+        const special = <Control.text
             model=".special"
             validateOn="change"
             component={TextInput}
@@ -116,7 +134,6 @@ export default class EditEdgeForm extends Component {
                 style: { width: '95%' }
             }} />;
 
-        c30 = <br />
 
         const source = <Control.text
             model=".source"
@@ -134,20 +151,19 @@ export default class EditEdgeForm extends Component {
                 style: { width: '100%' }
             }} />;
 
-        const table = (<table style={{ width: '100%' }}><tbody>
-            <tr><td style={leftTdStyle}>{c00 || ''}</td><td style={rightTdStyle}>{c01 || ''}</td></tr>
-            <tr><td style={leftTdStyle}>{c10 || ''}</td><td style={rightTdStyle}>{c11 || ''}</td></tr>
-            <tr><td style={leftTdStyle}>{c20 || ''}</td><td style={rightTdStyle}>{c21 || ''}</td></tr>
-            <tr><td style={leftTdStyle}>{c30 || ''}</td><td style={rightTdStyle}>{c31 || ''}</td></tr>
-        </tbody></table>);
 
-        const content = (
-            <div>
-                {table}
-                <br />
-                {source}
-            </div>
-        );
+        const grid = (
+            <div className={this.props.classes.root}>
+                <Grid container spacing={16}>
+                    <Grid item xs={12} md={6} > {parentEntity} </Grid>
+                    <Grid item xs={12} md={6} > {childEntity} </Grid>
+                    <Grid item xs={12} md={6} lg={4}> {value} </Grid>
+                    <Grid item xs={12} md={6} lg={4}> {special} </Grid>
+                    <br />
+                    <Grid item xs={12}> {source} </Grid>
+                </Grid>
+            </div >
+        )
 
 
         return <Form
@@ -157,9 +173,11 @@ export default class EditEdgeForm extends Component {
             model={'editEdgeForm.edge'}
             errorsLocation={'graph.editEdge.errors'}
             onSubmit={this.handleSubmit}
-            fields={content}
+            fields={grid}
             reset={<Button onClick={this.reset}>Reset Form</Button>}
             onChange={this.handleChange}
         />;
     }
 }
+
+export default withStyles(styles)(EditEdgeForm);

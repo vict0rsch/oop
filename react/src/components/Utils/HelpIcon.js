@@ -16,7 +16,7 @@ const styles = theme => ({
 });
 
 const titleStyle = {
-    fontSize: '1.5em',
+    fontSize: '1.2em',
     padding: 4,
 }
 
@@ -25,9 +25,21 @@ class HelpIcon extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            open: this.props.forceOpen || 1
+            open: this.props.forceOpen === undefined ? false : this.props.forceOpen
         }
     }
+
+    
+    componentWillMount() {
+        if (this.props.forceOpen) {
+            setTimeout(() => {
+                this.setState({
+                    open: false
+                })
+            }, 1100);
+        }
+    }
+    
 
 
     handleClickClear = () => {
@@ -47,6 +59,7 @@ class HelpIcon extends Component {
                 leaveDelay={200}
                 classes={{ tooltip: this.props.classes.tooltip }}
                 open={this.state.open}
+                
             >
                 <Icon {...this.props.iconProps} onMouseEnter={() => { this.setState({ open: true }) }} onMouseLeave={() => { this.setState({ open: false }) }} />
             </Tooltip>

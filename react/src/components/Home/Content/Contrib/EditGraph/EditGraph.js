@@ -27,13 +27,13 @@ export default class EditGraph extends React.Component {
         return (
             <div>
                 <Expansion
-                    summaryHeading={'Edit Entity'}
+                    summaryHeading={this.props.translate("contribute.editEntity.summaryHeading")}
                     content={<EditEntityForm {...this.props} />}
                     handleChange={this.handleChange('panel1')}
                     expanded={this.state.expanded === 'panel1'}
                 />
                 <Expansion
-                    summaryHeading={'Edit Edge'}
+                    summaryHeading={this.props.translate("contribute.editEdge.summaryHeading")}
                     content={<EditEdgeForm {...this.props} />}
                     handleChange={this.handleChange('panel2')}
                     expanded={this.state.expanded === 'panel2'}
