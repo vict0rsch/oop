@@ -12,7 +12,7 @@ const selectStyle = {
   marginBottom: '15px'
 };
 
-var searchBarDivStyle = {
+var searchBarDivStyleDefault = {
   marginBottom: '15px',
   textAlign: 'center',
 };
@@ -46,6 +46,8 @@ class SearchBar extends React.Component {
 
 
   render() {
+
+    let searchBarDivStyle = { ...searchBarDivStyleDefault };
 
     if (this.props.location.pathname === '/') {
       searchBarDivStyle.marginTop = '24px';

@@ -64,7 +64,7 @@ class ResponsiveDialog extends React.Component {
                         <DialogContentText>
                             {this.props.translate('graph.issue.dialogContentText')}<br /><br />
                             Google Form : <a href={this.props.translate('graph.issue.form')} target="_blank" rel="noopener noreferrer">{this.props.translate('graph.issue.form')}</a><br />
-                            Email : <a href="mailto:openownership@gmail.com" target="_blank" rel="noopener noreferrer">openownership@gmail.com</a><br /><br />
+                            Email : <a href="mailto:contact@metada.org" target="_blank" rel="noopener noreferrer">contact@metada.org</a> {this.props.translate('graph.issue.object')}<br /><br />
                             {this.props.translate('graph.issue.dialogContentText2')}
                         </DialogContentText>
                     </DialogContent>
