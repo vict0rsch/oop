@@ -12,6 +12,11 @@ const selectStyle = {
   marginBottom: '15px'
 };
 
+var searchBarDivStyle = {
+  marginBottom: '15px',
+  textAlign: 'center',
+};
+
 class SearchBar extends React.Component {
 
   logChange = (val) => {
@@ -41,10 +46,6 @@ class SearchBar extends React.Component {
 
 
   render() {
-    let searchBarDivStyle = {
-      marginBottom: '15px',
-      textAlign: 'center',
-    };
 
     if (this.props.location.pathname === '/') {
       searchBarDivStyle.marginTop = '24px';
