@@ -46,10 +46,6 @@ class SearchBar extends React.Component {
 
 
   render() {
-    let searchBarDivStyle = {
-      marginBottom: '15px',
-      textAlign: 'center',
-    };
 
     let searchBarDivStyle = { ...searchBarDivStyleDefault };
 
